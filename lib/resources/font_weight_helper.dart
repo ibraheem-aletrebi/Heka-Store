@@ -1,4 +1,3 @@
-// lib/core/resources/font_weight_helper.dart
 import 'package:flutter/material.dart';
 
 class FontWeightHelper {
