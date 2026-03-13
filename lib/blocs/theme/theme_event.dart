@@ -5,6 +5,7 @@ part 'theme_event.freezed.dart';
 
 @freezed
 sealed class ThemeEvent with _$ThemeEvent {
-  const factory ThemeEvent.loadRequested() = ThemeLoadRequested;
-  const factory ThemeEvent.changed(AppThemeModeEnum mode) = ThemeChanged;
+  const factory ThemeEvent.load() = ThemeLoadRequested;
+  const factory ThemeEvent.change(AppThemeModeEnum mode) = ThemeChanged;
+  const factory ThemeEvent.toggle() = ThemeToggle;
 }

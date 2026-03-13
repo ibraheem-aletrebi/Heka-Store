@@ -18,39 +18,45 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$ThemeEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadRequested,
-    required TResult Function(AppThemeModeEnum mode) changed,
+    required TResult Function() load,
+    required TResult Function(AppThemeModeEnum mode) change,
+    required TResult Function() toggle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadRequested,
-    TResult? Function(AppThemeModeEnum mode)? changed,
+    TResult? Function()? load,
+    TResult? Function(AppThemeModeEnum mode)? change,
+    TResult? Function()? toggle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadRequested,
-    TResult Function(AppThemeModeEnum mode)? changed,
+    TResult Function()? load,
+    TResult Function(AppThemeModeEnum mode)? change,
+    TResult Function()? toggle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ThemeLoadRequested value) loadRequested,
-    required TResult Function(ThemeChanged value) changed,
+    required TResult Function(ThemeLoadRequested value) load,
+    required TResult Function(ThemeChanged value) change,
+    required TResult Function(ThemeToggle value) toggle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ThemeLoadRequested value)? loadRequested,
-    TResult? Function(ThemeChanged value)? changed,
+    TResult? Function(ThemeLoadRequested value)? load,
+    TResult? Function(ThemeChanged value)? change,
+    TResult? Function(ThemeToggle value)? toggle,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ThemeLoadRequested value)? loadRequested,
-    TResult Function(ThemeChanged value)? changed,
+    TResult Function(ThemeLoadRequested value)? load,
+    TResult Function(ThemeChanged value)? change,
+    TResult Function(ThemeToggle value)? toggle,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -97,7 +103,7 @@ class _$ThemeLoadRequestedImpl implements ThemeLoadRequested {
 
   @override
   String toString() {
-    return 'ThemeEvent.loadRequested()';
+    return 'ThemeEvent.load()';
   }
 
   @override
@@ -112,30 +118,33 @@ class _$ThemeLoadRequestedImpl implements ThemeLoadRequested {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadRequested,
-    required TResult Function(AppThemeModeEnum mode) changed,
+    required TResult Function() load,
+    required TResult Function(AppThemeModeEnum mode) change,
+    required TResult Function() toggle,
   }) {
-    return loadRequested();
+    return load();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadRequested,
-    TResult? Function(AppThemeModeEnum mode)? changed,
+    TResult? Function()? load,
+    TResult? Function(AppThemeModeEnum mode)? change,
+    TResult? Function()? toggle,
   }) {
-    return loadRequested?.call();
+    return load?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadRequested,
-    TResult Function(AppThemeModeEnum mode)? changed,
+    TResult Function()? load,
+    TResult Function(AppThemeModeEnum mode)? change,
+    TResult Function()? toggle,
     required TResult orElse(),
   }) {
-    if (loadRequested != null) {
-      return loadRequested();
+    if (load != null) {
+      return load();
     }
     return orElse();
   }
@@ -143,30 +152,33 @@ class _$ThemeLoadRequestedImpl implements ThemeLoadRequested {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ThemeLoadRequested value) loadRequested,
-    required TResult Function(ThemeChanged value) changed,
+    required TResult Function(ThemeLoadRequested value) load,
+    required TResult Function(ThemeChanged value) change,
+    required TResult Function(ThemeToggle value) toggle,
   }) {
-    return loadRequested(this);
+    return load(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ThemeLoadRequested value)? loadRequested,
-    TResult? Function(ThemeChanged value)? changed,
+    TResult? Function(ThemeLoadRequested value)? load,
+    TResult? Function(ThemeChanged value)? change,
+    TResult? Function(ThemeToggle value)? toggle,
   }) {
-    return loadRequested?.call(this);
+    return load?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ThemeLoadRequested value)? loadRequested,
-    TResult Function(ThemeChanged value)? changed,
+    TResult Function(ThemeLoadRequested value)? load,
+    TResult Function(ThemeChanged value)? change,
+    TResult Function(ThemeToggle value)? toggle,
     required TResult orElse(),
   }) {
-    if (loadRequested != null) {
-      return loadRequested(this);
+    if (load != null) {
+      return load(this);
     }
     return orElse();
   }
@@ -217,7 +229,7 @@ class _$ThemeChangedImpl implements ThemeChanged {
 
   @override
   String toString() {
-    return 'ThemeEvent.changed(mode: $mode)';
+    return 'ThemeEvent.change(mode: $mode)';
   }
 
   @override
@@ -240,30 +252,33 @@ class _$ThemeChangedImpl implements ThemeChanged {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function() loadRequested,
-    required TResult Function(AppThemeModeEnum mode) changed,
+    required TResult Function() load,
+    required TResult Function(AppThemeModeEnum mode) change,
+    required TResult Function() toggle,
   }) {
-    return changed(mode);
+    return change(mode);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadRequested,
-    TResult? Function(AppThemeModeEnum mode)? changed,
+    TResult? Function()? load,
+    TResult? Function(AppThemeModeEnum mode)? change,
+    TResult? Function()? toggle,
   }) {
-    return changed?.call(mode);
+    return change?.call(mode);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadRequested,
-    TResult Function(AppThemeModeEnum mode)? changed,
+    TResult Function()? load,
+    TResult Function(AppThemeModeEnum mode)? change,
+    TResult Function()? toggle,
     required TResult orElse(),
   }) {
-    if (changed != null) {
-      return changed(mode);
+    if (change != null) {
+      return change(mode);
     }
     return orElse();
   }
@@ -271,30 +286,33 @@ class _$ThemeChangedImpl implements ThemeChanged {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(ThemeLoadRequested value) loadRequested,
-    required TResult Function(ThemeChanged value) changed,
+    required TResult Function(ThemeLoadRequested value) load,
+    required TResult Function(ThemeChanged value) change,
+    required TResult Function(ThemeToggle value) toggle,
   }) {
-    return changed(this);
+    return change(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ThemeLoadRequested value)? loadRequested,
-    TResult? Function(ThemeChanged value)? changed,
+    TResult? Function(ThemeLoadRequested value)? load,
+    TResult? Function(ThemeChanged value)? change,
+    TResult? Function(ThemeToggle value)? toggle,
   }) {
-    return changed?.call(this);
+    return change?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(ThemeLoadRequested value)? loadRequested,
-    TResult Function(ThemeChanged value)? changed,
+    TResult Function(ThemeLoadRequested value)? load,
+    TResult Function(ThemeChanged value)? change,
+    TResult Function(ThemeToggle value)? toggle,
     required TResult orElse(),
   }) {
-    if (changed != null) {
-      return changed(this);
+    if (change != null) {
+      return change(this);
     }
     return orElse();
   }
@@ -307,4 +325,112 @@ abstract class ThemeChanged implements ThemeEvent {
   @JsonKey(ignore: true)
   _$$ThemeChangedImplCopyWith<_$ThemeChangedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ThemeToggleImplCopyWith<$Res> {
+  factory _$$ThemeToggleImplCopyWith(
+          _$ThemeToggleImpl value, $Res Function(_$ThemeToggleImpl) then) =
+      __$$ThemeToggleImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ThemeToggleImplCopyWithImpl<$Res>
+    extends _$ThemeEventCopyWithImpl<$Res, _$ThemeToggleImpl>
+    implements _$$ThemeToggleImplCopyWith<$Res> {
+  __$$ThemeToggleImplCopyWithImpl(
+      _$ThemeToggleImpl _value, $Res Function(_$ThemeToggleImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ThemeToggleImpl implements ThemeToggle {
+  const _$ThemeToggleImpl();
+
+  @override
+  String toString() {
+    return 'ThemeEvent.toggle()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ThemeToggleImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AppThemeModeEnum mode) change,
+    required TResult Function() toggle,
+  }) {
+    return toggle();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? load,
+    TResult? Function(AppThemeModeEnum mode)? change,
+    TResult? Function()? toggle,
+  }) {
+    return toggle?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppThemeModeEnum mode)? change,
+    TResult Function()? toggle,
+    required TResult orElse(),
+  }) {
+    if (toggle != null) {
+      return toggle();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ThemeLoadRequested value) load,
+    required TResult Function(ThemeChanged value) change,
+    required TResult Function(ThemeToggle value) toggle,
+  }) {
+    return toggle(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ThemeLoadRequested value)? load,
+    TResult? Function(ThemeChanged value)? change,
+    TResult? Function(ThemeToggle value)? toggle,
+  }) {
+    return toggle?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ThemeLoadRequested value)? load,
+    TResult Function(ThemeChanged value)? change,
+    TResult Function(ThemeToggle value)? toggle,
+    required TResult orElse(),
+  }) {
+    if (toggle != null) {
+      return toggle(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ThemeToggle implements ThemeEvent {
+  const factory ThemeToggle() = _$ThemeToggleImpl;
 }

@@ -8,10 +8,21 @@ class LocalStorageService {
   static const String _defaultBoxName = 'app_box';
   late Box _box;
 
-  Future<void> init({String boxName = _defaultBoxName}) async {
+
+  Future<void> init({
+    String boxName = _defaultBoxName,
+    List<TypeAdapter> adapters = const [],
+  }) async {
     await Hive.initFlutter();
+    for (final adapter in adapters) {
+      if (!Hive.isAdapterRegistered(adapter.typeId)) {
+        Hive.registerAdapter(adapter);
+      }
+    }
+
     _box = await Hive.openBox(boxName);
   }
+
 
   Future<void> setValue<T>(String key, T value) async {
     await _box.put(key, value);
@@ -28,7 +39,7 @@ class LocalStorageService {
   Map<String, dynamic>? getJson(String key) {
     final data = _box.get(key);
     if (data == null) return null;
-    return Map<String, dynamic>.from(data);
+    return Map<String, dynamic>.from(data as Map);
   }
 
   Future<void> remove(String key) async {
