@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heka_store/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/generated/l10n.dart';
 import 'package:heka_store/resources/app_theme.dart';
 import 'package:heka_store/services/local/local_storage_service.dart';
 
@@ -33,6 +35,15 @@ class MyApp extends StatelessWidget {
               return GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: MaterialApp(
+                  // locale: Locale(langState.languageCode),
+                  localizationsDelegates: const [
+                    S.delegate,
+                    GlobalMaterialLocalizations.delegate,
+                    GlobalWidgetsLocalizations.delegate,
+                    GlobalCupertinoLocalizations.delegate,
+                  ],
+                  supportedLocales: S.delegate.supportedLocales,
+                  debugShowCheckedModeBanner: false,
                   theme: AppTheme.lightTheme,
                   darkTheme: AppTheme.darkTheme,
                   themeMode: context.watch<ThemeBloc>().state.themeMode,
