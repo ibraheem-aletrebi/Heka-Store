@@ -21,5 +21,196 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "addCard": MessageLookupByLibrary.simpleMessage("Add card"),
+    "addDebitOrCreditCard": MessageLookupByLibrary.simpleMessage(
+      "Add Debit or Credit Card",
+    ),
+    "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
+    "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "addressNickName": MessageLookupByLibrary.simpleMessage("Address Nickname"),
+    "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Already have an account? ",
+    ),
+    "and": MessageLookupByLibrary.simpleMessage(" and "),
+    "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
+    "bestSeller": MessageLookupByLibrary.simpleMessage("Best Seller"),
+    "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+    "card": MessageLookupByLibrary.simpleMessage("Card"),
+    "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
+    "cart": MessageLookupByLibrary.simpleMessage("Cart"),
+    "cartEmptySubtitle": MessageLookupByLibrary.simpleMessage(
+      "add items to your cart to get started.",
+    ),
+    "cartEmptyTitle": MessageLookupByLibrary.simpleMessage(
+      "Your shopping cart looks empty",
+    ),
+    "cash": MessageLookupByLibrary.simpleMessage("Cash"),
+    "change": MessageLookupByLibrary.simpleMessage("Change"),
+    "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
+    "confirmLocation": MessageLookupByLibrary.simpleMessage("Confirm Location"),
+    "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
+    "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
+    "createAccountToContinue": MessageLookupByLibrary.simpleMessage(
+      "Create an account to continue",
+    ),
+    "deliveryAddress": MessageLookupByLibrary.simpleMessage("Delivery Address"),
+    "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
+      "Don\'t have an account? ",
+    ),
+    "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emptyFavoriteBody": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any saved items. Go to home and add some.",
+    ),
+    "emptyFavoriteTitle": MessageLookupByLibrary.simpleMessage(
+      "No Saved Items!",
+    ),
+    "enterCouponCode": MessageLookupByLibrary.simpleMessage(
+      "Enter Coupon code",
+    ),
+    "enterYourCardNumber": MessageLookupByLibrary.simpleMessage(
+      "Enter your card number",
+    ),
+    "enterYourEmailAndPasswordToLogin": MessageLookupByLibrary.simpleMessage(
+      "Enter your email and password to log in",
+    ),
+    "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry Date"),
+    "exploreHeka": MessageLookupByLibrary.simpleMessage("Explore Heka now"),
+    "failedToGetLocation": MessageLookupByLibrary.simpleMessage(
+      "Failed to get location. Please try again.",
+    ),
+    "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
+    "fetchingAddress": MessageLookupByLibrary.simpleMessage(
+      "Fetching address...",
+    ),
+    "firstName": MessageLookupByLibrary.simpleMessage("First name"),
+    "fitchingAddress": MessageLookupByLibrary.simpleMessage(
+      "Fetching address...",
+    ),
+    "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
+    "freeShipping": MessageLookupByLibrary.simpleMessage("Free Shipping"),
+    "getStartedNow": MessageLookupByLibrary.simpleMessage("Get started now"),
+    "gpsButtonTooltip": MessageLookupByLibrary.simpleMessage(
+      "Current location",
+    ),
+    "home": MessageLookupByLibrary.simpleMessage("Home"),
+    "iAgreeTo": MessageLookupByLibrary.simpleMessage("I agree to "),
+    "invalidCardNumber": MessageLookupByLibrary.simpleMessage(
+      "Invalid card number",
+    ),
+    "invalidCvv": MessageLookupByLibrary.simpleMessage("Invalid CVV"),
+    "invalidExpiry": MessageLookupByLibrary.simpleMessage("Invalid expiry"),
+    "itemsYouMayLike": MessageLookupByLibrary.simpleMessage(
+      "Items You May Like",
+    ),
+    "lang": MessageLookupByLibrary.simpleMessage("English"),
+    "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
+    "locationDetailAddress": MessageLookupByLibrary.simpleMessage("Address"),
+    "locationDetailCoordinates": MessageLookupByLibrary.simpleMessage(
+      "Coordinates",
+    ),
+    "locationPermissionDenied": MessageLookupByLibrary.simpleMessage(
+      "Location permission denied. Please allow access to your location.",
+    ),
+    "locationPermissionDeniedForever": MessageLookupByLibrary.simpleMessage(
+      "Location permission is permanently denied. You can enable it from settings.",
+    ),
+    "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
+      "Login to your account",
+    ),
+    "newCard": MessageLookupByLibrary.simpleMessage("New Card"),
+    "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
+    "next": MessageLookupByLibrary.simpleMessage("Next"),
+    "nicknameHint": MessageLookupByLibrary.simpleMessage("e.g. Mom\'s house"),
+    "noLocationSelected": MessageLookupByLibrary.simpleMessage(
+      "No location selected yet",
+    ),
+    "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
+    "off": MessageLookupByLibrary.simpleMessage("Off"),
+    "onboardingBody": MessageLookupByLibrary.simpleMessage(
+      "Connect directly with local artisans and trusted vendors. From handcrafted treasures to modern Egyptian design all in one trusted marketplace.",
+    ),
+    "onboardingTitle": MessageLookupByLibrary.simpleMessage("Welcome to Heka"),
+    "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
+    "orLoginWith": MessageLookupByLibrary.simpleMessage("Or login with"),
+    "orRegisterWith": MessageLookupByLibrary.simpleMessage("Or register with"),
+    "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
+    "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+    "permissionRequired": MessageLookupByLibrary.simpleMessage(
+      "Permission Required",
+    ),
+    "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+    "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
+    "previouslyViewedItem": MessageLookupByLibrary.simpleMessage(
+      "Items you previously viewed",
+    ),
+    "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "recommendedForYou": MessageLookupByLibrary.simpleMessage(
+      "Recommended for you",
+    ),
+    "register": MessageLookupByLibrary.simpleMessage("Register"),
+    "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+    "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
+    "resetPasswordNewPasswordBody": MessageLookupByLibrary.simpleMessage(
+      "Enter your new password below to secure your account.",
+    ),
+    "resetPasswordNewPasswordTitle": MessageLookupByLibrary.simpleMessage(
+      "Set a New Password",
+    ),
+    "resetPasswordOtpBody": MessageLookupByLibrary.simpleMessage(
+      "Enter the code we sent to your email to reset your password.",
+    ),
+    "resetPasswordOtpTitle": MessageLookupByLibrary.simpleMessage(
+      "Almost there!",
+    ),
+    "resetPasswordRequestBody": MessageLookupByLibrary.simpleMessage(
+      "Enter your email and we\'ll guide you through the reset process.",
+    ),
+    "resetPasswordRequestTitle": MessageLookupByLibrary.simpleMessage(
+      "Let\'s reset your password",
+    ),
+    "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
+    "savedCards": MessageLookupByLibrary.simpleMessage("Saved Cards"),
+    "searchForLocation": MessageLookupByLibrary.simpleMessage(
+      "Search for a place",
+    ),
+    "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
+    "selectLocationSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Search or tap anywhere on the map",
+    ),
+    "selectLocationTitle": MessageLookupByLibrary.simpleMessage(
+      "Your Location",
+    ),
+    "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
+      "Make this as a default address",
+    ),
+    "shippingFee": MessageLookupByLibrary.simpleMessage("Shipping fee"),
+    "signInWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Sign in with Google",
+    ),
+    "signUp": MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "signupWithGoogle": MessageLookupByLibrary.simpleMessage(
+      "Sign up with Google",
+    ),
+    "skipForNow": MessageLookupByLibrary.simpleMessage("Skip for now"),
+    "startShopping": MessageLookupByLibrary.simpleMessage("Start Shopping"),
+    "submit": MessageLookupByLibrary.simpleMessage("Submit"),
+    "subtotal": MessageLookupByLibrary.simpleMessage("Sub-total"),
+    "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of use"),
+    "total": MessageLookupByLibrary.simpleMessage("Total"),
+    "vat": MessageLookupByLibrary.simpleMessage("VAT (%)"),
+    "verify": MessageLookupByLibrary.simpleMessage("Verify"),
+    "verifyEmailOtpBody": MessageLookupByLibrary.simpleMessage(
+      "Enter the code we sent to your email",
+    ),
+    "verifyEmailOtpTitle": MessageLookupByLibrary.simpleMessage(
+      "Verify Your Email",
+    ),
+    "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
+    "work": MessageLookupByLibrary.simpleMessage("Work"),
+  };
 }
