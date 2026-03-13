@@ -34,7 +34,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.light.background,
 
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.light.surface,
+      backgroundColor: AppColors.light.background,
       foregroundColor: AppColors.light.textPrimary,
       elevation: 0,
       scrolledUnderElevation: 1,
@@ -355,7 +355,7 @@ class AppTheme {
     scaffoldBackgroundColor: AppColors.dark.background,
 
     appBarTheme: AppBarTheme(
-      backgroundColor: AppColors.dark.surface,
+      backgroundColor: AppColors.dark.background,
       foregroundColor: AppColors.dark.textPrimary,
       elevation: 0,
       scrolledUnderElevation: 1,
