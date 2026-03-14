@@ -21,7 +21,7 @@ mixin _$ThemeState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppThemeModeEnum appThemeMode) loaded,
-    required TResult Function(String message, AppThemeModeEnum fallback)
+    required TResult Function(ThemeError themeError, AppThemeModeEnum fallback)
         failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,8 @@ mixin _$ThemeState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult? Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult? Function(ThemeError themeError, AppThemeModeEnum fallback)?
+        failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,7 +39,7 @@ mixin _$ThemeState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult Function(ThemeError themeError, AppThemeModeEnum fallback)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -128,7 +129,7 @@ class _$ThemeInitialImpl extends ThemeInitial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppThemeModeEnum appThemeMode) loaded,
-    required TResult Function(String message, AppThemeModeEnum fallback)
+    required TResult Function(ThemeError themeError, AppThemeModeEnum fallback)
         failure,
   }) {
     return initial();
@@ -140,7 +141,8 @@ class _$ThemeInitialImpl extends ThemeInitial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult? Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult? Function(ThemeError themeError, AppThemeModeEnum fallback)?
+        failure,
   }) {
     return initial?.call();
   }
@@ -151,7 +153,7 @@ class _$ThemeInitialImpl extends ThemeInitial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult Function(ThemeError themeError, AppThemeModeEnum fallback)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -244,7 +246,7 @@ class _$ThemeLoadingImpl extends ThemeLoading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppThemeModeEnum appThemeMode) loaded,
-    required TResult Function(String message, AppThemeModeEnum fallback)
+    required TResult Function(ThemeError themeError, AppThemeModeEnum fallback)
         failure,
   }) {
     return loading();
@@ -256,7 +258,8 @@ class _$ThemeLoadingImpl extends ThemeLoading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult? Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult? Function(ThemeError themeError, AppThemeModeEnum fallback)?
+        failure,
   }) {
     return loading?.call();
   }
@@ -267,7 +270,7 @@ class _$ThemeLoadingImpl extends ThemeLoading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult Function(ThemeError themeError, AppThemeModeEnum fallback)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -387,7 +390,7 @@ class _$ThemeLoadedImpl extends ThemeLoaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppThemeModeEnum appThemeMode) loaded,
-    required TResult Function(String message, AppThemeModeEnum fallback)
+    required TResult Function(ThemeError themeError, AppThemeModeEnum fallback)
         failure,
   }) {
     return loaded(appThemeMode);
@@ -399,7 +402,8 @@ class _$ThemeLoadedImpl extends ThemeLoaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult? Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult? Function(ThemeError themeError, AppThemeModeEnum fallback)?
+        failure,
   }) {
     return loaded?.call(appThemeMode);
   }
@@ -410,7 +414,7 @@ class _$ThemeLoadedImpl extends ThemeLoaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult Function(ThemeError themeError, AppThemeModeEnum fallback)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -474,7 +478,7 @@ abstract class _$$ThemeFailureImplCopyWith<$Res> {
           _$ThemeFailureImpl value, $Res Function(_$ThemeFailureImpl) then) =
       __$$ThemeFailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, AppThemeModeEnum fallback});
+  $Res call({ThemeError themeError, AppThemeModeEnum fallback});
 }
 
 /// @nodoc
@@ -488,14 +492,14 @@ class __$$ThemeFailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? themeError = null,
     Object? fallback = null,
   }) {
     return _then(_$ThemeFailureImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      themeError: null == themeError
+          ? _value.themeError
+          : themeError // ignore: cast_nullable_to_non_nullable
+              as ThemeError,
       fallback: null == fallback
           ? _value.fallback
           : fallback // ignore: cast_nullable_to_non_nullable
@@ -508,18 +512,18 @@ class __$$ThemeFailureImplCopyWithImpl<$Res>
 
 class _$ThemeFailureImpl extends ThemeFailure {
   const _$ThemeFailureImpl(
-      {required this.message, this.fallback = AppThemeModeEnum.system})
+      {required this.themeError, this.fallback = AppThemeModeEnum.system})
       : super._();
 
   @override
-  final String message;
+  final ThemeError themeError;
   @override
   @JsonKey()
   final AppThemeModeEnum fallback;
 
   @override
   String toString() {
-    return 'ThemeState.failure(message: $message, fallback: $fallback)';
+    return 'ThemeState.failure(themeError: $themeError, fallback: $fallback)';
   }
 
   @override
@@ -527,13 +531,14 @@ class _$ThemeFailureImpl extends ThemeFailure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ThemeFailureImpl &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.themeError, themeError) ||
+                other.themeError == themeError) &&
             (identical(other.fallback, fallback) ||
                 other.fallback == fallback));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, fallback);
+  int get hashCode => Object.hash(runtimeType, themeError, fallback);
 
   @JsonKey(ignore: true)
   @override
@@ -547,10 +552,10 @@ class _$ThemeFailureImpl extends ThemeFailure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(AppThemeModeEnum appThemeMode) loaded,
-    required TResult Function(String message, AppThemeModeEnum fallback)
+    required TResult Function(ThemeError themeError, AppThemeModeEnum fallback)
         failure,
   }) {
-    return failure(message, fallback);
+    return failure(themeError, fallback);
   }
 
   @override
@@ -559,9 +564,10 @@ class _$ThemeFailureImpl extends ThemeFailure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult? Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult? Function(ThemeError themeError, AppThemeModeEnum fallback)?
+        failure,
   }) {
-    return failure?.call(message, fallback);
+    return failure?.call(themeError, fallback);
   }
 
   @override
@@ -570,11 +576,11 @@ class _$ThemeFailureImpl extends ThemeFailure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(AppThemeModeEnum appThemeMode)? loaded,
-    TResult Function(String message, AppThemeModeEnum fallback)? failure,
+    TResult Function(ThemeError themeError, AppThemeModeEnum fallback)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(message, fallback);
+      return failure(themeError, fallback);
     }
     return orElse();
   }
@@ -619,11 +625,11 @@ class _$ThemeFailureImpl extends ThemeFailure {
 
 abstract class ThemeFailure extends ThemeState {
   const factory ThemeFailure(
-      {required final String message,
+      {required final ThemeError themeError,
       final AppThemeModeEnum fallback}) = _$ThemeFailureImpl;
   const ThemeFailure._() : super._();
 
-  String get message;
+  ThemeError get themeError;
   AppThemeModeEnum get fallback;
   @JsonKey(ignore: true)
   _$$ThemeFailureImplCopyWith<_$ThemeFailureImpl> get copyWith =>

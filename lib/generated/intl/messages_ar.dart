@@ -182,6 +182,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit": MessageLookupByLibrary.simpleMessage("إرسال"),
     "subtotal": MessageLookupByLibrary.simpleMessage("المجموع الجزئي"),
     "termsOfUse": MessageLookupByLibrary.simpleMessage("شروط الاستخدام"),
+    "themeChangeError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تغيير المظهر.",
+    ),
+    "themeLoadError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تحميل المظهر.",
+    ),
+    "themeToggleError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تبديل المظهر.",
+    ),
     "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
     "vat": MessageLookupByLibrary.simpleMessage("ضريبة القيمة المضافة (%)"),
     "verify": MessageLookupByLibrary.simpleMessage("تحقق"),

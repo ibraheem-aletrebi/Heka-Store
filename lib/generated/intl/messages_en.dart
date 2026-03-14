@@ -210,6 +210,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Sub-total"),
     "termsOfUse": MessageLookupByLibrary.simpleMessage("Terms of use"),
+    "themeChangeError": MessageLookupByLibrary.simpleMessage(
+      "Failed to change theme.",
+    ),
+    "themeLoadError": MessageLookupByLibrary.simpleMessage(
+      "Failed to load theme.",
+    ),
+    "themeToggleError": MessageLookupByLibrary.simpleMessage(
+      "Failed to switch theme.",
+    ),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
     "vat": MessageLookupByLibrary.simpleMessage("VAT (%)"),
     "verify": MessageLookupByLibrary.simpleMessage("Verify"),

@@ -1,7 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/constants/hive_keys.dart';
 import 'package:heka_store/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/enums/errors/theme_error_enum.dart';
 import 'package:heka_store/services/local/local_storage_service.dart';
 
 import 'theme_event.dart';
@@ -12,9 +12,8 @@ export 'theme_state.dart';
 
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   final LocalStorageService _localStorage;
-  final BuildContext context;
 
-  ThemeBloc({required LocalStorageService localStorage, required this.context})
+  ThemeBloc({required LocalStorageService localStorage})
     : _localStorage = localStorage,
       super(const ThemeState.initial()) {
     on<ThemeLoadRequested>(_onLoadRequested);
@@ -35,7 +34,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     } catch (e) {
       emit(
         ThemeState.failure(
-          message: 'Failed to load theme: $e',
+          themeError: ThemeError.loadFailed,
           fallback: AppThemeModeEnum.system,
         ),
       );
@@ -52,7 +51,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     } catch (e) {
       emit(
         ThemeState.failure(
-          message: 'Failed to save theme: $e',
+          themeError: ThemeError.changeFailed,
           fallback: state.activeMode,
         ),
       );
@@ -75,7 +74,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     } catch (e) {
       emit(
         ThemeState.failure(
-          message: 'Failed to toggle theme: $e',
+          themeError: ThemeError.toggleFailed,
           fallback: state.activeMode,
         ),
       );

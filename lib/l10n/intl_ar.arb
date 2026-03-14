@@ -12,6 +12,12 @@
     "languageToggleError": "فشل في تبديل اللغة.",
     "@languageToggleError": {},
 
+    "themeLoadError": "فشل في تحميل المظهر.",
+    "@themeLoadError": {},
+    "themeChangeError": "فشل في تغيير المظهر.",
+    "@themeChangeError": {},
+    "themeToggleError": "فشل في تبديل المظهر.",
+    "@themeToggleError": {},
 
     
     "onboardingTitle": "مرحباً بك في هيكا",

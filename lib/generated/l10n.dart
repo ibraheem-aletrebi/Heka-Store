@@ -89,6 +89,36 @@ class S {
     );
   }
 
+  /// `Failed to load theme.`
+  String get themeLoadError {
+    return Intl.message(
+      'Failed to load theme.',
+      name: 'themeLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to change theme.`
+  String get themeChangeError {
+    return Intl.message(
+      'Failed to change theme.',
+      name: 'themeChangeError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to switch theme.`
+  String get themeToggleError {
+    return Intl.message(
+      'Failed to switch theme.',
+      name: 'themeToggleError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to Heka`
   String get onboardingTitle {
     return Intl.message(

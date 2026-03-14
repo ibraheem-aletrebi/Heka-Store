@@ -12,6 +12,12 @@
     "languageToggleError": "Failed to switch language.",
     "@languageToggleError": {},
     
+    "themeLoadError": "Failed to load theme.",
+    "@themeLoadError": {},
+    "themeChangeError": "Failed to change theme.",
+    "@themeChangeError": {},
+    "themeToggleError": "Failed to switch theme.",
+    "@themeToggleError": {},
 
     "onboardingTitle": "Welcome to Heka",
     "@onboardingTitle": {},
