@@ -3,9 +3,10 @@ import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_colors.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/core/resources/font_family_helper.dart';
 
 class AppTheme {
-  static const String _fontFamily = 'Alexandria';
+  static const String _fontFamily = FontFamilyHelper.alexandria;
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
