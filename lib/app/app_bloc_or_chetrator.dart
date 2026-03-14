@@ -1,12 +1,11 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/blocs/language/language_bloc.dart';
 import 'package:heka_store/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/di/injector.dart';
 import 'package:heka_store/enums/errors/language_error_enum.dart';
 import 'package:heka_store/enums/errors/theme_error_enum.dart';
 import 'package:heka_store/generated/l10n.dart';
-import 'package:heka_store/services/local/local_storage_service.dart';
 
 class AppBlocOrchestrator extends StatelessWidget {
   const AppBlocOrchestrator({super.key, required this.builder});
@@ -18,14 +17,10 @@ class AppBlocOrchestrator extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) =>
-              ThemeBloc(localStorage: LocalStorageService())
-                ..add(const ThemeEvent.load()),
+          create: (_) => sl<ThemeBloc>()..add(const ThemeEvent.load()),
         ),
         BlocProvider(
-          create: (_) =>
-              LanguageBloc(localStorage: LocalStorageService())
-                ..add(const LanguageEvent.load()),
+          create: (_) => sl<LanguageBloc>()..add(const LanguageEvent.load()),
         ),
       ],
       child: BlocConsumer<ThemeBloc, ThemeState>(

@@ -11,8 +11,9 @@ Future<void> setupInjector() async {
 }
 
 Future<void> _initCore() async {
-  await LocalStorageService().init(adapters: [AppThemeModeEnumAdapter()]);
+  final localStorage = LocalStorageService();
+  await localStorage.init(adapters: [AppThemeModeEnumAdapter()]);
 
-  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: sl()));
-  sl.registerFactory<LanguageBloc>(() => LanguageBloc(localStorage: sl()));
+  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
+  sl.registerFactory<LanguageBloc>(() => LanguageBloc(localStorage: localStorage));
 }
