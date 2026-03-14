@@ -4,6 +4,16 @@
     "lang": "العربية",
     "@lang": {},
 
+
+    "languageLoadError": "فشل في تحميل اللغة.",
+    "@languageLoadError": {},
+    "languageChangeError": "فشل في تغيير اللغة.",
+    "@languageChangeError": {},
+    "languageToggleError": "فشل في تبديل اللغة.",
+    "@languageToggleError": {},
+
+
+    
     "onboardingTitle": "مرحباً بك في هيكا",
     "@onboardingTitle": {},
     "onboardingBody": "تواصل مباشرةً مع الحرفيين المحليين والبائعين الموثوقين. من الكنوز اليدوية إلى التصميم المصري الحديث، كل ذلك في سوق واحد موثوق.",

@@ -86,6 +86,15 @@ class MessageLookup extends MessageLookupByLibrary {
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("أوافق على "),
     "itemsYouMayLike": MessageLookupByLibrary.simpleMessage("منتجات قد تعجبك"),
     "lang": MessageLookupByLibrary.simpleMessage("العربية"),
+    "languageChangeError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تغيير اللغة.",
+    ),
+    "languageLoadError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تحميل اللغة.",
+    ),
+    "languageToggleError": MessageLookupByLibrary.simpleMessage(
+      "فشل في تبديل اللغة.",
+    ),
     "lastName": MessageLookupByLibrary.simpleMessage("اسم العائلة"),
     "locationDetailAddress": MessageLookupByLibrary.simpleMessage("العنوان"),
     "locationDetailCoordinates": MessageLookupByLibrary.simpleMessage(

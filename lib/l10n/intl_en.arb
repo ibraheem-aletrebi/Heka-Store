@@ -4,6 +4,15 @@
     "lang": "English",
     "@lang": {},
 
+
+    "languageLoadError": "Failed to load language.",
+    "@languageLoadError": {},
+    "languageChangeError": "Failed to change language.",
+    "@languageChangeError": {},
+    "languageToggleError": "Failed to switch language.",
+    "@languageToggleError": {},
+    
+
     "onboardingTitle": "Welcome to Heka",
     "@onboardingTitle": {},
     "onboardingBody": "Connect directly with local artisans and trusted vendors. From handcrafted treasures to modern Egyptian design all in one trusted marketplace.",

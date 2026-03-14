@@ -455,7 +455,8 @@ mixin _$LanguageState {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String langCode) loaded,
-    required TResult Function(String message, String fallback) failure,
+    required TResult Function(LanguageError languageError, String fallback)
+        failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -463,7 +464,7 @@ mixin _$LanguageState {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String langCode)? loaded,
-    TResult? Function(String message, String fallback)? failure,
+    TResult? Function(LanguageError languageError, String fallback)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -471,7 +472,7 @@ mixin _$LanguageState {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String langCode)? loaded,
-    TResult Function(String message, String fallback)? failure,
+    TResult Function(LanguageError languageError, String fallback)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -561,7 +562,8 @@ class _$InitialImpl extends _Initial {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String langCode) loaded,
-    required TResult Function(String message, String fallback) failure,
+    required TResult Function(LanguageError languageError, String fallback)
+        failure,
   }) {
     return initial();
   }
@@ -572,7 +574,7 @@ class _$InitialImpl extends _Initial {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String langCode)? loaded,
-    TResult? Function(String message, String fallback)? failure,
+    TResult? Function(LanguageError languageError, String fallback)? failure,
   }) {
     return initial?.call();
   }
@@ -583,7 +585,7 @@ class _$InitialImpl extends _Initial {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String langCode)? loaded,
-    TResult Function(String message, String fallback)? failure,
+    TResult Function(LanguageError languageError, String fallback)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -676,7 +678,8 @@ class _$LoadingImpl extends _Loading {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String langCode) loaded,
-    required TResult Function(String message, String fallback) failure,
+    required TResult Function(LanguageError languageError, String fallback)
+        failure,
   }) {
     return loading();
   }
@@ -687,7 +690,7 @@ class _$LoadingImpl extends _Loading {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String langCode)? loaded,
-    TResult? Function(String message, String fallback)? failure,
+    TResult? Function(LanguageError languageError, String fallback)? failure,
   }) {
     return loading?.call();
   }
@@ -698,7 +701,7 @@ class _$LoadingImpl extends _Loading {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String langCode)? loaded,
-    TResult Function(String message, String fallback)? failure,
+    TResult Function(LanguageError languageError, String fallback)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -818,7 +821,8 @@ class _$LoadedImpl extends _Loaded {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String langCode) loaded,
-    required TResult Function(String message, String fallback) failure,
+    required TResult Function(LanguageError languageError, String fallback)
+        failure,
   }) {
     return loaded(langCode);
   }
@@ -829,7 +833,7 @@ class _$LoadedImpl extends _Loaded {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String langCode)? loaded,
-    TResult? Function(String message, String fallback)? failure,
+    TResult? Function(LanguageError languageError, String fallback)? failure,
   }) {
     return loaded?.call(langCode);
   }
@@ -840,7 +844,7 @@ class _$LoadedImpl extends _Loaded {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String langCode)? loaded,
-    TResult Function(String message, String fallback)? failure,
+    TResult Function(LanguageError languageError, String fallback)? failure,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -903,7 +907,7 @@ abstract class _$$FailureImplCopyWith<$Res> {
           _$FailureImpl value, $Res Function(_$FailureImpl) then) =
       __$$FailureImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({String message, String fallback});
+  $Res call({LanguageError languageError, String fallback});
 }
 
 /// @nodoc
@@ -917,14 +921,14 @@ class __$$FailureImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? message = null,
+    Object? languageError = null,
     Object? fallback = null,
   }) {
     return _then(_$FailureImpl(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
+      languageError: null == languageError
+          ? _value.languageError
+          : languageError // ignore: cast_nullable_to_non_nullable
+              as LanguageError,
       fallback: null == fallback
           ? _value.fallback
           : fallback // ignore: cast_nullable_to_non_nullable
@@ -936,18 +940,18 @@ class __$$FailureImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$FailureImpl extends _Failure {
-  const _$FailureImpl({required this.message, this.fallback = 'ar'})
+  const _$FailureImpl({required this.languageError, this.fallback = 'ar'})
       : super._();
 
   @override
-  final String message;
+  final LanguageError languageError;
   @override
   @JsonKey()
   final String fallback;
 
   @override
   String toString() {
-    return 'LanguageState.failure(message: $message, fallback: $fallback)';
+    return 'LanguageState.failure(languageError: $languageError, fallback: $fallback)';
   }
 
   @override
@@ -955,13 +959,14 @@ class _$FailureImpl extends _Failure {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$FailureImpl &&
-            (identical(other.message, message) || other.message == message) &&
+            (identical(other.languageError, languageError) ||
+                other.languageError == languageError) &&
             (identical(other.fallback, fallback) ||
                 other.fallback == fallback));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message, fallback);
+  int get hashCode => Object.hash(runtimeType, languageError, fallback);
 
   @JsonKey(ignore: true)
   @override
@@ -975,9 +980,10 @@ class _$FailureImpl extends _Failure {
     required TResult Function() initial,
     required TResult Function() loading,
     required TResult Function(String langCode) loaded,
-    required TResult Function(String message, String fallback) failure,
+    required TResult Function(LanguageError languageError, String fallback)
+        failure,
   }) {
-    return failure(message, fallback);
+    return failure(languageError, fallback);
   }
 
   @override
@@ -986,9 +992,9 @@ class _$FailureImpl extends _Failure {
     TResult? Function()? initial,
     TResult? Function()? loading,
     TResult? Function(String langCode)? loaded,
-    TResult? Function(String message, String fallback)? failure,
+    TResult? Function(LanguageError languageError, String fallback)? failure,
   }) {
-    return failure?.call(message, fallback);
+    return failure?.call(languageError, fallback);
   }
 
   @override
@@ -997,11 +1003,11 @@ class _$FailureImpl extends _Failure {
     TResult Function()? initial,
     TResult Function()? loading,
     TResult Function(String langCode)? loaded,
-    TResult Function(String message, String fallback)? failure,
+    TResult Function(LanguageError languageError, String fallback)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
-      return failure(message, fallback);
+      return failure(languageError, fallback);
     }
     return orElse();
   }
@@ -1046,10 +1052,11 @@ class _$FailureImpl extends _Failure {
 
 abstract class _Failure extends LanguageState {
   const factory _Failure(
-      {required final String message, final String fallback}) = _$FailureImpl;
+      {required final LanguageError languageError,
+      final String fallback}) = _$FailureImpl;
   const _Failure._() : super._();
 
-  String get message;
+  LanguageError get languageError;
   String get fallback;
   @JsonKey(ignore: true)
   _$$FailureImplCopyWith<_$FailureImpl> get copyWith =>

@@ -59,6 +59,36 @@ class S {
     return Intl.message('English', name: 'lang', desc: '', args: []);
   }
 
+  /// `Failed to load language.`
+  String get languageLoadError {
+    return Intl.message(
+      'Failed to load language.',
+      name: 'languageLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to change language.`
+  String get languageChangeError {
+    return Intl.message(
+      'Failed to change language.',
+      name: 'languageChangeError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to switch language.`
+  String get languageToggleError {
+    return Intl.message(
+      'Failed to switch language.',
+      name: 'languageToggleError',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to Heka`
   String get onboardingTitle {
     return Intl.message(

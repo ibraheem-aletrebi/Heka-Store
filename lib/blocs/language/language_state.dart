@@ -8,14 +8,14 @@ class LanguageState with _$LanguageState {
   const factory LanguageState.loading() = _Loading;
   const factory LanguageState.loaded({required String langCode}) = _Loaded;
   const factory LanguageState.failure({
-    required String message,
+    required LanguageError languageError,
     @Default('ar') String fallback,
   }) = _Failure;
 
   String get languageCode => maybeWhen(
         loaded: (code) => code,
         failure: (_, fallback) => fallback,
-        orElse: () => '',
+        orElse: () => 'ar',
       );
 
   bool get isLoading => this is _Loading;

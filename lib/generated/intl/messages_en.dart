@@ -105,6 +105,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "Items You May Like",
     ),
     "lang": MessageLookupByLibrary.simpleMessage("English"),
+    "languageChangeError": MessageLookupByLibrary.simpleMessage(
+      "Failed to change language.",
+    ),
+    "languageLoadError": MessageLookupByLibrary.simpleMessage(
+      "Failed to load language.",
+    ),
+    "languageToggleError": MessageLookupByLibrary.simpleMessage(
+      "Failed to switch language.",
+    ),
     "lastName": MessageLookupByLibrary.simpleMessage("Last name"),
     "locationDetailAddress": MessageLookupByLibrary.simpleMessage("Address"),
     "locationDetailCoordinates": MessageLookupByLibrary.simpleMessage(
