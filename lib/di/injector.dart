@@ -1,0 +1,18 @@
+import 'package:get_it/get_it.dart';
+import 'package:heka_store/blocs/language/language_bloc.dart';
+import 'package:heka_store/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/services/local/local_storage_service.dart';
+
+final sl = GetIt.instance;
+
+Future<void> setupInjector() async {
+  await _initCore();
+}
+
+Future<void> _initCore() async {
+  await LocalStorageService().init(adapters: [AppThemeModeEnumAdapter()]);
+
+  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: sl()));
+  sl.registerFactory<LanguageBloc>(() => LanguageBloc(localStorage: sl()));
+}

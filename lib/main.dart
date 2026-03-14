@@ -4,13 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heka_store/app/heka_store_app.dart';
 import 'package:heka_store/blocs/language/language_bloc.dart';
 import 'package:heka_store/blocs/theme/theme_bloc.dart';
-import 'package:heka_store/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/di/injector.dart';
 import 'package:heka_store/generated/l10n.dart';
-import 'package:heka_store/services/local/local_storage_service.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await LocalStorageService().init(adapters: [AppThemeModeEnumAdapter()]);
+  await setupInjector();
   runApp(const HekaStoreApp());
 }
 
