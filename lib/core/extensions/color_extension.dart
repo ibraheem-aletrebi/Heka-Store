@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/resources/app_colors.dart';
+import 'package:heka_store/core/resources/app_colors.dart';
 
 class MyColors extends ThemeExtension<MyColors> {
   final AppColors colors;

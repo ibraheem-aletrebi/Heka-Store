@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
-import 'package:heka_store/resources/app_colors.dart';
-import 'package:heka_store/resources/app_sizes.dart';
-import 'package:heka_store/resources/app_text_styles.dart';
+import 'package:heka_store/core/resources/app_colors.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/resources/app_text_styles.dart';
 
 class AppTheme {
   static const String _fontFamily = 'Alexandria';

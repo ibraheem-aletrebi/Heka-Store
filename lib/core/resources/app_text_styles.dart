@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/resources/app_colors.dart';
-import 'package:heka_store/resources/app_sizes.dart';
-import 'package:heka_store/resources/font_family_helper.dart';
-import 'package:heka_store/resources/font_weight_helper.dart';
+import 'package:heka_store/core/resources/app_colors.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/resources/font_family_helper.dart';
+import 'package:heka_store/core/resources/font_weight_helper.dart';
 
 
 class AppTextStyles {

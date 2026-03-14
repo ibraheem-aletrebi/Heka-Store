@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:heka_store/Features/splash/presentation/splash_view.dart';
 import 'package:heka_store/core/app/app_bloc_or_chetrator.dart';
 import 'package:heka_store/generated/l10n.dart';
-import 'package:heka_store/resources/app_theme.dart';
+import 'package:heka_store/core/resources/app_theme.dart';
 
 
 class HekaStoreApp extends StatelessWidget {
