@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/Features/splash/components/splash_view_body.dart';
+import 'package:heka_store/Features/splash/presentation/components/splash_view_body.dart';
 
 
 class SplashView extends StatelessWidget {
