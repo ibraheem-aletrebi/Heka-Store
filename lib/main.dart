@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
               return GestureDetector(
                 onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
                 child: MaterialApp(
-                  locale: Locale('ar'),
+                  locale: Locale('en'),
                   localizationsDelegates: const [
                     S.delegate,
                     GlobalMaterialLocalizations.delegate,
