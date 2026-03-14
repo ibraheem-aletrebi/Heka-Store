@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:heka_store/app/app_bloc_or_chetrator.dart';
+import 'package:heka_store/Features/splash/presentation/splash_view.dart';
+import 'package:heka_store/core/app/app_bloc_or_chetrator.dart';
 import 'package:heka_store/generated/l10n.dart';
-import 'package:heka_store/main.dart';
 import 'package:heka_store/resources/app_theme.dart';
 
 
@@ -31,7 +31,7 @@ class HekaStoreApp extends StatelessWidget {
               theme: AppTheme.lightTheme,
               darkTheme: AppTheme.darkTheme,
               themeMode: themeState.themeMode,
-              home: const MyHomePage(title: 'Flutter Demo Home Page'),
+              home: const SplashView(),
             ),
           );
         },

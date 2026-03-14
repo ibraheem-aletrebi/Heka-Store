@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart' show ThemeMode;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:heka_store/enums/app_theme_mode_enum.dart';
-import 'package:heka_store/enums/errors/theme_error_enum.dart';
+import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/core/enums/errors/theme_error_enum.dart';
 
 part 'theme_state.freezed.dart';
 

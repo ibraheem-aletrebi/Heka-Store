@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/extensions/color_extension.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/resources/app_colors.dart';
 import 'package:heka_store/resources/app_sizes.dart';
 import 'package:heka_store/resources/app_text_styles.dart';

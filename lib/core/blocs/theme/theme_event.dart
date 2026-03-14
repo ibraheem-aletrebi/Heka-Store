@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:heka_store/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
 
 part 'theme_event.freezed.dart';
 

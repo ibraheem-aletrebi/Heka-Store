@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/blocs/language/language_bloc.dart';
-import 'package:heka_store/blocs/theme/theme_bloc.dart';
-import 'package:heka_store/di/injector.dart';
-import 'package:heka_store/enums/errors/language_error_enum.dart';
-import 'package:heka_store/enums/errors/theme_error_enum.dart';
+import 'package:heka_store/core/blocs/language/language_bloc.dart';
+import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/di/injector.dart';
+import 'package:heka_store/core/enums/errors/language_error_enum.dart';
+import 'package:heka_store/core/enums/errors/theme_error_enum.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class AppBlocOrchestrator extends StatelessWidget {

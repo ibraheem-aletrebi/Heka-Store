@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/constants/hive_keys.dart';
-import 'package:heka_store/enums/app_theme_mode_enum.dart';
-import 'package:heka_store/enums/errors/theme_error_enum.dart';
+import 'package:heka_store/core/constants/hive_keys.dart';
+import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/core/enums/errors/theme_error_enum.dart';
 import 'package:heka_store/services/local/local_storage_service.dart';
 
 import 'theme_event.dart';
