@@ -1,72 +1,72 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/core/services/remote/api_error_type.dart';
+import 'package:heka_store/core/services/remote/error/api_error_type.dart';
+import 'package:heka_store/core/services/remote/error/remote_failure.dart';
 import 'package:heka_store/core/services/remote/api_local_status_code.dart';
 
-
 class ApiErrorModel {
-  final String message;
-  final String? action;
-  final IconData? icon;
+  final RemoteFailure failure;
+  final String? serverMessage;
+  final List<String>? validationErrors;
   final ApiLocalStatusCode statusCode;
   final ApiErrorType? errorType;
-  final bool? canRetry;
 
   const ApiErrorModel({
-    required this.message,
-    this.action,
-    this.icon,
+    required this.failure,
+    this.serverMessage,
+    this.validationErrors,
     required this.statusCode,
     this.errorType,
-    this.canRetry,
   });
+
+  IconData get icon     => failure.icon;
+  bool     get canRetry => failure.canRetry;
 
   factory ApiErrorModel.fromServerResponse(
     Map<String, dynamic> json,
     int statusCode,
   ) {
+    final failure = json['errorKey'] != null
+        ? RemoteFailure.fromString(json['errorKey'] as String?)
+        : RemoteFailure.fromStatusCode(statusCode);
+
     return ApiErrorModel(
-      message:
-          json['message'] ?? json['detail'] ?? json['title'] ?? 'Unknown error',
-      action: 'Please try again',
-      icon: _getIconForStatusCode(statusCode),
-      statusCode:
-          ApiLocalStatusCode.fromCode(statusCode) ??
-          ApiLocalStatusCode.defaultError,
-      errorType: statusCode >= 500 ? ApiErrorType.server : ApiErrorType.server,
-      canRetry: statusCode >= 500 || statusCode == 408 || statusCode == 429,
+      failure: failure,
+      serverMessage: json['message'] as String?
+          ?? json['detail']          as String?
+          ?? json['title']           as String?,
+      validationErrors: _parseValidationErrors(json),
+      statusCode: ApiLocalStatusCode.fromCode(statusCode)
+          ?? ApiLocalStatusCode.defaultError,
+      errorType: statusCode >= 500
+          ? ApiErrorType.server
+          : ApiErrorType.unknown,
     );
   }
 
-  static IconData _getIconForStatusCode(int code) {
-    switch (code) {
-      case 400:
-        return Icons.warning_amber_rounded;
-      case 401:
-        return Icons.lock_outline;
-      case 403:
-        return Icons.block;
-      case 404:
-        return Icons.search_off;
-      case 408:
-        return Icons.timer_off;
-      case 409:
-        return Icons.sync_problem_rounded;
-      case 422:
-        return Icons.rule;
-      case 429:
-        return Icons.speed;
-      case 500:
-      case 502:
-      case 503:
-      case 504:
-        return Icons.cloud_off;
-      default:
-        return Icons.error_outline;
+  static List<String>? _parseValidationErrors(Map<String, dynamic> data) {
+    if (data['errors'] is List) {
+      final list = (data['errors'] as List)
+          .whereType<String>()
+          .toList();
+      return list.isEmpty ? null : list;
     }
+    if (data['errors'] is Map) {
+      final list = (data['errors'] as Map)
+          .values
+          .whereType<List>()
+          .expand((v) => v.whereType<String>())
+          .toList();
+      return list.isEmpty ? null : list;
+    }
+    return null;
   }
 
   @override
-  String toString() {
-    return 'ApiErrorModel(message: $message, statusCode: ${statusCode.code}, errorType: $errorType)';
-  }
+  String toString() => 'ApiErrorModel('
+      'failure: ${failure.name}, '
+      'statusCode: ${statusCode.code}, '
+      'errorType: $errorType, '
+      'serverMessage: $serverMessage, '
+      'validationErrors: $validationErrors'
+      ')';
 }

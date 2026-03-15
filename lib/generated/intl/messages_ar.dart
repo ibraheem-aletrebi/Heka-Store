@@ -66,6 +66,112 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourEmailAndPasswordToLogin": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول",
     ),
+    "error_account_blocked_action": MessageLookupByLibrary.simpleMessage(
+      "تواصل مع الدعم",
+    ),
+    "error_account_blocked_message": MessageLookupByLibrary.simpleMessage(
+      "حسابك اتوقف مؤقتاً، تواصل معانا عشان نساعدك.",
+    ),
+    "error_bad_gateway_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_bad_gateway_message": MessageLookupByLibrary.simpleMessage(
+      "في مشكلة في الاتصال بالسيرفر، حاول تاني.",
+    ),
+    "error_bad_request_action": MessageLookupByLibrary.simpleMessage(
+      "راجع وحاول تاني",
+    ),
+    "error_bad_request_message": MessageLookupByLibrary.simpleMessage(
+      "في حاجة مش تمام في البيانات، راجعها وحاول تاني.",
+    ),
+    "error_conflict_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_conflict_message": MessageLookupByLibrary.simpleMessage(
+      "البيانات دي موجودة قبل كده، جرب بمعلومات تانية.",
+    ),
+    "error_connection_timeout_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_connection_timeout_message": MessageLookupByLibrary.simpleMessage(
+      "الاتصال بيأخد وقت أطول من المعتاد، تحقق من النت.",
+    ),
+    "error_forbidden_action": MessageLookupByLibrary.simpleMessage(
+      "ارجع للخلف",
+    ),
+    "error_forbidden_message": MessageLookupByLibrary.simpleMessage(
+      "مش عندك صلاحية للوصول ده، محتاج مساعدة؟ تواصل معانا.",
+    ),
+    "error_gateway_timeout_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_gateway_timeout_message": MessageLookupByLibrary.simpleMessage(
+      "السيرفر اتأخر في الرد، حاول تاني.",
+    ),
+    "error_invalid_credentials_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_invalid_credentials_message": MessageLookupByLibrary.simpleMessage(
+      "الإيميل أو كلمة المرور مش صح، جرب تاني.",
+    ),
+    "error_no_internet_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_no_internet_message": MessageLookupByLibrary.simpleMessage(
+      "يبدو إنك مش متصل بالنت، تحقق من الاتصال وحاول تاني.",
+    ),
+    "error_not_found_action": MessageLookupByLibrary.simpleMessage(
+      "ارجع للخلف",
+    ),
+    "error_not_found_message": MessageLookupByLibrary.simpleMessage(
+      "مش لاقيين اللي بتدور عليه، يمكن اتنقل أو اتحذف.",
+    ),
+    "error_request_cancelled_action": MessageLookupByLibrary.simpleMessage(
+      "إغلاق",
+    ),
+    "error_request_cancelled_message": MessageLookupByLibrary.simpleMessage(
+      "الطلب اتلغى.",
+    ),
+    "error_server_error_action": MessageLookupByLibrary.simpleMessage(
+      "حاول مجدداً",
+    ),
+    "error_server_error_message": MessageLookupByLibrary.simpleMessage(
+      "في مشكلة عندنا دلوقتي، بنشتغل عليها، حاول تاني بعد شوية.",
+    ),
+    "error_service_unavailable_action": MessageLookupByLibrary.simpleMessage(
+      "حاول بعد شوية",
+    ),
+    "error_service_unavailable_message": MessageLookupByLibrary.simpleMessage(
+      "الخدمة واقفة دلوقتي، هنرجع قريباً.",
+    ),
+    "error_token_expired_action": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول مجدداً",
+    ),
+    "error_token_expired_message": MessageLookupByLibrary.simpleMessage(
+      "انتهت جلستك، سجل دخولك تاني عشان تكمل.",
+    ),
+    "error_too_many_requests_action": MessageLookupByLibrary.simpleMessage(
+      "حاول بعد شوية",
+    ),
+    "error_too_many_requests_message": MessageLookupByLibrary.simpleMessage(
+      "بتطلب بسرعة كبيرة، استنى شوية وحاول تاني.",
+    ),
+    "error_unauthorized_action": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول",
+    ),
+    "error_unauthorized_message": MessageLookupByLibrary.simpleMessage(
+      "محتاج تسجل دخولك الأول عشان تكمل.",
+    ),
+    "error_unknown_action": MessageLookupByLibrary.simpleMessage("إغلاق"),
+    "error_unknown_message": MessageLookupByLibrary.simpleMessage(
+      "حصل حاجة غير متوقعة، حاول تاني.",
+    ),
+    "error_validation_failed_action": MessageLookupByLibrary.simpleMessage(
+      "صحح وكمل",
+    ),
+    "error_validation_failed_message": MessageLookupByLibrary.simpleMessage(
+      "في بيانات محتاج تصححها الأول عشان نكمل.",
+    ),
     "exploreHeka": MessageLookupByLibrary.simpleMessage("استكشف هيكا الآن"),
     "failedToGetLocation": MessageLookupByLibrary.simpleMessage(
       "فشل في تحديد الموقع. حاول مرة أخرى.",

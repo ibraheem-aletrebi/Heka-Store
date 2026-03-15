@@ -75,6 +75,106 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourEmailAndPasswordToLogin": MessageLookupByLibrary.simpleMessage(
       "Enter your email and password to log in",
     ),
+    "error_account_blocked_action": MessageLookupByLibrary.simpleMessage(
+      "Contact Support",
+    ),
+    "error_account_blocked_message": MessageLookupByLibrary.simpleMessage(
+      "Your account has been suspended. Please reach out to us.",
+    ),
+    "error_bad_gateway_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_bad_gateway_message": MessageLookupByLibrary.simpleMessage(
+      "We\'re having trouble reaching our servers. Please try again.",
+    ),
+    "error_bad_request_action": MessageLookupByLibrary.simpleMessage(
+      "Review & Retry",
+    ),
+    "error_bad_request_message": MessageLookupByLibrary.simpleMessage(
+      "Something doesn\'t look right. Please review your details.",
+    ),
+    "error_conflict_action": MessageLookupByLibrary.simpleMessage("Try Again"),
+    "error_conflict_message": MessageLookupByLibrary.simpleMessage(
+      "This action conflicts with existing data. Please try again.",
+    ),
+    "error_connection_timeout_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_connection_timeout_message": MessageLookupByLibrary.simpleMessage(
+      "This is taking longer than expected. Check your connection.",
+    ),
+    "error_forbidden_action": MessageLookupByLibrary.simpleMessage("Go Back"),
+    "error_forbidden_message": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have access to this. Need help? Contact support.",
+    ),
+    "error_gateway_timeout_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_gateway_timeout_message": MessageLookupByLibrary.simpleMessage(
+      "The server took too long to respond. Please try again.",
+    ),
+    "error_invalid_credentials_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_invalid_credentials_message": MessageLookupByLibrary.simpleMessage(
+      "Hmm, that email or password doesn\'t look right.",
+    ),
+    "error_no_internet_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_no_internet_message": MessageLookupByLibrary.simpleMessage(
+      "You appear to be offline. Check your connection and try again.",
+    ),
+    "error_not_found_action": MessageLookupByLibrary.simpleMessage("Go Back"),
+    "error_not_found_message": MessageLookupByLibrary.simpleMessage(
+      "We couldn\'t find what you\'re looking for.",
+    ),
+    "error_request_cancelled_action": MessageLookupByLibrary.simpleMessage(
+      "Dismiss",
+    ),
+    "error_request_cancelled_message": MessageLookupByLibrary.simpleMessage(
+      "The request was cancelled.",
+    ),
+    "error_server_error_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again",
+    ),
+    "error_server_error_message": MessageLookupByLibrary.simpleMessage(
+      "Our servers hit a snag. We\'re on it — please try again shortly.",
+    ),
+    "error_service_unavailable_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again Later",
+    ),
+    "error_service_unavailable_message": MessageLookupByLibrary.simpleMessage(
+      "We\'re down for a bit. Please check back soon.",
+    ),
+    "error_token_expired_action": MessageLookupByLibrary.simpleMessage(
+      "Sign In Again",
+    ),
+    "error_token_expired_message": MessageLookupByLibrary.simpleMessage(
+      "You\'ve been signed out. Please sign in again.",
+    ),
+    "error_too_many_requests_action": MessageLookupByLibrary.simpleMessage(
+      "Try Again Later",
+    ),
+    "error_too_many_requests_message": MessageLookupByLibrary.simpleMessage(
+      "You\'re moving too fast! Please wait a moment and try again.",
+    ),
+    "error_unauthorized_action": MessageLookupByLibrary.simpleMessage(
+      "Sign In",
+    ),
+    "error_unauthorized_message": MessageLookupByLibrary.simpleMessage(
+      "You need to sign in to continue.",
+    ),
+    "error_unknown_action": MessageLookupByLibrary.simpleMessage("Dismiss"),
+    "error_unknown_message": MessageLookupByLibrary.simpleMessage(
+      "Something unexpected happened. Please try again.",
+    ),
+    "error_validation_failed_action": MessageLookupByLibrary.simpleMessage(
+      "Fix & Continue",
+    ),
+    "error_validation_failed_message": MessageLookupByLibrary.simpleMessage(
+      "Some fields need your attention before we can continue.",
+    ),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry Date"),
     "exploreHeka": MessageLookupByLibrary.simpleMessage("Explore Heka now"),
     "failedToGetLocation": MessageLookupByLibrary.simpleMessage(

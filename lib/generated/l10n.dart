@@ -119,6 +119,366 @@ class S {
     );
   }
 
+  /// `You need to sign in to continue.`
+  String get error_unauthorized_message {
+    return Intl.message(
+      'You need to sign in to continue.',
+      name: 'error_unauthorized_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In`
+  String get error_unauthorized_action {
+    return Intl.message(
+      'Sign In',
+      name: 'error_unauthorized_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You've been signed out. Please sign in again.`
+  String get error_token_expired_message {
+    return Intl.message(
+      'You\'ve been signed out. Please sign in again.',
+      name: 'error_token_expired_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sign In Again`
+  String get error_token_expired_action {
+    return Intl.message(
+      'Sign In Again',
+      name: 'error_token_expired_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hmm, that email or password doesn't look right.`
+  String get error_invalid_credentials_message {
+    return Intl.message(
+      'Hmm, that email or password doesn\'t look right.',
+      name: 'error_invalid_credentials_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_invalid_credentials_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_invalid_credentials_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your account has been suspended. Please reach out to us.`
+  String get error_account_blocked_message {
+    return Intl.message(
+      'Your account has been suspended. Please reach out to us.',
+      name: 'error_account_blocked_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact Support`
+  String get error_account_blocked_action {
+    return Intl.message(
+      'Contact Support',
+      name: 'error_account_blocked_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something doesn't look right. Please review your details.`
+  String get error_bad_request_message {
+    return Intl.message(
+      'Something doesn\'t look right. Please review your details.',
+      name: 'error_bad_request_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review & Retry`
+  String get error_bad_request_action {
+    return Intl.message(
+      'Review & Retry',
+      name: 'error_bad_request_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We couldn't find what you're looking for.`
+  String get error_not_found_message {
+    return Intl.message(
+      'We couldn\'t find what you\'re looking for.',
+      name: 'error_not_found_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get error_not_found_action {
+    return Intl.message(
+      'Go Back',
+      name: 'error_not_found_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This action conflicts with existing data. Please try again.`
+  String get error_conflict_message {
+    return Intl.message(
+      'This action conflicts with existing data. Please try again.',
+      name: 'error_conflict_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_conflict_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_conflict_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Some fields need your attention before we can continue.`
+  String get error_validation_failed_message {
+    return Intl.message(
+      'Some fields need your attention before we can continue.',
+      name: 'error_validation_failed_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fix & Continue`
+  String get error_validation_failed_action {
+    return Intl.message(
+      'Fix & Continue',
+      name: 'error_validation_failed_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You're moving too fast! Please wait a moment and try again.`
+  String get error_too_many_requests_message {
+    return Intl.message(
+      'You\'re moving too fast! Please wait a moment and try again.',
+      name: 'error_too_many_requests_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again Later`
+  String get error_too_many_requests_action {
+    return Intl.message(
+      'Try Again Later',
+      name: 'error_too_many_requests_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have access to this. Need help? Contact support.`
+  String get error_forbidden_message {
+    return Intl.message(
+      'You don\'t have access to this. Need help? Contact support.',
+      name: 'error_forbidden_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Go Back`
+  String get error_forbidden_action {
+    return Intl.message(
+      'Go Back',
+      name: 'error_forbidden_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This is taking longer than expected. Check your connection.`
+  String get error_connection_timeout_message {
+    return Intl.message(
+      'This is taking longer than expected. Check your connection.',
+      name: 'error_connection_timeout_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_connection_timeout_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_connection_timeout_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You appear to be offline. Check your connection and try again.`
+  String get error_no_internet_message {
+    return Intl.message(
+      'You appear to be offline. Check your connection and try again.',
+      name: 'error_no_internet_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_no_internet_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_no_internet_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The request was cancelled.`
+  String get error_request_cancelled_message {
+    return Intl.message(
+      'The request was cancelled.',
+      name: 'error_request_cancelled_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss`
+  String get error_request_cancelled_action {
+    return Intl.message(
+      'Dismiss',
+      name: 'error_request_cancelled_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Our servers hit a snag. We're on it — please try again shortly.`
+  String get error_server_error_message {
+    return Intl.message(
+      'Our servers hit a snag. We\'re on it — please try again shortly.',
+      name: 'error_server_error_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_server_error_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_server_error_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're having trouble reaching our servers. Please try again.`
+  String get error_bad_gateway_message {
+    return Intl.message(
+      'We\'re having trouble reaching our servers. Please try again.',
+      name: 'error_bad_gateway_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_bad_gateway_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_bad_gateway_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We're down for a bit. Please check back soon.`
+  String get error_service_unavailable_message {
+    return Intl.message(
+      'We\'re down for a bit. Please check back soon.',
+      name: 'error_service_unavailable_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again Later`
+  String get error_service_unavailable_action {
+    return Intl.message(
+      'Try Again Later',
+      name: 'error_service_unavailable_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The server took too long to respond. Please try again.`
+  String get error_gateway_timeout_message {
+    return Intl.message(
+      'The server took too long to respond. Please try again.',
+      name: 'error_gateway_timeout_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try Again`
+  String get error_gateway_timeout_action {
+    return Intl.message(
+      'Try Again',
+      name: 'error_gateway_timeout_action',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something unexpected happened. Please try again.`
+  String get error_unknown_message {
+    return Intl.message(
+      'Something unexpected happened. Please try again.',
+      name: 'error_unknown_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dismiss`
+  String get error_unknown_action {
+    return Intl.message(
+      'Dismiss',
+      name: 'error_unknown_action',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to Heka`
   String get onboardingTitle {
     return Intl.message(
