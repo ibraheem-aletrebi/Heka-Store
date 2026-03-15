@@ -1,6 +1,3 @@
-// ─────────────────────────────────────────
-// api_error_model.dart
-// ─────────────────────────────────────────
 
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/services/remote/error/api_error_type.dart';

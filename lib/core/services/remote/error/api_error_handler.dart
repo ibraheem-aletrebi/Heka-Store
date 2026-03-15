@@ -1,6 +1,4 @@
-// ─────────────────────────────────────────
-// api_error_handler.dart
-// ─────────────────────────────────────────
+
 
 import 'dart:io';
 import 'package:dio/dio.dart';
