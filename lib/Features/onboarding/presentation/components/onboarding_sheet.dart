@@ -24,7 +24,7 @@ class OnboardingSheet extends StatelessWidget {
           borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
         ),
         child: const Column(
-          mainAxisAlignment: .spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             OnboardingSheetHeader(),
             OnboardingSheetBody(),

@@ -16,10 +16,7 @@ class FadeScaleTransition extends StatelessWidget {
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: fadeAnim,
-      child: ScaleTransition(
-        scale: scaleAnim,
-        child: child,
-      ),
+      child: ScaleTransition(scale: scaleAnim, child: child),
     );
   }
 }

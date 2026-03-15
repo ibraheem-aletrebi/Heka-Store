@@ -6,8 +6,6 @@ import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/core/widgets/custom_button/button_content.dart';
 
-
-
 class CustomButton extends StatelessWidget {
   final String text;
   final VoidCallback? onPressed;
@@ -47,7 +45,6 @@ class CustomButton extends StatelessWidget {
     this.size = ButtonSize.medium,
     this.semanticLabel,
   });
-
 
   const CustomButton.outlined({
     super.key,
@@ -132,7 +129,6 @@ class CustomButton extends StatelessWidget {
     ButtonSize.large => AppSizes.w24,
   };
 
-
   Color _resolveBackgroundColor(BuildContext context) {
     final primary = context.myColors.primary;
     return switch (variant) {
@@ -169,7 +165,6 @@ class CustomButton extends StatelessWidget {
     ButtonVariant.filled => 2,
     _ => 0,
   };
-
 
   @override
   Widget build(BuildContext context) {
@@ -215,4 +210,3 @@ class CustomButton extends StatelessWidget {
     );
   }
 }
-

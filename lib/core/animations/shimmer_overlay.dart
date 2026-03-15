@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 
@@ -14,7 +13,7 @@ class ShimmerOverlay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors=context.myColors;
+    final colors = context.myColors;
     return ShaderMask(
       blendMode: BlendMode.srcATop,
       shaderCallback: (bounds) {

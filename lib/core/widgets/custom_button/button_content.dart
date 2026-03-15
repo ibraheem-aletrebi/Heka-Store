@@ -11,7 +11,8 @@ class ButtonContent extends StatelessWidget {
   final TextStyle textStyle;
   final double iconSize;
 
-  const ButtonContent({super.key, 
+  const ButtonContent({
+    super.key,
     required this.text,
     required this.isLoading,
     required this.textColor,

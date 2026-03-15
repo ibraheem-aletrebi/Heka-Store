@@ -12,11 +12,9 @@ Future<void> setupInjector() async {
 }
 
 Future<void> _initCore() async {
-
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(adapters: [AppThemeModeEnumAdapter()]);
-
 
   sl.registerLazySingleton<AppRouter>(() => AppRouter());
 

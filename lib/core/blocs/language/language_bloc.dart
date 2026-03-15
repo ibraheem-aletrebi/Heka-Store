@@ -8,10 +8,9 @@ part 'language_event.dart';
 part 'language_state.dart';
 
 class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
-  LanguageBloc({
-    required LocalStorageService localStorage,
-  }) : _localStorage = localStorage,
-       super(const LanguageState.initial()) {
+  LanguageBloc({required LocalStorageService localStorage})
+    : _localStorage = localStorage,
+      super(const LanguageState.initial()) {
     on<LanguageLoadRequested>(_onLoad);
     on<LanguageChanged>(_onChange);
     on<LanguageToggleArabicEnglish>(_onToggle);

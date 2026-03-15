@@ -3,7 +3,6 @@ import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 
-
 class ActionPrompt extends StatelessWidget {
   final String prompt;
   final String actionText;

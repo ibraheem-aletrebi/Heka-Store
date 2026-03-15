@@ -8,7 +8,6 @@ class LocalStorageService {
   static const String _defaultBoxName = 'app_box';
   late Box _box;
 
-
   Future<void> init({
     String boxName = _defaultBoxName,
     List<TypeAdapter> adapters = const [],
@@ -22,7 +21,6 @@ class LocalStorageService {
 
     _box = await Hive.openBox(boxName);
   }
-
 
   Future<void> setValue<T>(String key, T value) async {
     await _box.put(key, value);

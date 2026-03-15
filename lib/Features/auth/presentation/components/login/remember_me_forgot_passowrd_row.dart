@@ -3,7 +3,6 @@ import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-
 class RememberMeForgotPassowrdRow extends StatelessWidget {
   const RememberMeForgotPassowrdRow({super.key});
   @override
@@ -21,7 +20,7 @@ class RememberMeForgotPassowrdRow extends StatelessWidget {
             children: [
               Checkbox(
                 value: true,
-                onChanged: (value){
+                onChanged: (value) {
                   ///TODO: toggle remember me
                 },
                 activeColor: colors.primary,

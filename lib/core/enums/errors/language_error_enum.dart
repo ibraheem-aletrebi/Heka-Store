@@ -1,5 +1,1 @@
-enum LanguageError {
-  loadFailed,
-  changeFailed,
-  toggleFailed,
-}
+enum LanguageError { loadFailed, changeFailed, toggleFailed }

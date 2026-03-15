@@ -1,5 +1,1 @@
-enum ThemeError {
-  loadFailed,
-  changeFailed,
-  toggleFailed,
-}
+enum ThemeError { loadFailed, changeFailed, toggleFailed }

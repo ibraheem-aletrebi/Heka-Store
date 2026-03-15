@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class DirectionalReveal extends StatelessWidget {
