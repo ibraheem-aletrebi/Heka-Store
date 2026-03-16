@@ -1,4 +1,3 @@
-
 enum ValidationKey {
   emailRequired,
   emailInvalid,
@@ -10,10 +9,12 @@ enum ValidationKey {
   passwordNoLowercase,
   passwordNoNumber,
   passwordNoSpecialChar,
+  passwordMismatch,
 
   nameRequired,
   nameTooShort,
   nameTooLong,
+  nameInvalid,
 
   phoneRequired,
   phoneInvalid,

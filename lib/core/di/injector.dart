@@ -10,6 +10,8 @@ import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
+import 'package:heka_store/core/services/remote/dio_client.dart';
+import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
 
 final sl = GetIt.instance;
 
@@ -29,20 +31,25 @@ Future<void> _initCore() async {
   sl.registerFactory<LanguageBloc>(
     () => LanguageBloc(localStorage: localStorage),
   );
+  DioClient().init();
+  sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
 
-  sl.registerSingleton<ApiService>(ApiService(sl()));
+
+  ApiErrorHandler.instance.init(
+    onUnauthorized: () {
+      // TODO: Navigate to Login
+    },
+  );
+  
 }
 
 void _initAuth() {
-
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
 
   sl.registerLazySingleton<AuthRepo>(
-    () => AuthRepoImp(
-      remoteDataSource: sl<AuthRemoteDataSource>(),
-    ),
+    () => AuthRepoImp(remoteDataSource: sl<AuthRemoteDataSource>()),
   );
 
   sl.registerFactory<LoginUseCase>(

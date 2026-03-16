@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/auth/data/models/login/request/login_request_model.dart';
@@ -20,6 +21,7 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<_PasswordChanged>(_onPasswordChanged);
     on<_RememberMeToggled>(_onRememberMeToggled);
     on<_Submitted>(_onSubmitted);
+    on<_GoogleSignInSubmitted>(_onGoogleSignInSubmitted);
   }
 
 
@@ -83,4 +85,9 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       },
     );
   }
+
+  Future<void> _onGoogleSignInSubmitted(
+    _GoogleSignInSubmitted event,
+    Emitter<LoginState> emit,
+  ) async {}
 }

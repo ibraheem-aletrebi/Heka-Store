@@ -1,4 +1,4 @@
-
+// api_error_handler.dart
 
 import 'dart:io';
 import 'package:dio/dio.dart';
@@ -9,47 +9,56 @@ import 'package:heka_store/core/services/remote/error/remote_failure.dart';
 
 class ApiErrorHandler {
   ApiErrorHandler._();
-  static final ApiErrorHandler instance = ApiErrorHandler._();
-  factory ApiErrorHandler() => instance;
 
-  VoidCallback? onUnauthorized;
+  static final ApiErrorHandler instance = ApiErrorHandler._();
+
+  VoidCallback? _onUnauthorized;
+
+  // ─── Init ─────────────────────────────────────────────────────────────────
+
+  void init({VoidCallback? onUnauthorized}) {
+    _onUnauthorized = onUnauthorized;
+  }
+
+  // ─── Handle ───────────────────────────────────────────────────────────────
 
   ApiErrorModel handle(dynamic e) {
-    if (e is DioException)    return _handleDioException(e);
-
-    final dioInfo = _extractDioExceptionInfo(e);
-    if (dioInfo != null)      return _handleExtractedDioInfo(dioInfo);
-
+    if (e is DioException) return _handleDioException(e);
     if (e is SocketException) return _build(RemoteFailure.noInternet);
-    if (e is FormatException)  return _build(RemoteFailure.unknown);
-    if (e is Exception)        return _handleGenericException(e);
-
+    if (e is FormatException) return _build(RemoteFailure.unknown);
+    if (e is Exception) return _handleGenericException(e);
     return _build(RemoteFailure.unknown);
   }
 
+  // ─── Dio ──────────────────────────────────────────────────────────────────
+
   ApiErrorModel _handleDioException(DioException e) {
     return switch (e.type) {
-      DioExceptionType.connectionTimeout => _build(RemoteFailure.connectionTimeout),
-      DioExceptionType.sendTimeout       => _build(RemoteFailure.connectionTimeout),
-      DioExceptionType.receiveTimeout    => _build(RemoteFailure.connectionTimeout),
-      DioExceptionType.badCertificate    => _build(RemoteFailure.unknown),
-      DioExceptionType.cancel            => _build(RemoteFailure.requestCancelled),
-      DioExceptionType.connectionError   => _build(RemoteFailure.noInternet),
-      DioExceptionType.badResponse       => _handleBadResponse(e),
-      DioExceptionType.unknown           => e.error is SocketException
-          ? _build(RemoteFailure.noInternet)
-          : _build(RemoteFailure.unknown),
+      DioExceptionType.connectionTimeout => _build(
+        RemoteFailure.connectionTimeout,
+      ),
+      DioExceptionType.sendTimeout => _build(RemoteFailure.connectionTimeout),
+      DioExceptionType.receiveTimeout => _build(
+        RemoteFailure.connectionTimeout,
+      ),
+      DioExceptionType.badCertificate => _build(RemoteFailure.unknown),
+      DioExceptionType.cancel => _build(RemoteFailure.requestCancelled),
+      DioExceptionType.connectionError => _build(RemoteFailure.noInternet),
+      DioExceptionType.badResponse => _handleBadResponse(e),
+      DioExceptionType.unknown =>
+        e.error is SocketException
+            ? _build(RemoteFailure.noInternet)
+            : _build(RemoteFailure.unknown),
     };
   }
 
-
   ApiErrorModel _handleBadResponse(DioException e) {
-    final statusCode       = e.response?.statusCode ?? 0;
-    final data             = e.response?.data;
-    final serverMsg        = _extractServerMessage(data);
+    final statusCode = e.response?.statusCode ?? 0;
+    final data = e.response?.data;
+    final serverMsg = _extractServerMessage(data);
     final validationErrors = _extractValidationErrors(data);
 
-    // session expired variants → tokenExpired
+    // ─── Session expired ──────────────────────────────
     if ([419, 440, 498, 499].contains(statusCode)) {
       return _build(
         RemoteFailure.tokenExpired,
@@ -58,48 +67,66 @@ class ApiErrorHandler {
       );
     }
 
-    final failure = RemoteFailure.fromStatusCode(statusCode);
-
-    // 401 → trigger onUnauthorized callback
-    if (statusCode == 401) _handleUnauthorized();
+    // ─── 401 ─────────────────────────────────────────
+    if (statusCode == 401) {
+      final failure = _resolve401(serverMsg);
+      if (failure == RemoteFailure.unauthorized) {
+        _handleUnauthorized();
+      }
+      return _build(
+        failure,
+        serverMessage: serverMsg,
+        validationErrors: validationErrors,
+      );
+    }
 
     return _build(
-      failure,
+      RemoteFailure.fromStatusCode(statusCode),
       serverMessage: serverMsg,
       validationErrors: validationErrors,
     );
   }
 
+  // ─── 401 Resolver ─────────────────────────────────────────────────────────
 
-  ApiErrorModel _handleExtractedDioInfo(_DioExceptionInfo info) {
-    if (info.statusCode != null) {
-      if (info.statusCode == 401) _handleUnauthorized();
-      return _build(RemoteFailure.fromStatusCode(info.statusCode!));
+  RemoteFailure _resolve401(String? message) {
+    if (message == null) return RemoteFailure.unauthorized;
+
+    final msg = message.toLowerCase();
+
+    if (msg.contains('invalid credentials') ||
+        msg.contains('invalid email') ||
+        msg.contains('invalid password') ||
+        msg.contains('wrong password')) {
+      return RemoteFailure.invalidCredentials;
     }
 
-    if (info.type != null) {
-      return switch (info.type!) {
-        DioExceptionType.connectionTimeout ||
-        DioExceptionType.sendTimeout       ||
-        DioExceptionType.receiveTimeout    ||
-        DioExceptionType.connectionError   => _build(RemoteFailure.noInternet),
-        DioExceptionType.cancel            => _build(RemoteFailure.requestCancelled),
-        _                                  => _build(RemoteFailure.unknown),
-      };
+    if (msg.contains('token') ||
+        msg.contains('expired') ||
+        msg.contains('jwt')) {
+      return RemoteFailure.tokenExpired;
     }
 
-    return _build(RemoteFailure.unknown);
+    if (msg.contains('blocked') || msg.contains('suspended')) {
+      return RemoteFailure.accountBlocked;
+    }
+
+    return RemoteFailure.unauthorized;
   }
 
-  
+  // ─── Generic ──────────────────────────────────────────────────────────────
 
   ApiErrorModel _handleGenericException(Exception e) {
     if (e is SocketException) return _build(RemoteFailure.noInternet);
-    if (e is FormatException)  return _build(RemoteFailure.unknown);
+    if (e is FormatException) return _build(RemoteFailure.unknown);
     return _build(RemoteFailure.unknown);
   }
 
-  void _handleUnauthorized() => onUnauthorized?.call();
+  // ─── Unauthorized ─────────────────────────────────────────────────────────
+
+  void _handleUnauthorized() => _onUnauthorized?.call();
+
+  // ─── Build ────────────────────────────────────────────────────────────────
 
   ApiErrorModel _build(
     RemoteFailure failure, {
@@ -116,23 +143,23 @@ class ApiErrorHandler {
 
   ApiErrorType _errorTypeFor(RemoteFailure failure) {
     return switch (failure) {
-      RemoteFailure.noInternet        ||
+      RemoteFailure.noInternet ||
       RemoteFailure.connectionTimeout => ApiErrorType.network,
-
-      RemoteFailure.requestCancelled  ||
-      RemoteFailure.unknown           => ApiErrorType.unknown,
-
-      _                               => ApiErrorType.server,
+      RemoteFailure.requestCancelled ||
+      RemoteFailure.unknown => ApiErrorType.unknown,
+      _ => ApiErrorType.server,
     };
   }
+
+  // ─── Extractors ───────────────────────────────────────────────────────────
 
   String? _extractServerMessage(dynamic data) {
     if (data is! Map<String, dynamic>) return null;
 
     if (data['message'] is String) return data['message'] as String;
-    if (data['detail']  is String) return data['detail']  as String;
-    if (data['title']   is String) return data['title']   as String;
-    if (data['error']   is String) return data['error']   as String;
+    if (data['detail'] is String) return data['detail'] as String;
+    if (data['title'] is String) return data['title'] as String;
+    if (data['error'] is String) return data['error'] as String;
 
     if (data['error'] is Map<String, dynamic>) {
       final err = data['error'] as Map<String, dynamic>;
@@ -146,15 +173,12 @@ class ApiErrorHandler {
     if (data is! Map<String, dynamic>) return null;
 
     if (data['errors'] is List) {
-      final list = (data['errors'] as List)
-          .whereType<String>()
-          .toList();
+      final list = (data['errors'] as List).whereType<String>().toList();
       return list.isEmpty ? null : list;
     }
 
     if (data['errors'] is Map) {
-      final list = (data['errors'] as Map)
-          .values
+      final list = (data['errors'] as Map).values
           .whereType<List>()
           .expand((v) => v.whereType<String>())
           .toList();
@@ -163,37 +187,4 @@ class ApiErrorHandler {
 
     return null;
   }
-
-  _DioExceptionInfo? _extractDioExceptionInfo(dynamic e) {
-    final str = e.toString();
-    if (!str.contains('DioException') && !str.contains('status code')) {
-      return null;
-    }
-
-    final statusCode = int.tryParse(
-      RegExp(r'status code of (\d+)').firstMatch(str)?.group(1) ?? '',
-    );
-
-    DioExceptionType? type;
-    if      (str.contains('connection timeout')) {type = DioExceptionType.connectionTimeout;}
-    else if (str.contains('bad response'))       {type = DioExceptionType.badResponse;}
-    else if (str.contains('connection error'))   {type = DioExceptionType.connectionError;}
-    else if (str.contains('send timeout'))       {type = DioExceptionType.sendTimeout;}
-    else if (str.contains('receive timeout'))    {type = DioExceptionType.receiveTimeout;}
-    else if (str.contains('cancel'))             {type = DioExceptionType.cancel;}
-
-    return _DioExceptionInfo(statusCode: statusCode, type: type, rawString: str);
-  }
-}
-
-class _DioExceptionInfo {
-  final int? statusCode;
-  final DioExceptionType? type;
-  final String rawString;
-
-  _DioExceptionInfo({
-    this.statusCode,
-    this.type,
-    required this.rawString,
-  });
 }

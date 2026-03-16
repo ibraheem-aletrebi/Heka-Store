@@ -111,6 +111,12 @@
     "@error_unknown_action": {},
 
 
+
+    "nameInvalid": "Name contains invalid characters",
+    "@nameInvalid": {},
+    "passwordMismatch": "Passwords do not match",
+    "@passwordMismatch": {},
+
     "emailRequired": "Email is required",
     "@emailRequired": {},
     "emailInvalid": "Email is invalid",

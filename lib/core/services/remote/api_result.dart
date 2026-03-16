@@ -34,7 +34,7 @@ class ApiError<T> extends ApiResult<T> {
   late final ApiErrorModel errorModel;
 
   ApiError(this.error) {
-    errorModel = ApiErrorHandler().handle(error);
+    errorModel = ApiErrorHandler.instance.handle(error);
   }
 
   @override

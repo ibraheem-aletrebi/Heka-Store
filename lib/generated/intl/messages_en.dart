@@ -234,6 +234,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "Login to your account",
     ),
+    "nameInvalid": MessageLookupByLibrary.simpleMessage(
+      "Name contains invalid characters",
+    ),
     "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
     "nameTooLong": MessageLookupByLibrary.simpleMessage(
       "Name must be at most 50 characters",
@@ -260,6 +263,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordMismatch": MessageLookupByLibrary.simpleMessage(
+      "Passwords do not match",
+    ),
     "passwordNoLowercase": MessageLookupByLibrary.simpleMessage(
       "Password must contain a lowercase letter",
     ),

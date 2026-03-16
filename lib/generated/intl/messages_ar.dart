@@ -223,6 +223,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول إلى حسابك",
     ),
+    "nameInvalid": MessageLookupByLibrary.simpleMessage(
+      "الاسم يحتوي على أحرف غير مسموح بها",
+    ),
     "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
     "nameTooLong": MessageLookupByLibrary.simpleMessage(
       "الاسم لا يزيد عن 50 حرفاً",
@@ -250,6 +253,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("أخرى"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordMismatch": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور غير متطابقة",
+    ),
     "passwordNoLowercase": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور يجب أن تحتوي على حرف صغير",
     ),

@@ -22,6 +22,7 @@ mixin _$LoginEvent {
     required TResult Function(String password) passwordChanged,
     required TResult Function() rememberMeToggled,
     required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,6 +31,7 @@ mixin _$LoginEvent {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? rememberMeToggled,
     TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -38,6 +40,7 @@ mixin _$LoginEvent {
     TResult Function(String password)? passwordChanged,
     TResult Function()? rememberMeToggled,
     TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -47,6 +50,8 @@ mixin _$LoginEvent {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_RememberMeToggled value) rememberMeToggled,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -55,6 +60,7 @@ mixin _$LoginEvent {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_RememberMeToggled value)? rememberMeToggled,
     TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -63,6 +69,7 @@ mixin _$LoginEvent {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_RememberMeToggled value)? rememberMeToggled,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -154,6 +161,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String password) passwordChanged,
     required TResult Function() rememberMeToggled,
     required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
   }) {
     return emailChanged(email);
   }
@@ -165,6 +173,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? rememberMeToggled,
     TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
   }) {
     return emailChanged?.call(email);
   }
@@ -176,6 +185,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String password)? passwordChanged,
     TResult Function()? rememberMeToggled,
     TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -191,6 +201,8 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_RememberMeToggled value) rememberMeToggled,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
   }) {
     return emailChanged(this);
   }
@@ -202,6 +214,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_RememberMeToggled value)? rememberMeToggled,
     TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
   }) {
     return emailChanged?.call(this);
   }
@@ -213,6 +226,7 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_RememberMeToggled value)? rememberMeToggled,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -301,6 +315,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String password) passwordChanged,
     required TResult Function() rememberMeToggled,
     required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
   }) {
     return passwordChanged(password);
   }
@@ -312,6 +327,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? rememberMeToggled,
     TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
   }) {
     return passwordChanged?.call(password);
   }
@@ -323,6 +339,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String password)? passwordChanged,
     TResult Function()? rememberMeToggled,
     TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -338,6 +355,8 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_RememberMeToggled value) rememberMeToggled,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
   }) {
     return passwordChanged(this);
   }
@@ -349,6 +368,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_RememberMeToggled value)? rememberMeToggled,
     TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
   }) {
     return passwordChanged?.call(this);
   }
@@ -360,6 +380,7 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_RememberMeToggled value)? rememberMeToggled,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -420,6 +441,7 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     required TResult Function(String password) passwordChanged,
     required TResult Function() rememberMeToggled,
     required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
   }) {
     return rememberMeToggled();
   }
@@ -431,6 +453,7 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? rememberMeToggled,
     TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
   }) {
     return rememberMeToggled?.call();
   }
@@ -442,6 +465,7 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     TResult Function(String password)? passwordChanged,
     TResult Function()? rememberMeToggled,
     TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (rememberMeToggled != null) {
@@ -457,6 +481,8 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_RememberMeToggled value) rememberMeToggled,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
   }) {
     return rememberMeToggled(this);
   }
@@ -468,6 +494,7 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_RememberMeToggled value)? rememberMeToggled,
     TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
   }) {
     return rememberMeToggled?.call(this);
   }
@@ -479,6 +506,7 @@ class _$RememberMeToggledImpl implements _RememberMeToggled {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_RememberMeToggled value)? rememberMeToggled,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (rememberMeToggled != null) {
@@ -534,6 +562,7 @@ class _$SubmittedImpl implements _Submitted {
     required TResult Function(String password) passwordChanged,
     required TResult Function() rememberMeToggled,
     required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
   }) {
     return submitted();
   }
@@ -545,6 +574,7 @@ class _$SubmittedImpl implements _Submitted {
     TResult? Function(String password)? passwordChanged,
     TResult? Function()? rememberMeToggled,
     TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
   }) {
     return submitted?.call();
   }
@@ -556,6 +586,7 @@ class _$SubmittedImpl implements _Submitted {
     TResult Function(String password)? passwordChanged,
     TResult Function()? rememberMeToggled,
     TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -571,6 +602,8 @@ class _$SubmittedImpl implements _Submitted {
     required TResult Function(_PasswordChanged value) passwordChanged,
     required TResult Function(_RememberMeToggled value) rememberMeToggled,
     required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
   }) {
     return submitted(this);
   }
@@ -582,6 +615,7 @@ class _$SubmittedImpl implements _Submitted {
     TResult? Function(_PasswordChanged value)? passwordChanged,
     TResult? Function(_RememberMeToggled value)? rememberMeToggled,
     TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
   }) {
     return submitted?.call(this);
   }
@@ -593,6 +627,7 @@ class _$SubmittedImpl implements _Submitted {
     TResult Function(_PasswordChanged value)? passwordChanged,
     TResult Function(_RememberMeToggled value)? rememberMeToggled,
     TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -607,19 +642,141 @@ abstract class _Submitted implements LoginEvent {
 }
 
 /// @nodoc
+abstract class _$$GoogleSignInSubmittedImplCopyWith<$Res> {
+  factory _$$GoogleSignInSubmittedImplCopyWith(
+          _$GoogleSignInSubmittedImpl value,
+          $Res Function(_$GoogleSignInSubmittedImpl) then) =
+      __$$GoogleSignInSubmittedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$GoogleSignInSubmittedImplCopyWithImpl<$Res>
+    extends _$LoginEventCopyWithImpl<$Res, _$GoogleSignInSubmittedImpl>
+    implements _$$GoogleSignInSubmittedImplCopyWith<$Res> {
+  __$$GoogleSignInSubmittedImplCopyWithImpl(_$GoogleSignInSubmittedImpl _value,
+      $Res Function(_$GoogleSignInSubmittedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$GoogleSignInSubmittedImpl implements _GoogleSignInSubmitted {
+  const _$GoogleSignInSubmittedImpl();
+
+  @override
+  String toString() {
+    return 'LoginEvent.googleSignInSubmitted()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$GoogleSignInSubmittedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String email) emailChanged,
+    required TResult Function(String password) passwordChanged,
+    required TResult Function() rememberMeToggled,
+    required TResult Function() submitted,
+    required TResult Function() googleSignInSubmitted,
+  }) {
+    return googleSignInSubmitted();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String email)? emailChanged,
+    TResult? Function(String password)? passwordChanged,
+    TResult? Function()? rememberMeToggled,
+    TResult? Function()? submitted,
+    TResult? Function()? googleSignInSubmitted,
+  }) {
+    return googleSignInSubmitted?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String email)? emailChanged,
+    TResult Function(String password)? passwordChanged,
+    TResult Function()? rememberMeToggled,
+    TResult Function()? submitted,
+    TResult Function()? googleSignInSubmitted,
+    required TResult orElse(),
+  }) {
+    if (googleSignInSubmitted != null) {
+      return googleSignInSubmitted();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_EmailChanged value) emailChanged,
+    required TResult Function(_PasswordChanged value) passwordChanged,
+    required TResult Function(_RememberMeToggled value) rememberMeToggled,
+    required TResult Function(_Submitted value) submitted,
+    required TResult Function(_GoogleSignInSubmitted value)
+        googleSignInSubmitted,
+  }) {
+    return googleSignInSubmitted(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_EmailChanged value)? emailChanged,
+    TResult? Function(_PasswordChanged value)? passwordChanged,
+    TResult? Function(_RememberMeToggled value)? rememberMeToggled,
+    TResult? Function(_Submitted value)? submitted,
+    TResult? Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
+  }) {
+    return googleSignInSubmitted?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_EmailChanged value)? emailChanged,
+    TResult Function(_PasswordChanged value)? passwordChanged,
+    TResult Function(_RememberMeToggled value)? rememberMeToggled,
+    TResult Function(_Submitted value)? submitted,
+    TResult Function(_GoogleSignInSubmitted value)? googleSignInSubmitted,
+    required TResult orElse(),
+  }) {
+    if (googleSignInSubmitted != null) {
+      return googleSignInSubmitted(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _GoogleSignInSubmitted implements LoginEvent {
+  const factory _GoogleSignInSubmitted() = _$GoogleSignInSubmittedImpl;
+}
+
+/// @nodoc
 mixin _$LoginState {
-// ─── Fields ──────────────────────────────────────────
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  bool get rememberMe =>
-      throw _privateConstructorUsedError; // ─── Validation ───────────────────────────────────────
+  bool get rememberMe => throw _privateConstructorUsedError;
   ValidationKey? get emailError => throw _privateConstructorUsedError;
-  ValidationKey? get passwordError =>
-      throw _privateConstructorUsedError; // ─── Submission ───────────────────────────────────────
+  ValidationKey? get passwordError => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isSuccess => throw _privateConstructorUsedError;
   LoginResponseModel? get loginResponse => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
+  AutovalidateMode get autoValidateMode => throw _privateConstructorUsedError;
+  bool get isGoogleLoading => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -641,7 +798,9 @@ abstract class $LoginStateCopyWith<$Res> {
       bool isLoading,
       bool isSuccess,
       LoginResponseModel? loginResponse,
-      ApiErrorModel? error});
+      ApiErrorModel? error,
+      AutovalidateMode autoValidateMode,
+      bool isGoogleLoading});
 
   $LoginResponseModelCopyWith<$Res>? get loginResponse;
 }
@@ -668,6 +827,8 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
+    Object? autoValidateMode = freezed,
+    Object? isGoogleLoading = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -706,6 +867,14 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
+      autoValidateMode: freezed == autoValidateMode
+          ? _value.autoValidateMode
+          : autoValidateMode // ignore: cast_nullable_to_non_nullable
+              as AutovalidateMode,
+      isGoogleLoading: null == isGoogleLoading
+          ? _value.isGoogleLoading
+          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -739,7 +908,9 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       bool isLoading,
       bool isSuccess,
       LoginResponseModel? loginResponse,
-      ApiErrorModel? error});
+      ApiErrorModel? error,
+      AutovalidateMode autoValidateMode,
+      bool isGoogleLoading});
 
   @override
   $LoginResponseModelCopyWith<$Res>? get loginResponse;
@@ -765,6 +936,8 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
+    Object? autoValidateMode = freezed,
+    Object? isGoogleLoading = null,
   }) {
     return _then(_$LoginStateImpl(
       email: null == email
@@ -803,13 +976,21 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
+      autoValidateMode: freezed == autoValidateMode
+          ? _value.autoValidateMode
+          : autoValidateMode // ignore: cast_nullable_to_non_nullable
+              as AutovalidateMode,
+      isGoogleLoading: null == isGoogleLoading
+          ? _value.isGoogleLoading
+          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$LoginStateImpl implements _LoginState {
+class _$LoginStateImpl extends _LoginState {
   const _$LoginStateImpl(
       {this.email = '',
       this.password = '',
@@ -819,9 +1000,11 @@ class _$LoginStateImpl implements _LoginState {
       this.isLoading = false,
       this.isSuccess = false,
       this.loginResponse,
-      this.error});
+      this.error,
+      this.autoValidateMode = AutovalidateMode.disabled,
+      this.isGoogleLoading = false})
+      : super._();
 
-// ─── Fields ──────────────────────────────────────────
   @override
   @JsonKey()
   final String email;
@@ -831,12 +1014,10 @@ class _$LoginStateImpl implements _LoginState {
   @override
   @JsonKey()
   final bool rememberMe;
-// ─── Validation ───────────────────────────────────────
   @override
   final ValidationKey? emailError;
   @override
   final ValidationKey? passwordError;
-// ─── Submission ───────────────────────────────────────
   @override
   @JsonKey()
   final bool isLoading;
@@ -847,10 +1028,16 @@ class _$LoginStateImpl implements _LoginState {
   final LoginResponseModel? loginResponse;
   @override
   final ApiErrorModel? error;
+  @override
+  @JsonKey()
+  final AutovalidateMode autoValidateMode;
+  @override
+  @JsonKey()
+  final bool isGoogleLoading;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, rememberMe: $rememberMe, emailError: $emailError, passwordError: $passwordError, isLoading: $isLoading, isSuccess: $isSuccess, loginResponse: $loginResponse, error: $error)';
+    return 'LoginState(email: $email, password: $password, rememberMe: $rememberMe, emailError: $emailError, passwordError: $passwordError, isLoading: $isLoading, isSuccess: $isSuccess, loginResponse: $loginResponse, error: $error, autoValidateMode: $autoValidateMode, isGoogleLoading: $isGoogleLoading)';
   }
 
   @override
@@ -873,12 +1060,27 @@ class _$LoginStateImpl implements _LoginState {
                 other.isSuccess == isSuccess) &&
             (identical(other.loginResponse, loginResponse) ||
                 other.loginResponse == loginResponse) &&
-            (identical(other.error, error) || other.error == error));
+            (identical(other.error, error) || other.error == error) &&
+            const DeepCollectionEquality()
+                .equals(other.autoValidateMode, autoValidateMode) &&
+            (identical(other.isGoogleLoading, isGoogleLoading) ||
+                other.isGoogleLoading == isGoogleLoading));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, email, password, rememberMe,
-      emailError, passwordError, isLoading, isSuccess, loginResponse, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      email,
+      password,
+      rememberMe,
+      emailError,
+      passwordError,
+      isLoading,
+      isSuccess,
+      loginResponse,
+      error,
+      const DeepCollectionEquality().hash(autoValidateMode),
+      isGoogleLoading);
 
   @JsonKey(ignore: true)
   @override
@@ -887,7 +1089,7 @@ class _$LoginStateImpl implements _LoginState {
       __$$LoginStateImplCopyWithImpl<_$LoginStateImpl>(this, _$identity);
 }
 
-abstract class _LoginState implements LoginState {
+abstract class _LoginState extends LoginState {
   const factory _LoginState(
       {final String email,
       final String password,
@@ -897,19 +1099,22 @@ abstract class _LoginState implements LoginState {
       final bool isLoading,
       final bool isSuccess,
       final LoginResponseModel? loginResponse,
-      final ApiErrorModel? error}) = _$LoginStateImpl;
+      final ApiErrorModel? error,
+      final AutovalidateMode autoValidateMode,
+      final bool isGoogleLoading}) = _$LoginStateImpl;
+  const _LoginState._() : super._();
 
-  @override // ─── Fields ──────────────────────────────────────────
+  @override
   String get email;
   @override
   String get password;
   @override
   bool get rememberMe;
-  @override // ─── Validation ───────────────────────────────────────
+  @override
   ValidationKey? get emailError;
   @override
   ValidationKey? get passwordError;
-  @override // ─── Submission ───────────────────────────────────────
+  @override
   bool get isLoading;
   @override
   bool get isSuccess;
@@ -917,6 +1122,10 @@ abstract class _LoginState implements LoginState {
   LoginResponseModel? get loginResponse;
   @override
   ApiErrorModel? get error;
+  @override
+  AutovalidateMode get autoValidateMode;
+  @override
+  bool get isGoogleLoading;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

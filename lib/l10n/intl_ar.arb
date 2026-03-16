@@ -111,6 +111,11 @@
     "@error_unknown_action": {},
 
 
+    "nameInvalid": "الاسم يحتوي على أحرف غير مسموح بها",
+    "@nameInvalid": {},
+    "passwordMismatch": "كلمة المرور غير متطابقة",
+    "@passwordMismatch": {},
+
 
     "emailRequired": "البريد الإلكتروني مطلوب",
     "@emailRequired": {},

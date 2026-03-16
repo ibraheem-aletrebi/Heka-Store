@@ -479,6 +479,26 @@ class S {
     );
   }
 
+  /// `Name contains invalid characters`
+  String get nameInvalid {
+    return Intl.message(
+      'Name contains invalid characters',
+      name: 'nameInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Passwords do not match`
+  String get passwordMismatch {
+    return Intl.message(
+      'Passwords do not match',
+      name: 'passwordMismatch',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email is required`
   String get emailRequired {
     return Intl.message(

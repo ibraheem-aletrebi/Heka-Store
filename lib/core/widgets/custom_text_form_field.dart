@@ -7,6 +7,7 @@ class CustomTextFormField extends StatefulWidget {
   final TextEditingController? controller;
   final String? label;
   final String? hint;
+  final String? errorText;
   final Widget? prefix;
   final Widget? suffix;
   final bool isPassword;
@@ -28,6 +29,7 @@ class CustomTextFormField extends StatefulWidget {
     this.controller,
     this.label,
     this.hint,
+    this.errorText,
     this.prefix,
     this.suffix,
     this.isPassword = false,
@@ -61,16 +63,22 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   void initState() {
     super.initState();
-
-    _ctrl =
-        widget.controller ?? TextEditingController(text: widget.initialValue);
+    _ctrl = widget.controller ?? TextEditingController(text: widget.initialValue);
     _ownCtrl = widget.controller == null;
-
     _focus = widget.focusNode ?? FocusNode();
     _ownFocus = widget.focusNode == null;
-
     _obscure = widget.isPassword;
+    _error = widget.errorText; // ← من برا
     _focus.addListener(_onFocusChanged);
+  }
+
+  @override
+  void didUpdateWidget(CustomTextFormField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // ← بيتحدث لما الـ Bloc يبعت error جديد
+    if (oldWidget.errorText != widget.errorText) {
+      setState(() => _error = widget.errorText);
+    }
   }
 
   void _onFocusChanged() {
@@ -144,7 +152,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             WidgetsBinding.instance.addPostFrameCallback((_) {
               if (mounted) setState(() => _error = err);
             });
-            return null; // we render error ourselves below
+            return null;
           },
           style: AppTextStyles.regular14.copyWith(
             color: widget.enabled ? colors.textPrimary : colors.textHint,
@@ -169,20 +177,16 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             prefixIconConstraints: widget.prefix != null
                 ? const BoxConstraints(minWidth: 48, minHeight: 48)
                 : null,
-
             suffixIcon: _buildSuffix(iconColor),
             suffixIconConstraints: const BoxConstraints(
               minWidth: 48,
               minHeight: 48,
             ),
-
-            contentPadding:
-                widget.contentPadding ??
+            contentPadding: widget.contentPadding ??
                 EdgeInsets.symmetric(
                   horizontal: AppSizes.w16,
                   vertical: AppSizes.h14,
                 ),
-
             filled: true,
             fillColor: widget.enabled
                 ? colors.surface
@@ -192,7 +196,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             errorBorder: _border(colors.error, colors),
             focusedErrorBorder: _border(colors.error, colors),
             disabledBorder: _border(colors.divider, colors),
-            errorText: null, // manual below
+            errorText: null,
             errorStyle: const TextStyle(fontSize: 0, height: 0),
           ),
         ),
@@ -202,18 +206,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             padding: EdgeInsets.only(top: AppSizes.h6, left: AppSizes.w4),
             child: Row(
               children: [
-                Icon(
-                  Icons.error_outline_rounded,
-                  size: 13,
-                  color: colors.error,
-                ),
+                Icon(Icons.error_outline_rounded, size: 13, color: colors.error),
                 SizedBox(width: AppSizes.w4),
                 Flexible(
                   child: Text(
                     _error!,
-                    style: AppTextStyles.regular12.copyWith(
-                      color: colors.error,
-                    ),
+                    style: AppTextStyles.regular12.copyWith(color: colors.error),
                   ),
                 ),
               ],
@@ -230,9 +228,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSizes.w14),
           child: Icon(
-            _obscure
-                ? Icons.visibility_off_outlined
-                : Icons.visibility_outlined,
+            _obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
             size: AppSizes.w20,
             color: iconColor,
           ),
