@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/services/remote/interceptors/auth_interceptor.dart';
+import 'package:heka_store/core/services/remote/interceptors/logger_interceptor.dart';
 
 class DioClient {
   DioClient._internal();
@@ -7,7 +10,7 @@ class DioClient {
 
   late final Dio dio;
 
-  final String _baseUrl = 'https://heka.runasp.net/api/';
+  final String _baseUrl = ApiConstants.baseUrl;
 
   void init() {
     dio = Dio(
@@ -22,5 +25,7 @@ class DioClient {
         },
       ),
     );
+
+    dio.interceptors.addAll([AuthInterceptor(dio), LoggerInterceptor()]);
   }
 }
