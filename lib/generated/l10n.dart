@@ -479,6 +479,156 @@ class S {
     );
   }
 
+  /// `Email is required`
+  String get emailRequired {
+    return Intl.message(
+      'Email is required',
+      name: 'emailRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email is invalid`
+  String get emailInvalid {
+    return Intl.message(
+      'Email is invalid',
+      name: 'emailInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is required`
+  String get passwordRequired {
+    return Intl.message(
+      'Password is required',
+      name: 'passwordRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at least 6 characters`
+  String get passwordTooShort {
+    return Intl.message(
+      'Password must be at least 6 characters',
+      name: 'passwordTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must be at most 32 characters`
+  String get passwordTooLong {
+    return Intl.message(
+      'Password must be at most 32 characters',
+      name: 'passwordTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain an uppercase letter`
+  String get passwordNoUppercase {
+    return Intl.message(
+      'Password must contain an uppercase letter',
+      name: 'passwordNoUppercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain a lowercase letter`
+  String get passwordNoLowercase {
+    return Intl.message(
+      'Password must contain a lowercase letter',
+      name: 'passwordNoLowercase',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain a number`
+  String get passwordNoNumber {
+    return Intl.message(
+      'Password must contain a number',
+      name: 'passwordNoNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password must contain a special character`
+  String get passwordNoSpecialChar {
+    return Intl.message(
+      'Password must contain a special character',
+      name: 'passwordNoSpecialChar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name is required`
+  String get nameRequired {
+    return Intl.message(
+      'Name is required',
+      name: 'nameRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name must be at least 3 characters`
+  String get nameTooShort {
+    return Intl.message(
+      'Name must be at least 3 characters',
+      name: 'nameTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name must be at most 50 characters`
+  String get nameTooLong {
+    return Intl.message(
+      'Name must be at most 50 characters',
+      name: 'nameTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number is required`
+  String get phoneRequired {
+    return Intl.message(
+      'Phone number is required',
+      name: 'phoneRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number is invalid`
+  String get phoneInvalid {
+    return Intl.message(
+      'Phone number is invalid',
+      name: 'phoneInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is required`
+  String get fieldRequired {
+    return Intl.message(
+      'This field is required',
+      name: 'fieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Welcome to Heka`
   String get onboardingTitle {
     return Intl.message(

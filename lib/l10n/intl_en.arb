@@ -111,6 +111,42 @@
     "@error_unknown_action": {},
 
 
+    "emailRequired": "Email is required",
+    "@emailRequired": {},
+    "emailInvalid": "Email is invalid",
+    "@emailInvalid": {},
+
+    "passwordRequired": "Password is required",
+    "@passwordRequired": {},
+    "passwordTooShort": "Password must be at least 6 characters",
+    "@passwordTooShort": {},
+    "passwordTooLong": "Password must be at most 32 characters",
+    "@passwordTooLong": {},
+    "passwordNoUppercase": "Password must contain an uppercase letter",
+    "@passwordNoUppercase": {},
+    "passwordNoLowercase": "Password must contain a lowercase letter",
+    "@passwordNoLowercase": {},
+    "passwordNoNumber": "Password must contain a number",
+    "@passwordNoNumber": {},
+    "passwordNoSpecialChar": "Password must contain a special character",
+    "@passwordNoSpecialChar": {},
+
+    "nameRequired": "Name is required",
+    "@nameRequired": {},
+    "nameTooShort": "Name must be at least 3 characters",
+    "@nameTooShort": {},
+    "nameTooLong": "Name must be at most 50 characters",
+    "@nameTooLong": {},
+
+    "phoneRequired": "Phone number is required",
+    "@phoneRequired": {},
+    "phoneInvalid": "Phone number is invalid",
+    "@phoneInvalid": {},
+
+    "fieldRequired": "This field is required",
+    "@fieldRequired": {},
+    
+
     "onboardingTitle": "Welcome to Heka",
     "@onboardingTitle": {},
     "onboardingBody": "Connect directly with local artisans and trusted vendors. From handcrafted treasures to modern Egyptian design all in one trusted marketplace.",

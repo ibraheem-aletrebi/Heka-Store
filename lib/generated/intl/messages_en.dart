@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Don\'t have an account? ",
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
+    "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
+    "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
     "emptyFavoriteBody": MessageLookupByLibrary.simpleMessage(
       "You don\'t have any saved items. Go to home and add some.",
     ),
@@ -184,6 +186,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "fetchingAddress": MessageLookupByLibrary.simpleMessage(
       "Fetching address...",
     ),
+    "fieldRequired": MessageLookupByLibrary.simpleMessage(
+      "This field is required",
+    ),
     "firstName": MessageLookupByLibrary.simpleMessage("First name"),
     "fitchingAddress": MessageLookupByLibrary.simpleMessage(
       "Fetching address...",
@@ -229,6 +234,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "Login to your account",
     ),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("Name is required"),
+    "nameTooLong": MessageLookupByLibrary.simpleMessage(
+      "Name must be at most 50 characters",
+    ),
+    "nameTooShort": MessageLookupByLibrary.simpleMessage(
+      "Name must be at least 3 characters",
+    ),
     "newCard": MessageLookupByLibrary.simpleMessage("New Card"),
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
@@ -248,11 +260,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
+    "passwordNoLowercase": MessageLookupByLibrary.simpleMessage(
+      "Password must contain a lowercase letter",
+    ),
+    "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
+      "Password must contain a number",
+    ),
+    "passwordNoSpecialChar": MessageLookupByLibrary.simpleMessage(
+      "Password must contain a special character",
+    ),
+    "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
+      "Password must contain an uppercase letter",
+    ),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "Password is required",
+    ),
+    "passwordTooLong": MessageLookupByLibrary.simpleMessage(
+      "Password must be at most 32 characters",
+    ),
+    "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+      "Password must be at least 6 characters",
+    ),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "Permission Required",
     ),
+    "phoneInvalid": MessageLookupByLibrary.simpleMessage(
+      "Phone number is invalid",
+    ),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("Phone number"),
+    "phoneRequired": MessageLookupByLibrary.simpleMessage(
+      "Phone number is required",
+    ),
     "placeOrder": MessageLookupByLibrary.simpleMessage("Place order"),
     "previouslyViewedItem": MessageLookupByLibrary.simpleMessage(
       "Items you previously viewed",

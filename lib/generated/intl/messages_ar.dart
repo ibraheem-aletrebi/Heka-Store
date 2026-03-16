@@ -56,6 +56,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "ليس لديك حساب؟ ",
     ),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
+    "emailInvalid": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني غير صحيح",
+    ),
+    "emailRequired": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني مطلوب",
+    ),
     "emptyFavoriteBody": MessageLookupByLibrary.simpleMessage(
       "ليس لديك أي عناصر محفوظة. اذهب إلى الرئيسية وأضف بعضها.",
     ),
@@ -180,6 +186,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "fetchingAddress": MessageLookupByLibrary.simpleMessage(
       "جارٍ تحديد العنوان...",
     ),
+    "fieldRequired": MessageLookupByLibrary.simpleMessage("هذا الحقل مطلوب"),
     "firstName": MessageLookupByLibrary.simpleMessage("الاسم الأول"),
     "fitchingAddress": MessageLookupByLibrary.simpleMessage(
       "جارٍ تحديد العنوان...",
@@ -216,6 +223,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول إلى حسابك",
     ),
+    "nameRequired": MessageLookupByLibrary.simpleMessage("الاسم مطلوب"),
+    "nameTooLong": MessageLookupByLibrary.simpleMessage(
+      "الاسم لا يزيد عن 50 حرفاً",
+    ),
+    "nameTooShort": MessageLookupByLibrary.simpleMessage(
+      "الاسم لا يقل عن 3 أحرف",
+    ),
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "nicknameHint": MessageLookupByLibrary.simpleMessage("مثال: بيت ماما"),
@@ -236,9 +250,32 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("أخرى"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
+    "passwordNoLowercase": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على حرف صغير",
+    ),
+    "passwordNoNumber": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على رقم",
+    ),
+    "passwordNoSpecialChar": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على رمز خاص",
+    ),
+    "passwordNoUppercase": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور يجب أن تحتوي على حرف كبير",
+    ),
+    "passwordRequired": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور مطلوبة",
+    ),
+    "passwordTooLong": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور لا تزيد عن 32 حرفاً",
+    ),
+    "passwordTooShort": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور لا تقل عن 6 أحرف",
+    ),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage("الإذن مطلوب"),
+    "phoneInvalid": MessageLookupByLibrary.simpleMessage("رقم الهاتف غير صحيح"),
     "phoneNumber": MessageLookupByLibrary.simpleMessage("رقم الهاتف"),
+    "phoneRequired": MessageLookupByLibrary.simpleMessage("رقم الهاتف مطلوب"),
     "placeOrder": MessageLookupByLibrary.simpleMessage("تأكيد الطلب"),
     "previouslyViewedItem": MessageLookupByLibrary.simpleMessage(
       "العناصر التي شاهدتها مسبقاً",

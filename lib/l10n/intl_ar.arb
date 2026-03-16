@@ -110,6 +110,43 @@
     "error_unknown_action": "إغلاق",
     "@error_unknown_action": {},
 
+
+
+    "emailRequired": "البريد الإلكتروني مطلوب",
+    "@emailRequired": {},
+    "emailInvalid": "البريد الإلكتروني غير صحيح",
+    "@emailInvalid": {},
+
+    "passwordRequired": "كلمة المرور مطلوبة",
+    "@passwordRequired": {},
+    "passwordTooShort": "كلمة المرور لا تقل عن 6 أحرف",
+    "@passwordTooShort": {},
+    "passwordTooLong": "كلمة المرور لا تزيد عن 32 حرفاً",
+    "@passwordTooLong": {},
+    "passwordNoUppercase": "كلمة المرور يجب أن تحتوي على حرف كبير",
+    "@passwordNoUppercase": {},
+    "passwordNoLowercase": "كلمة المرور يجب أن تحتوي على حرف صغير",
+    "@passwordNoLowercase": {},
+    "passwordNoNumber": "كلمة المرور يجب أن تحتوي على رقم",
+    "@passwordNoNumber": {},
+    "passwordNoSpecialChar": "كلمة المرور يجب أن تحتوي على رمز خاص",
+    "@passwordNoSpecialChar": {},
+
+    "nameRequired": "الاسم مطلوب",
+    "@nameRequired": {},
+    "nameTooShort": "الاسم لا يقل عن 3 أحرف",
+    "@nameTooShort": {},
+    "nameTooLong": "الاسم لا يزيد عن 50 حرفاً",
+    "@nameTooLong": {},
+
+    "phoneRequired": "رقم الهاتف مطلوب",
+    "@phoneRequired": {},
+    "phoneInvalid": "رقم الهاتف غير صحيح",
+    "@phoneInvalid": {},
+
+    "fieldRequired": "هذا الحقل مطلوب",
+    "@fieldRequired": {},
+
     
     "onboardingTitle": "مرحباً بك في هيكا",
     "@onboardingTitle": {},
