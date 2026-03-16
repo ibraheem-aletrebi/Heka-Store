@@ -1,11 +1,18 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
-part 'login_request_model.freezed.dart';
 
-@freezed
-class LoginRequestModel with _$LoginRequestModel {
-  const factory LoginRequestModel({
-    required String email,
-    required String password,
-    required bool rememberMe,
-  }) = _LoginRequestModel;
+
+
+class LoginRequestModel {
+  final String email;
+  final String password;
+  final bool rememberMe;
+
+    LoginRequestModel({
+     required this.email, required this.password, required this.rememberMe,
+  });
+
+  Map<String, dynamic> toJson() =>{
+    'email': email,
+    'password': password,
+    'rememberMe': rememberMe
+  };
 }
