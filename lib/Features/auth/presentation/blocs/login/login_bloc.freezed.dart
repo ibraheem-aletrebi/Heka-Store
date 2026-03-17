@@ -827,7 +827,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
-    Object? autoValidateMode = freezed,
+    Object? autoValidateMode = null,
     Object? isGoogleLoading = null,
   }) {
     return _then(_value.copyWith(
@@ -867,7 +867,7 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      autoValidateMode: freezed == autoValidateMode
+      autoValidateMode: null == autoValidateMode
           ? _value.autoValidateMode
           : autoValidateMode // ignore: cast_nullable_to_non_nullable
               as AutovalidateMode,
@@ -936,7 +936,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
-    Object? autoValidateMode = freezed,
+    Object? autoValidateMode = null,
     Object? isGoogleLoading = null,
   }) {
     return _then(_$LoginStateImpl(
@@ -976,7 +976,7 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      autoValidateMode: freezed == autoValidateMode
+      autoValidateMode: null == autoValidateMode
           ? _value.autoValidateMode
           : autoValidateMode // ignore: cast_nullable_to_non_nullable
               as AutovalidateMode,
@@ -1061,8 +1061,8 @@ class _$LoginStateImpl extends _LoginState {
             (identical(other.loginResponse, loginResponse) ||
                 other.loginResponse == loginResponse) &&
             (identical(other.error, error) || other.error == error) &&
-            const DeepCollectionEquality()
-                .equals(other.autoValidateMode, autoValidateMode) &&
+            (identical(other.autoValidateMode, autoValidateMode) ||
+                other.autoValidateMode == autoValidateMode) &&
             (identical(other.isGoogleLoading, isGoogleLoading) ||
                 other.isGoogleLoading == isGoogleLoading));
   }
@@ -1079,7 +1079,7 @@ class _$LoginStateImpl extends _LoginState {
       isSuccess,
       loginResponse,
       error,
-      const DeepCollectionEquality().hash(autoValidateMode),
+      autoValidateMode,
       isGoogleLoading);
 
   @JsonKey(ignore: true)

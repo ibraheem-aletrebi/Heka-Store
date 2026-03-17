@@ -2,8 +2,13 @@ import 'package:get_it/get_it.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:heka_store/Features/auth/data/repos/auth_repo_imp.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
-import 'package:heka_store/Features/auth/domain/use_cases/login_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/reset_password_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/verify_otp_use_case.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
@@ -20,43 +25,77 @@ Future<void> setupInjector() async {
   _initAuth();
 }
 
+
 Future<void> _initCore() async {
+  // Local Storage
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(adapters: [AppThemeModeEnumAdapter()]);
 
+  // Router 
   sl.registerLazySingleton<AppRouter>(() => AppRouter());
 
-  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
+  // App BLoCs 
+  sl.registerFactory<ThemeBloc>(
+    () => ThemeBloc(localStorage: localStorage),
+  );
   sl.registerFactory<LanguageBloc>(
     () => LanguageBloc(localStorage: localStorage),
   );
+
+  // Network
   DioClient().init();
-  sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
+  sl.registerLazySingleton<ApiService>(
+    () => ApiService(DioClient().dio),
+  );
 
-
+  // Error Handler
   ApiErrorHandler.instance.init(
     onUnauthorized: () {
       // TODO: Navigate to Login
     },
   );
-  
 }
 
+
 void _initAuth() {
+  // DataSources
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
 
+  //Repository
   sl.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(remoteDataSource: sl<AuthRemoteDataSource>()),
   );
 
+  //Use Cases
   sl.registerFactory<LoginUseCase>(
     () => LoginUseCase(authRepo: sl<AuthRepo>()),
   );
+  sl.registerFactory<ForgotPasswordUseCase>(
+    () => ForgotPasswordUseCase(repository: sl<AuthRepo>()),
+  );
+  sl.registerFactory<VerifyOtpUseCase>(
+    () => VerifyOtpUseCase(repository: sl<AuthRepo>()),
+  );
+  sl.registerFactory<ResendOtpUseCase>(
+    () => ResendOtpUseCase(repository: sl<AuthRepo>()),
+  );
+  sl.registerFactory<ResetPasswordUseCase>(
+    () => ResetPasswordUseCase(repository: sl<AuthRepo>()),
+  );
 
+  //BLoCs
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(loginUseCase: sl<LoginUseCase>()),
+  );
+  sl.registerFactory<ForgotPasswordBloc>(
+    () => ForgotPasswordBloc(
+      forgotPasswordUseCase: sl<ForgotPasswordUseCase>(),
+      verifyOtpUseCase: sl<VerifyOtpUseCase>(),
+      resendOtpUseCase: sl<ResendOtpUseCase>(),
+      resetPasswordUseCase: sl<ResetPasswordUseCase>(),
+    ),
   );
 }
