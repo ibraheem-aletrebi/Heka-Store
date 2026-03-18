@@ -16,7 +16,7 @@ class OnboardingSheetActions extends StatelessWidget {
         SizedBox(height: AppSizes.h16),
         CustomButton.outlined(
           text: S.of(context).createAccount,
-          onPressed: () {},
+          onPressed: () => context.pushReplacement(AppRoutes.register),
         ),
         SizedBox(height: AppSizes.h20),
         TextButton(

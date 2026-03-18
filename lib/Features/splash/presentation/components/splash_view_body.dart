@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/core/animations/directional_reveal.dart';
 import 'package:heka_store/core/animations/fade_scale_transition.dart';
 import 'package:heka_store/core/animations/shimmer_overlay.dart';
+import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
+import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/resources/app_assets.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
@@ -128,11 +131,23 @@ class _SplashViewBodyState extends State<SplashViewBody>
     await _letterCtrl.forward();
     _breathCtrl.stop();
     await _wordCtrl.forward();
+
     await Future.delayed(const Duration(milliseconds: 600));
     await _exitCtrl.forward();
 
+    final route = await getInitialRoute();
+
     if (!mounted) return;
-    context.pushReplacement(AppRoutes.onboarding);
+
+    if (route == AppRoutes.verifyEmail) {
+      final pendingEmail = await sl<AuthLocalDataSource>()
+          .getPendingVerifyEmail();
+      if (mounted) {
+        context.go(route, extra: pendingEmail);
+      }
+      return;
+    }
+    if (mounted) context.go(route);
   }
 
   @override

@@ -15,8 +15,8 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterUseCase _registerUseCase;
 
   RegisterBloc({required RegisterUseCase registerUseCase})
-      : _registerUseCase = registerUseCase,
-        super(const RegisterState()) {
+    : _registerUseCase = registerUseCase,
+      super(const RegisterState()) {
     on<_FirstNameChanged>(_onFirstNameChanged);
     on<_LastNameChanged>(_onLastNameChanged);
     on<_EmailChanged>(_onEmailChanged);
@@ -33,81 +33,81 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     _FirstNameChanged event,
     Emitter<RegisterState> emit,
   ) {
-    emit(state.copyWith(
-      firstName: event.firstName,
-      isFirstNameDirty: true,
-      firstNameError: FieldValidator.name(event.firstName),
-      error: null,
-    ));
+    emit(
+      state.copyWith(
+        firstName: event.firstName,
+        isFirstNameDirty: true,
+        firstNameError: FieldValidator.name(event.firstName),
+        error: null,
+      ),
+    );
   }
 
-  void _onLastNameChanged(
-    _LastNameChanged event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(state.copyWith(
-      lastName: event.lastName,
-      isLastNameDirty: true,
-      lastNameError: FieldValidator.name(event.lastName),
-      error: null,
-    ));
+  void _onLastNameChanged(_LastNameChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        lastName: event.lastName,
+        isLastNameDirty: true,
+        lastNameError: FieldValidator.name(event.lastName),
+        error: null,
+      ),
+    );
   }
 
-  void _onEmailChanged(
-    _EmailChanged event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(state.copyWith(
-      email: event.email,
-      isEmailDirty: true,
-      emailError: FieldValidator.email(event.email),
-      error: null,
-    ));
+  void _onEmailChanged(_EmailChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        email: event.email,
+        isEmailDirty: true,
+        emailError: FieldValidator.email(event.email),
+        error: null,
+      ),
+    );
   }
 
-  void _onPasswordChanged(
-    _PasswordChanged event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(state.copyWith(
-      password: event.password,
-      isPasswordDirty: true,
-      passwordError: FieldValidator.password(event.password),
-      confirmPasswordError: state.isConfirmPasswordDirty
-          ? FieldValidator.confirmPassword(
-              state.confirmPassword,
-              event.password,
-            )
-          : null,
-      error: null,
-    ));
+  void _onPasswordChanged(_PasswordChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        password: event.password,
+        isPasswordDirty: true,
+        passwordError: FieldValidator.password(event.password),
+        confirmPasswordError: state.isConfirmPasswordDirty
+            ? FieldValidator.confirmPassword(
+                state.confirmPassword,
+                event.password,
+              )
+            : null,
+        error: null,
+      ),
+    );
   }
 
   void _onConfirmPasswordChanged(
     _ConfirmPasswordChanged event,
     Emitter<RegisterState> emit,
   ) {
-    emit(state.copyWith(
-      confirmPassword: event.confirmPassword,
-      isConfirmPasswordDirty: true,
-      confirmPasswordError: FieldValidator.confirmPassword(
-        event.confirmPassword,
-        state.password,
+    emit(
+      state.copyWith(
+        confirmPassword: event.confirmPassword,
+        isConfirmPasswordDirty: true,
+        confirmPasswordError: FieldValidator.confirmPassword(
+          event.confirmPassword,
+          state.password,
+        ),
+        error: null,
       ),
-      error: null,
-    ));
+    );
   }
 
-  void _onPhoneChanged(
-    _PhoneChanged event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(state.copyWith(
-      phone: event.phone,
-      isPhoneDirty: true,
-      phoneError: FieldValidator.phone(event.phone),
-      error: null,
-    ));
+  void _onPhoneChanged(_PhoneChanged event, Emitter<RegisterState> emit) {
+    emit(
+      state.copyWith(
+        phone: event.phone,
+        isPhoneDirty: true,
+        phoneError: FieldValidator.phone(event.phone),
+        error: null,
+      ),
+    );
   }
 
   void _onAcceptTermsToggled(
@@ -139,20 +139,22 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
         confirmPasswordError != null ||
         phoneError != null ||
         !state.acceptTerms) {
-      emit(state.copyWith(
-        firstNameError: firstNameError,
-        lastNameError: lastNameError,
-        emailError: emailError,
-        passwordError: passwordError,
-        confirmPasswordError: confirmPasswordError,
-        phoneError: phoneError,
-        isFirstNameDirty: true,
-        isLastNameDirty: true,
-        isEmailDirty: true,
-        isPasswordDirty: true,
-        isConfirmPasswordDirty: true,
-        isPhoneDirty: true,
-      ));
+      emit(
+        state.copyWith(
+          firstNameError: firstNameError,
+          lastNameError: lastNameError,
+          emailError: emailError,
+          passwordError: passwordError,
+          confirmPasswordError: confirmPasswordError,
+          phoneError: phoneError,
+          isFirstNameDirty: true,
+          isLastNameDirty: true,
+          isEmailDirty: true,
+          isPasswordDirty: true,
+          isConfirmPasswordDirty: true,
+          isPhoneDirty: true,
+        ),
+      );
       return;
     }
 
@@ -170,17 +172,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     );
 
     response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isLoading: false,
-        isRegisterSuccess: true,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isLoading: false,
-        error: error,
-      )),
+      onSuccess: (_) =>
+          emit(state.copyWith(isLoading: false, isRegisterSuccess: true)),
+      onError: (error) => emit(state.copyWith(isLoading: false, error: error)),
     );
   }
-
-
-
 }

@@ -20,11 +20,17 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
+  @HiveField(0)
   String get email => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get firstName => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get lastName => throw _privateConstructorUsedError;
+  @HiveField(3)
   List<String> get roles => throw _privateConstructorUsedError;
+  @HiveField(4)
   bool get hasAddress => throw _privateConstructorUsedError;
+  @HiveField(5)
   String? get profilePictureUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,12 +45,12 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {String email,
-      String firstName,
-      String lastName,
-      List<String> roles,
-      bool hasAddress,
-      String? profilePictureUrl});
+      {@HiveField(0) String email,
+      @HiveField(1) String firstName,
+      @HiveField(2) String lastName,
+      @HiveField(3) List<String> roles,
+      @HiveField(4) bool hasAddress,
+      @HiveField(5) String? profilePictureUrl});
 }
 
 /// @nodoc
@@ -105,12 +111,12 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String email,
-      String firstName,
-      String lastName,
-      List<String> roles,
-      bool hasAddress,
-      String? profilePictureUrl});
+      {@HiveField(0) String email,
+      @HiveField(1) String firstName,
+      @HiveField(2) String lastName,
+      @HiveField(3) List<String> roles,
+      @HiveField(4) bool hasAddress,
+      @HiveField(5) String? profilePictureUrl});
 }
 
 /// @nodoc
@@ -164,25 +170,29 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.email,
-      required this.firstName,
-      required this.lastName,
-      required final List<String> roles,
-      required this.hasAddress,
-      this.profilePictureUrl})
+      {@HiveField(0) required this.email,
+      @HiveField(1) required this.firstName,
+      @HiveField(2) required this.lastName,
+      @HiveField(3) required final List<String> roles,
+      @HiveField(4) required this.hasAddress,
+      @HiveField(5) this.profilePictureUrl})
       : _roles = roles;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String email;
   @override
+  @HiveField(1)
   final String firstName;
   @override
+  @HiveField(2)
   final String lastName;
   final List<String> _roles;
   @override
+  @HiveField(3)
   List<String> get roles {
     if (_roles is EqualUnmodifiableListView) return _roles;
     // ignore: implicit_dynamic_type
@@ -190,8 +200,10 @@ class _$UserModelImpl implements _UserModel {
   }
 
   @override
+  @HiveField(4)
   final bool hasAddress;
   @override
+  @HiveField(5)
   final String? profilePictureUrl;
 
   @override
@@ -243,27 +255,33 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String email,
-      required final String firstName,
-      required final String lastName,
-      required final List<String> roles,
-      required final bool hasAddress,
-      final String? profilePictureUrl}) = _$UserModelImpl;
+      {@HiveField(0) required final String email,
+      @HiveField(1) required final String firstName,
+      @HiveField(2) required final String lastName,
+      @HiveField(3) required final List<String> roles,
+      @HiveField(4) required final bool hasAddress,
+      @HiveField(5) final String? profilePictureUrl}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get email;
   @override
+  @HiveField(1)
   String get firstName;
   @override
+  @HiveField(2)
   String get lastName;
   @override
+  @HiveField(3)
   List<String> get roles;
   @override
+  @HiveField(4)
   bool get hasAddress;
   @override
+  @HiveField(5)
   String? get profilePictureUrl;
   @override
   @JsonKey(ignore: true)

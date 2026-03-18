@@ -8,12 +8,18 @@ import 'package:heka_store/Features/auth/data/models/register/register_request_m
 import 'package:heka_store/core/services/remote/api_result.dart';
 
 abstract class AuthRepo {
-  // login
+  // ─── Login ────────────────────────────────────────
   Future<ApiResult<LoginResponseModel>> login({
     required LoginRequestModel loginRequestModel,
   });
 
-  // forgot password
+  // ─── Register ─────────────────────────────────────
+  Future<ApiResult<void>> register(RegisterRequestModel request);
+  Future<ApiResult<LoginResponseModel>> verifyEmailOtp(
+    VerifyOtpRequestModel request,
+  );
+
+  // ─── Forgot Password ──────────────────────────────
   Future<ApiResult<void>> forgotPassword({
     required ForgotPasswordRequestModel request,
   });
@@ -21,11 +27,12 @@ abstract class AuthRepo {
   Future<ApiResult<void>> resetPassword({
     required ResetPasswordRequestModel request,
   });
-  Future<ApiResult<void>> resendOtp({required ResendOtpRequestModel request});
+  Future<ApiResult<void>> resendOtp({
+    required ResendOtpRequestModel request,
+  });
 
-  // register
-  Future<ApiResult<void>> register(RegisterRequestModel request);
-  Future<ApiResult<LoginResponseModel>> verifyEmailOtp(
-    VerifyOtpRequestModel request,
-  );
+  // ─── Session ──────────────────────────────────────
+  Future<String?> getPendingVerifyEmail();
+  Future<bool> isLoggedIn();
+  Future<void> logout();
 }

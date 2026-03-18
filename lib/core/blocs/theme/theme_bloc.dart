@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/core/constants/hive_keys.dart';
+import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
 import 'package:heka_store/core/enums/errors/theme_error_enum.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -28,7 +28,9 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
     emit(const ThemeState.loading());
     try {
       final mode =
-          _localStorage.getValue<AppThemeModeEnum>(HiveKeys.appThemeMode) ??
+          _localStorage.getValue<AppThemeModeEnum>(
+            LocalStorageKeys.appThemeMode,
+          ) ??
           AppThemeModeEnum.system;
       emit(ThemeState.loaded(appThemeMode: mode));
     } catch (e) {
@@ -44,7 +46,7 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Future<void> _onChanged(ThemeChanged event, Emitter<ThemeState> emit) async {
     try {
       await _localStorage.setValue<AppThemeModeEnum>(
-        HiveKeys.appThemeMode,
+        LocalStorageKeys.appThemeMode,
         event.mode,
       );
       emit(ThemeState.loaded(appThemeMode: event.mode));
@@ -61,13 +63,15 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   Future<void> _onToggle(ThemeToggle event, Emitter<ThemeState> emit) async {
     try {
       final currentMode =
-          _localStorage.getValue<AppThemeModeEnum>(HiveKeys.appThemeMode) ??
+          _localStorage.getValue<AppThemeModeEnum>(
+            LocalStorageKeys.appThemeMode,
+          ) ??
           AppThemeModeEnum.system;
       final next = currentMode == AppThemeModeEnum.light
           ? AppThemeModeEnum.dark
           : AppThemeModeEnum.light;
       await _localStorage.setValue<AppThemeModeEnum>(
-        HiveKeys.appThemeMode,
+        LocalStorageKeys.appThemeMode,
         next,
       );
       emit(ThemeState.loaded(appThemeMode: next));

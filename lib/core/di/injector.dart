@@ -1,5 +1,7 @@
 import 'package:get_it/get_it.dart';
+import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
+import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
 import 'package:heka_store/Features/auth/data/repos/auth_repo_imp.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.dart';
@@ -35,29 +37,25 @@ Future<void> _initCore() async {
   // ─── Local Storage ────────────────────────────────
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
-  await localStorage.init(adapters: [AppThemeModeEnumAdapter()]);
+  await localStorage.init(
+    adapters: [AppThemeModeEnumAdapter(), UserModelAdapter()],
+  );
 
   // ─── Secure Storage ───────────────────────────────
-  sl.registerLazySingleton<SecureStorageService>(
-    () => SecureStorageService(),
-  );
+  sl.registerLazySingleton<SecureStorageService>(() => SecureStorageService());
 
   // ─── Router ───────────────────────────────────────
   sl.registerLazySingleton<AppRouter>(() => AppRouter());
 
   // ─── App BLoCs ────────────────────────────────────
-  sl.registerFactory<ThemeBloc>(
-    () => ThemeBloc(localStorage: localStorage),
-  );
+  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
   sl.registerFactory<LanguageBloc>(
     () => LanguageBloc(localStorage: localStorage),
   );
 
   // ─── Network ──────────────────────────────────────
   DioClient().init();
-  sl.registerLazySingleton<ApiService>(
-    () => ApiService(DioClient().dio),
-  );
+  sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
 
   // ─── Error Handler ────────────────────────────────
   ApiErrorHandler.instance.init(
@@ -74,17 +72,18 @@ void _initAuth() {
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
-  // sl.registerLazySingleton<AuthLocalDataSource>(
-  //   () => AuthLocalDataSourceImpl(
-  //     secureStorage: sl<SecureStorageService>(),
-  //     localStorage: sl<LocalStorageService>(),
-  //   ),
-  // );
+  sl.registerLazySingleton<AuthLocalDataSource>(
+    () => AuthLocalDataSourceImpl(
+      secureStorage: sl<SecureStorageService>(),
+      localStorage: sl<LocalStorageService>(),
+    ),
+  );
 
   // ─── Repository ───────────────────────────────────
   sl.registerLazySingleton<AuthRepo>(
     () => AuthRepoImp(
       remoteDataSource: sl<AuthRemoteDataSource>(),
+      localDataSource: sl<AuthLocalDataSource>(),
     ),
   );
 
@@ -126,6 +125,4 @@ void _initAuth() {
       resetPasswordUseCase: sl<ResetPasswordUseCase>(),
     ),
   );
-
-  
 }

@@ -468,6 +468,8 @@ abstract class $VerifyEmailStateCopyWith<$Res> {
       bool isResendSuccess,
       LoginResponseModel? loginResponse,
       ApiErrorModel? error});
+
+  $LoginResponseModelCopyWith<$Res>? get loginResponse;
 }
 
 /// @nodoc
@@ -532,6 +534,18 @@ class _$VerifyEmailStateCopyWithImpl<$Res, $Val extends VerifyEmailState>
               as ApiErrorModel?,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LoginResponseModelCopyWith<$Res>? get loginResponse {
+    if (_value.loginResponse == null) {
+      return null;
+    }
+
+    return $LoginResponseModelCopyWith<$Res>(_value.loginResponse!, (value) {
+      return _then(_value.copyWith(loginResponse: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -552,6 +566,9 @@ abstract class _$$VerifyEmailStateImplCopyWith<$Res>
       bool isResendSuccess,
       LoginResponseModel? loginResponse,
       ApiErrorModel? error});
+
+  @override
+  $LoginResponseModelCopyWith<$Res>? get loginResponse;
 }
 
 /// @nodoc
@@ -679,8 +696,8 @@ class _$VerifyEmailStateImpl extends _VerifyEmailState {
                 other.isOtpSuccess == isOtpSuccess) &&
             (identical(other.isResendSuccess, isResendSuccess) ||
                 other.isResendSuccess == isResendSuccess) &&
-            const DeepCollectionEquality()
-                .equals(other.loginResponse, loginResponse) &&
+            (identical(other.loginResponse, loginResponse) ||
+                other.loginResponse == loginResponse) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -694,7 +711,7 @@ class _$VerifyEmailStateImpl extends _VerifyEmailState {
       isResendLoading,
       isOtpSuccess,
       isResendSuccess,
-      const DeepCollectionEquality().hash(loginResponse),
+      loginResponse,
       error);
 
   @JsonKey(ignore: true)

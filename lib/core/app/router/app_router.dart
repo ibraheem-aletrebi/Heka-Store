@@ -1,25 +1,67 @@
 import 'package:go_router/go_router.dart';
+import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/presentation/views/forgot_password/forgot_password_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/login/login_view.dart';
+import 'package:heka_store/Features/auth/presentation/views/register/register_view.dart';
+import 'package:heka_store/Features/auth/presentation/views/verify_email/verify_email_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
+import 'package:heka_store/core/di/injector.dart';
+import 'package:heka_store/core/services/local/local_storage_keys.dart';
+import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 class AppRouter {
   late final GoRouter router = GoRouter(
+    initialLocation: AppRoutes.splash,
     routes: [
+      // ─── Splash ───────────────────────────────
       GoRoute(path: AppRoutes.splash, builder: (_, _) => const SplashView()),
 
+      // ─── Onboarding ───────────────────────────
       GoRoute(
         path: AppRoutes.onboarding,
         builder: (_, _) => const OnboardingView(),
       ),
 
+      // ─── Auth ─────────────────────────────────
       GoRoute(path: AppRoutes.login, builder: (_, _) => const LoginView()),
+      GoRoute(
+        path: AppRoutes.register,
+        builder: (_, _) => const RegisterView(),
+      ),
       GoRoute(
         path: AppRoutes.forgotPassword,
         builder: (_, _) => const ForgotPasswordView(),
       ),
+      GoRoute(
+        path: AppRoutes.verifyEmail,
+        builder: (context, state) {
+          final email = state.extra as String;
+          return VerifyEmailView(email: email);
+        },
+      ),
     ],
   );
+}
+
+// ─── Initial Route ────────────────────────────────────────────────────────────
+
+Future<String> getInitialRoute() async {
+  final localDataSource = sl<AuthLocalDataSource>();
+
+  final isLoggedIn = await localDataSource.isLoggedIn();
+  if (isLoggedIn) return AppRoutes.home;
+
+  final pendingEmail = await localDataSource.getPendingVerifyEmail();
+  if (pendingEmail != null) return AppRoutes.verifyEmail;
+
+  final hasSeenOnboarding =
+      LocalStorageService().getValue<bool>(
+        LocalStorageKeys.hasSeenOnboarding,
+      ) ??
+      false;
+  if (hasSeenOnboarding) return AppRoutes.login;
+
+  return AppRoutes.onboarding;
 }
