@@ -1,6 +1,11 @@
 enum ValidationKey {
-  emailRequired,
+emailRequired,
   emailInvalid,
+  emailTooLong,
+  emailInvalidFormat,
+  emailInvalidLocal,
+  emailInvalidDomain,
+  emailInvalidTld,
 
   passwordRequired,
   passwordTooShort,

@@ -59,8 +59,23 @@ class MessageLookup extends MessageLookupByLibrary {
     "emailInvalid": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني غير صحيح",
     ),
+    "emailInvalidDomain": MessageLookupByLibrary.simpleMessage(
+      "النطاق بعد @ غير صحيح",
+    ),
+    "emailInvalidFormat": MessageLookupByLibrary.simpleMessage(
+      "صيغة البريد الإلكتروني غير صحيحة، تأكد من وجود @",
+    ),
+    "emailInvalidLocal": MessageLookupByLibrary.simpleMessage(
+      "الجزء قبل @ يحتوي على أحرف غير مسموح بها",
+    ),
+    "emailInvalidTld": MessageLookupByLibrary.simpleMessage(
+      "امتداد النطاق غير صحيح (مثال: .com، .net)",
+    ),
     "emailRequired": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني مطلوب",
+    ),
+    "emailTooLong": MessageLookupByLibrary.simpleMessage(
+      "البريد الإلكتروني طويل جداً",
     ),
     "emptyFavoriteBody": MessageLookupByLibrary.simpleMessage(
       "ليس لديك أي عناصر محفوظة. اذهب إلى الرئيسية وأضف بعضها.",

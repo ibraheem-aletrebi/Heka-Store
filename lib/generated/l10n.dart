@@ -529,6 +529,56 @@ class S {
     );
   }
 
+  /// `Email is too long`
+  String get emailTooLong {
+    return Intl.message(
+      'Email is too long',
+      name: 'emailTooLong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid email format, make sure it contains @`
+  String get emailInvalidFormat {
+    return Intl.message(
+      'Invalid email format, make sure it contains @',
+      name: 'emailInvalidFormat',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The part before @ contains invalid characters`
+  String get emailInvalidLocal {
+    return Intl.message(
+      'The part before @ contains invalid characters',
+      name: 'emailInvalidLocal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The domain after @ is invalid`
+  String get emailInvalidDomain {
+    return Intl.message(
+      'The domain after @ is invalid',
+      name: 'emailInvalidDomain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Invalid domain extension (e.g. .com, .net)`
+  String get emailInvalidTld {
+    return Intl.message(
+      'Invalid domain extension (e.g. .com, .net)',
+      name: 'emailInvalidTld',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Password is required`
   String get passwordRequired {
     return Intl.message(

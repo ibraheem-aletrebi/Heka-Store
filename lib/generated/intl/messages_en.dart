@@ -61,7 +61,20 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
+    "emailInvalidDomain": MessageLookupByLibrary.simpleMessage(
+      "The domain after @ is invalid",
+    ),
+    "emailInvalidFormat": MessageLookupByLibrary.simpleMessage(
+      "Invalid email format, make sure it contains @",
+    ),
+    "emailInvalidLocal": MessageLookupByLibrary.simpleMessage(
+      "The part before @ contains invalid characters",
+    ),
+    "emailInvalidTld": MessageLookupByLibrary.simpleMessage(
+      "Invalid domain extension (e.g. .com, .net)",
+    ),
     "emailRequired": MessageLookupByLibrary.simpleMessage("Email is required"),
+    "emailTooLong": MessageLookupByLibrary.simpleMessage("Email is too long"),
     "emptyFavoriteBody": MessageLookupByLibrary.simpleMessage(
       "You don\'t have any saved items. Go to home and add some.",
     ),

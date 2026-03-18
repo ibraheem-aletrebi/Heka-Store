@@ -119,11 +119,20 @@
     "otpResentSuccess": "تم إرسال الرمز مرة أخرى بنجاح",
     "@otpResentSuccess": {},
 
-
-    "emailRequired": "البريد الإلكتروني مطلوب",
+  "emailRequired": "البريد الإلكتروني مطلوب",
     "@emailRequired": {},
-    "emailInvalid": "البريد الإلكتروني غير صحيح",
+"emailInvalid": "البريد الإلكتروني غير صحيح",
     "@emailInvalid": {},
+"emailTooLong": "البريد الإلكتروني طويل جداً",
+    "@emailTooLong": {},
+"emailInvalidFormat": "صيغة البريد الإلكتروني غير صحيحة، تأكد من وجود @",
+    "@emailInvalidFormat": {},
+"emailInvalidLocal": "الجزء قبل @ يحتوي على أحرف غير مسموح بها",
+    "@emailInvalidLocal": {},
+"emailInvalidDomain": "النطاق بعد @ غير صحيح",
+    "@emailInvalidDomain": {},
+"emailInvalidTld": "امتداد النطاق غير صحيح (مثال: .com، .net)",
+    "@emailInvalidTld": {},
 
     "passwordRequired": "كلمة المرور مطلوبة",
     "@passwordRequired": {},

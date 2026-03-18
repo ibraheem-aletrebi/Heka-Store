@@ -32,37 +32,39 @@ class FieldValidator {
     final trimmed = value.trim().toLowerCase();
 
     if (trimmed.isEmpty) return ValidationKey.emailRequired;
-    if (trimmed.length > 254) return ValidationKey.emailInvalid;
+    if (trimmed.length > 254) return ValidationKey.emailTooLong;
 
     final atCount = '@'.allMatches(trimmed).length;
-    if (atCount != 1) return ValidationKey.emailInvalid;
+    if (atCount != 1) return ValidationKey.emailInvalidFormat;
 
     final atIndex = trimmed.indexOf('@');
-    if (atIndex <= 0) return ValidationKey.emailInvalid;
+    if (atIndex <= 0) return ValidationKey.emailInvalidFormat;
 
     final local = trimmed.substring(0, atIndex);
     final domain = trimmed.substring(atIndex + 1);
 
-    if (local.isEmpty || local.length > 64) return ValidationKey.emailInvalid;
-    if (local.contains('..')) return ValidationKey.emailInvalid;
-    if (!_emailLocal.hasMatch(local)) return ValidationKey.emailInvalid;
+    if (local.isEmpty || local.length > 64) {
+      return ValidationKey.emailInvalidLocal;
+    }
+    if (local.contains('..')) return ValidationKey.emailInvalidLocal;
+    if (!_emailLocal.hasMatch(local)) return ValidationKey.emailInvalidLocal;
 
     if (domain.isEmpty || domain.length > 253) {
-      return ValidationKey.emailInvalid;
+      return ValidationKey.emailInvalidDomain;
     }
     if (domain.startsWith('.') || domain.endsWith('.')) {
-      return ValidationKey.emailInvalid;
+      return ValidationKey.emailInvalidDomain;
     }
     if (domain.startsWith('-') || domain.endsWith('-')) {
-      return ValidationKey.emailInvalid;
+      return ValidationKey.emailInvalidDomain;
     }
-    if (domain.contains('..')) return ValidationKey.emailInvalid;
-    if (!domain.contains('.')) return ValidationKey.emailInvalid;
-    if (!_emailDomain.hasMatch(domain)) return ValidationKey.emailInvalid;
+    if (domain.contains('..')) return ValidationKey.emailInvalidDomain;
+    if (!domain.contains('.')) return ValidationKey.emailInvalidDomain;
+    if (!_emailDomain.hasMatch(domain)) return ValidationKey.emailInvalidDomain;
 
     final tld = domain.split('.').last;
-    if (tld.length < 2 || tld.length > 63) return ValidationKey.emailInvalid;
-    if (RegExp(r'^[0-9]+$').hasMatch(tld)) return ValidationKey.emailInvalid;
+    if (tld.length < 2 || tld.length > 63) return ValidationKey.emailInvalidTld;
+    if (RegExp(r'^[0-9]+$').hasMatch(tld)) return ValidationKey.emailInvalidTld;
 
     return null;
   }

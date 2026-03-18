@@ -8,7 +8,12 @@ extension ValidationKeyTranslation on ValidationKey {
     return switch (this) {
       ValidationKey.emailRequired => s.emailRequired,
       ValidationKey.emailInvalid => s.emailInvalid,
-
+      ValidationKey.emailTooLong => s.emailTooLong,
+      ValidationKey.emailInvalidFormat => s.emailInvalidFormat,
+      ValidationKey.emailInvalidLocal => s.emailInvalidLocal,
+      ValidationKey.emailInvalidDomain => s.emailInvalidDomain,
+      ValidationKey.emailInvalidTld => s.emailInvalidTld,
+      
       ValidationKey.passwordRequired => s.passwordRequired,
       ValidationKey.passwordTooShort => s.passwordTooShort,
       ValidationKey.passwordTooLong => s.passwordTooLong,
