@@ -1,5 +1,14 @@
 import 'package:get_it/get_it.dart';
+import 'package:heka_store/Features/address/data/data_source/address_local_data_source.dart';
+import 'package:heka_store/Features/address/data/data_source/address_remote_data_source.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
+import 'package:heka_store/Features/address/data/repos/address_repo_imp.dart';
+import 'package:heka_store/Features/address/domain/repos/address_repo.dart';
+import 'package:heka_store/Features/address/domain/user_cases/add_address_use_case.dart';
+import 'package:heka_store/Features/address/domain/user_cases/delete_address_use_case.dart';
+import 'package:heka_store/Features/address/domain/user_cases/get_addresses_use_case.dart';
+import 'package:heka_store/Features/address/domain/user_cases/set_default_address_use_case.dart';
+import 'package:heka_store/Features/address/domain/user_cases/update_address_use_case.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
@@ -30,6 +39,7 @@ final sl = GetIt.instance;
 Future<void> setupInjector() async {
   await _initCore();
   _initAuth();
+  _initAddress();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -130,4 +140,44 @@ void _initAuth() {
       resetPasswordUseCase: sl<ResetPasswordUseCase>(),
     ),
   );
+}
+
+
+void _initAddress() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<AddressRemoteDataSource>(
+    () => AddressRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<AddressLocalDataSource>(
+    () => AddressLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<AddressRepo>(
+    () => AddressRepoImpl(
+      remoteDataSource: sl<AddressRemoteDataSource>(),
+      localDataSource: sl<AddressLocalDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<GetAddressesUseCase>(
+    () => GetAddressesUseCase(repo: sl<AddressRepo>()),
+  );
+  sl.registerFactory<AddAddressUseCase>(
+    () => AddAddressUseCase(repo: sl<AddressRepo>()),
+  );
+  sl.registerFactory<UpdateAddressUseCase>(
+    () => UpdateAddressUseCase(repo: sl<AddressRepo>()),
+  );
+  sl.registerFactory<DeleteAddressUseCase>(
+    () => DeleteAddressUseCase(repo: sl<AddressRepo>()),
+  );
+  sl.registerFactory<SetDefaultAddressUseCase>(
+    () => SetDefaultAddressUseCase(repo: sl<AddressRepo>()),
+  );
+
+  // ─── BLoCs ────────────────────────────────────────
+
+  
 }
