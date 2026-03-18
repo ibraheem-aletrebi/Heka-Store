@@ -9,7 +9,10 @@ class ApiConstants {
   static const String resendOtp = '/api/Account/resend-verification-email';
   static const String resetPassword = '/api/Account/reset-password';
 
+  static const String register='/api/Account/register';
+  static const String verifyEmailOtp='/api/Account/verify-email-otp';
 
+  
 
 
 }

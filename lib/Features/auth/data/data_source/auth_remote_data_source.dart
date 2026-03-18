@@ -4,17 +4,24 @@ import 'package:heka_store/Features/auth/data/models/forgot_password/reset_passw
 import 'package:heka_store/Features/auth/data/models/forgot_password/verify_otp_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
+import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
 import 'package:heka_store/core/services/remote/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class AuthRemoteDataSource {
+  //login
   Future<LoginResponseModel> login({
     required LoginRequestModel loginRequestModel,
   });
+  //forgot password
   Future<void> forgotPassword(ForgotPasswordRequestModel request);
   Future<void> verifyResetOtp(VerifyOtpRequestModel request);
   Future<void> resetPassword(ResetPasswordRequestModel request);
   Future<void> resendOtp(ResendOtpRequestModel request);
+  //register
+  Future<void> register(RegisterRequestModel request);
+  Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request);
+
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -52,4 +59,17 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> resendOtp(ResendOtpRequestModel request) async {
     await _apiService.post(ApiConstants.resendOtp, data: request.toJson());
   }
+  
+  @override
+  Future<void> register(RegisterRequestModel request)async{
+      await _apiService.post(ApiConstants.register, data: request.toJson());
+  }
+  
+  @override
+  Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request) async{
+    final response = await _apiService.post(ApiConstants.verifyEmailOtp, data: request.toJson());
+    return LoginResponseModel.fromJson(response.data);
+  }
+
+
 }
