@@ -22,7 +22,7 @@ class AuthTitleBody extends StatelessWidget {
       crossAxisAlignment: crossAxisAlignment,
       children: [
         Text(title, textAlign: textAlign, style: textTheme.headlineLarge),
-        SizedBox(height: AppSizes.h16),
+        SizedBox(height: AppSizes.h8),
         Text(body, textAlign: textAlign, style: textTheme.bodyMedium),
       ],
     );

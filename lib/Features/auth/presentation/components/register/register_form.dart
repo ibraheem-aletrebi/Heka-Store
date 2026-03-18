@@ -18,11 +18,9 @@ class RegisterForm extends StatelessWidget {
 
     return Column(
       children: [
-        // ─── Name Fields ──────────────────────────────
         const NameFields(),
         SizedBox(height: AppSizes.h16),
 
-        // ─── Email ────────────────────────────────────
         BlocBuilder<RegisterBloc, RegisterState>(
           buildWhen: (previous, current) =>
               previous.emailError != current.emailError ||
@@ -44,7 +42,6 @@ class RegisterForm extends StatelessWidget {
         ),
         SizedBox(height: AppSizes.h16),
 
-        // ─── Phone ────────────────────────────────────
         BlocBuilder<RegisterBloc, RegisterState>(
           buildWhen: (previous, current) =>
               previous.phoneError != current.phoneError ||
@@ -66,7 +63,6 @@ class RegisterForm extends StatelessWidget {
         ),
         SizedBox(height: AppSizes.h16),
 
-        // ─── Password ─────────────────────────────────
         BlocBuilder<RegisterBloc, RegisterState>(
           buildWhen: (previous, current) =>
               previous.passwordError != current.passwordError ||
@@ -88,7 +84,6 @@ class RegisterForm extends StatelessWidget {
         ),
         SizedBox(height: AppSizes.h16),
 
-        // ─── Confirm Password ─────────────────────────
         BlocBuilder<RegisterBloc, RegisterState>(
           buildWhen: (previous, current) =>
               previous.confirmPasswordError != current.confirmPasswordError ||
@@ -110,7 +105,6 @@ class RegisterForm extends StatelessWidget {
         ),
         SizedBox(height: AppSizes.h8),
 
-        // ─── Terms Agreement ──────────────────────────
         const TermsAgreement(),
       ],
     );

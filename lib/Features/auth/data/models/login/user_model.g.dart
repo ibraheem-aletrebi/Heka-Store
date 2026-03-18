@@ -23,13 +23,14 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       roles: (fields[3] as List).cast<String>(),
       hasAddress: fields[4] as bool,
       profilePictureUrl: fields[5] as String?,
+      userCode: fields[6] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, UserModel obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(7)
       ..writeByte(0)
       ..write(obj.email)
       ..writeByte(1)
@@ -41,7 +42,9 @@ class UserModelAdapter extends TypeAdapter<UserModel> {
       ..writeByte(4)
       ..write(obj.hasAddress)
       ..writeByte(5)
-      ..write(obj.profilePictureUrl);
+      ..write(obj.profilePictureUrl)
+      ..writeByte(6)
+      ..write(obj.userCode);
   }
 
   @override
@@ -67,6 +70,7 @@ _$UserModelImpl _$$UserModelImplFromJson(Map<String, dynamic> json) =>
       roles: (json['roles'] as List<dynamic>).map((e) => e as String).toList(),
       hasAddress: json['hasAddress'] as bool,
       profilePictureUrl: json['profilePictureUrl'] as String?,
+      userCode: json['userCode'] as String?,
     );
 
 Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
@@ -77,4 +81,5 @@ Map<String, dynamic> _$$UserModelImplToJson(_$UserModelImpl instance) =>
       'roles': instance.roles,
       'hasAddress': instance.hasAddress,
       'profilePictureUrl': instance.profilePictureUrl,
+      'userCode': instance.userCode,
     };

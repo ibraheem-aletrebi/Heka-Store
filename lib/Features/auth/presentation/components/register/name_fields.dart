@@ -16,7 +16,6 @@ class NameFields extends StatelessWidget {
 
     return Row(
       children: [
-        // ─── First Name ───────────────────────────────
         Expanded(
           child: BlocBuilder<RegisterBloc, RegisterState>(
             buildWhen: (previous, current) =>
@@ -39,7 +38,6 @@ class NameFields extends StatelessWidget {
         ),
         SizedBox(width: AppSizes.w12),
 
-        // ─── Last Name ────────────────────────────────
         Expanded(
           child: BlocBuilder<RegisterBloc, RegisterState>(
             buildWhen: (previous, current) =>

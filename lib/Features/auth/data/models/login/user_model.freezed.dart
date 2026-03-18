@@ -32,6 +32,8 @@ mixin _$UserModel {
   bool get hasAddress => throw _privateConstructorUsedError;
   @HiveField(5)
   String? get profilePictureUrl => throw _privateConstructorUsedError;
+  @HiveField(6)
+  String? get userCode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -50,7 +52,8 @@ abstract class $UserModelCopyWith<$Res> {
       @HiveField(2) String lastName,
       @HiveField(3) List<String> roles,
       @HiveField(4) bool hasAddress,
-      @HiveField(5) String? profilePictureUrl});
+      @HiveField(5) String? profilePictureUrl,
+      @HiveField(6) String? userCode});
 }
 
 /// @nodoc
@@ -72,6 +75,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? roles = null,
     Object? hasAddress = null,
     Object? profilePictureUrl = freezed,
+    Object? userCode = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -98,6 +102,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      userCode: freezed == userCode
+          ? _value.userCode
+          : userCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -116,7 +124,8 @@ abstract class _$$UserModelImplCopyWith<$Res>
       @HiveField(2) String lastName,
       @HiveField(3) List<String> roles,
       @HiveField(4) bool hasAddress,
-      @HiveField(5) String? profilePictureUrl});
+      @HiveField(5) String? profilePictureUrl,
+      @HiveField(6) String? userCode});
 }
 
 /// @nodoc
@@ -136,6 +145,7 @@ class __$$UserModelImplCopyWithImpl<$Res>
     Object? roles = null,
     Object? hasAddress = null,
     Object? profilePictureUrl = freezed,
+    Object? userCode = freezed,
   }) {
     return _then(_$UserModelImpl(
       email: null == email
@@ -162,6 +172,10 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.profilePictureUrl
           : profilePictureUrl // ignore: cast_nullable_to_non_nullable
               as String?,
+      userCode: freezed == userCode
+          ? _value.userCode
+          : userCode // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -175,7 +189,8 @@ class _$UserModelImpl implements _UserModel {
       @HiveField(2) required this.lastName,
       @HiveField(3) required final List<String> roles,
       @HiveField(4) required this.hasAddress,
-      @HiveField(5) this.profilePictureUrl})
+      @HiveField(5) this.profilePictureUrl,
+      @HiveField(6) this.userCode})
       : _roles = roles;
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -205,10 +220,13 @@ class _$UserModelImpl implements _UserModel {
   @override
   @HiveField(5)
   final String? profilePictureUrl;
+  @override
+  @HiveField(6)
+  final String? userCode;
 
   @override
   String toString() {
-    return 'UserModel(email: $email, firstName: $firstName, lastName: $lastName, roles: $roles, hasAddress: $hasAddress, profilePictureUrl: $profilePictureUrl)';
+    return 'UserModel(email: $email, firstName: $firstName, lastName: $lastName, roles: $roles, hasAddress: $hasAddress, profilePictureUrl: $profilePictureUrl, userCode: $userCode)';
   }
 
   @override
@@ -225,7 +243,9 @@ class _$UserModelImpl implements _UserModel {
             (identical(other.hasAddress, hasAddress) ||
                 other.hasAddress == hasAddress) &&
             (identical(other.profilePictureUrl, profilePictureUrl) ||
-                other.profilePictureUrl == profilePictureUrl));
+                other.profilePictureUrl == profilePictureUrl) &&
+            (identical(other.userCode, userCode) ||
+                other.userCode == userCode));
   }
 
   @JsonKey(ignore: true)
@@ -237,7 +257,8 @@ class _$UserModelImpl implements _UserModel {
       lastName,
       const DeepCollectionEquality().hash(_roles),
       hasAddress,
-      profilePictureUrl);
+      profilePictureUrl,
+      userCode);
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +281,8 @@ abstract class _UserModel implements UserModel {
       @HiveField(2) required final String lastName,
       @HiveField(3) required final List<String> roles,
       @HiveField(4) required final bool hasAddress,
-      @HiveField(5) final String? profilePictureUrl}) = _$UserModelImpl;
+      @HiveField(5) final String? profilePictureUrl,
+      @HiveField(6) final String? userCode}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -283,6 +305,9 @@ abstract class _UserModel implements UserModel {
   @override
   @HiveField(5)
   String? get profilePictureUrl;
+  @override
+  @HiveField(6)
+  String? get userCode;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

@@ -17,7 +17,6 @@ class RegisterActions extends StatelessWidget {
 
     return Column(
       children: [
-        // ─── Register Button ──────────────────────────
         BlocBuilder<RegisterBloc, RegisterState>(
           buildWhen: (previous, current) =>
               previous.isLoading != current.isLoading ||
@@ -39,7 +38,6 @@ class RegisterActions extends StatelessWidget {
         SocialAuthDivider(text: translate.orRegisterWith),
         SizedBox(height: AppSizes.h24),
 
-        // ─── Google Button ────────────────────────────
         GoogleAuthButton(),
       ],
     );

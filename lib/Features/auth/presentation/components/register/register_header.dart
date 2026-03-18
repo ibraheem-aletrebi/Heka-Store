@@ -9,7 +9,7 @@ class RegisterHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final translate = S.of(context);
+       final translate = S.of(context);
     return Column(
       crossAxisAlignment: .start,
       children: [

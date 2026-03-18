@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/verify_email/verify_email_bloc.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/extensions/validation_key_extension.dart';
 import 'package:heka_store/core/widgets/custom_otp_field.dart';
 
-class EmailVerifyOtpForm extends StatefulWidget {
-  const EmailVerifyOtpForm({super.key});
+class VerifyEmailForm extends StatefulWidget {
+  const VerifyEmailForm({super.key});
 
   @override
-  State<EmailVerifyOtpForm> createState() => _EmailVerifyOtpFormState();
+  State<VerifyEmailForm> createState() => _VerifyEmailFormState();
 }
 
-class _EmailVerifyOtpFormState extends State<EmailVerifyOtpForm> {
+class _VerifyEmailFormState extends State<VerifyEmailForm> {
   final _controller = TextEditingController();
 
   @override
@@ -23,7 +23,7 @@ class _EmailVerifyOtpFormState extends State<EmailVerifyOtpForm> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<ForgotPasswordBloc, ForgotPasswordState>(
+    return BlocListener<VerifyEmailBloc, VerifyEmailState>(
       listenWhen: (previous, current) =>
           previous.isResendSuccess != current.isResendSuccess,
       listener: (context, state) {
@@ -35,7 +35,7 @@ class _EmailVerifyOtpFormState extends State<EmailVerifyOtpForm> {
         buildWhen: (previous, current) =>
             previous.languageCode != current.languageCode,
         builder: (context, langState) {
-          return BlocBuilder<ForgotPasswordBloc, ForgotPasswordState>(
+          return BlocBuilder<VerifyEmailBloc, VerifyEmailState>(
             buildWhen: (previous, current) =>
                 previous.otpError != current.otpError ||
                 previous.isOtpDirty != current.isOtpDirty,
@@ -51,12 +51,12 @@ class _EmailVerifyOtpFormState extends State<EmailVerifyOtpForm> {
                     errorText: state.isOtpDirty
                         ? state.otpError?.translate(context)
                         : null,
-                    onChanged: (value) => context
-                        .read<ForgotPasswordBloc>()
-                        .add(ForgotPasswordEvent.otpChanged(value)),
-                    onCompleted: (value) => context
-                        .read<ForgotPasswordBloc>()
-                        .add(const ForgotPasswordEvent.otpSubmitted()),
+                    onChanged: (value) => context.read<VerifyEmailBloc>().add(
+                      VerifyEmailEvent.otpChanged(value),
+                    ),
+                    onCompleted: (value) => context.read<VerifyEmailBloc>().add(
+                      const VerifyEmailEvent.otpSubmitted(),
+                    ),
                   ),
                 ),
               );
