@@ -29,6 +29,8 @@ class RememberMeForgotPassowrdRow extends StatelessWidget {
               child: Row(
                 children: [
                   Checkbox(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    visualDensity: VisualDensity.compact,
                     value: state.rememberMe,
                     onChanged: (_) => context.read<LoginBloc>().add(
                       const LoginEvent.rememberMeToggled(),
