@@ -17,11 +17,16 @@ extension ValidationKeyTranslation on ValidationKey {
       ValidationKey.passwordNoNumber => s.passwordNoNumber,
       ValidationKey.passwordNoSpecialChar => s.passwordNoSpecialChar,
       ValidationKey.passwordMismatch => s.passwordMismatch,
+      ValidationKey.passwordTooWeak => s.passwordTooWeak,
 
       ValidationKey.nameRequired => s.nameRequired,
       ValidationKey.nameTooShort => s.nameTooShort,
       ValidationKey.nameTooLong => s.nameTooLong,
       ValidationKey.nameInvalid => s.nameInvalid,
+
+      ValidationKey.otpRequired => s.otpRequired,
+      ValidationKey.otpInvalid => s.otpInvalid,
+      ValidationKey.otpTooShort => s.otpTooShort,
 
       ValidationKey.phoneRequired => s.phoneRequired,
       ValidationKey.phoneInvalid => s.phoneInvalid,

@@ -13,6 +13,7 @@ class ForgotPasswordView extends StatelessWidget {
     return BlocProvider(
       create: (context) => sl<ForgotPasswordBloc>(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(AppSizes.w16),

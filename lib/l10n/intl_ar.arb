@@ -127,7 +127,7 @@
 
     "passwordRequired": "كلمة المرور مطلوبة",
     "@passwordRequired": {},
-    "passwordTooShort": "كلمة المرور لا تقل عن 6 أحرف",
+    "passwordTooShort": "كلمة المرور لا تقل عن 8 أحرف",
     "@passwordTooShort": {},
     "passwordTooLong": "كلمة المرور لا تزيد عن 32 حرفاً",
     "@passwordTooLong": {},
@@ -157,6 +157,16 @@
 
     "fieldRequired": "هذا الحقل مطلوب",
     "@fieldRequired": {},
+
+    "passwordTooWeak": "كلمة المرور ضعيفة جداً، تجنب تكرار نفس الحرف",
+    "@passwordTooWeak": {},
+
+    "otpRequired": "رمز التحقق مطلوب",
+    "@otpRequired": {},
+"otpInvalid": "رمز التحقق يجب أن يحتوي على أرقام فقط",
+    "@otpInvalid": {},
+"otpTooShort": "رمز التحقق غير مكتمل",
+    "@otpTooShort": {},
 
     
     "onboardingTitle": "مرحباً بك في هيكا",

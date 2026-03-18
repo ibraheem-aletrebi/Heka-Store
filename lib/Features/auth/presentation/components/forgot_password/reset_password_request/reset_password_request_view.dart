@@ -11,17 +11,19 @@ class ResetPasswordRequestView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translate = S.of(context);
-    return Column(
-      children: [
-        AuthTitleBody(
-          title: translate.resetPasswordRequestTitle,
-          body: translate.resetPasswordRequestBody,
-        ),
-        SizedBox(height: AppSizes.h32),
-        ResetPasswordRequestForm(),
-        SizedBox(height: AppSizes.h32),
-        ResetPasswordRequestActions(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AuthTitleBody(
+            title: translate.resetPasswordRequestTitle,
+            body: translate.resetPasswordRequestBody,
+          ),
+          SizedBox(height: AppSizes.h32),
+          ResetPasswordRequestForm(),
+          SizedBox(height: AppSizes.h32),
+          ResetPasswordRequestActions(),
+        ],
+      ),
     );
   }
 }

@@ -262,8 +262,17 @@ class MessageLookup extends MessageLookupByLibrary {
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("Or register with"),
     "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "otpInvalid": MessageLookupByLibrary.simpleMessage(
+      "Verification code must contain numbers only",
+    ),
+    "otpRequired": MessageLookupByLibrary.simpleMessage(
+      "Verification code is required",
+    ),
     "otpResentSuccess": MessageLookupByLibrary.simpleMessage(
       "Code resent successfully",
+    ),
+    "otpTooShort": MessageLookupByLibrary.simpleMessage(
+      "Verification code is incomplete",
     ),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
@@ -288,7 +297,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password must be at most 32 characters",
     ),
     "passwordTooShort": MessageLookupByLibrary.simpleMessage(
-      "Password must be at least 6 characters",
+      "Password must be at least 8 characters",
+    ),
+    "passwordTooWeak": MessageLookupByLibrary.simpleMessage(
+      "Password is too weak, avoid repeating characters",
     ),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(

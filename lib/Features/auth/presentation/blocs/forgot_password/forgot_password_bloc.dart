@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
@@ -25,11 +24,11 @@ class ForgotPasswordBloc
     required VerifyOtpUseCase verifyOtpUseCase,
     required ResendOtpUseCase resendOtpUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
-  })  : _forgotPasswordUseCase = forgotPasswordUseCase,
-        _verifyOtpUseCase = verifyOtpUseCase,
-        _resendOtpUseCase = resendOtpUseCase,
-        _resetPasswordUseCase = resetPasswordUseCase,
-        super(const ForgotPasswordState()) {
+  }) : _forgotPasswordUseCase = forgotPasswordUseCase,
+       _verifyOtpUseCase = verifyOtpUseCase,
+       _resendOtpUseCase = resendOtpUseCase,
+       _resetPasswordUseCase = resetPasswordUseCase,
+       super(const ForgotPasswordState()) {
     on<_EmailChanged>(_onEmailChanged);
     on<_RequestSubmitted>(_onRequestSubmitted);
     on<_OtpChanged>(_onOtpChanged);
@@ -41,17 +40,17 @@ class ForgotPasswordBloc
     on<_FlowReset>(_onFlowReset);
   }
 
+  // ─── Step 1: Request ───────────────────────────────────────────────────────
 
-  void _onEmailChanged(
-    _EmailChanged event,
-    Emitter<ForgotPasswordState> emit,
-  ) {
-    emit(state.copyWith(
-      email: event.email,
-      isEmailDirty: true,
-      emailError: FieldValidator.email(event.email),
-      error: null,
-    ));
+  void _onEmailChanged(_EmailChanged event, Emitter<ForgotPasswordState> emit) {
+    emit(
+      state.copyWith(
+        email: event.email,
+        isEmailDirty: true, // ✅ دايماً true
+        emailError: FieldValidator.email(event.email),
+        error: null,
+      ),
+    );
   }
 
   Future<void> _onRequestSubmitted(
@@ -68,36 +67,36 @@ class ForgotPasswordBloc
 
     final response = await _forgotPasswordUseCase(email: state.email);
     response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isRequestLoading: false,
-        isRequestSuccess: true,
-        step: ForgotPasswordStep.otp,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isRequestLoading: false,
-        error: error,
-      )),
+      onSuccess: (_) => emit(
+        state.copyWith(
+          isRequestLoading: false,
+          isRequestSuccess: true,
+          step: ForgotPasswordStep.otp,
+        ),
+      ),
+      onError: (error) =>
+          emit(state.copyWith(isRequestLoading: false, error: error)),
     );
   }
 
+  // ─── Step 2: OTP ───────────────────────────────────────────────────────────
 
-  void _onOtpChanged(
-    _OtpChanged event,
-    Emitter<ForgotPasswordState> emit,
-  ) {
-    emit(state.copyWith(
-      otp: event.otp,
-      isOtpDirty: true,
-      otpError: FieldValidator.required(event.otp),
-      error: null,
-    ));
+  void _onOtpChanged(_OtpChanged event, Emitter<ForgotPasswordState> emit) {
+    emit(
+      state.copyWith(
+        otp: event.otp,
+        isOtpDirty: true,
+        otpError: FieldValidator.otp(event.otp, length: 6),
+        error: null,
+      ),
+    );
   }
 
   Future<void> _onOtpSubmitted(
     _OtpSubmitted event,
     Emitter<ForgotPasswordState> emit,
   ) async {
-    final otpError = FieldValidator.required(state.otp);
+    final otpError = FieldValidator.otp(state.otp, length: 6);
     if (otpError != null) {
       emit(state.copyWith(otpError: otpError, isOtpDirty: true));
       return;
@@ -110,15 +109,15 @@ class ForgotPasswordBloc
       code: state.otp,
     );
     response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isOtpLoading: false,
-        isOtpSuccess: true,
-        step: ForgotPasswordStep.resetPassword,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isOtpLoading: false,
-        error: error,
-      )),
+      onSuccess: (_) => emit(
+        state.copyWith(
+          isOtpLoading: false,
+          isOtpSuccess: true,
+          step: ForgotPasswordStep.resetPassword,
+        ),
+      ),
+      onError: (error) =>
+          emit(state.copyWith(isOtpLoading: false, error: error)),
     );
   }
 
@@ -130,51 +129,56 @@ class ForgotPasswordBloc
 
     final response = await _resendOtpUseCase(email: state.email);
     response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isResendLoading: false,
-        isResendSuccess: true,
-        otp: '',
-        isOtpDirty: false,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isResendLoading: false,
-        error: error,
-      )),
+      onSuccess: (_) => emit(
+        state.copyWith(
+          isResendLoading: false,
+          isResendSuccess: true,
+          otp: '',
+          isOtpDirty: false,
+        ),
+      ),
+      onError: (error) =>
+          emit(state.copyWith(isResendLoading: false, error: error)),
     );
   }
 
+  // ─── Step 3: Reset Password ────────────────────────────────────────────────
 
   void _onPasswordChanged(
     _PasswordChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
-    emit(state.copyWith(
-      password: event.password,
-      isPasswordDirty: true,
-      passwordError: FieldValidator.password(event.password),
-      confirmPasswordError: state.confirmPassword.isNotEmpty
-          ? FieldValidator.confirmPassword(
-              state.confirmPassword,
-              event.password,
-            )
-          : null,
-      error: null,
-    ));
+    emit(
+      state.copyWith(
+        password: event.password,
+        isPasswordDirty: true,
+        passwordError: FieldValidator.password(event.password),
+        confirmPasswordError: state.isConfirmPasswordDirty
+            ? FieldValidator.confirmPassword(
+                state.confirmPassword,
+                event.password,
+              )
+            : null,
+        error: null,
+      ),
+    );
   }
 
   void _onConfirmPasswordChanged(
     _ConfirmPasswordChanged event,
     Emitter<ForgotPasswordState> emit,
   ) {
-    emit(state.copyWith(
-      confirmPassword: event.confirmPassword,
-      isConfirmPasswordDirty: true,
-      confirmPasswordError: FieldValidator.confirmPassword(
-        event.confirmPassword,
-        state.password,
+    emit(
+      state.copyWith(
+        confirmPassword: event.confirmPassword,
+        isConfirmPasswordDirty: true,
+        confirmPasswordError: FieldValidator.confirmPassword(
+          event.confirmPassword,
+          state.password,
+        ),
+        error: null,
       ),
-      error: null,
-    ));
+    );
   }
 
   Future<void> _onResetSubmitted(
@@ -188,12 +192,14 @@ class ForgotPasswordBloc
     );
 
     if (passwordError != null || confirmPasswordError != null) {
-      emit(state.copyWith(
-        passwordError: passwordError,
-        confirmPasswordError: confirmPasswordError,
-        isPasswordDirty: true,
-        isConfirmPasswordDirty: true,
-      ));
+      emit(
+        state.copyWith(
+          passwordError: passwordError,
+          confirmPasswordError: confirmPasswordError,
+          isPasswordDirty: true,
+          isConfirmPasswordDirty: true,
+        ),
+      );
       return;
     }
 
@@ -206,22 +212,16 @@ class ForgotPasswordBloc
       confirmPassword: state.confirmPassword,
     );
     response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isResetLoading: false,
-        isResetSuccess: true,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isResetLoading: false,
-        error: error,
-      )),
+      onSuccess: (_) =>
+          emit(state.copyWith(isResetLoading: false, isResetSuccess: true)),
+      onError: (error) =>
+          emit(state.copyWith(isResetLoading: false, error: error)),
     );
   }
 
+  // ─── Reset Flow ────────────────────────────────────────────────────────────
 
-  void _onFlowReset(
-    _FlowReset event,
-    Emitter<ForgotPasswordState> emit,
-  ) {
+  void _onFlowReset(_FlowReset event, Emitter<ForgotPasswordState> emit) {
     emit(const ForgotPasswordState());
   }
 }

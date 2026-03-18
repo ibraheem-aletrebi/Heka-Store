@@ -11,17 +11,19 @@ class ResetPasswordOtpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translate = S.of(context);
-    return Column(
-      children: [
-        AuthTitleBody(
-          title: translate.resetPasswordOtpTitle,
-          body: translate.resetPasswordOtpBody,
-        ),
-        SizedBox(height: AppSizes.h32),
-        Center(child: EmailVerifyOtpForm()),
-        SizedBox(height: AppSizes.h32),
-        ResetPasswordOtpActions(),
-      ],
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          AuthTitleBody(
+            title: translate.resetPasswordOtpTitle,
+            body: translate.resetPasswordOtpBody,
+          ),
+          SizedBox(height: AppSizes.h32),
+          Center(child: EmailVerifyOtpForm()),
+          SizedBox(height: AppSizes.h32),
+          ResetPasswordOtpActions(),
+        ],
+      ),
     );
   }
 }

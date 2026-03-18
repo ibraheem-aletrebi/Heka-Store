@@ -63,19 +63,19 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   void initState() {
     super.initState();
-    _ctrl = widget.controller ?? TextEditingController(text: widget.initialValue);
+    _ctrl =
+        widget.controller ?? TextEditingController(text: widget.initialValue);
     _ownCtrl = widget.controller == null;
     _focus = widget.focusNode ?? FocusNode();
     _ownFocus = widget.focusNode == null;
     _obscure = widget.isPassword;
-    _error = widget.errorText; // ← من برا
+    _error = widget.errorText;
     _focus.addListener(_onFocusChanged);
   }
 
   @override
   void didUpdateWidget(CustomTextFormField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    // ← بيتحدث لما الـ Bloc يبعت error جديد
     if (oldWidget.errorText != widget.errorText) {
       setState(() => _error = widget.errorText);
     }
@@ -144,7 +144,6 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
           initialValue: widget.controller == null ? null : widget.initialValue,
           onChanged: (v) {
             widget.onChanged?.call(v);
-            if (_error != null) setState(() => _error = null);
           },
           onFieldSubmitted: widget.onSubmitted,
           validator: (v) {
@@ -182,7 +181,8 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
               minWidth: 48,
               minHeight: 48,
             ),
-            contentPadding: widget.contentPadding ??
+            contentPadding:
+                widget.contentPadding ??
                 EdgeInsets.symmetric(
                   horizontal: AppSizes.w16,
                   vertical: AppSizes.h14,
@@ -191,11 +191,11 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             fillColor: widget.enabled
                 ? colors.surface
                 : colors.surface.withValues(alpha: .6),
-            enabledBorder: _border(borderColor, colors),
-            focusedBorder: _border(borderColor, colors),
-            errorBorder: _border(colors.error, colors),
-            focusedErrorBorder: _border(colors.error, colors),
-            disabledBorder: _border(colors.divider, colors),
+            enabledBorder: _border(borderColor),
+            focusedBorder: _border(borderColor),
+            errorBorder: _border(colors.error),
+            focusedErrorBorder: _border(colors.error),
+            disabledBorder: _border(colors.divider),
             errorText: null,
             errorStyle: const TextStyle(fontSize: 0, height: 0),
           ),
@@ -206,12 +206,18 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             padding: EdgeInsets.only(top: AppSizes.h6, left: AppSizes.w4),
             child: Row(
               children: [
-                Icon(Icons.error_outline_rounded, size: 13, color: colors.error),
+                Icon(
+                  Icons.error_outline_rounded,
+                  size: 13,
+                  color: colors.error,
+                ),
                 SizedBox(width: AppSizes.w4),
                 Flexible(
                   child: Text(
                     _error!,
-                    style: AppTextStyles.regular12.copyWith(color: colors.error),
+                    style: AppTextStyles.regular12.copyWith(
+                      color: colors.error,
+                    ),
                   ),
                 ),
               ],
@@ -228,7 +234,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppSizes.w14),
           child: Icon(
-            _obscure ? Icons.visibility_off_outlined : Icons.visibility_outlined,
+            _obscure
+                ? Icons.visibility_off_outlined
+                : Icons.visibility_outlined,
             size: AppSizes.w20,
             color: iconColor,
           ),
@@ -249,7 +257,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
     return null;
   }
 
-  OutlineInputBorder _border(Color color, dynamic c) => OutlineInputBorder(
+  OutlineInputBorder _border(Color color) => OutlineInputBorder(
     borderSide: BorderSide(color: color, width: _hasFocus ? 1.5 : 1.0),
     borderRadius: BorderRadius.circular(AppSizes.r12),
   );

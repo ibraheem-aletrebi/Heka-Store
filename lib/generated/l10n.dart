@@ -539,10 +539,10 @@ class S {
     );
   }
 
-  /// `Password must be at least 6 characters`
+  /// `Password must be at least 8 characters`
   String get passwordTooShort {
     return Intl.message(
-      'Password must be at least 6 characters',
+      'Password must be at least 8 characters',
       name: 'passwordTooShort',
       desc: '',
       args: [],
@@ -664,6 +664,46 @@ class S {
     return Intl.message(
       'Password reset successfully',
       name: 'resetPasswordSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password is too weak, avoid repeating characters`
+  String get passwordTooWeak {
+    return Intl.message(
+      'Password is too weak, avoid repeating characters',
+      name: 'passwordTooWeak',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code is required`
+  String get otpRequired {
+    return Intl.message(
+      'Verification code is required',
+      name: 'otpRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code must contain numbers only`
+  String get otpInvalid {
+    return Intl.message(
+      'Verification code must contain numbers only',
+      name: 'otpInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verification code is incomplete`
+  String get otpTooShort {
+    return Intl.message(
+      'Verification code is incomplete',
+      name: 'otpTooShort',
       desc: '',
       args: [],
     );

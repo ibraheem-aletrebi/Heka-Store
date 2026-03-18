@@ -252,9 +252,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("أو سجّل بـ"),
     "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("أخرى"),
+    "otpInvalid": MessageLookupByLibrary.simpleMessage(
+      "رمز التحقق يجب أن يحتوي على أرقام فقط",
+    ),
+    "otpRequired": MessageLookupByLibrary.simpleMessage("رمز التحقق مطلوب"),
     "otpResentSuccess": MessageLookupByLibrary.simpleMessage(
       "تم إرسال الرمز مرة أخرى بنجاح",
     ),
+    "otpTooShort": MessageLookupByLibrary.simpleMessage("رمز التحقق غير مكتمل"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور غير متطابقة",
@@ -278,7 +283,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "كلمة المرور لا تزيد عن 32 حرفاً",
     ),
     "passwordTooShort": MessageLookupByLibrary.simpleMessage(
-      "كلمة المرور لا تقل عن 6 أحرف",
+      "كلمة المرور لا تقل عن 8 أحرف",
+    ),
+    "passwordTooWeak": MessageLookupByLibrary.simpleMessage(
+      "كلمة المرور ضعيفة جداً، تجنب تكرار نفس الحرف",
     ),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("طريقة الدفع"),
     "permissionRequired": MessageLookupByLibrary.simpleMessage("الإذن مطلوب"),
