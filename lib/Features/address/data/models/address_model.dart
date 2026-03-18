@@ -1,18 +1,20 @@
-
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+
 part 'address_model.freezed.dart';
 part 'address_model.g.dart';
 
 @freezed
+@HiveType(typeId: 2)
 class AddressModel with _$AddressModel {
   const factory AddressModel({
-    required int id,
-    required String nickname,
-    required String fullAddress,
-    required double latitude,
-    required double longitude,
-    required bool isDefault,
-    required String createdAt,
+    @HiveField(0) required int id,
+    @HiveField(1) required String nickname,
+    @HiveField(2) required String fullAddress,
+    @HiveField(3) required double latitude,
+    @HiveField(4) required double longitude,
+    @HiveField(5) required bool isDefault,
+    @HiveField(6) required String createdAt,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>

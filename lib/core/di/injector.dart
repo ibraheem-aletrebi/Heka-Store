@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
@@ -38,7 +39,11 @@ Future<void> _initCore() async {
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(
-    adapters: [AppThemeModeEnumAdapter(), UserModelAdapter()],
+    adapters: [
+      AppThemeModeEnumAdapter(),
+      UserModelAdapter(),
+      AddressModelAdapter(),
+    ],
   );
 
   // ─── Secure Storage ───────────────────────────────

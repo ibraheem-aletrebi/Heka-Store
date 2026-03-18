@@ -20,12 +20,19 @@ AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$AddressModel {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get nickname => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get fullAddress => throw _privateConstructorUsedError;
+  @HiveField(3)
   double get latitude => throw _privateConstructorUsedError;
+  @HiveField(4)
   double get longitude => throw _privateConstructorUsedError;
+  @HiveField(5)
   bool get isDefault => throw _privateConstructorUsedError;
+  @HiveField(6)
   String get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -41,13 +48,13 @@ abstract class $AddressModelCopyWith<$Res> {
       _$AddressModelCopyWithImpl<$Res, AddressModel>;
   @useResult
   $Res call(
-      {int id,
-      String nickname,
-      String fullAddress,
-      double latitude,
-      double longitude,
-      bool isDefault,
-      String createdAt});
+      {@HiveField(0) int id,
+      @HiveField(1) String nickname,
+      @HiveField(2) String fullAddress,
+      @HiveField(3) double latitude,
+      @HiveField(4) double longitude,
+      @HiveField(5) bool isDefault,
+      @HiveField(6) String createdAt});
 }
 
 /// @nodoc
@@ -113,13 +120,13 @@ abstract class _$$AddressModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String nickname,
-      String fullAddress,
-      double latitude,
-      double longitude,
-      bool isDefault,
-      String createdAt});
+      {@HiveField(0) int id,
+      @HiveField(1) String nickname,
+      @HiveField(2) String fullAddress,
+      @HiveField(3) double latitude,
+      @HiveField(4) double longitude,
+      @HiveField(5) bool isDefault,
+      @HiveField(6) String createdAt});
 }
 
 /// @nodoc
@@ -178,30 +185,37 @@ class __$$AddressModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$AddressModelImpl implements _AddressModel {
   const _$AddressModelImpl(
-      {required this.id,
-      required this.nickname,
-      required this.fullAddress,
-      required this.latitude,
-      required this.longitude,
-      required this.isDefault,
-      required this.createdAt});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.nickname,
+      @HiveField(2) required this.fullAddress,
+      @HiveField(3) required this.latitude,
+      @HiveField(4) required this.longitude,
+      @HiveField(5) required this.isDefault,
+      @HiveField(6) required this.createdAt});
 
   factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String nickname;
   @override
+  @HiveField(2)
   final String fullAddress;
   @override
+  @HiveField(3)
   final double latitude;
   @override
+  @HiveField(4)
   final double longitude;
   @override
+  @HiveField(5)
   final bool isDefault;
   @override
+  @HiveField(6)
   final String createdAt;
 
   @override
@@ -250,30 +264,37 @@ class _$AddressModelImpl implements _AddressModel {
 
 abstract class _AddressModel implements AddressModel {
   const factory _AddressModel(
-      {required final int id,
-      required final String nickname,
-      required final String fullAddress,
-      required final double latitude,
-      required final double longitude,
-      required final bool isDefault,
-      required final String createdAt}) = _$AddressModelImpl;
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String nickname,
+      @HiveField(2) required final String fullAddress,
+      @HiveField(3) required final double latitude,
+      @HiveField(4) required final double longitude,
+      @HiveField(5) required final bool isDefault,
+      @HiveField(6) required final String createdAt}) = _$AddressModelImpl;
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
       _$AddressModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get nickname;
   @override
+  @HiveField(2)
   String get fullAddress;
   @override
+  @HiveField(3)
   double get latitude;
   @override
+  @HiveField(4)
   double get longitude;
   @override
+  @HiveField(5)
   bool get isDefault;
   @override
+  @HiveField(6)
   String get createdAt;
   @override
   @JsonKey(ignore: true)
