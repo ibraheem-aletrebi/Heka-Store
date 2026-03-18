@@ -91,7 +91,6 @@ Future<ApiResult<LoginResponseModel>> verifyEmailOtp(
 ) async {
   try {
     final response = await _remoteDataSource.verifyEmailOtp(request);
-
     return ApiResult.success(response);
   } catch (e) {
     return ApiResult.error(ApiErrorHandler.instance.handle(e));

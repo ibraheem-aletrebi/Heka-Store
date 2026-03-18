@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/reset_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
-import 'package:heka_store/Features/auth/domain/use_cases/verify_otp_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/verify_reset_otp_use_case.dart';
 import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/remote/error/api_error_model.dart';
 import 'package:heka_store/core/utils/field_validator.dart';
@@ -15,13 +15,13 @@ part 'forgot_password_bloc.freezed.dart';
 class ForgotPasswordBloc
     extends Bloc<ForgotPasswordEvent, ForgotPasswordState> {
   final ForgotPasswordUseCase _forgotPasswordUseCase;
-  final VerifyOtpUseCase _verifyOtpUseCase;
+  final VerifyResetOtpUseCase _verifyOtpUseCase;
   final ResendOtpUseCase _resendOtpUseCase;
   final ResetPasswordUseCase _resetPasswordUseCase;
 
   ForgotPasswordBloc({
     required ForgotPasswordUseCase forgotPasswordUseCase,
-    required VerifyOtpUseCase verifyOtpUseCase,
+    required VerifyResetOtpUseCase verifyOtpUseCase,
     required ResendOtpUseCase resendOtpUseCase,
     required ResetPasswordUseCase resetPasswordUseCase,
   }) : _forgotPasswordUseCase = forgotPasswordUseCase,

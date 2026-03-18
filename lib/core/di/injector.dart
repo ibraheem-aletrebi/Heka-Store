@@ -6,7 +6,7 @@ import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.d
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/reset_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
-import 'package:heka_store/Features/auth/domain/use_cases/verify_otp_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/verify_reset_otp_use_case.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
@@ -25,29 +25,24 @@ Future<void> setupInjector() async {
   _initAuth();
 }
 
-
 Future<void> _initCore() async {
   // Local Storage
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(adapters: [AppThemeModeEnumAdapter()]);
 
-  // Router 
+  // Router
   sl.registerLazySingleton<AppRouter>(() => AppRouter());
 
-  // App BLoCs 
-  sl.registerFactory<ThemeBloc>(
-    () => ThemeBloc(localStorage: localStorage),
-  );
+  // App BLoCs
+  sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
   sl.registerFactory<LanguageBloc>(
     () => LanguageBloc(localStorage: localStorage),
   );
 
   // Network
   DioClient().init();
-  sl.registerLazySingleton<ApiService>(
-    () => ApiService(DioClient().dio),
-  );
+  sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
 
   // Error Handler
   ApiErrorHandler.instance.init(
@@ -56,7 +51,6 @@ Future<void> _initCore() async {
     },
   );
 }
-
 
 void _initAuth() {
   // DataSources
@@ -76,8 +70,8 @@ void _initAuth() {
   sl.registerFactory<ForgotPasswordUseCase>(
     () => ForgotPasswordUseCase(repository: sl<AuthRepo>()),
   );
-  sl.registerFactory<VerifyOtpUseCase>(
-    () => VerifyOtpUseCase(repository: sl<AuthRepo>()),
+  sl.registerFactory<VerifyResetOtpUseCase>(
+    () => VerifyResetOtpUseCase(repository: sl<AuthRepo>()),
   );
   sl.registerFactory<ResendOtpUseCase>(
     () => ResendOtpUseCase(repository: sl<AuthRepo>()),
@@ -93,7 +87,7 @@ void _initAuth() {
   sl.registerFactory<ForgotPasswordBloc>(
     () => ForgotPasswordBloc(
       forgotPasswordUseCase: sl<ForgotPasswordUseCase>(),
-      verifyOtpUseCase: sl<VerifyOtpUseCase>(),
+      verifyOtpUseCase: sl<VerifyResetOtpUseCase>(),
       resendOtpUseCase: sl<ResendOtpUseCase>(),
       resetPasswordUseCase: sl<ResetPasswordUseCase>(),
     ),
