@@ -1556,34 +1556,27 @@ abstract class _FlowReset implements ForgotPasswordEvent {
 
 /// @nodoc
 mixin _$ForgotPasswordState {
-// ─── Navigation ───────────────────────────────────
-  ForgotPasswordStep get step =>
-      throw _privateConstructorUsedError; // ─── Fields ───────────────────────────────────────
+  ForgotPasswordStep get step => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get otp => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  String get confirmPassword =>
-      throw _privateConstructorUsedError; // ─── Validation ───────────────────────────────────
+  String get confirmPassword => throw _privateConstructorUsedError;
   ValidationKey? get emailError => throw _privateConstructorUsedError;
   ValidationKey? get otpError => throw _privateConstructorUsedError;
   ValidationKey? get passwordError => throw _privateConstructorUsedError;
-  ValidationKey? get confirmPasswordError =>
-      throw _privateConstructorUsedError; // ─── Dirty ────────────────────────────────────────
+  ValidationKey? get confirmPasswordError => throw _privateConstructorUsedError;
   bool get isEmailDirty => throw _privateConstructorUsedError;
   bool get isOtpDirty => throw _privateConstructorUsedError;
   bool get isPasswordDirty => throw _privateConstructorUsedError;
-  bool get isConfirmPasswordDirty =>
-      throw _privateConstructorUsedError; // ─── Loading ──────────────────────────────────────
+  bool get isConfirmPasswordDirty => throw _privateConstructorUsedError;
   bool get isRequestLoading => throw _privateConstructorUsedError;
   bool get isOtpLoading => throw _privateConstructorUsedError;
   bool get isResendLoading => throw _privateConstructorUsedError;
-  bool get isResetLoading =>
-      throw _privateConstructorUsedError; // ─── Success ──────────────────────────────────────
+  bool get isResetLoading => throw _privateConstructorUsedError;
   bool get isRequestSuccess => throw _privateConstructorUsedError;
   bool get isOtpSuccess => throw _privateConstructorUsedError;
   bool get isResendSuccess => throw _privateConstructorUsedError;
-  bool get isResetSuccess =>
-      throw _privateConstructorUsedError; // ─── Error ────────────────────────────────────────
+  bool get isResetSuccess => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1939,11 +1932,9 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
       this.error})
       : super._();
 
-// ─── Navigation ───────────────────────────────────
   @override
   @JsonKey()
   final ForgotPasswordStep step;
-// ─── Fields ───────────────────────────────────────
   @override
   @JsonKey()
   final String email;
@@ -1956,7 +1947,6 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
   @override
   @JsonKey()
   final String confirmPassword;
-// ─── Validation ───────────────────────────────────
   @override
   final ValidationKey? emailError;
   @override
@@ -1965,7 +1955,6 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
   final ValidationKey? passwordError;
   @override
   final ValidationKey? confirmPasswordError;
-// ─── Dirty ────────────────────────────────────────
   @override
   @JsonKey()
   final bool isEmailDirty;
@@ -1978,7 +1967,6 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
   @override
   @JsonKey()
   final bool isConfirmPasswordDirty;
-// ─── Loading ──────────────────────────────────────
   @override
   @JsonKey()
   final bool isRequestLoading;
@@ -1991,7 +1979,6 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
   @override
   @JsonKey()
   final bool isResetLoading;
-// ─── Success ──────────────────────────────────────
   @override
   @JsonKey()
   final bool isRequestSuccess;
@@ -2004,7 +1991,6 @@ class _$ForgotPasswordStateImpl extends _ForgotPasswordState {
   @override
   @JsonKey()
   final bool isResetSuccess;
-// ─── Error ────────────────────────────────────────
   @override
   final ApiErrorModel? error;
 
@@ -2121,9 +2107,9 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
       final ApiErrorModel? error}) = _$ForgotPasswordStateImpl;
   const _ForgotPasswordState._() : super._();
 
-  @override // ─── Navigation ───────────────────────────────────
+  @override
   ForgotPasswordStep get step;
-  @override // ─── Fields ───────────────────────────────────────
+  @override
   String get email;
   @override
   String get otp;
@@ -2131,7 +2117,7 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
   String get password;
   @override
   String get confirmPassword;
-  @override // ─── Validation ───────────────────────────────────
+  @override
   ValidationKey? get emailError;
   @override
   ValidationKey? get otpError;
@@ -2139,7 +2125,7 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
   ValidationKey? get passwordError;
   @override
   ValidationKey? get confirmPasswordError;
-  @override // ─── Dirty ────────────────────────────────────────
+  @override
   bool get isEmailDirty;
   @override
   bool get isOtpDirty;
@@ -2147,7 +2133,7 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
   bool get isPasswordDirty;
   @override
   bool get isConfirmPasswordDirty;
-  @override // ─── Loading ──────────────────────────────────────
+  @override
   bool get isRequestLoading;
   @override
   bool get isOtpLoading;
@@ -2155,7 +2141,7 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
   bool get isResendLoading;
   @override
   bool get isResetLoading;
-  @override // ─── Success ──────────────────────────────────────
+  @override
   bool get isRequestSuccess;
   @override
   bool get isOtpSuccess;
@@ -2163,7 +2149,7 @@ abstract class _ForgotPasswordState extends ForgotPasswordState {
   bool get isResendSuccess;
   @override
   bool get isResetSuccess;
-  @override // ─── Error ────────────────────────────────────────
+  @override
   ApiErrorModel? get error;
   @override
   @JsonKey(ignore: true)

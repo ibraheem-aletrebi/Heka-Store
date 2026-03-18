@@ -4,7 +4,7 @@ import 'package:heka_store/Features/auth/data/models/forgot_password/resend_otp_
 import 'package:heka_store/Features/auth/data/models/forgot_password/reset_password_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/forgot_password/verify_otp_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
-import 'package:heka_store/Features/auth/data/models/login/login_response_model.dart';
+import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';

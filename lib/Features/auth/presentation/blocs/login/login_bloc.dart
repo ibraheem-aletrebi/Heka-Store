@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
-import 'package:heka_store/Features/auth/data/models/login/login_response_model.dart';
+import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.dart';
 import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/remote/error/api_error_model.dart';
