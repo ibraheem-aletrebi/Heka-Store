@@ -5,7 +5,7 @@ class ApiConstants {
   static const String refreshToken ='/api/Account/refresh-token';
 
   static const String forgotPassword = '/api/Account/forgot-password';
-  static const String verifyOtp = '/api/Account/verify-email-otp';
+  static const String verifyResetOtp = '/api/Account/verify-reset-code';
   static const String resendOtp = '/api/Account/resend-verification-email';
   static const String resetPassword = '/api/Account/reset-password';
 

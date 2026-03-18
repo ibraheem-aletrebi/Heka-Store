@@ -499,6 +499,16 @@ class S {
     );
   }
 
+  /// `Code resent successfully`
+  String get otpResentSuccess {
+    return Intl.message(
+      'Code resent successfully',
+      name: 'otpResentSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Email is required`
   String get emailRequired {
     return Intl.message(
@@ -644,6 +654,16 @@ class S {
     return Intl.message(
       'This field is required',
       name: 'fieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Password reset successfully`
+  String get resetPasswordSuccess {
+    return Intl.message(
+      'Password reset successfully',
+      name: 'resetPasswordSuccess',
       desc: '',
       args: [],
     );

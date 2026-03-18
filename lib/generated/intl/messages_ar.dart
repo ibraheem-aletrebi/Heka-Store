@@ -252,6 +252,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("أو سجّل بـ"),
     "orderSummary": MessageLookupByLibrary.simpleMessage("ملخص الطلب"),
     "other": MessageLookupByLibrary.simpleMessage("أخرى"),
+    "otpResentSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال الرمز مرة أخرى بنجاح",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور غير متطابقة",
@@ -308,6 +311,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "resetPasswordRequestTitle": MessageLookupByLibrary.simpleMessage(
       "هيّا نعيد تعيين كلمة المرور",
+    ),
+    "resetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم تغيير كلمة المرور بنجاح",
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
     "searchForLocation": MessageLookupByLibrary.simpleMessage("ابحث عن مكان"),

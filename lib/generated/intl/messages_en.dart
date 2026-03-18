@@ -262,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("Or register with"),
     "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
+    "otpResentSuccess": MessageLookupByLibrary.simpleMessage(
+      "Code resent successfully",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
@@ -326,6 +329,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "resetPasswordRequestTitle": MessageLookupByLibrary.simpleMessage(
       "Let\'s reset your password",
+    ),
+    "resetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
+      "Password reset successfully",
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "savedCards": MessageLookupByLibrary.simpleMessage("Saved Cards"),

@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/components/forgot_password/forgot_password_view_body_bloc_listenter.dart';
+import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
 class ForgotPasswordView extends StatelessWidget {
@@ -6,13 +10,16 @@ class ForgotPasswordView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocProvider(
+      create: (context) => sl<ForgotPasswordBloc>(),
+      child: Scaffold(
         body: SafeArea(
           child: Padding(
             padding: EdgeInsets.all(AppSizes.w16),
-            // child: const ForgotPasswordFlow(),
+            child: const ForgotPasswordViewBodyBlocListener(),
           ),
         ),
-      );
+      ),
+    );
   }
 }

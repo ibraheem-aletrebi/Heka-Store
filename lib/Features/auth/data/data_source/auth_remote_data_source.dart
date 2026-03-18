@@ -12,7 +12,7 @@ abstract class AuthRemoteDataSource {
     required LoginRequestModel loginRequestModel,
   });
   Future<void> forgotPassword(ForgotPasswordRequestModel request);
-  Future<void> verifyOtp(VerifyOtpRequestModel request);                  
+  Future<void> verifyResetOtp(VerifyOtpRequestModel request);
   Future<void> resetPassword(ResetPasswordRequestModel request);
   Future<void> resendOtp(ResendOtpRequestModel request);
 }
@@ -38,12 +38,9 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
     await _apiService.post(ApiConstants.forgotPassword, data: request.toJson());
   }
 
-    @override
-  Future<void> verifyOtp(VerifyOtpRequestModel request) async {          
-    await _apiService.post(
-      ApiConstants.verifyOtp,
-      data: request.toJson(),
-    );
+  @override
+  Future<void> verifyResetOtp(VerifyOtpRequestModel request) async {
+    await _apiService.post(ApiConstants.verifyResetOtp, data: request.toJson());
   }
 
   @override

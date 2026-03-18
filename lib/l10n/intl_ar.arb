@@ -116,6 +116,9 @@
     "passwordMismatch": "كلمة المرور غير متطابقة",
     "@passwordMismatch": {},
 
+    "otpResentSuccess": "تم إرسال الرمز مرة أخرى بنجاح",
+    "@otpResentSuccess": {},
+
 
     "emailRequired": "البريد الإلكتروني مطلوب",
     "@emailRequired": {},
@@ -136,6 +139,9 @@
     "@passwordNoNumber": {},
     "passwordNoSpecialChar": "كلمة المرور يجب أن تحتوي على رمز خاص",
     "@passwordNoSpecialChar": {},
+
+     "resetPasswordSuccess": "تم تغيير كلمة المرور بنجاح",
+    "@resetPasswordSuccess": {},
 
     "nameRequired": "الاسم مطلوب",
     "@nameRequired": {},

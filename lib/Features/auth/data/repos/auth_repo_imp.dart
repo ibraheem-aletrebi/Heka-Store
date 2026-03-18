@@ -40,15 +40,15 @@ class AuthRepoImp implements AuthRepo {
     }
   }
 
-@override
-Future<ApiResult<void>> verifyOtp(VerifyOtpRequestModel request) async {
-  try {
-    await _remoteDataSource.verifyOtp(request);
-    return  ApiResult.success(null);
-  } catch (e) {
-    return ApiResult.error(ApiErrorHandler.instance.handle(e));
+  @override
+  Future<ApiResult<void>> verifyOtp(VerifyOtpRequestModel request) async {
+    try {
+      await _remoteDataSource.verifyResetOtp(request);
+      return ApiResult.success(null);
+    } catch (e) {
+      return ApiResult.error(ApiErrorHandler.instance.handle(e));
+    }
   }
-}
 
   @override
   Future<ApiResult<void>> resetPassword({
@@ -73,6 +73,4 @@ Future<ApiResult<void>> verifyOtp(VerifyOtpRequestModel request) async {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
-
- 
 }
