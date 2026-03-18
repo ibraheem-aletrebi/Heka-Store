@@ -5,6 +5,7 @@ import 'package:heka_store/Features/auth/data/models/forgot_password/reset_passw
 import 'package:heka_store/Features/auth/data/models/forgot_password/verify_otp_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
+import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
@@ -73,4 +74,27 @@ class AuthRepoImp implements AuthRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
+
+  @override
+  Future<ApiResult<void>> register(RegisterRequestModel request) async {
+    try {
+      await _remoteDataSource.register(request);
+      return ApiResult.success(null);
+    } catch (e) {
+      return ApiResult.error(ApiErrorHandler.instance.handle(e));
+    }
+  }
+
+@override
+Future<ApiResult<LoginResponseModel>> verifyEmailOtp(
+  VerifyOtpRequestModel request,
+) async {
+  try {
+    final response = await _remoteDataSource.verifyEmailOtp(request);
+
+    return ApiResult.success(response);
+  } catch (e) {
+    return ApiResult.error(ApiErrorHandler.instance.handle(e));
+  }
+}
 }
