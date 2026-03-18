@@ -1,10 +1,8 @@
+// register_bloc.dart
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/register/register_use_case.dart';
-import 'package:heka_store/Features/auth/domain/use_cases/register/verify_email_otp_use_case.dart';
-import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
 import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/remote/error/api_error_model.dart';
 import 'package:heka_store/core/utils/field_validator.dart';
@@ -15,16 +13,9 @@ part 'register_bloc.freezed.dart';
 
 class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   final RegisterUseCase _registerUseCase;
-  final VerifyEmailOtpUseCase _verifyOtpUseCase;
-  final ResendOtpUseCase _resendOtpUseCase;
 
-  RegisterBloc({
-    required RegisterUseCase registerUseCase,
-    required VerifyEmailOtpUseCase verifyOtpUseCase,
-    required ResendOtpUseCase resendOtpUseCase,
-  })  : _registerUseCase = registerUseCase,
-        _verifyOtpUseCase = verifyOtpUseCase,
-        _resendOtpUseCase = resendOtpUseCase,
+  RegisterBloc({required RegisterUseCase registerUseCase})
+      : _registerUseCase = registerUseCase,
         super(const RegisterState()) {
     on<_FirstNameChanged>(_onFirstNameChanged);
     on<_LastNameChanged>(_onLastNameChanged);
@@ -34,12 +25,9 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     on<_PhoneChanged>(_onPhoneChanged);
     on<_AcceptTermsToggled>(_onAcceptTermsToggled);
     on<_Submitted>(_onSubmitted);
-    on<_OtpChanged>(_onOtpChanged);
-    on<_OtpSubmitted>(_onOtpSubmitted);
-    on<_OtpResent>(_onOtpResent);
-    on<_FlowReset>(_onFlowReset);
   }
 
+  // ─── Handlers ──────────────────────────────────────────────────────────────
 
   void _onFirstNameChanged(
     _FirstNameChanged event,
@@ -133,6 +121,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
     _Submitted event,
     Emitter<RegisterState> emit,
   ) async {
+    // ─── Validate ────────────────────────────────────
     final firstNameError = FieldValidator.name(state.firstName);
     final lastNameError = FieldValidator.name(state.lastName);
     final emailError = FieldValidator.email(state.email);
@@ -167,6 +156,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       return;
     }
 
+    // ─── Call API ─────────────────────────────────────
     emit(state.copyWith(isLoading: true, error: null));
 
     final response = await _registerUseCase(
@@ -183,7 +173,6 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       onSuccess: (_) => emit(state.copyWith(
         isLoading: false,
         isRegisterSuccess: true,
-        step: RegisterStep.otp,
       )),
       onError: (error) => emit(state.copyWith(
         isLoading: false,
@@ -193,76 +182,5 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
   }
 
 
-  void _onOtpChanged(
-    _OtpChanged event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(state.copyWith(
-      otp: event.otp,
-      isOtpDirty: true,
-      otpError: FieldValidator.otp(event.otp, length: 6),
-      error: null,
-    ));
-  }
 
-  Future<void> _onOtpSubmitted(
-    _OtpSubmitted event,
-    Emitter<RegisterState> emit,
-  ) async {
-    final otpError = FieldValidator.otp(state.otp, length: 6);
-    if (otpError != null) {
-      emit(state.copyWith(otpError: otpError, isOtpDirty: true));
-      return;
-    }
-
-    emit(state.copyWith(isOtpLoading: true, error: null));
-
-    final response = await _verifyOtpUseCase(
-      email: state.email,
-      code: state.otp,
-    );
-
-    response.when(
-      onSuccess: (loginResponse) => emit(state.copyWith(
-        isOtpLoading: false,
-        isOtpSuccess: true,
-        loginResponse: loginResponse,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isOtpLoading: false,
-        error: error,
-      )),
-    );
-  }
-
-  Future<void> _onOtpResent(
-    _OtpResent event,
-    Emitter<RegisterState> emit,
-  ) async {
-    emit(state.copyWith(isResendLoading: true, error: null));
-
-    final response = await _resendOtpUseCase(email: state.email);
-
-    response.when(
-      onSuccess: (_) => emit(state.copyWith(
-        isResendLoading: false,
-        isResendSuccess: true,
-        otp: '',
-        isOtpDirty: false,
-        otpError: null,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isResendLoading: false,
-        error: error,
-      )),
-    );
-  }
-
-
-  void _onFlowReset(
-    _FlowReset event,
-    Emitter<RegisterState> emit,
-  ) {
-    emit(const RegisterState());
-  }
 }

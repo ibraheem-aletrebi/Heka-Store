@@ -1,4 +1,4 @@
-
+// register_event.dart
 
 part of 'register_bloc.dart';
 
@@ -12,10 +12,4 @@ sealed class RegisterEvent with _$RegisterEvent {
   const factory RegisterEvent.phoneChanged(String phone) = _PhoneChanged;
   const factory RegisterEvent.acceptTermsToggled() = _AcceptTermsToggled;
   const factory RegisterEvent.submitted() = _Submitted;
-
-  const factory RegisterEvent.otpChanged(String otp) = _OtpChanged;
-  const factory RegisterEvent.otpSubmitted() = _OtpSubmitted;
-  const factory RegisterEvent.otpResent() = _OtpResent;
-
-  const factory RegisterEvent.flowReset() = _FlowReset;
 }

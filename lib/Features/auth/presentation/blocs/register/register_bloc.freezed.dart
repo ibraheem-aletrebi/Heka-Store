@@ -26,10 +26,6 @@ mixin _$RegisterEvent {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,10 +38,6 @@ mixin _$RegisterEvent {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,10 +50,6 @@ mixin _$RegisterEvent {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,10 +64,6 @@ mixin _$RegisterEvent {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,10 +76,6 @@ mixin _$RegisterEvent {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -108,10 +88,6 @@ mixin _$RegisterEvent {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -209,10 +185,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return firstNameChanged(firstName);
   }
@@ -228,10 +200,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return firstNameChanged?.call(firstName);
   }
@@ -247,10 +215,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -271,10 +235,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return firstNameChanged(this);
   }
@@ -290,10 +250,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return firstNameChanged?.call(this);
   }
@@ -309,10 +265,6 @@ class _$FirstNameChangedImpl implements _FirstNameChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (firstNameChanged != null) {
@@ -406,10 +358,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return lastNameChanged(lastName);
   }
@@ -425,10 +373,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return lastNameChanged?.call(lastName);
   }
@@ -444,10 +388,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -468,10 +408,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return lastNameChanged(this);
   }
@@ -487,10 +423,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return lastNameChanged?.call(this);
   }
@@ -506,10 +438,6 @@ class _$LastNameChangedImpl implements _LastNameChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (lastNameChanged != null) {
@@ -600,10 +528,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return emailChanged(email);
   }
@@ -619,10 +543,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return emailChanged?.call(email);
   }
@@ -638,10 +558,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -662,10 +578,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return emailChanged(this);
   }
@@ -681,10 +593,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return emailChanged?.call(this);
   }
@@ -700,10 +608,6 @@ class _$EmailChangedImpl implements _EmailChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (emailChanged != null) {
@@ -796,10 +700,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return passwordChanged(password);
   }
@@ -815,10 +715,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return passwordChanged?.call(password);
   }
@@ -834,10 +730,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -858,10 +750,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return passwordChanged(this);
   }
@@ -877,10 +765,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return passwordChanged?.call(this);
   }
@@ -896,10 +780,6 @@ class _$PasswordChangedImpl implements _PasswordChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (passwordChanged != null) {
@@ -994,10 +874,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return confirmPasswordChanged(confirmPassword);
   }
@@ -1013,10 +889,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return confirmPasswordChanged?.call(confirmPassword);
   }
@@ -1032,10 +904,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (confirmPasswordChanged != null) {
@@ -1056,10 +924,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return confirmPasswordChanged(this);
   }
@@ -1075,10 +939,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return confirmPasswordChanged?.call(this);
   }
@@ -1094,10 +954,6 @@ class _$ConfirmPasswordChangedImpl implements _ConfirmPasswordChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (confirmPasswordChanged != null) {
@@ -1189,10 +1045,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return phoneChanged(phone);
   }
@@ -1208,10 +1060,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return phoneChanged?.call(phone);
   }
@@ -1227,10 +1075,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1251,10 +1095,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return phoneChanged(this);
   }
@@ -1270,10 +1110,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return phoneChanged?.call(this);
   }
@@ -1289,10 +1125,6 @@ class _$PhoneChangedImpl implements _PhoneChanged {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (phoneChanged != null) {
@@ -1357,10 +1189,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return acceptTermsToggled();
   }
@@ -1376,10 +1204,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return acceptTermsToggled?.call();
   }
@@ -1395,10 +1219,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (acceptTermsToggled != null) {
@@ -1419,10 +1239,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return acceptTermsToggled(this);
   }
@@ -1438,10 +1254,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return acceptTermsToggled?.call(this);
   }
@@ -1457,10 +1269,6 @@ class _$AcceptTermsToggledImpl implements _AcceptTermsToggled {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (acceptTermsToggled != null) {
@@ -1520,10 +1328,6 @@ class _$SubmittedImpl implements _Submitted {
     required TResult Function(String phone) phoneChanged,
     required TResult Function() acceptTermsToggled,
     required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
   }) {
     return submitted();
   }
@@ -1539,10 +1343,6 @@ class _$SubmittedImpl implements _Submitted {
     TResult? Function(String phone)? phoneChanged,
     TResult? Function()? acceptTermsToggled,
     TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
   }) {
     return submitted?.call();
   }
@@ -1558,10 +1358,6 @@ class _$SubmittedImpl implements _Submitted {
     TResult Function(String phone)? phoneChanged,
     TResult Function()? acceptTermsToggled,
     TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -1582,10 +1378,6 @@ class _$SubmittedImpl implements _Submitted {
     required TResult Function(_PhoneChanged value) phoneChanged,
     required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
     required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
   }) {
     return submitted(this);
   }
@@ -1601,10 +1393,6 @@ class _$SubmittedImpl implements _Submitted {
     TResult? Function(_PhoneChanged value)? phoneChanged,
     TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
   }) {
     return submitted?.call(this);
   }
@@ -1620,10 +1408,6 @@ class _$SubmittedImpl implements _Submitted {
     TResult Function(_PhoneChanged value)? phoneChanged,
     TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
     TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
     required TResult orElse(),
   }) {
     if (submitted != null) {
@@ -1638,720 +1422,32 @@ abstract class _Submitted implements RegisterEvent {
 }
 
 /// @nodoc
-abstract class _$$OtpChangedImplCopyWith<$Res> {
-  factory _$$OtpChangedImplCopyWith(
-          _$OtpChangedImpl value, $Res Function(_$OtpChangedImpl) then) =
-      __$$OtpChangedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String otp});
-}
-
-/// @nodoc
-class __$$OtpChangedImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$OtpChangedImpl>
-    implements _$$OtpChangedImplCopyWith<$Res> {
-  __$$OtpChangedImplCopyWithImpl(
-      _$OtpChangedImpl _value, $Res Function(_$OtpChangedImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? otp = null,
-  }) {
-    return _then(_$OtpChangedImpl(
-      null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$OtpChangedImpl implements _OtpChanged {
-  const _$OtpChangedImpl(this.otp);
-
-  @override
-  final String otp;
-
-  @override
-  String toString() {
-    return 'RegisterEvent.otpChanged(otp: $otp)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$OtpChangedImpl &&
-            (identical(other.otp, otp) || other.otp == otp));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, otp);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$OtpChangedImplCopyWith<_$OtpChangedImpl> get copyWith =>
-      __$$OtpChangedImplCopyWithImpl<_$OtpChangedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String firstName) firstNameChanged,
-    required TResult Function(String lastName) lastNameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function(String confirmPassword) confirmPasswordChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function() acceptTermsToggled,
-    required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
-  }) {
-    return otpChanged(otp);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String firstName)? firstNameChanged,
-    TResult? Function(String lastName)? lastNameChanged,
-    TResult? Function(String email)? emailChanged,
-    TResult? Function(String password)? passwordChanged,
-    TResult? Function(String confirmPassword)? confirmPasswordChanged,
-    TResult? Function(String phone)? phoneChanged,
-    TResult? Function()? acceptTermsToggled,
-    TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
-  }) {
-    return otpChanged?.call(otp);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String firstName)? firstNameChanged,
-    TResult Function(String lastName)? lastNameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function(String confirmPassword)? confirmPasswordChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function()? acceptTermsToggled,
-    TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpChanged != null) {
-      return otpChanged(otp);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FirstNameChanged value) firstNameChanged,
-    required TResult Function(_LastNameChanged value) lastNameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_ConfirmPasswordChanged value)
-        confirmPasswordChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
-    required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
-  }) {
-    return otpChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FirstNameChanged value)? firstNameChanged,
-    TResult? Function(_LastNameChanged value)? lastNameChanged,
-    TResult? Function(_EmailChanged value)? emailChanged,
-    TResult? Function(_PasswordChanged value)? passwordChanged,
-    TResult? Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult? Function(_PhoneChanged value)? phoneChanged,
-    TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
-  }) {
-    return otpChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FirstNameChanged value)? firstNameChanged,
-    TResult Function(_LastNameChanged value)? lastNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpChanged != null) {
-      return otpChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OtpChanged implements RegisterEvent {
-  const factory _OtpChanged(final String otp) = _$OtpChangedImpl;
-
-  String get otp;
-  @JsonKey(ignore: true)
-  _$$OtpChangedImplCopyWith<_$OtpChangedImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$OtpSubmittedImplCopyWith<$Res> {
-  factory _$$OtpSubmittedImplCopyWith(
-          _$OtpSubmittedImpl value, $Res Function(_$OtpSubmittedImpl) then) =
-      __$$OtpSubmittedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$OtpSubmittedImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$OtpSubmittedImpl>
-    implements _$$OtpSubmittedImplCopyWith<$Res> {
-  __$$OtpSubmittedImplCopyWithImpl(
-      _$OtpSubmittedImpl _value, $Res Function(_$OtpSubmittedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$OtpSubmittedImpl implements _OtpSubmitted {
-  const _$OtpSubmittedImpl();
-
-  @override
-  String toString() {
-    return 'RegisterEvent.otpSubmitted()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OtpSubmittedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String firstName) firstNameChanged,
-    required TResult Function(String lastName) lastNameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function(String confirmPassword) confirmPasswordChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function() acceptTermsToggled,
-    required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
-  }) {
-    return otpSubmitted();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String firstName)? firstNameChanged,
-    TResult? Function(String lastName)? lastNameChanged,
-    TResult? Function(String email)? emailChanged,
-    TResult? Function(String password)? passwordChanged,
-    TResult? Function(String confirmPassword)? confirmPasswordChanged,
-    TResult? Function(String phone)? phoneChanged,
-    TResult? Function()? acceptTermsToggled,
-    TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
-  }) {
-    return otpSubmitted?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String firstName)? firstNameChanged,
-    TResult Function(String lastName)? lastNameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function(String confirmPassword)? confirmPasswordChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function()? acceptTermsToggled,
-    TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpSubmitted != null) {
-      return otpSubmitted();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FirstNameChanged value) firstNameChanged,
-    required TResult Function(_LastNameChanged value) lastNameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_ConfirmPasswordChanged value)
-        confirmPasswordChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
-    required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
-  }) {
-    return otpSubmitted(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FirstNameChanged value)? firstNameChanged,
-    TResult? Function(_LastNameChanged value)? lastNameChanged,
-    TResult? Function(_EmailChanged value)? emailChanged,
-    TResult? Function(_PasswordChanged value)? passwordChanged,
-    TResult? Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult? Function(_PhoneChanged value)? phoneChanged,
-    TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
-  }) {
-    return otpSubmitted?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FirstNameChanged value)? firstNameChanged,
-    TResult Function(_LastNameChanged value)? lastNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpSubmitted != null) {
-      return otpSubmitted(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OtpSubmitted implements RegisterEvent {
-  const factory _OtpSubmitted() = _$OtpSubmittedImpl;
-}
-
-/// @nodoc
-abstract class _$$OtpResentImplCopyWith<$Res> {
-  factory _$$OtpResentImplCopyWith(
-          _$OtpResentImpl value, $Res Function(_$OtpResentImpl) then) =
-      __$$OtpResentImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$OtpResentImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$OtpResentImpl>
-    implements _$$OtpResentImplCopyWith<$Res> {
-  __$$OtpResentImplCopyWithImpl(
-      _$OtpResentImpl _value, $Res Function(_$OtpResentImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$OtpResentImpl implements _OtpResent {
-  const _$OtpResentImpl();
-
-  @override
-  String toString() {
-    return 'RegisterEvent.otpResent()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$OtpResentImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String firstName) firstNameChanged,
-    required TResult Function(String lastName) lastNameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function(String confirmPassword) confirmPasswordChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function() acceptTermsToggled,
-    required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
-  }) {
-    return otpResent();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String firstName)? firstNameChanged,
-    TResult? Function(String lastName)? lastNameChanged,
-    TResult? Function(String email)? emailChanged,
-    TResult? Function(String password)? passwordChanged,
-    TResult? Function(String confirmPassword)? confirmPasswordChanged,
-    TResult? Function(String phone)? phoneChanged,
-    TResult? Function()? acceptTermsToggled,
-    TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
-  }) {
-    return otpResent?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String firstName)? firstNameChanged,
-    TResult Function(String lastName)? lastNameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function(String confirmPassword)? confirmPasswordChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function()? acceptTermsToggled,
-    TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpResent != null) {
-      return otpResent();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FirstNameChanged value) firstNameChanged,
-    required TResult Function(_LastNameChanged value) lastNameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_ConfirmPasswordChanged value)
-        confirmPasswordChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
-    required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
-  }) {
-    return otpResent(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FirstNameChanged value)? firstNameChanged,
-    TResult? Function(_LastNameChanged value)? lastNameChanged,
-    TResult? Function(_EmailChanged value)? emailChanged,
-    TResult? Function(_PasswordChanged value)? passwordChanged,
-    TResult? Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult? Function(_PhoneChanged value)? phoneChanged,
-    TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
-  }) {
-    return otpResent?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FirstNameChanged value)? firstNameChanged,
-    TResult Function(_LastNameChanged value)? lastNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
-    required TResult orElse(),
-  }) {
-    if (otpResent != null) {
-      return otpResent(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _OtpResent implements RegisterEvent {
-  const factory _OtpResent() = _$OtpResentImpl;
-}
-
-/// @nodoc
-abstract class _$$FlowResetImplCopyWith<$Res> {
-  factory _$$FlowResetImplCopyWith(
-          _$FlowResetImpl value, $Res Function(_$FlowResetImpl) then) =
-      __$$FlowResetImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FlowResetImplCopyWithImpl<$Res>
-    extends _$RegisterEventCopyWithImpl<$Res, _$FlowResetImpl>
-    implements _$$FlowResetImplCopyWith<$Res> {
-  __$$FlowResetImplCopyWithImpl(
-      _$FlowResetImpl _value, $Res Function(_$FlowResetImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$FlowResetImpl implements _FlowReset {
-  const _$FlowResetImpl();
-
-  @override
-  String toString() {
-    return 'RegisterEvent.flowReset()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$FlowResetImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String firstName) firstNameChanged,
-    required TResult Function(String lastName) lastNameChanged,
-    required TResult Function(String email) emailChanged,
-    required TResult Function(String password) passwordChanged,
-    required TResult Function(String confirmPassword) confirmPasswordChanged,
-    required TResult Function(String phone) phoneChanged,
-    required TResult Function() acceptTermsToggled,
-    required TResult Function() submitted,
-    required TResult Function(String otp) otpChanged,
-    required TResult Function() otpSubmitted,
-    required TResult Function() otpResent,
-    required TResult Function() flowReset,
-  }) {
-    return flowReset();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String firstName)? firstNameChanged,
-    TResult? Function(String lastName)? lastNameChanged,
-    TResult? Function(String email)? emailChanged,
-    TResult? Function(String password)? passwordChanged,
-    TResult? Function(String confirmPassword)? confirmPasswordChanged,
-    TResult? Function(String phone)? phoneChanged,
-    TResult? Function()? acceptTermsToggled,
-    TResult? Function()? submitted,
-    TResult? Function(String otp)? otpChanged,
-    TResult? Function()? otpSubmitted,
-    TResult? Function()? otpResent,
-    TResult? Function()? flowReset,
-  }) {
-    return flowReset?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String firstName)? firstNameChanged,
-    TResult Function(String lastName)? lastNameChanged,
-    TResult Function(String email)? emailChanged,
-    TResult Function(String password)? passwordChanged,
-    TResult Function(String confirmPassword)? confirmPasswordChanged,
-    TResult Function(String phone)? phoneChanged,
-    TResult Function()? acceptTermsToggled,
-    TResult Function()? submitted,
-    TResult Function(String otp)? otpChanged,
-    TResult Function()? otpSubmitted,
-    TResult Function()? otpResent,
-    TResult Function()? flowReset,
-    required TResult orElse(),
-  }) {
-    if (flowReset != null) {
-      return flowReset();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_FirstNameChanged value) firstNameChanged,
-    required TResult Function(_LastNameChanged value) lastNameChanged,
-    required TResult Function(_EmailChanged value) emailChanged,
-    required TResult Function(_PasswordChanged value) passwordChanged,
-    required TResult Function(_ConfirmPasswordChanged value)
-        confirmPasswordChanged,
-    required TResult Function(_PhoneChanged value) phoneChanged,
-    required TResult Function(_AcceptTermsToggled value) acceptTermsToggled,
-    required TResult Function(_Submitted value) submitted,
-    required TResult Function(_OtpChanged value) otpChanged,
-    required TResult Function(_OtpSubmitted value) otpSubmitted,
-    required TResult Function(_OtpResent value) otpResent,
-    required TResult Function(_FlowReset value) flowReset,
-  }) {
-    return flowReset(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_FirstNameChanged value)? firstNameChanged,
-    TResult? Function(_LastNameChanged value)? lastNameChanged,
-    TResult? Function(_EmailChanged value)? emailChanged,
-    TResult? Function(_PasswordChanged value)? passwordChanged,
-    TResult? Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult? Function(_PhoneChanged value)? phoneChanged,
-    TResult? Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult? Function(_Submitted value)? submitted,
-    TResult? Function(_OtpChanged value)? otpChanged,
-    TResult? Function(_OtpSubmitted value)? otpSubmitted,
-    TResult? Function(_OtpResent value)? otpResent,
-    TResult? Function(_FlowReset value)? flowReset,
-  }) {
-    return flowReset?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_FirstNameChanged value)? firstNameChanged,
-    TResult Function(_LastNameChanged value)? lastNameChanged,
-    TResult Function(_EmailChanged value)? emailChanged,
-    TResult Function(_PasswordChanged value)? passwordChanged,
-    TResult Function(_ConfirmPasswordChanged value)? confirmPasswordChanged,
-    TResult Function(_PhoneChanged value)? phoneChanged,
-    TResult Function(_AcceptTermsToggled value)? acceptTermsToggled,
-    TResult Function(_Submitted value)? submitted,
-    TResult Function(_OtpChanged value)? otpChanged,
-    TResult Function(_OtpSubmitted value)? otpSubmitted,
-    TResult Function(_OtpResent value)? otpResent,
-    TResult Function(_FlowReset value)? flowReset,
-    required TResult orElse(),
-  }) {
-    if (flowReset != null) {
-      return flowReset(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _FlowReset implements RegisterEvent {
-  const factory _FlowReset() = _$FlowResetImpl;
-}
-
-/// @nodoc
 mixin _$RegisterState {
-  RegisterStep get step => throw _privateConstructorUsedError;
+// ─── Fields ───────────────────────────────────────
   String get firstName => throw _privateConstructorUsedError;
   String get lastName => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPassword => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-  bool get acceptTerms => throw _privateConstructorUsedError;
+  bool get acceptTerms =>
+      throw _privateConstructorUsedError; // ─── Validation ───────────────────────────────────
   ValidationKey? get firstNameError => throw _privateConstructorUsedError;
   ValidationKey? get lastNameError => throw _privateConstructorUsedError;
   ValidationKey? get emailError => throw _privateConstructorUsedError;
   ValidationKey? get passwordError => throw _privateConstructorUsedError;
   ValidationKey? get confirmPasswordError => throw _privateConstructorUsedError;
-  ValidationKey? get phoneError => throw _privateConstructorUsedError;
+  ValidationKey? get phoneError =>
+      throw _privateConstructorUsedError; // ─── Dirty ────────────────────────────────────────
   bool get isFirstNameDirty => throw _privateConstructorUsedError;
   bool get isLastNameDirty => throw _privateConstructorUsedError;
   bool get isEmailDirty => throw _privateConstructorUsedError;
   bool get isPasswordDirty => throw _privateConstructorUsedError;
   bool get isConfirmPasswordDirty => throw _privateConstructorUsedError;
-  bool get isPhoneDirty => throw _privateConstructorUsedError;
-  String get otp => throw _privateConstructorUsedError;
-  ValidationKey? get otpError => throw _privateConstructorUsedError;
-  bool get isOtpDirty => throw _privateConstructorUsedError;
+  bool get isPhoneDirty =>
+      throw _privateConstructorUsedError; // ─── Submission ───────────────────────────────────
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get isOtpLoading => throw _privateConstructorUsedError;
-  bool get isResendLoading => throw _privateConstructorUsedError;
   bool get isRegisterSuccess => throw _privateConstructorUsedError;
-  bool get isOtpSuccess => throw _privateConstructorUsedError;
-  bool get isResendSuccess => throw _privateConstructorUsedError;
-  LoginResponseModel? get loginResponse => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -2366,8 +1462,7 @@ abstract class $RegisterStateCopyWith<$Res> {
       _$RegisterStateCopyWithImpl<$Res, RegisterState>;
   @useResult
   $Res call(
-      {RegisterStep step,
-      String firstName,
+      {String firstName,
       String lastName,
       String email,
       String password,
@@ -2386,16 +1481,8 @@ abstract class $RegisterStateCopyWith<$Res> {
       bool isPasswordDirty,
       bool isConfirmPasswordDirty,
       bool isPhoneDirty,
-      String otp,
-      ValidationKey? otpError,
-      bool isOtpDirty,
       bool isLoading,
-      bool isOtpLoading,
-      bool isResendLoading,
       bool isRegisterSuccess,
-      bool isOtpSuccess,
-      bool isResendSuccess,
-      LoginResponseModel? loginResponse,
       ApiErrorModel? error});
 }
 
@@ -2412,7 +1499,6 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? step = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
@@ -2432,23 +1518,11 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? isPasswordDirty = null,
     Object? isConfirmPasswordDirty = null,
     Object? isPhoneDirty = null,
-    Object? otp = null,
-    Object? otpError = freezed,
-    Object? isOtpDirty = null,
     Object? isLoading = null,
-    Object? isOtpLoading = null,
-    Object? isResendLoading = null,
     Object? isRegisterSuccess = null,
-    Object? isOtpSuccess = null,
-    Object? isResendSuccess = null,
-    Object? loginResponse = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
-      step: null == step
-          ? _value.step
-          : step // ignore: cast_nullable_to_non_nullable
-              as RegisterStep,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -2525,46 +1599,14 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.isPhoneDirty
           : isPhoneDirty // ignore: cast_nullable_to_non_nullable
               as bool,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      otpError: freezed == otpError
-          ? _value.otpError
-          : otpError // ignore: cast_nullable_to_non_nullable
-              as ValidationKey?,
-      isOtpDirty: null == isOtpDirty
-          ? _value.isOtpDirty
-          : isOtpDirty // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isOtpLoading: null == isOtpLoading
-          ? _value.isOtpLoading
-          : isOtpLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isResendLoading: null == isResendLoading
-          ? _value.isResendLoading
-          : isResendLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isRegisterSuccess: null == isRegisterSuccess
           ? _value.isRegisterSuccess
           : isRegisterSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
-      isOtpSuccess: null == isOtpSuccess
-          ? _value.isOtpSuccess
-          : isOtpSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isResendSuccess: null == isResendSuccess
-          ? _value.isResendSuccess
-          : isResendSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loginResponse: freezed == loginResponse
-          ? _value.loginResponse
-          : loginResponse // ignore: cast_nullable_to_non_nullable
-              as LoginResponseModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -2582,8 +1624,7 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {RegisterStep step,
-      String firstName,
+      {String firstName,
       String lastName,
       String email,
       String password,
@@ -2602,16 +1643,8 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
       bool isPasswordDirty,
       bool isConfirmPasswordDirty,
       bool isPhoneDirty,
-      String otp,
-      ValidationKey? otpError,
-      bool isOtpDirty,
       bool isLoading,
-      bool isOtpLoading,
-      bool isResendLoading,
       bool isRegisterSuccess,
-      bool isOtpSuccess,
-      bool isResendSuccess,
-      LoginResponseModel? loginResponse,
       ApiErrorModel? error});
 }
 
@@ -2626,7 +1659,6 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? step = null,
     Object? firstName = null,
     Object? lastName = null,
     Object? email = null,
@@ -2646,23 +1678,11 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
     Object? isPasswordDirty = null,
     Object? isConfirmPasswordDirty = null,
     Object? isPhoneDirty = null,
-    Object? otp = null,
-    Object? otpError = freezed,
-    Object? isOtpDirty = null,
     Object? isLoading = null,
-    Object? isOtpLoading = null,
-    Object? isResendLoading = null,
     Object? isRegisterSuccess = null,
-    Object? isOtpSuccess = null,
-    Object? isResendSuccess = null,
-    Object? loginResponse = freezed,
     Object? error = freezed,
   }) {
     return _then(_$RegisterStateImpl(
-      step: null == step
-          ? _value.step
-          : step // ignore: cast_nullable_to_non_nullable
-              as RegisterStep,
       firstName: null == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
@@ -2739,46 +1759,14 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
           ? _value.isPhoneDirty
           : isPhoneDirty // ignore: cast_nullable_to_non_nullable
               as bool,
-      otp: null == otp
-          ? _value.otp
-          : otp // ignore: cast_nullable_to_non_nullable
-              as String,
-      otpError: freezed == otpError
-          ? _value.otpError
-          : otpError // ignore: cast_nullable_to_non_nullable
-              as ValidationKey?,
-      isOtpDirty: null == isOtpDirty
-          ? _value.isOtpDirty
-          : isOtpDirty // ignore: cast_nullable_to_non_nullable
-              as bool,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isOtpLoading: null == isOtpLoading
-          ? _value.isOtpLoading
-          : isOtpLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isResendLoading: null == isResendLoading
-          ? _value.isResendLoading
-          : isResendLoading // ignore: cast_nullable_to_non_nullable
               as bool,
       isRegisterSuccess: null == isRegisterSuccess
           ? _value.isRegisterSuccess
           : isRegisterSuccess // ignore: cast_nullable_to_non_nullable
               as bool,
-      isOtpSuccess: null == isOtpSuccess
-          ? _value.isOtpSuccess
-          : isOtpSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isResendSuccess: null == isResendSuccess
-          ? _value.isResendSuccess
-          : isResendSuccess // ignore: cast_nullable_to_non_nullable
-              as bool,
-      loginResponse: freezed == loginResponse
-          ? _value.loginResponse
-          : loginResponse // ignore: cast_nullable_to_non_nullable
-              as LoginResponseModel?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -2791,8 +1779,7 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
 
 class _$RegisterStateImpl extends _RegisterState {
   const _$RegisterStateImpl(
-      {this.step = RegisterStep.form,
-      this.firstName = '',
+      {this.firstName = '',
       this.lastName = '',
       this.email = '',
       this.password = '',
@@ -2811,22 +1798,12 @@ class _$RegisterStateImpl extends _RegisterState {
       this.isPasswordDirty = false,
       this.isConfirmPasswordDirty = false,
       this.isPhoneDirty = false,
-      this.otp = '',
-      this.otpError,
-      this.isOtpDirty = false,
       this.isLoading = false,
-      this.isOtpLoading = false,
-      this.isResendLoading = false,
       this.isRegisterSuccess = false,
-      this.isOtpSuccess = false,
-      this.isResendSuccess = false,
-      this.loginResponse,
       this.error})
       : super._();
 
-  @override
-  @JsonKey()
-  final RegisterStep step;
+// ─── Fields ───────────────────────────────────────
   @override
   @JsonKey()
   final String firstName;
@@ -2848,6 +1825,7 @@ class _$RegisterStateImpl extends _RegisterState {
   @override
   @JsonKey()
   final bool acceptTerms;
+// ─── Validation ───────────────────────────────────
   @override
   final ValidationKey? firstNameError;
   @override
@@ -2860,6 +1838,7 @@ class _$RegisterStateImpl extends _RegisterState {
   final ValidationKey? confirmPasswordError;
   @override
   final ValidationKey? phoneError;
+// ─── Dirty ────────────────────────────────────────
   @override
   @JsonKey()
   final bool isFirstNameDirty;
@@ -2878,40 +1857,19 @@ class _$RegisterStateImpl extends _RegisterState {
   @override
   @JsonKey()
   final bool isPhoneDirty;
-  @override
-  @JsonKey()
-  final String otp;
-  @override
-  final ValidationKey? otpError;
-  @override
-  @JsonKey()
-  final bool isOtpDirty;
+// ─── Submission ───────────────────────────────────
   @override
   @JsonKey()
   final bool isLoading;
   @override
   @JsonKey()
-  final bool isOtpLoading;
-  @override
-  @JsonKey()
-  final bool isResendLoading;
-  @override
-  @JsonKey()
   final bool isRegisterSuccess;
-  @override
-  @JsonKey()
-  final bool isOtpSuccess;
-  @override
-  @JsonKey()
-  final bool isResendSuccess;
-  @override
-  final LoginResponseModel? loginResponse;
   @override
   final ApiErrorModel? error;
 
   @override
   String toString() {
-    return 'RegisterState(step: $step, firstName: $firstName, lastName: $lastName, email: $email, password: $password, confirmPassword: $confirmPassword, phone: $phone, acceptTerms: $acceptTerms, firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, passwordError: $passwordError, confirmPasswordError: $confirmPasswordError, phoneError: $phoneError, isFirstNameDirty: $isFirstNameDirty, isLastNameDirty: $isLastNameDirty, isEmailDirty: $isEmailDirty, isPasswordDirty: $isPasswordDirty, isConfirmPasswordDirty: $isConfirmPasswordDirty, isPhoneDirty: $isPhoneDirty, otp: $otp, otpError: $otpError, isOtpDirty: $isOtpDirty, isLoading: $isLoading, isOtpLoading: $isOtpLoading, isResendLoading: $isResendLoading, isRegisterSuccess: $isRegisterSuccess, isOtpSuccess: $isOtpSuccess, isResendSuccess: $isResendSuccess, loginResponse: $loginResponse, error: $error)';
+    return 'RegisterState(firstName: $firstName, lastName: $lastName, email: $email, password: $password, confirmPassword: $confirmPassword, phone: $phone, acceptTerms: $acceptTerms, firstNameError: $firstNameError, lastNameError: $lastNameError, emailError: $emailError, passwordError: $passwordError, confirmPasswordError: $confirmPasswordError, phoneError: $phoneError, isFirstNameDirty: $isFirstNameDirty, isLastNameDirty: $isLastNameDirty, isEmailDirty: $isEmailDirty, isPasswordDirty: $isPasswordDirty, isConfirmPasswordDirty: $isConfirmPasswordDirty, isPhoneDirty: $isPhoneDirty, isLoading: $isLoading, isRegisterSuccess: $isRegisterSuccess, error: $error)';
   }
 
   @override
@@ -2919,7 +1877,6 @@ class _$RegisterStateImpl extends _RegisterState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RegisterStateImpl &&
-            (identical(other.step, step) || other.step == step) &&
             (identical(other.firstName, firstName) ||
                 other.firstName == firstName) &&
             (identical(other.lastName, lastName) ||
@@ -2956,32 +1913,16 @@ class _$RegisterStateImpl extends _RegisterState {
                 other.isConfirmPasswordDirty == isConfirmPasswordDirty) &&
             (identical(other.isPhoneDirty, isPhoneDirty) ||
                 other.isPhoneDirty == isPhoneDirty) &&
-            (identical(other.otp, otp) || other.otp == otp) &&
-            (identical(other.otpError, otpError) ||
-                other.otpError == otpError) &&
-            (identical(other.isOtpDirty, isOtpDirty) ||
-                other.isOtpDirty == isOtpDirty) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
-            (identical(other.isOtpLoading, isOtpLoading) ||
-                other.isOtpLoading == isOtpLoading) &&
-            (identical(other.isResendLoading, isResendLoading) ||
-                other.isResendLoading == isResendLoading) &&
             (identical(other.isRegisterSuccess, isRegisterSuccess) ||
                 other.isRegisterSuccess == isRegisterSuccess) &&
-            (identical(other.isOtpSuccess, isOtpSuccess) ||
-                other.isOtpSuccess == isOtpSuccess) &&
-            (identical(other.isResendSuccess, isResendSuccess) ||
-                other.isResendSuccess == isResendSuccess) &&
-            const DeepCollectionEquality()
-                .equals(other.loginResponse, loginResponse) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
   int get hashCode => Object.hashAll([
         runtimeType,
-        step,
         firstName,
         lastName,
         email,
@@ -3001,16 +1942,8 @@ class _$RegisterStateImpl extends _RegisterState {
         isPasswordDirty,
         isConfirmPasswordDirty,
         isPhoneDirty,
-        otp,
-        otpError,
-        isOtpDirty,
         isLoading,
-        isOtpLoading,
-        isResendLoading,
         isRegisterSuccess,
-        isOtpSuccess,
-        isResendSuccess,
-        const DeepCollectionEquality().hash(loginResponse),
         error
       ]);
 
@@ -3023,8 +1956,7 @@ class _$RegisterStateImpl extends _RegisterState {
 
 abstract class _RegisterState extends RegisterState {
   const factory _RegisterState(
-      {final RegisterStep step,
-      final String firstName,
+      {final String firstName,
       final String lastName,
       final String email,
       final String password,
@@ -3043,22 +1975,12 @@ abstract class _RegisterState extends RegisterState {
       final bool isPasswordDirty,
       final bool isConfirmPasswordDirty,
       final bool isPhoneDirty,
-      final String otp,
-      final ValidationKey? otpError,
-      final bool isOtpDirty,
       final bool isLoading,
-      final bool isOtpLoading,
-      final bool isResendLoading,
       final bool isRegisterSuccess,
-      final bool isOtpSuccess,
-      final bool isResendSuccess,
-      final LoginResponseModel? loginResponse,
       final ApiErrorModel? error}) = _$RegisterStateImpl;
   const _RegisterState._() : super._();
 
-  @override
-  RegisterStep get step;
-  @override
+  @override // ─── Fields ───────────────────────────────────────
   String get firstName;
   @override
   String get lastName;
@@ -3072,7 +1994,7 @@ abstract class _RegisterState extends RegisterState {
   String get phone;
   @override
   bool get acceptTerms;
-  @override
+  @override // ─── Validation ───────────────────────────────────
   ValidationKey? get firstNameError;
   @override
   ValidationKey? get lastNameError;
@@ -3084,7 +2006,7 @@ abstract class _RegisterState extends RegisterState {
   ValidationKey? get confirmPasswordError;
   @override
   ValidationKey? get phoneError;
-  @override
+  @override // ─── Dirty ────────────────────────────────────────
   bool get isFirstNameDirty;
   @override
   bool get isLastNameDirty;
@@ -3096,26 +2018,10 @@ abstract class _RegisterState extends RegisterState {
   bool get isConfirmPasswordDirty;
   @override
   bool get isPhoneDirty;
-  @override
-  String get otp;
-  @override
-  ValidationKey? get otpError;
-  @override
-  bool get isOtpDirty;
-  @override
+  @override // ─── Submission ───────────────────────────────────
   bool get isLoading;
   @override
-  bool get isOtpLoading;
-  @override
-  bool get isResendLoading;
-  @override
   bool get isRegisterSuccess;
-  @override
-  bool get isOtpSuccess;
-  @override
-  bool get isResendSuccess;
-  @override
-  LoginResponseModel? get loginResponse;
   @override
   ApiErrorModel? get error;
   @override
