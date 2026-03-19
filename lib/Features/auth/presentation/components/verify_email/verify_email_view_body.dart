@@ -18,7 +18,7 @@ class VerifyEmailViewBody extends StatelessWidget {
     return SingleChildScrollView(
       padding: EdgeInsets.all(AppSizes.w16),
       child: Column(
-        mainAxisAlignment: .center,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(height: context.height * 0.05),
           Center(child: Logo()),

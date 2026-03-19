@@ -117,6 +117,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_connection_timeout_message": MessageLookupByLibrary.simpleMessage(
       "الاتصال بيأخد وقت أطول من المعتاد، تحقق من النت.",
     ),
+    "error_email_not_verified_action": MessageLookupByLibrary.simpleMessage(
+      "تفعيل البريد الإلكتروني",
+    ),
+    "error_email_not_verified_message": MessageLookupByLibrary.simpleMessage(
+      "يرجى تفعيل بريدك الإلكتروني أولاً",
+    ),
     "error_forbidden_action": MessageLookupByLibrary.simpleMessage(
       "ارجع للخلف",
     ),

@@ -1,5 +1,7 @@
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
+import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/local/secure_storage_keys.dart';
 import 'package:heka_store/core/services/local/secure_storage_service.dart';
@@ -36,8 +38,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   }) : _secureStorage = secureStorage,
        _localStorage = localStorage;
 
-  static const _userKey = 'AUTH_USER';
-
   // ─── Tokens → SecureStorage ───────────────────────────────────────────────
 
   @override
@@ -65,17 +65,24 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
 
   @override
   Future<void> saveUser(LoginResponseModel response) async {
-    await _localStorage.setValue<UserModel>(_userKey, response.data!.user);
+    await _localStorage.setValue<UserModel>(
+      HiveBoxes.data,
+      LocalStorageKeys.user,
+      response.data!.user,
+    );
   }
 
   @override
   Future<UserModel?> getUser() async {
-    return _localStorage.getValue<UserModel>(_userKey);
+    return _localStorage.getValue<UserModel>(
+      HiveBoxes.data,
+      LocalStorageKeys.user,
+    );
   }
 
   @override
   Future<void> clearUser() async {
-    await _localStorage.remove(_userKey);
+    await _localStorage.remove(HiveBoxes.data, LocalStorageKeys.user);
   }
 
   @override

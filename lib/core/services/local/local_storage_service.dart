@@ -5,50 +5,60 @@ class LocalStorageService {
   static final LocalStorageService _instance = LocalStorageService._internal();
   factory LocalStorageService() => _instance;
 
-  static const String _defaultBoxName = 'app_box';
-  late Box _box;
+  final Map<String, Box> _boxes = {};
 
-  Future<void> init({
-    String boxName = _defaultBoxName,
-    List<TypeAdapter> adapters = const [],
-  }) async {
+  Future<void> init({required List<String> boxNames,Function ? regesterAdapters}) async {
     await Hive.initFlutter();
-    for (final adapter in adapters) {
-      if (!Hive.isAdapterRegistered(adapter.typeId)) {
-        Hive.registerAdapter(adapter);
-      }
+   if(regesterAdapters != null) regesterAdapters();
+    for (final name in boxNames) {
+      _boxes[name] = await Hive.openBox(name);
     }
-
-    _box = await Hive.openBox(boxName);
   }
 
-  Future<void> setValue<T>(String key, T value) async {
-    await _box.put(key, value);
+  Future<void> setValue<T>(String boxName, String key, T value) async {
+    await _box(boxName).put(key, value);
   }
 
-  Future<void> setJson(String key, Map<String, dynamic> value) async {
-    await _box.put(key, value);
+  T? getValue<T>(String boxName, String key) {
+    return _box(boxName).get(key);
+   
   }
 
-  T? getValue<T>(String key) {
-    return _box.get(key) as T?;
+  Future<void> setJson(
+    String boxName,
+    String key,
+    Map<String, dynamic> value,
+  ) async {
+    await _box(boxName).put(key, value);
   }
 
-  Map<String, dynamic>? getJson(String key) {
-    final data = _box.get(key);
+  Map<String, dynamic>? getJson(String boxName, String key) {
+    final data = _box(boxName).get(key);
     if (data == null) return null;
     return Map<String, dynamic>.from(data as Map);
   }
 
-  Future<void> remove(String key) async {
-    await _box.delete(key);
+  Future<void> remove(String boxName, String key) async {
+    await _box(boxName).delete(key);
   }
 
-  Future<void> clear() async {
-    await _box.clear();
+  bool contains(String boxName, String key) {
+    return _box(boxName).containsKey(key);
   }
 
-  bool contains(String key) {
-    return _box.containsKey(key);
+  Future<void> clearBox(String boxName) async {
+    await _box(boxName).clear();
+  }
+
+  Future<void> clearAll() async {
+    for (final box in _boxes.values) {
+      await box.clear();
+    }
+  }
+
+  Box _box(String name) {
+    final box = _boxes[name];
+    if (box == null) throw Exception('Box "$name" is not opened');
+    return box;
   }
 }

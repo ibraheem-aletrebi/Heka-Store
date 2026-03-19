@@ -20,6 +20,11 @@
     "@error_unauthorized_action": {},
     "error_token_expired_message": "You've been signed out. Please sign in again.",
     "@error_token_expired_message": {},
+
+    "error_email_not_verified_message": "Please verify your email first",
+    "@error_email_not_verified_message": {},
+    "error_email_not_verified_action": "Verify Email",
+    "@error_email_not_verified_action": {},
     "error_token_expired_action": "Sign In Again",
     "@error_token_expired_action": {},
     "error_invalid_credentials_message": "Hmm, that email or password doesn't look right.",

@@ -1,6 +1,8 @@
 // features/address/data/datasources/address_local_data_source.dart
 
 import 'package:heka_store/Features/address/data/models/address_model.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
+import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 abstract class AddressLocalDataSource {
@@ -17,30 +19,32 @@ abstract class AddressLocalDataSource {
 class AddressLocalDataSourceImpl implements AddressLocalDataSource {
   final LocalStorageService _localStorage;
 
-  const AddressLocalDataSourceImpl({
-    required LocalStorageService localStorage,
-  }) : _localStorage = localStorage;
-
-  static const _addressesKey = 'CACHED_ADDRESSES';
-
+  const AddressLocalDataSourceImpl({required LocalStorageService localStorage})
+    : _localStorage = localStorage;
 
   @override
   Future<void> saveAddresses(List<AddressModel> addresses) async {
-    await _localStorage.setValue<List>(_addressesKey, addresses);
+    await _localStorage.setValue<List>(
+      HiveBoxes.data,
+      LocalStorageKeys.addresses,
+      addresses,
+    );
   }
 
   @override
   List<AddressModel> getAddresses() {
-    final data = _localStorage.getValue<List>(_addressesKey);
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.data,
+      LocalStorageKeys.addresses,
+    );
     if (data == null) return [];
     return data.cast<AddressModel>();
   }
 
   @override
   Future<void> clearAddresses() async {
-    await _localStorage.remove(_addressesKey);
+    await _localStorage.remove(HiveBoxes.data, LocalStorageKeys.addresses);
   }
-
 
   @override
   Future<void> addAddress(AddressModel address) async {

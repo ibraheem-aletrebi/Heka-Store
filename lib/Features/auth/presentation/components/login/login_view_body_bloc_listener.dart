@@ -16,27 +16,42 @@ class LoginViewBodyBlocListener extends StatelessWidget {
           previous.error != current.error,
       listener: (context, state) {
         if (state.isSuccess) {
+          print('>>> isSuccess: ${state.isSuccess}');
+          print('>>> loginResponse: ${state.loginResponse}');
+        }
+        if (state.error != null) {
+          print('>>> error: ${state.error}');
+          print('>>> failure: ${state.error!.failure}');
+          print('>>> serverMessage: ${state.error!.serverMessage}');
+        }
+
+        if (state.isSuccess) {
           final hasAddress =
-              state.loginResponse?.data!.user.hasAddress ?? false;
+              state.loginResponse?.data?.user.hasAddress ?? false;
           if (hasAddress) {
             context.go(AppRoutes.mainLayout);
           } else {
             context.go(AppRoutes.locationPickerOnboarding);
           }
+          return;
         }
 
-        if (state.error != null) {
+        if (state.error != null && !state.isSuccess) {
           if (state.error!.statusCode == 401) {
             context.pushReplacement(
               AppRoutes.verifyEmail,
-              extra: {
-                'email': state.email,
-                'autoResend': true, 
-              },
+              extra: {'email': state.email, 'autoResend': true},
             );
+            return;
           }
+
           ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(state.error!.failure.message(context))),
+            SnackBar(
+              content: Text(
+                state.error!.serverMessage ??
+                    state.error!.failure.message(context),
+              ),
+            ),
           );
         }
       },

@@ -9,6 +9,7 @@ import 'package:heka_store/Features/layout/main_layout_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -63,14 +64,15 @@ class AppRouter {
 Future<String> getInitialRoute() async {
   final localDataSource = sl<AuthLocalDataSource>();
 
-  final isLoggedIn = await localDataSource.isLoggedIn();
-  if (isLoggedIn) return AppRoutes.mainLayout;
+  // final isLoggedIn = await localDataSource.isLoggedIn();
+  // if (isLoggedIn) return AppRoutes.mainLayout;
 
   final pendingEmail = await localDataSource.getPendingVerifyEmail();
   if (pendingEmail != null) return AppRoutes.verifyEmail;
 
   final hasSeenOnboarding =
       LocalStorageService().getValue<bool>(
+        HiveBoxes.app,
         LocalStorageKeys.hasSeenOnboarding,
       ) ??
       false;

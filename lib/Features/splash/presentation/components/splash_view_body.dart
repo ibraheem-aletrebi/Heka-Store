@@ -143,7 +143,7 @@ class _SplashViewBodyState extends State<SplashViewBody>
       final pendingEmail = await sl<AuthLocalDataSource>()
           .getPendingVerifyEmail();
       if (mounted) {
-        context.go(route, extra: pendingEmail);
+        context.go(route, extra: {'email': pendingEmail, 'autoResend': true});
       }
       return;
     }

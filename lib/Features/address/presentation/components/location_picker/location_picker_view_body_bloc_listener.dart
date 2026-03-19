@@ -46,11 +46,7 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
           _showSnackBar(context, message: state.errorMessage!, isError: true);
         }
       },
-      child: Scaffold(
-        resizeToAvoidBottomInset: false,
-        backgroundColor: Colors.transparent,
-        body: LocationPickerViewBody(),
-      ),
+      child:  LocationPickerViewBody(),
     );
   }
 

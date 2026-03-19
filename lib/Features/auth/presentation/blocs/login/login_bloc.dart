@@ -24,7 +24,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
     on<_GoogleSignInSubmitted>(_onGoogleSignInSubmitted);
   }
 
-
   void _onEmailChanged(_EmailChanged event, Emitter<LoginState> emit) {
     emit(
       state.copyWith(
@@ -71,18 +70,17 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ),
     );
     response.when(
-      onSuccess: (response) {
-        emit(
-          state.copyWith(
-            isLoading: false,
-            isSuccess: true,
-            loginResponse: response,
-          ),
-        );
-      },
-      onError: (error) {
-        emit(state.copyWith(isLoading: false, error: error));
-      },
+      onSuccess: (data) => emit(
+        state.copyWith(
+          isLoading: false,
+          isSuccess: true,
+          loginResponse: data,
+          error: null,
+        ),
+      ),
+      onError: (error) => emit(
+        state.copyWith(isLoading: false, isSuccess: false, error: error),
+      ),
     );
   }
 

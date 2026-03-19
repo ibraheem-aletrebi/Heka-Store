@@ -16,7 +16,8 @@ class RegisterViewBodyBlocListener extends StatelessWidget {
           previous.error != current.error,
       listener: (context, state) {
         if (state.isRegisterSuccess) {
-          context.push(AppRoutes.verifyEmail, extra: state.email);
+          context.push(AppRoutes.verifyEmail,extra: {'email': state.email,},
+);
         }
 
         if (state.error != null) {

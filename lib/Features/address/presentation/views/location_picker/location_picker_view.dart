@@ -5,7 +5,7 @@ import 'package:heka_store/Features/address/presentation/components/location_pic
 import 'package:heka_store/core/di/injector.dart';
 
 class LocationPickerView extends StatelessWidget {
-  final bool isOnboarding; // ← لو true مش هيرجع لصفحة تانية
+  final bool isOnboarding;
   const LocationPickerView({super.key, this.isOnboarding = false});
 
   @override
@@ -15,7 +15,11 @@ class LocationPickerView extends StatelessWidget {
         nominatimService: sl(),
         language: Localizations.localeOf(context).languageCode,
       )..add(const LocationPickerEvent.currentLocationRequested()),
-      child: LocationPickerViewBodyBlocListener(isOnboarding: isOnboarding),
+      child: Scaffold(
+        body: SafeArea(
+          child: LocationPickerViewBodyBlocListener(isOnboarding: isOnboarding),
+        ),
+      ),
     );
   }
 }

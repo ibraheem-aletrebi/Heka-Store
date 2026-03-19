@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 enum RemoteFailure {
+
   unauthorized,
   tokenExpired,
   invalidCredentials,
   accountBlocked,
+  emailNotVerified, 
 
   badRequest,
   notFound,
@@ -25,6 +27,7 @@ enum RemoteFailure {
 
   unknown;
 
+
   int get statusCode => switch (this) {
     RemoteFailure.connectionTimeout => 1001,
     RemoteFailure.noInternet => 1002,
@@ -32,6 +35,7 @@ enum RemoteFailure {
     RemoteFailure.unauthorized => 401,
     RemoteFailure.tokenExpired => 401,
     RemoteFailure.invalidCredentials => 401,
+    RemoteFailure.emailNotVerified => 401, 
     RemoteFailure.accountBlocked => 403,
     RemoteFailure.badRequest => 400,
     RemoteFailure.notFound => 404,
@@ -50,6 +54,8 @@ enum RemoteFailure {
   bool get isServerError => statusCode >= 500 && statusCode < 600;
   bool get isLocalError => statusCode >= 1000;
 
+  // ─── Message ──────────────────────────────────────
+
   String message(BuildContext context) {
     final l = S.of(context);
     return switch (this) {
@@ -57,6 +63,8 @@ enum RemoteFailure {
       RemoteFailure.tokenExpired => l.error_token_expired_message,
       RemoteFailure.invalidCredentials => l.error_invalid_credentials_message,
       RemoteFailure.accountBlocked => l.error_account_blocked_message,
+      RemoteFailure.emailNotVerified =>
+        l.error_email_not_verified_message, // ← جديد
       RemoteFailure.badRequest => l.error_bad_request_message,
       RemoteFailure.notFound => l.error_not_found_message,
       RemoteFailure.conflict => l.error_conflict_message,
@@ -74,6 +82,8 @@ enum RemoteFailure {
     };
   }
 
+  // ─── Action ───────────────────────────────────────
+
   String action(BuildContext context) {
     final l = S.of(context);
     return switch (this) {
@@ -81,6 +91,8 @@ enum RemoteFailure {
       RemoteFailure.tokenExpired => l.error_token_expired_action,
       RemoteFailure.invalidCredentials => l.error_invalid_credentials_action,
       RemoteFailure.accountBlocked => l.error_account_blocked_action,
+      RemoteFailure.emailNotVerified =>
+        l.error_email_not_verified_action,
       RemoteFailure.badRequest => l.error_bad_request_action,
       RemoteFailure.notFound => l.error_not_found_action,
       RemoteFailure.conflict => l.error_conflict_action,
@@ -98,11 +110,14 @@ enum RemoteFailure {
     };
   }
 
+  // ─── Icon ─────────────────────────────────────────
+
   IconData get icon => switch (this) {
     RemoteFailure.unauthorized => Icons.lock_outline,
     RemoteFailure.tokenExpired => Icons.lock_clock_outlined,
     RemoteFailure.invalidCredentials => Icons.lock_person_outlined,
     RemoteFailure.accountBlocked => Icons.block,
+    RemoteFailure.emailNotVerified => Icons.mark_email_unread_outlined,
     RemoteFailure.badRequest => Icons.warning_amber_rounded,
     RemoteFailure.notFound => Icons.search_off,
     RemoteFailure.conflict => Icons.sync_problem_rounded,
@@ -119,6 +134,8 @@ enum RemoteFailure {
     RemoteFailure.unknown => Icons.error_outline,
   };
 
+  // ─── Can Retry ────────────────────────────────────
+
   bool get canRetry => switch (this) {
     RemoteFailure.connectionTimeout => true,
     RemoteFailure.noInternet => true,
@@ -129,6 +146,7 @@ enum RemoteFailure {
     RemoteFailure.gatewayTimeout => true,
     _ => false,
   };
+
   static RemoteFailure fromString(String? key) {
     return RemoteFailure.values.firstWhere(
       (e) => e.name == key,

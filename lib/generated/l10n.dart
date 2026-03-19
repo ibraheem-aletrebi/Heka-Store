@@ -149,6 +149,26 @@ class S {
     );
   }
 
+  /// `Please verify your email first`
+  String get error_email_not_verified_message {
+    return Intl.message(
+      'Please verify your email first',
+      name: 'error_email_not_verified_message',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Verify Email`
+  String get error_email_not_verified_action {
+    return Intl.message(
+      'Verify Email',
+      name: 'error_email_not_verified_action',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign In Again`
   String get error_token_expired_action {
     return Intl.message(

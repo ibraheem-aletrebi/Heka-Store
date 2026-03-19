@@ -185,6 +185,7 @@
     "exploreHeka": "استكشف هيكا الآن",
     "@exploreHeka": {},
 
+
     "createAccount": "إنشاء حساب",
     "@createAccount": {},
     "loginToYourAccount": "تسجيل الدخول إلى حسابك",
@@ -211,6 +212,12 @@
     "@rememberMe": {},
     "forgotPassword": "نسيت كلمة المرور؟",
     "@forgotPassword": {},
+
+
+    "error_email_not_verified_message": "يرجى تفعيل بريدك الإلكتروني أولاً",
+    "@error_email_not_verified_message": {},
+    "error_email_not_verified_action": "تفعيل البريد الإلكتروني",
+    "@error_email_not_verified_action": {},
 
     "searchForLocation": "ابحث عن مكان",
     "@searchForLocation": {},

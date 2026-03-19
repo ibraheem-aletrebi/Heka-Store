@@ -10,7 +10,6 @@ import 'package:heka_store/Features/auth/data/models/register/register_request_m
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 
-
 class AuthRepoImp implements AuthRepo {
   final AuthRemoteDataSource _remoteDataSource;
   final AuthLocalDataSource _localDataSource;
@@ -18,8 +17,8 @@ class AuthRepoImp implements AuthRepo {
   AuthRepoImp({
     required AuthRemoteDataSource remoteDataSource,
     required AuthLocalDataSource localDataSource,
-  })  : _remoteDataSource = remoteDataSource,
-        _localDataSource = localDataSource;
+  }) : _remoteDataSource = remoteDataSource,
+       _localDataSource = localDataSource;
 
   // ─── Login ────────────────────────────────────────────────────────────────
 
@@ -28,17 +27,21 @@ class AuthRepoImp implements AuthRepo {
     required LoginRequestModel loginRequestModel,
   }) async {
     try {
+      await _localDataSource.clearTokens();
       final response = await _remoteDataSource.login(
         loginRequestModel: loginRequestModel,
       );
+      print('>>> login response: $response');
       await _localDataSource.saveTokens(response);
+      print('>>> tokens saved');
       await _localDataSource.saveUser(response);
+      print('>>> user saved');
       return ApiResult.success(response);
     } catch (e) {
+      print('>>> login error: $e');
       return ApiResult.error(e);
     }
   }
-
   // ─── Register ─────────────────────────────────────────────────────────────
 
   @override
@@ -46,7 +49,7 @@ class AuthRepoImp implements AuthRepo {
     try {
       await _remoteDataSource.register(request);
       await _localDataSource.savePendingVerifyEmail(request.email);
-      return  ApiResult.success(null);
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }
@@ -77,7 +80,7 @@ class AuthRepoImp implements AuthRepo {
   }) async {
     try {
       await _remoteDataSource.forgotPassword(request);
-      return  ApiResult.success(null);
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }
@@ -89,7 +92,7 @@ class AuthRepoImp implements AuthRepo {
   Future<ApiResult<void>> verifyOtp(VerifyOtpRequestModel request) async {
     try {
       await _remoteDataSource.verifyResetOtp(request);
-      return  ApiResult.success(null);
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }
@@ -103,7 +106,7 @@ class AuthRepoImp implements AuthRepo {
   }) async {
     try {
       await _remoteDataSource.resetPassword(request);
-      return  ApiResult.success(null);
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }
@@ -117,7 +120,7 @@ class AuthRepoImp implements AuthRepo {
   }) async {
     try {
       await _remoteDataSource.resendOtp(request);
-      return  ApiResult.success(null);
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }

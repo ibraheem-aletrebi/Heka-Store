@@ -118,6 +118,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_connection_timeout_message": MessageLookupByLibrary.simpleMessage(
       "This is taking longer than expected. Check your connection.",
     ),
+    "error_email_not_verified_action": MessageLookupByLibrary.simpleMessage(
+      "Verify Email",
+    ),
+    "error_email_not_verified_message": MessageLookupByLibrary.simpleMessage(
+      "Please verify your email first",
+    ),
     "error_forbidden_action": MessageLookupByLibrary.simpleMessage("Go Back"),
     "error_forbidden_message": MessageLookupByLibrary.simpleMessage(
       "You don\'t have access to this. Need help? Contact support.",

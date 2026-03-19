@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/Features/onboarding/presentation/components/onboarding_view_body.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -15,6 +16,7 @@ class _OnboardingViewState extends State<OnboardingView> {
   @override
   void initState() {
     sl<LocalStorageService>().setValue<bool>(
+      HiveBoxes.app,
       LocalStorageKeys.hasSeenOnboarding,
       true,
     );

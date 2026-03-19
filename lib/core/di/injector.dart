@@ -9,6 +9,7 @@ import 'package:heka_store/Features/address/domain/user_cases/delete_address_use
 import 'package:heka_store/Features/address/domain/user_cases/get_addresses_use_case.dart';
 import 'package:heka_store/Features/address/domain/user_cases/set_default_address_use_case.dart';
 import 'package:heka_store/Features/address/domain/user_cases/update_address_use_case.dart';
+import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
@@ -27,12 +28,15 @@ import 'package:heka_store/Features/auth/presentation/blocs/register/register_bl
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/local/secure_storage_service.dart';
+import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 
 final sl = GetIt.instance;
 
@@ -49,11 +53,8 @@ Future<void> _initCore() async {
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(
-    adapters: [
-      AppThemeModeEnumAdapter(),
-      UserModelAdapter(),
-      AddressModelAdapter(),
-    ],
+    boxNames: [HiveBoxes.app, HiveBoxes.data],
+    regesterAdapters: _registerAdapters,
   );
 
   // ─── Secure Storage ───────────────────────────────
@@ -80,6 +81,11 @@ Future<void> _initCore() async {
   );
 }
 
+Future<void> _registerAdapters() async {
+  Hive.registerAdapter<AppThemeModeEnum>(AppThemeModeEnumAdapter());
+  Hive.registerAdapter<UserModel>(UserModelAdapter());
+  Hive.registerAdapter<AddressModel>(AddressModelAdapter());
+}
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
 void _initAuth() {
@@ -87,6 +93,7 @@ void _initAuth() {
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
+
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(
       secureStorage: sl<SecureStorageService>(),
@@ -142,8 +149,8 @@ void _initAuth() {
   );
 }
 
-
 void _initAddress() {
+  sl.registerLazySingleton<NominatimService>(() => NominatimService());
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<AddressRemoteDataSource>(
     () => AddressRemoteDataSourceImpl(apiService: sl<ApiService>()),
@@ -178,6 +185,7 @@ void _initAddress() {
   );
 
   // ─── BLoCs ────────────────────────────────────────
-
-  
+  sl.registerFactory<LocationPickerBloc>(
+    () => LocationPickerBloc(nominatimService: sl<NominatimService>()),
+  );
 }

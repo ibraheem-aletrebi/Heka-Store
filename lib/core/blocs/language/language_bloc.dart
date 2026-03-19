@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/services/local/local_storage_keys.dart';
 import 'package:heka_store/core/enums/errors/language_error_enum.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -24,7 +25,11 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     try {
       emit(const LanguageState.loading());
       final savedLang =
-          _localStorage.getValue<String>(LocalStorageKeys.langCode) ?? 'ar';
+          _localStorage.getValue<String>(
+            HiveBoxes.app,
+            LocalStorageKeys.langCode,
+          ) ??
+          'ar';
       emit(LanguageState.loaded(langCode: savedLang));
     } catch (e) {
       emit(LanguageState.failure(languageError: LanguageError.loadFailed));
@@ -38,6 +43,7 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
     try {
       emit(const LanguageState.loading());
       await _localStorage.setValue<String>(
+        HiveBoxes.app,
         LocalStorageKeys.langCode,
         event.langCode,
       );
@@ -56,7 +62,11 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
 
       final newLang = current == 'ar' ? 'en' : 'ar';
       emit(const LanguageState.loading());
-      await _localStorage.setValue<String>(LocalStorageKeys.langCode, newLang);
+      await _localStorage.setValue<String>(
+        HiveBoxes.app,
+        LocalStorageKeys.langCode,
+        newLang,
+      );
       emit(LanguageState.loaded(langCode: newLang));
     } catch (e) {
       emit(LanguageState.failure(languageError: LanguageError.toggleFailed));
