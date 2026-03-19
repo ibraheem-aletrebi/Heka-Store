@@ -64,8 +64,8 @@ class AppRouter {
 Future<String> getInitialRoute() async {
   final localDataSource = sl<AuthLocalDataSource>();
 
-  // final isLoggedIn = await localDataSource.isLoggedIn();
-  // if (isLoggedIn) return AppRoutes.mainLayout;
+  final isLoggedIn = await localDataSource.isLoggedIn();
+  if (isLoggedIn) return AppRoutes.mainLayout;
 
   final pendingEmail = await localDataSource.getPendingVerifyEmail();
   if (pendingEmail != null) return AppRoutes.verifyEmail;
