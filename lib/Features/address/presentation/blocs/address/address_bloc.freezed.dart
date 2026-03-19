@@ -848,20 +848,16 @@ abstract class _SetDefault implements AddressEvent {
 
 /// @nodoc
 mixin _$AddressState {
-// ─── Data ─────────────────────────────────────
-  List<AddressModel> get addresses =>
-      throw _privateConstructorUsedError; // ─── Loading ──────────────────────────────────
+  List<AddressModel> get addresses => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isAddLoading => throw _privateConstructorUsedError;
   bool get isUpdateLoading => throw _privateConstructorUsedError;
   bool get isDeleteLoading => throw _privateConstructorUsedError;
-  bool get isSetDefaultLoading =>
-      throw _privateConstructorUsedError; // ─── Success ──────────────────────────────────
+  bool get isSetDefaultLoading => throw _privateConstructorUsedError;
   bool get isAddSuccess => throw _privateConstructorUsedError;
   bool get isUpdateSuccess => throw _privateConstructorUsedError;
   bool get isDeleteSuccess => throw _privateConstructorUsedError;
-  bool get isSetDefaultSuccess =>
-      throw _privateConstructorUsedError; // ─── Error ────────────────────────────────────
+  bool get isSetDefaultSuccess => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1075,9 +1071,7 @@ class _$AddressStateImpl extends _AddressState {
       : _addresses = addresses,
         super._();
 
-// ─── Data ─────────────────────────────────────
   final List<AddressModel> _addresses;
-// ─── Data ─────────────────────────────────────
   @override
   @JsonKey()
   List<AddressModel> get addresses {
@@ -1086,7 +1080,6 @@ class _$AddressStateImpl extends _AddressState {
     return EqualUnmodifiableListView(_addresses);
   }
 
-// ─── Loading ──────────────────────────────────
   @override
   @JsonKey()
   final bool isLoading;
@@ -1102,7 +1095,6 @@ class _$AddressStateImpl extends _AddressState {
   @override
   @JsonKey()
   final bool isSetDefaultLoading;
-// ─── Success ──────────────────────────────────
   @override
   @JsonKey()
   final bool isAddSuccess;
@@ -1115,7 +1107,6 @@ class _$AddressStateImpl extends _AddressState {
   @override
   @JsonKey()
   final bool isSetDefaultSuccess;
-// ─── Error ────────────────────────────────────
   @override
   final ApiErrorModel? error;
 
@@ -1189,9 +1180,9 @@ abstract class _AddressState extends AddressState {
       final ApiErrorModel? error}) = _$AddressStateImpl;
   const _AddressState._() : super._();
 
-  @override // ─── Data ─────────────────────────────────────
+  @override
   List<AddressModel> get addresses;
-  @override // ─── Loading ──────────────────────────────────
+  @override
   bool get isLoading;
   @override
   bool get isAddLoading;
@@ -1201,7 +1192,7 @@ abstract class _AddressState extends AddressState {
   bool get isDeleteLoading;
   @override
   bool get isSetDefaultLoading;
-  @override // ─── Success ──────────────────────────────────
+  @override
   bool get isAddSuccess;
   @override
   bool get isUpdateSuccess;
@@ -1209,7 +1200,7 @@ abstract class _AddressState extends AddressState {
   bool get isDeleteSuccess;
   @override
   bool get isSetDefaultSuccess;
-  @override // ─── Error ────────────────────────────────────
+  @override
   ApiErrorModel? get error;
   @override
   @JsonKey(ignore: true)

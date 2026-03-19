@@ -5,7 +5,7 @@ import 'package:heka_store/Features/auth/presentation/views/forgot_password/forg
 import 'package:heka_store/Features/auth/presentation/views/login/login_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/register/register_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/verify_email/verify_email_view.dart';
-import 'package:heka_store/Features/layout/views/main_layout_view.dart';
+import 'package:heka_store/Features/home/views/layout/main_layout_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
