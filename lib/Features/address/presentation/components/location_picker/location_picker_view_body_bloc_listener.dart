@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
 import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_view_body.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
@@ -18,35 +19,60 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<LocationPickerBloc, LocationPickerState>(
-      listenWhen: (previous, current) =>
-          previous.isPermissionDenied != current.isPermissionDenied ||
-          previous.isPermissionDeniedForever !=
-              current.isPermissionDeniedForever ||
-          previous.errorMessage != current.errorMessage,
-      listener: (context, state) {
-        if (state.isConfirmed) {
-          if (isOnboarding) {
-            context.go(AppRoutes.mainLayout);
-          } else {
-            context.pop();
-          }
-        }
-        if (state.isPermissionDenied) {
-          _showSnackBar(
-            context,
-            message: S.of(context).locationPermissionDenied,
-            isError: true,
-          );
-        }
-        if (state.isPermissionDeniedForever) {
-          _showPermissionDialog(context);
-        }
-        if (state.errorMessage != null) {
-          _showSnackBar(context, message: state.errorMessage!, isError: true);
-        }
-      },
-      child:  LocationPickerViewBody(),
+    return MultiBlocListener(
+      listeners: [
+        BlocListener<LocationPickerBloc, LocationPickerState>(
+          listenWhen: (previous, current) =>
+              previous.isPermissionDenied != current.isPermissionDenied ||
+              previous.isPermissionDeniedForever !=
+                  current.isPermissionDeniedForever ||
+              previous.errorMessage != current.errorMessage,
+          listener: (context, state) {
+            if (state.isPermissionDenied) {
+              _showSnackBar(
+                context,
+                message: S.of(context).locationPermissionDenied,
+                isError: true,
+              );
+            }
+            if (state.isPermissionDeniedForever) {
+              _showPermissionDialog(context);
+            }
+            if (state.errorMessage != null) {
+              _showSnackBar(
+                context,
+                message: state.errorMessage!,
+                isError: true,
+              );
+            }
+          },
+        ),
+        BlocListener<AddressBloc, AddressState>(
+          listenWhen: (previous, current) =>
+              previous.isAddSuccess != current.isAddSuccess ||
+              previous.error != current.error,
+          listener: (context, state) {
+            if (state.isAddSuccess) {
+              if (isOnboarding) {
+                context.go(AppRoutes.mainLayout);
+              } else {
+                context.pop();
+              }
+            }
+            if (state.error != null) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text(
+                    state.error!.serverMessage ??
+                        state.error!.failure.message(context),
+                  ),
+                ),
+              );
+            }
+          },
+        ),
+      ],
+      child: LocationPickerViewBody(),
     );
   }
 

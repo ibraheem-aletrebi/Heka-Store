@@ -1,4 +1,4 @@
-
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -27,16 +27,13 @@ class LocationPickerGpsButton extends StatelessWidget {
         ),
         child: isLoading
             ? Padding(
-                padding: const EdgeInsets.all(12),
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  color: colors.primary,
-                ),
+                padding: EdgeInsets.all(AppSizes.sp12),
+                child: CupertinoActivityIndicator(color: colors.primary),
               )
             : Icon(
                 Icons.my_location_rounded,
                 color: colors.primary,
-                size: 22,
+                size: AppSizes.sp22,
               ),
       ),
     );

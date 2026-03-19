@@ -1,9 +1,10 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/address/data/models/address_request_model.dart';
+import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
-import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_detail.dart';
 import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_default_toggle.dart';
+import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_detail.dart';
 import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_nickname_selector.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -17,12 +18,11 @@ class LocationPickerBottomPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-    final bottomPadding =
-        MediaQuery.of(context).padding.bottom + AppSizes.h16;
+    final bottomPadding = MediaQuery.of(context).padding.bottom + AppSizes.h16;
     final s = S.of(context);
 
     return BlocBuilder<LocationPickerBloc, LocationPickerState>(
-      builder: (context, state) {
+      builder: (context, locationState) {
         return Container(
           decoration: BoxDecoration(
             color: colors.background,
@@ -40,14 +40,17 @@ class LocationPickerBottomPanel extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // ─── Drag Handle ──────────────────────────
               const _DragHandle(),
 
-              if (state.hasLocation) ...[
+              // ─── Location Detail ──────────────────────
+              if (locationState.hasLocation) ...[
                 const LocationPickerDetail(),
                 SizedBox(height: AppSizes.h20),
               ],
 
-              if (state.hasLocation) ...[
+              // ─── Nickname ─────────────────────────────
+              if (locationState.hasLocation) ...[
                 Text(
                   s.addressNickName,
                   style: AppTextStyles.semiBold14.copyWith(
@@ -59,22 +62,31 @@ class LocationPickerBottomPanel extends StatelessWidget {
                 SizedBox(height: AppSizes.h16),
               ],
 
-              if (state.hasLocation) ...[
+              if (locationState.hasLocation) ...[
                 const LocationPickerDefaultToggle(),
                 SizedBox(height: AppSizes.h20),
               ],
 
-              CustomButton(
-                isLoading: state.isLoadingLocation,
-                text: s.confirmLocation,
-                onPressed: state.hasLocation && !state.isLoadingLocation
-                    ? () => context
-                        .read<LocationPickerBloc>()
-                        .add(const LocationPickerEvent.locationConfirmed())
-                    : null,
+              BlocBuilder<AddressBloc, AddressState>(
+                buildWhen: (previous, current) =>
+                    previous.isAddLoading != current.isAddLoading,
+                builder: (context, addressState) {
+                  final isLoading =
+                      locationState.isLoadingLocation ||
+                      addressState.isAddLoading;
+
+                  return CustomButton(
+                    isLoading: isLoading,
+                    text: s.confirmLocation,
+                    onPressed: locationState.hasLocation && !isLoading
+                        ? () => _onConfirm(context, locationState)
+                        : null,
+                  );
+                },
               ),
               SizedBox(height: AppSizes.h8),
 
+              // ─── Skip ─────────────────────────────────
               Center(
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -90,6 +102,23 @@ class LocationPickerBottomPanel extends StatelessWidget {
       },
     );
   }
+
+  void _onConfirm(BuildContext context, LocationPickerState locationState) {
+    context.read<AddressBloc>().add(
+      AddressEvent.added(
+        AddressRequestModel(
+          nickname: locationState.nickname.isNotEmpty
+              ? locationState.nickname
+              : 'My Address',
+          fullAddress:
+              locationState.address ?? locationState.formattedCoordinates,
+          latitude: locationState.latitude!,
+          longitude: locationState.longitude!,
+          isDefault: locationState.isDefault,
+        ),
+      ),
+    );
+  }
 }
 
 class _DragHandle extends StatelessWidget {
@@ -97,15 +126,15 @@ class _DragHandle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Align(
-        alignment: Alignment.center,
-        child: Container(
-          width: AppSizes.w40,
-          height: 4,
-          margin: EdgeInsets.only(bottom: AppSizes.h16),
-          decoration: BoxDecoration(
-            color: context.myColors.divider,
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ),
-      );
+    alignment: Alignment.center,
+    child: Container(
+      width: AppSizes.w40,
+      height: 4,
+      margin: EdgeInsets.only(bottom: AppSizes.h16),
+      decoration: BoxDecoration(
+        color: context.myColors.divider,
+        borderRadius: BorderRadius.circular(2),
+      ),
+    ),
+  );
 }
