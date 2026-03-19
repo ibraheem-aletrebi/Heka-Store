@@ -7,16 +7,32 @@ import 'package:heka_store/Features/auth/presentation/components/verify_email/ve
 import 'package:heka_store/core/di/injector.dart';
 
 class VerifyEmailView extends StatelessWidget {
-  const VerifyEmailView({super.key, required this.email});
+  const VerifyEmailView({
+    super.key,
+    required this.email,
+    this.autoResend = false, 
+  });
+
   final String email;
+  final bool autoResend;
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => VerifyEmailBloc(
-        email: email,
-        verifyOtpUseCase: sl<VerifyEmailOtpUseCase>(),
-        resendOtpUseCase: sl<ResendOtpUseCase>(),
-      ),
+      create: (context) {
+        final bloc = VerifyEmailBloc(
+          email: email,
+          verifyOtpUseCase: sl<VerifyEmailOtpUseCase>(),
+          resendOtpUseCase: sl<ResendOtpUseCase>(),
+        );
+
+        
+        if (autoResend) {
+          bloc.add(const VerifyEmailEvent.otpResent());
+        }
+
+        return bloc;
+      },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(
@@ -26,5 +42,3 @@ class VerifyEmailView extends StatelessWidget {
     );
   }
 }
-
-

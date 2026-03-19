@@ -1,12 +1,12 @@
 class AppRoutes {
   static const splash = '/';
   static const onboarding = '/onboarding';
-
   static const login = '/login';
-  static const forgotPassword='/forgot-password';
-
   static const register = '/register';
-  static const verifyEmail='/verify-email';
+  static const forgotPassword = '/forgot-password';
+  static const verifyEmail = '/verify-email';
+  static const locationPickerOnboarding = '/location-picker-onboarding';
+  static const locationPicker = '/location-picker';
 
-  static const home = '/home';
+  static const mainLayout = '/main-layout';
 }

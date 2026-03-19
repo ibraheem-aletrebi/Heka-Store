@@ -16,6 +16,10 @@ class LocationPickerState with _$LocationPickerState {
     @Default(false) bool isConfirmed,
     @Default(false) bool isPermissionDenied,
     @Default(false) bool isPermissionDeniedForever,
+
+    @Default('') String nickname,
+  @Default(false) bool isDefault,
+
     String? errorMessage,
   }) = _LocationPickerState;
 

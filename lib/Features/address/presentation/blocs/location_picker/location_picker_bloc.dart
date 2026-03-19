@@ -28,9 +28,18 @@ class LocationPickerBloc
     on<_SearchCleared>(_onSearchCleared);
     on<_LocationConfirmed>(_onLocationConfirmed);
     on<_LanguageChanged>(_onLanguageChanged);
+    on<_NicknameChanged>(_onNicknameChanged);
+on<_IsDefaultToggled>(_onIsDefaultToggled);
   }
 
 
+void _onNicknameChanged(_NicknameChanged event, Emitter<LocationPickerState> emit) {
+  emit(state.copyWith(nickname: event.nickname));
+}
+
+void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> emit) {
+  emit(state.copyWith(isDefault: !state.isDefault));
+}
   void _onLanguageChanged(
     _LanguageChanged event,
     Emitter<LocationPickerState> emit,

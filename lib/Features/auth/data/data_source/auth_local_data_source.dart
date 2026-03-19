@@ -1,4 +1,3 @@
-
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -34,8 +33,8 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   const AuthLocalDataSourceImpl({
     required SecureStorageService secureStorage,
     required LocalStorageService localStorage,
-  })  : _secureStorage = secureStorage,
-        _localStorage = localStorage;
+  }) : _secureStorage = secureStorage,
+       _localStorage = localStorage;
 
   static const _userKey = 'AUTH_USER';
 
@@ -63,7 +62,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<void> clearTokens() async {
     await _secureStorage.deleteTokens();
   }
-
 
   @override
   Future<void> saveUser(LoginResponseModel response) async {
@@ -98,10 +96,14 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     await _secureStorage.delete(SecureStorageKeys.pendingVerifyEmail);
   }
 
-
   @override
   Future<bool> isLoggedIn() async {
     return _secureStorage.hasAccessToken();
+  }
+
+  Future<bool> hasAddress() async {
+    final user = await getUser();
+    return user?.hasAddress ?? false;
   }
 
   @override

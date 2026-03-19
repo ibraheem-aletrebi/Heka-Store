@@ -18,8 +18,13 @@ class VerifyEmailViewBodyBlocListener extends StatelessWidget {
           previous.error != current.error,
       listener: (context, state) {
         if (state.isOtpSuccess) {
-          context.go(AppRoutes.home);
-          return;
+          final hasAddress =
+              state.loginResponse?.data!.user.hasAddress ?? false;
+          if (hasAddress) {
+            context.go(AppRoutes.mainLayout);
+          } else {
+            context.go(AppRoutes.locationPickerOnboarding);
+          }
         }
         if (state.isResendSuccess) {
           ScaffoldMessenger.of(context).showSnackBar(

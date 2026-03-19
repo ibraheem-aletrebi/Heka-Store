@@ -10,4 +10,6 @@ sealed class LocationPickerEvent with _$LocationPickerEvent {
   const factory LocationPickerEvent.searchCleared() = _SearchCleared;
   const factory LocationPickerEvent.locationConfirmed() = _LocationConfirmed;
   const factory LocationPickerEvent.languageChanged(String language) = _LanguageChanged;
+  const factory LocationPickerEvent.nicknameChanged(String nickname) = _NicknameChanged;
+  const factory LocationPickerEvent.isDefaultToggled() = _IsDefaultToggled;
 }
