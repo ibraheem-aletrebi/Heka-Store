@@ -9,6 +9,7 @@ import 'package:heka_store/Features/address/domain/user_cases/delete_address_use
 import 'package:heka_store/Features/address/domain/user_cases/get_addresses_use_case.dart';
 import 'package:heka_store/Features/address/domain/user_cases/set_default_address_use_case.dart';
 import 'package:heka_store/Features/address/domain/user_cases/update_address_use_case.dart';
+import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
@@ -187,5 +188,15 @@ void _initAddress() {
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<LocationPickerBloc>(
     () => LocationPickerBloc(nominatimService: sl<NominatimService>()),
+  );
+
+  sl.registerFactory<AddressBloc>(
+    () => AddressBloc(
+      getAddressesUseCase: sl<GetAddressesUseCase>(),
+      addAddressUseCase: sl<AddAddressUseCase>(),
+      updateAddressUseCase: sl<UpdateAddressUseCase>(),
+      deleteAddressUseCase: sl<DeleteAddressUseCase>(),
+      setDefaultAddressUseCase: sl<SetDefaultAddressUseCase>(),
+    ),
   );
 }
