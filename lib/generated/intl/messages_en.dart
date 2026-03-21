@@ -215,9 +215,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPassword": MessageLookupByLibrary.simpleMessage("Forgot password?"),
     "freeShipping": MessageLookupByLibrary.simpleMessage("Free Shipping"),
     "getStartedNow": MessageLookupByLibrary.simpleMessage("Get started now"),
+    "goodAfternoon": MessageLookupByLibrary.simpleMessage("Good afternoon"),
+    "goodEvening": MessageLookupByLibrary.simpleMessage("Good evening"),
+    "goodMorning": MessageLookupByLibrary.simpleMessage("Good morning"),
     "gpsButtonTooltip": MessageLookupByLibrary.simpleMessage(
       "Current location",
     ),
+    "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+    "hello": MessageLookupByLibrary.simpleMessage("Hello"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("I agree to "),
     "invalidCardNumber": MessageLookupByLibrary.simpleMessage(

@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:heka_store/Features/home/components/home/home_view_body.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Home'),
-      ),
-    );
+    return HomeViewBody();
   }
 }

@@ -147,9 +147,9 @@
     "@passwordTooWeak": {},
     "otpRequired": "Verification code is required",
     "@otpRequired": {},
-"otpInvalid": "Verification code must contain numbers only",
+    "otpInvalid": "Verification code must contain numbers only",
     "@otpInvalid": {},
-"otpTooShort": "Verification code is incomplete",
+    "otpTooShort": "Verification code is incomplete",
     "@otpTooShort": {},
     "onboardingTitle": "Welcome to Heka",
     "@onboardingTitle": {},
@@ -285,8 +285,23 @@
     "@other": {},
     "nicknameHint": "e.g. Mom's house",
     "@nicknameHint": {},
+
+
     "failedToGetLocation": "Failed to get location. Please try again.",
     "@failedToGetLocation": {},
+
+    "goodMorning": "Good morning",
+    "@goodMorning": {},
+    "goodAfternoon": "Good afternoon",
+    "@goodAfternoon": {},
+    "goodEvening": "Good evening",
+    "@goodEvening": {},
+    "guest": "Guest",
+    "@guest": {},
+    "hello": "Hello",
+    "@hello": {},
+
+
     "itemsYouMayLike": "Items You May Like",
     "@itemsYouMayLike": {},
     "viewAll": "View All",

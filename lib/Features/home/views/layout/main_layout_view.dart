@@ -8,9 +8,12 @@ class MainLayoutView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   return BlocProvider(
+    return BlocProvider(
       create: (_) => MainLayoutBloc(),
-      child: Scaffold(extendBody: true, body: const MainLayoutViewBody()),
+      child: Scaffold(
+        extendBody: true,
+        body: SafeArea(child: const MainLayoutViewBody()),
+      ),
     );
   }
 }

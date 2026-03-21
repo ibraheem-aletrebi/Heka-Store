@@ -329,6 +329,20 @@
     "failedToGetLocation": "فشل في تحديد الموقع. حاول مرة أخرى.",
     "@failedToGetLocation": {},
 
+
+
+
+    "goodMorning": "صباح الخير",
+    "@goodMorning": {},
+    "goodAfternoon": "مساء الخير",
+    "@goodAfternoon": {},
+    "goodEvening": "مساء النور",
+    "@goodEvening": {},
+    "guest": "زائر",
+    "@guest": {},
+    "hello": "مرحباً",
+    "@hello": {},
+
     "itemsYouMayLike": "منتجات قد تعجبك",
     "@itemsYouMayLike": {},
     "viewAll": "عرض الكل",
