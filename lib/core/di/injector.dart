@@ -59,6 +59,7 @@ Future<void> setupInjector() async {
   await _initCore();
   _initAuth();
   _initAddress();
+  _initHome();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -219,7 +220,6 @@ void _initAddress() {
   );
 }
 
-
 void _initHome() {
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<HomeRemoteDataSource>(
@@ -254,14 +254,14 @@ void _initHome() {
     () => GetBrandsUseCase(repo: sl<HomeRepo>()),
   );
 
-  // ─── BLoCs ──────────────────────────────────────── 
+  // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<HomeBloc>(
-  () => HomeBloc(
-    getBannersUseCase: sl<GetBannersUseCase>(),
-    getCategoriesUseCase: sl<GetCategoriesUseCase>(),
-    getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
-    getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
-    getBrandsUseCase: sl<GetBrandsUseCase>(),
-  ),
-);
+    () => HomeBloc(
+      getBannersUseCase: sl<GetBannersUseCase>(),
+      getCategoriesUseCase: sl<GetCategoriesUseCase>(),
+      getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
+      getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
+      getBrandsUseCase: sl<GetBrandsUseCase>(),
+    ),
+  );
 }
