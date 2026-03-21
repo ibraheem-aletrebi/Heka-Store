@@ -1,71 +1,171 @@
-// import 'package:heka_store/Features/home/data/product/product_model.dart';
-// import 'package:heka_store/core/constants/hive_boxes.dart';
-// import 'package:heka_store/core/constants/local_storage_keys.dart';
-// import 'package:heka_store/core/services/local/local_storage_service.dart';
 
-// abstract class HomeLocalDataSource {
-//   Future<void> saveRecommendedProducts(List<ProductModel> products);
-//   List<ProductModel> getRecommendedProducts();
-//   Future<void> clearRecommendedProducts();
+import 'package:heka_store/Features/home/models/bannar/banner_model.dart';
+import 'package:heka_store/Features/home/models/brand/brand_model.dart';
+import 'package:heka_store/Features/home/models/category/category_model.dart';
+import 'package:heka_store/Features/home/models/product/product_model.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
+import 'package:heka_store/core/constants/local_storage_keys.dart';
+import 'package:heka_store/core/services/local/local_storage_service.dart';
 
-//   Future<void> saveLastFetchTime();
-//   bool isCacheValid({int maxAgeMinutes = 20});
-// }
+abstract class HomeLocalDataSource {
+  // ─── Banners ──────────────────────────────────────
+  Future<void> saveBanners(List<BannerModel> banners);
+  List<BannerModel> getBanners();
 
-// class HomeLocalDataSourceImpl implements HomeLocalDataSource {
-//   final LocalStorageService _localStorage;
+  // ─── Categories ───────────────────────────────────
+  Future<void> saveCategories(List<CategoryModel> categories);
+  List<CategoryModel> getCategories();
 
-//   const HomeLocalDataSourceImpl({required LocalStorageService localStorage})
-//     : _localStorage = localStorage;
+  // ─── Recommended Products ─────────────────────────
+  Future<void> saveRecommendedProducts(List<ProductModel> products);
+  List<ProductModel> getRecommendedProducts();
 
-//   // ─── Products ─────────────────────────────────────────────────────────────
+  // ─── Featured Products ────────────────────────────
+  Future<void> saveFeaturedProducts(List<ProductModel> products);
+  List<ProductModel> getFeaturedProducts();
 
-//   @override
-//   Future<void> saveRecommendedProducts(List<ProductModel> products) async {
-//     await _localStorage.setValue<List>(
-//       HiveBoxes.data,
-//       LocalStorageKeys.recommendedProducts,
-//       products,
-//     );
-//     await saveLastFetchTime();
-//   }
+  // ─── Brands ───────────────────────────────────────
+  Future<void> saveBrands(List<BrandModel> brands);
+  List<BrandModel> getBrands();
 
-//   @override
-//   List<ProductModel> getRecommendedProducts() {
-//     final data = _localStorage.getValue<List>(
-//       HiveBoxes.data,
-//       LocalStorageKeys.recommendedProducts,
-//     );
-//     if (data == null) return [];
-//     return data.cast<ProductModel>();
-//   }
+  // ─── Cache ────────────────────────────────────────
+  Future<void> saveLastFetchTime();
+  bool isCacheValid({int maxAgeMinutes = 20});
+  Future<void> clearAll();
+}
 
-//   @override
-//   Future<void> clearRecommendedProducts() async {
-//     await _localStorage.remove(
-//       HiveBoxes.data,
-//       LocalStorageKeys.recommendedProducts,
-//     );
-//   }
+class HomeLocalDataSourceImpl implements HomeLocalDataSource {
+  final LocalStorageService _localStorage;
 
-//   @override
-//   Future<void> saveLastFetchTime() async {
-//     await _localStorage.setValue<int>(
-//       HiveBoxes.data,
-//       LocalStorageKeys.productsLastFetch,
-//       DateTime.now().millisecondsSinceEpoch,
-//     );
-//   }
+  const HomeLocalDataSourceImpl({required LocalStorageService localStorage})
+      : _localStorage = localStorage;
 
-//   @override
-//   bool isCacheValid({int maxAgeMinutes = 10}) {
-//     final lastFetch = _localStorage.getValue<int>(
-//       HiveBoxes.data,
-//       LocalStorageKeys.productsLastFetch,
-//     );
-//     if (lastFetch == null) return false;
-//     final lastFetchTime = DateTime.fromMillisecondsSinceEpoch(lastFetch);
-//     final diff = DateTime.now().difference(lastFetchTime).inMinutes;
-//     return diff < maxAgeMinutes;
-//   }
-// }
+  // ─── Banners ──────────────────────────────────────
+
+  @override
+  Future<void> saveBanners(List<BannerModel> banners) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.banners,
+      banners,
+    );
+  }
+
+  @override
+  List<BannerModel> getBanners() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.banners,
+    );
+    return data?.cast<BannerModel>() ?? [];
+  }
+
+  // ─── Categories ───────────────────────────────────
+
+  @override
+  Future<void> saveCategories(List<CategoryModel> categories) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.categories,
+      categories,
+    );
+  }
+
+  @override
+  List<CategoryModel> getCategories() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.categories,
+    );
+    return data?.cast<CategoryModel>() ?? [];
+  }
+
+  // ─── Recommended Products ─────────────────────────
+
+  @override
+  Future<void> saveRecommendedProducts(List<ProductModel> products) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.recommendedProducts,
+      products,
+    );
+  }
+
+  @override
+  List<ProductModel> getRecommendedProducts() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.recommendedProducts,
+    );
+    return data?.cast<ProductModel>() ?? [];
+  }
+
+  // ─── Featured Products ────────────────────────────
+
+  @override
+  Future<void> saveFeaturedProducts(List<ProductModel> products) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.featuredProducts,
+      products,
+    );
+  }
+
+  @override
+  List<ProductModel> getFeaturedProducts() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.featuredProducts,
+    );
+    return data?.cast<ProductModel>() ?? [];
+  }
+
+  // ─── Brands ───────────────────────────────────────
+
+  @override
+  Future<void> saveBrands(List<BrandModel> brands) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.brands,
+      brands,
+    );
+  }
+
+  @override
+  List<BrandModel> getBrands() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.home,
+      LocalStorageKeys.brands,
+    );
+    return data?.cast<BrandModel>() ?? [];
+  }
+
+  // ─── Cache ────────────────────────────────────────
+
+  @override
+  Future<void> saveLastFetchTime() async {
+    await _localStorage.setValue<int>(
+      HiveBoxes.home,
+      LocalStorageKeys.homeLastFetch,
+      DateTime.now().millisecondsSinceEpoch,
+    );
+  }
+
+  @override
+  bool isCacheValid({int maxAgeMinutes = 20}) {
+    final lastFetch = _localStorage.getValue<int>(
+      HiveBoxes.home,
+      LocalStorageKeys.homeLastFetch,
+    );
+    if (lastFetch == null) return false;
+    final diff = DateTime.now()
+        .difference(DateTime.fromMillisecondsSinceEpoch(lastFetch))
+        .inMinutes;
+    return diff < maxAgeMinutes;
+  }
+
+  @override
+  Future<void> clearAll() async {
+    await _localStorage.clearBox(HiveBoxes.home);
+  }
+}

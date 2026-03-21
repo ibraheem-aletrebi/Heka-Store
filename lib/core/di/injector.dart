@@ -58,7 +58,7 @@ Future<void> _initCore() async {
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(
-    boxNames: [HiveBoxes.app, HiveBoxes.data],
+    boxNames: [HiveBoxes.app, HiveBoxes.data, HiveBoxes.home],
     regesterAdapters: _registerAdapters,
   );
 
