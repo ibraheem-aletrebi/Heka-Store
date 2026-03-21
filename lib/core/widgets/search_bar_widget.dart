@@ -43,7 +43,7 @@ class AppSearchBar extends StatelessWidget {
                 horizontal: AppSizes.w16,
                 vertical: AppSizes.h6,
               ),
-          height: AppSizes.h40,
+          height: AppSizes.h48,
           decoration: BoxDecoration(
             color: colors.surface,
             borderRadius: BorderRadius.circular(14),

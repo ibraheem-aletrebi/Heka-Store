@@ -20,21 +20,37 @@ ProductModel _$ProductModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductModel {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get code => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get nameAr => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get nameEn => throw _privateConstructorUsedError;
+  @HiveField(4)
   double get price => throw _privateConstructorUsedError;
+  @HiveField(5)
   double? get discountPrice => throw _privateConstructorUsedError;
+  @HiveField(6)
   double get finalPrice => throw _privateConstructorUsedError;
+  @HiveField(7)
   double? get discountPercentage => throw _privateConstructorUsedError;
+  @HiveField(8)
   bool get inStock => throw _privateConstructorUsedError;
+  @HiveField(9)
   bool get isFeatured => throw _privateConstructorUsedError;
+  @HiveField(10)
   String? get primaryImageUrl => throw _privateConstructorUsedError;
+  @HiveField(11)
   double get averageRating => throw _privateConstructorUsedError;
+  @HiveField(12)
   int get totalReviews => throw _privateConstructorUsedError;
+  @HiveField(13)
   String get vendorName => throw _privateConstructorUsedError;
+  @HiveField(14)
   String get categoryNameEn => throw _privateConstructorUsedError;
+  @HiveField(15)
   String get categoryNameAr => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -50,22 +66,22 @@ abstract class $ProductModelCopyWith<$Res> {
       _$ProductModelCopyWithImpl<$Res, ProductModel>;
   @useResult
   $Res call(
-      {int id,
-      String code,
-      String nameAr,
-      String nameEn,
-      double price,
-      double? discountPrice,
-      double finalPrice,
-      double? discountPercentage,
-      bool inStock,
-      bool isFeatured,
-      String? primaryImageUrl,
-      double averageRating,
-      int totalReviews,
-      String vendorName,
-      String categoryNameEn,
-      String categoryNameAr});
+      {@HiveField(0) int id,
+      @HiveField(1) String code,
+      @HiveField(2) String nameAr,
+      @HiveField(3) String nameEn,
+      @HiveField(4) double price,
+      @HiveField(5) double? discountPrice,
+      @HiveField(6) double finalPrice,
+      @HiveField(7) double? discountPercentage,
+      @HiveField(8) bool inStock,
+      @HiveField(9) bool isFeatured,
+      @HiveField(10) String? primaryImageUrl,
+      @HiveField(11) double averageRating,
+      @HiveField(12) int totalReviews,
+      @HiveField(13) String vendorName,
+      @HiveField(14) String categoryNameEn,
+      @HiveField(15) String categoryNameAr});
 }
 
 /// @nodoc
@@ -176,22 +192,22 @@ abstract class _$$ProductModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String code,
-      String nameAr,
-      String nameEn,
-      double price,
-      double? discountPrice,
-      double finalPrice,
-      double? discountPercentage,
-      bool inStock,
-      bool isFeatured,
-      String? primaryImageUrl,
-      double averageRating,
-      int totalReviews,
-      String vendorName,
-      String categoryNameEn,
-      String categoryNameAr});
+      {@HiveField(0) int id,
+      @HiveField(1) String code,
+      @HiveField(2) String nameAr,
+      @HiveField(3) String nameEn,
+      @HiveField(4) double price,
+      @HiveField(5) double? discountPrice,
+      @HiveField(6) double finalPrice,
+      @HiveField(7) double? discountPercentage,
+      @HiveField(8) bool inStock,
+      @HiveField(9) bool isFeatured,
+      @HiveField(10) String? primaryImageUrl,
+      @HiveField(11) double averageRating,
+      @HiveField(12) int totalReviews,
+      @HiveField(13) String vendorName,
+      @HiveField(14) String categoryNameEn,
+      @HiveField(15) String categoryNameAr});
 }
 
 /// @nodoc
@@ -295,57 +311,73 @@ class __$$ProductModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductModelImpl implements _ProductModel {
   const _$ProductModelImpl(
-      {required this.id,
-      required this.code,
-      required this.nameAr,
-      required this.nameEn,
-      required this.price,
-      this.discountPrice,
-      required this.finalPrice,
-      this.discountPercentage,
-      required this.inStock,
-      required this.isFeatured,
-      this.primaryImageUrl,
-      required this.averageRating,
-      required this.totalReviews,
-      required this.vendorName,
-      required this.categoryNameEn,
-      required this.categoryNameAr});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.code,
+      @HiveField(2) required this.nameAr,
+      @HiveField(3) required this.nameEn,
+      @HiveField(4) required this.price,
+      @HiveField(5) this.discountPrice,
+      @HiveField(6) required this.finalPrice,
+      @HiveField(7) this.discountPercentage,
+      @HiveField(8) required this.inStock,
+      @HiveField(9) required this.isFeatured,
+      @HiveField(10) this.primaryImageUrl,
+      @HiveField(11) required this.averageRating,
+      @HiveField(12) required this.totalReviews,
+      @HiveField(13) required this.vendorName,
+      @HiveField(14) required this.categoryNameEn,
+      @HiveField(15) required this.categoryNameAr});
 
   factory _$ProductModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String code;
   @override
+  @HiveField(2)
   final String nameAr;
   @override
+  @HiveField(3)
   final String nameEn;
   @override
+  @HiveField(4)
   final double price;
   @override
+  @HiveField(5)
   final double? discountPrice;
   @override
+  @HiveField(6)
   final double finalPrice;
   @override
+  @HiveField(7)
   final double? discountPercentage;
   @override
+  @HiveField(8)
   final bool inStock;
   @override
+  @HiveField(9)
   final bool isFeatured;
   @override
+  @HiveField(10)
   final String? primaryImageUrl;
   @override
+  @HiveField(11)
   final double averageRating;
   @override
+  @HiveField(12)
   final int totalReviews;
   @override
+  @HiveField(13)
   final String vendorName;
   @override
+  @HiveField(14)
   final String categoryNameEn;
   @override
+  @HiveField(15)
   final String categoryNameAr;
 
   @override
@@ -423,57 +455,74 @@ class _$ProductModelImpl implements _ProductModel {
 
 abstract class _ProductModel implements ProductModel {
   const factory _ProductModel(
-      {required final int id,
-      required final String code,
-      required final String nameAr,
-      required final String nameEn,
-      required final double price,
-      final double? discountPrice,
-      required final double finalPrice,
-      final double? discountPercentage,
-      required final bool inStock,
-      required final bool isFeatured,
-      final String? primaryImageUrl,
-      required final double averageRating,
-      required final int totalReviews,
-      required final String vendorName,
-      required final String categoryNameEn,
-      required final String categoryNameAr}) = _$ProductModelImpl;
+          {@HiveField(0) required final int id,
+          @HiveField(1) required final String code,
+          @HiveField(2) required final String nameAr,
+          @HiveField(3) required final String nameEn,
+          @HiveField(4) required final double price,
+          @HiveField(5) final double? discountPrice,
+          @HiveField(6) required final double finalPrice,
+          @HiveField(7) final double? discountPercentage,
+          @HiveField(8) required final bool inStock,
+          @HiveField(9) required final bool isFeatured,
+          @HiveField(10) final String? primaryImageUrl,
+          @HiveField(11) required final double averageRating,
+          @HiveField(12) required final int totalReviews,
+          @HiveField(13) required final String vendorName,
+          @HiveField(14) required final String categoryNameEn,
+          @HiveField(15) required final String categoryNameAr}) =
+      _$ProductModelImpl;
 
   factory _ProductModel.fromJson(Map<String, dynamic> json) =
       _$ProductModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get code;
   @override
+  @HiveField(2)
   String get nameAr;
   @override
+  @HiveField(3)
   String get nameEn;
   @override
+  @HiveField(4)
   double get price;
   @override
+  @HiveField(5)
   double? get discountPrice;
   @override
+  @HiveField(6)
   double get finalPrice;
   @override
+  @HiveField(7)
   double? get discountPercentage;
   @override
+  @HiveField(8)
   bool get inStock;
   @override
+  @HiveField(9)
   bool get isFeatured;
   @override
+  @HiveField(10)
   String? get primaryImageUrl;
   @override
+  @HiveField(11)
   double get averageRating;
   @override
+  @HiveField(12)
   int get totalReviews;
   @override
+  @HiveField(13)
   String get vendorName;
   @override
+  @HiveField(14)
   String get categoryNameEn;
   @override
+  @HiveField(15)
   String get categoryNameAr;
   @override
   @JsonKey(ignore: true)
