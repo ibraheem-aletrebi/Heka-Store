@@ -1,8 +1,8 @@
 
-import 'package:heka_store/Features/home/models/bannar/banner_model.dart';
-import 'package:heka_store/Features/home/models/brand/brand_model.dart';
-import 'package:heka_store/Features/home/models/category/category_model.dart';
-import 'package:heka_store/Features/home/models/product/product_model.dart';
+import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
+import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
+import 'package:heka_store/Features/home/data/models/category/category_model.dart';
+import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
