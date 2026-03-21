@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/Features/home/components/home/greeting_text.dart';
-import 'package:heka_store/Features/home/components/home/location_row.dart';
+import 'package:heka_store/Features/home/presentation/components/home/greeting_text.dart';
+import 'package:heka_store/Features/home/presentation/components/home/location_row.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/notification_button.dart';
 import 'package:heka_store/core/widgets/user_avater.dart';

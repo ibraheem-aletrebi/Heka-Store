@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/blocs/main_layout/main_layout_bloc.dart';
-import 'package:heka_store/Features/home/components/layout/main_layout_view_body.dart';
+import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
+import 'package:heka_store/Features/home/presentation/components/layout/main_layout_view_body.dart';
 
 class MainLayoutView extends StatelessWidget {
   const MainLayoutView({super.key});

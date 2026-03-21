@@ -2,8 +2,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/blocs/main_layout/main_layout_bloc.dart';
-import 'package:heka_store/Features/home/components/layout/nav_icon.dart';
+import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
+import 'package:heka_store/Features/home/presentation/components/layout/nav_icon.dart';
 
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/Features/home/components/layout/cart_badge.dart';
+import 'package:heka_store/Features/home/presentation/components/layout/cart_badge.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 

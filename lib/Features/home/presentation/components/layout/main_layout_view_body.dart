@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/blocs/main_layout/main_layout_bloc.dart';
-import 'package:heka_store/Features/home/components/layout/floating_bottom_nav_bar.dart';
-import 'package:heka_store/Features/home/views/home/home_view.dart';
+import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
+import 'package:heka_store/Features/home/presentation/components/layout/floating_bottom_nav_bar.dart';
+import 'package:heka_store/Features/home/presentation/views/home/home_view.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
 
