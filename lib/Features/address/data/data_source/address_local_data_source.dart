@@ -2,7 +2,7 @@
 
 import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
-import 'package:heka_store/core/services/local/local_storage_keys.dart';
+import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 abstract class AddressLocalDataSource {

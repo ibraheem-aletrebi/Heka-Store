@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
-import 'package:heka_store/core/services/local/local_storage_keys.dart';
+import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/enums/errors/language_error_enum.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 part 'language_bloc.freezed.dart';

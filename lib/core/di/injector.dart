@@ -26,6 +26,9 @@ import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.da
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:heka_store/Features/home/models/bannar/banner_model.dart';
+import 'package:heka_store/Features/home/models/brand/brand_model.dart';
+import 'package:heka_store/Features/home/models/category/category_model.dart';
 import 'package:heka_store/Features/home/models/product/product_model.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
@@ -87,7 +90,10 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<AppThemeModeEnum>(AppThemeModeEnumAdapter());
   Hive.registerAdapter<UserModel>(UserModelAdapter());
   Hive.registerAdapter<AddressModel>(AddressModelAdapter());
+  Hive.registerAdapter<BannerModel>(BannerModelAdapter());
+  Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
+  Hive.registerAdapter<BrandModel>(BrandModelAdapter());
 }
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
