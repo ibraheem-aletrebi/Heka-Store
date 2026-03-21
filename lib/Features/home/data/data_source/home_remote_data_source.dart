@@ -1,5 +1,3 @@
-
-
 import 'package:heka_store/Features/home/models/product/products_response_model.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/api_constants.dart';
@@ -15,19 +13,16 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService _apiService;
 
   const HomeRemoteDataSourceImpl({required ApiService apiService})
-      : _apiService = apiService;
+    : _apiService = apiService;
 
   @override
   Future<ProductsResponseModel> getRecommendedProducts({
     int pageNumber = 1,
-    int pageSize = 20,
+    int pageSize = 10,
   }) async {
     final response = await _apiService.get(
       ApiConstants.products,
-      queryParameters: {
-        'pageNumber': pageNumber,
-        'pageSize': pageSize,
-      },
+      queryParameters: {'pageNumber': pageNumber, 'pageSize': pageSize},
     );
     return ProductsResponseModel.fromJson(response.data['data']);
   }
