@@ -26,10 +26,20 @@ import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.da
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:heka_store/Features/home/data/data_source/home_local_data_srouce.dart';
+import 'package:heka_store/Features/home/data/data_source/home_remote_data_source.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/category/category_model.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
+import 'package:heka_store/Features/home/data/repos/home_repo_imp.dart';
+import 'package:heka_store/Features/home/domain/repos/home_repo.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_banners_use_case.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_case.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
+import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
@@ -207,4 +217,51 @@ void _initAddress() {
       setDefaultAddressUseCase: sl<SetDefaultAddressUseCase>(),
     ),
   );
+}
+
+
+void _initHome() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<HomeRemoteDataSource>(
+    () => HomeRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<HomeLocalDataSource>(
+    () => HomeLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<HomeRepo>(
+    () => HomeRepoImpl(
+      remoteDataSource: sl<HomeRemoteDataSource>(),
+      localDataSource: sl<HomeLocalDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<GetBannersUseCase>(
+    () => GetBannersUseCase(repo: sl<HomeRepo>()),
+  );
+  sl.registerFactory<GetCategoriesUseCase>(
+    () => GetCategoriesUseCase(repo: sl<HomeRepo>()),
+  );
+  sl.registerFactory<GetRecommendedProductsUseCase>(
+    () => GetRecommendedProductsUseCase(repo: sl<HomeRepo>()),
+  );
+  sl.registerFactory<GetFeaturedProductsUseCase>(
+    () => GetFeaturedProductsUseCase(repo: sl<HomeRepo>()),
+  );
+  sl.registerFactory<GetBrandsUseCase>(
+    () => GetBrandsUseCase(repo: sl<HomeRepo>()),
+  );
+
+  // ─── BLoCs ──────────────────────────────────────── 
+  sl.registerFactory<HomeBloc>(
+  () => HomeBloc(
+    getBannersUseCase: sl<GetBannersUseCase>(),
+    getCategoriesUseCase: sl<GetCategoriesUseCase>(),
+    getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
+    getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
+    getBrandsUseCase: sl<GetBrandsUseCase>(),
+  ),
+);
 }
