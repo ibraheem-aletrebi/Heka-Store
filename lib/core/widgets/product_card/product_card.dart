@@ -1,0 +1,102 @@
+import 'package:flutter/material.dart';
+import 'package:heka_store/Features/home/data/models/product/product_model.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
+import 'package:heka_store/core/widgets/product_card/best_seller.dart';
+import 'package:heka_store/core/widgets/product_card/cart_button.dart';
+import 'package:heka_store/core/widgets/product_card/favorite_button.dart';
+import 'package:heka_store/core/widgets/product_card/price.dart';
+import 'package:heka_store/core/widgets/product_card/rating_product_card.dart';
+
+class ProductCard extends StatelessWidget {
+  final ProductModel productModel;
+  const ProductCard({super.key, required this.productModel});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    final textTheme = TextTheme.of(context);
+    return GestureDetector(
+      onTap: () {
+        ////TODO: navigate to product details
+      },
+      child: Container(
+        clipBehavior: Clip.antiAlias,
+        width: MediaQuery.sizeOf(context).width * .75,
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(AppSizes.r16),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              children: [
+                CachedImage(
+                  height: AppSizes.h130,
+                  width: double.infinity,
+                  url: productModel.primaryImageUrl,
+                ),
+                if (productModel.isFeatured)
+                  Positioned(
+                    top: AppSizes.h8,
+                    left: AppSizes.w8,
+                    child: BestSeller(),
+                  ),
+                Positioned(
+                  top: AppSizes.h8,
+                  right: AppSizes.w8,
+                  child: FavoriteButton(
+                    onPressed: () {
+                      ////TODO: add to favorite
+                    },
+                    isFavorited: true,
+                  ),
+                ),
+              ],
+            ),
+            // Info
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.all(AppSizes.w12),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      productModel.nameEn,
+                      style: textTheme.titleSmall?.copyWith(
+                        color: colors.textPrimary,
+                      ),
+                      maxLines: 2,
+                      overflow: TextOverflow.ellipsis,
+                    ),
+                    SizedBox(height: AppSizes.h4),
+                    RatingProductCard(rating: 4.5, reviewsCount: 479798),
+                    const Spacer(),
+                    Row(
+                      children: [
+                        Expanded(
+                          child: Price(
+                            price: productModel.price,
+                            discountPercent: productModel.discountPercentage,
+                            hasFreeShipping: true,
+                          ),
+                        ),
+                        CartButton(
+                          onPressed: () {
+                            ////TODO: add to cart
+                          },
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
