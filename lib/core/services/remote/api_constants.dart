@@ -16,5 +16,6 @@ class ApiConstants {
   static String addressById(int id) => '/api/Address/$id';
   static String addressDefault(int id) => '/api/Address/$id/default';
 
+  static const String products = '/api/Products';
 
 }
