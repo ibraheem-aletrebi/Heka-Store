@@ -40,6 +40,16 @@ import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_cas
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
+import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
+import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
+import 'package:heka_store/Features/wishlist/data/repos/wishlist_repo_impl.dart';
+import 'package:heka_store/Features/wishlist/domain/repos/wishlist_repo.dart';
+import 'package:heka_store/Features/wishlist/domain/use_cases/add_to_wishlist_use_case.dart';
+import 'package:heka_store/Features/wishlist/domain/use_cases/get_wishlist_use_case.dart';
+import 'package:heka_store/Features/wishlist/domain/use_cases/is_in_wishlist_use_case.dart';
+import 'package:heka_store/Features/wishlist/domain/use_cases/remove_from_wishlist_use_case.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/bloc/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
@@ -60,6 +70,7 @@ Future<void> setupInjector() async {
   _initAuth();
   _initAddress();
   _initHome();
+  _initWishlist();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -69,7 +80,12 @@ Future<void> _initCore() async {
   sl.registerLazySingleton<LocalStorageService>(() => LocalStorageService());
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(
-    boxNames: [HiveBoxes.app, HiveBoxes.data, HiveBoxes.home],
+    boxNames: [
+      HiveBoxes.app,
+      HiveBoxes.data,
+      HiveBoxes.home,
+      HiveBoxes.wishlist,
+    ],
     regesterAdapters: _registerAdapters,
   );
 
@@ -105,6 +121,7 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<BrandModel>(BrandModelAdapter());
+  Hive.registerAdapter<WishlistItemModel>(WishlistItemModelAdapter());
 }
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
@@ -262,6 +279,40 @@ void _initHome() {
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
       getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
       getBrandsUseCase: sl<GetBrandsUseCase>(),
+    ),
+  );
+}
+
+void _initWishlist() {
+  sl.registerLazySingleton<WishlistRemoteDataSource>(
+    () => WishlistRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<WishlistLocalDataSource>(
+    () => WishlistLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+  sl.registerLazySingleton<WishlistRepo>(
+    () => WishlistRepoImpl(
+      remoteDataSource: sl<WishlistRemoteDataSource>(),
+      localDataSource: sl<WishlistLocalDataSource>(),
+    ),
+  );
+  sl.registerFactory<GetWishlistUseCase>(
+    () => GetWishlistUseCase(repo: sl<WishlistRepo>()),
+  );
+  sl.registerFactory<AddToWishlistUseCase>(
+    () => AddToWishlistUseCase(repo: sl<WishlistRepo>()),
+  );
+  sl.registerFactory<RemoveFromWishlistUseCase>(
+    () => RemoveFromWishlistUseCase(repo: sl<WishlistRepo>()),
+  );
+  sl.registerFactory<IsInWishlistUseCase>(
+    () => IsInWishlistUseCase(repo: sl<WishlistRepo>()),
+  );
+  sl.registerFactory<WishlistBloc>(
+    () => WishlistBloc(
+      getWishlistUseCase: sl<GetWishlistUseCase>(),
+      addToWishlistUseCase: sl<AddToWishlistUseCase>(),
+      removeFromWishlistUseCase: sl<RemoveFromWishlistUseCase>(),
     ),
   );
 }
