@@ -4,4 +4,5 @@ class HiveBoxes {
   static const String app = 'app_box';
   static const String data= 'data_box';
   static const String home = 'home_box';
+  static const String wishlist = 'wishlist_box';
 }

@@ -12,4 +12,6 @@ class LocalStorageKeys {
   static const String featuredProducts = 'featuredProducts';
   static const String brands = 'brands';
   static const String homeLastFetch = 'homeLastFetch';
+
+  static const String wishlist = 'wishlist';
 }

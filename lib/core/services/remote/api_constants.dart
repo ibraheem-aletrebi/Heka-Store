@@ -21,4 +21,8 @@ class ApiConstants {
   static const String recommendedProducts = '/api/Products';
   static const String featuredProducts = '/api/Products';
   static const String brands = '/api/Products';
+
+
+  static const String wishlist = '/api/Wishlist';
+  static String wishlistItem(int productId) => '/api/Wishlist/$productId';
 }
