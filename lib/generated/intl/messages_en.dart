@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
     "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
     "bestSeller": MessageLookupByLibrary.simpleMessage("Best Seller"),
+    "brandStores": MessageLookupByLibrary.simpleMessage("Brand Stores"),
     "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),

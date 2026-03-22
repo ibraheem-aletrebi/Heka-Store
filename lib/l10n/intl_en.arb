@@ -312,6 +312,8 @@
     "@recommendedForYou": {},
     "featuredBrands": "Featured Brands",
     "@featuredBrands": {},
+    "brandStores": "Brand Stores",
+    "@brandStores": {},
  
 
     "cart": "Cart",

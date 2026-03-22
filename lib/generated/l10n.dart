@@ -1444,6 +1444,16 @@ class S {
     );
   }
 
+  /// `Brand Stores`
+  String get brandStores {
+    return Intl.message(
+      'Brand Stores',
+      name: 'brandStores',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cart`
   String get cart {
     return Intl.message('Cart', name: 'cart', desc: '', args: []);

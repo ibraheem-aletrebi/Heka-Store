@@ -33,6 +33,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "العودة إلى تسجيل الدخول",
     ),
     "bestSeller": MessageLookupByLibrary.simpleMessage("الأكثر مبيعاً"),
+    "brandStores": MessageLookupByLibrary.simpleMessage(
+      "متاجر العلامات التجارية",
+    ),
     "cancel": MessageLookupByLibrary.simpleMessage("إلغاء"),
     "card": MessageLookupByLibrary.simpleMessage("بطاقة"),
     "cart": MessageLookupByLibrary.simpleMessage("سلة التسوق"),
