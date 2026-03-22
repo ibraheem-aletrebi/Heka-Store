@@ -1,3 +1,5 @@
+// recommended_for_you_section.dart
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
@@ -26,28 +28,32 @@ class RecommendedForYouSection extends StatelessWidget {
               p.isRecommendedLoadingMore != c.isRecommendedLoadingMore,
           builder: (context, state) {
             return SizedBox(
-              height: context.height * 0.31,
+              height: context.height * 0.3,
               child: PaginatedListView<ProductModel>(
                 isHorizontal: true,
-                itemExtent: context.height * 0.31,
+                itemExtent: context.height * 0.3,
                 items: state.recommendedProducts,
                 isLoading: state.isRecommendedLoading,
                 isLoadingMore: state.isRecommendedLoadingMore,
-                loadMoreThreshold: 9,
-                loadingWidget: SingleChildScrollView(
-                  child: Row(
-                    children: List.generate(
-                      10,
-                      (index) =>
-                          CustomSkeletonizer(enable: true, child: ProductCard()),
-                    ),
-                  ),
-                ),
-                loadMoreWidget: CustomSkeletonizer(
-                  enable: true,
-                  child: ProductCard(),
-                ),
                 hasNextPage: state.hasRecommendedNextPage,
+                loadMoreThreshold: 9,
+
+                // ─── Loading Widget ───────────────────
+                loadingWidget: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
+                  itemCount: 4,
+                  separatorBuilder: (_, __) => SizedBox(width: AppSizes.w12),
+                  itemBuilder: (_, __) =>
+                      CustomSkeletonizer(enable: true, child: ProductCard()),
+                ),
+
+                // ─── Load More Widget ─────────────────
+                loadMoreWidget: Padding(
+                  padding: EdgeInsetsDirectional.only(end: AppSizes.w12),
+                  child: CustomSkeletonizer(enable: true, child: ProductCard()),
+                ),
+
                 onLoadMore: () => context.read<HomeBloc>().add(
                   const HomeEvent.recommendedNextPageFetched(),
                 ),

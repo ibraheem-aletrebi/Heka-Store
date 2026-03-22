@@ -199,6 +199,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "error_validation_failed_message": MessageLookupByLibrary.simpleMessage(
       "في بيانات محتاج تصححها الأول عشان نكمل.",
     ),
+    "exploreCategories": MessageLookupByLibrary.simpleMessage("استكشف الفئات"),
     "exploreHeka": MessageLookupByLibrary.simpleMessage("استكشف هيكا الآن"),
     "failedToGetLocation": MessageLookupByLibrary.simpleMessage(
       "فشل في تحديد الموقع. حاول مرة أخرى.",

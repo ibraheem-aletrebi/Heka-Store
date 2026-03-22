@@ -26,35 +26,35 @@ class FeaturedSection extends StatelessWidget {
               p.isFeaturedLoadingMore != c.isFeaturedLoadingMore,
           builder: (context, state) {
             return SizedBox(
-              height: context.height * 0.31,
+              height: context.height * 0.3,
               child: PaginatedListView<ProductModel>(
                 isHorizontal: true,
-                itemExtent: context.height * 0.31,
+                itemExtent: context.height * 0.3,
                 items: state.featuredProducts,
                 isLoading: state.isFeaturedLoading,
                 isLoadingMore: state.isFeaturedLoadingMore,
-                loadMoreThreshold: 9,
-                loadingWidget: SingleChildScrollView(
-                  child: Row(
-                    children: List.generate(
-                      10,
-                      (index) => CustomSkeletonizer(
-                        enable: true,
-                        child: ProductCard(),
-                      ),
-                    ),
-                  ),
-                ),
-                loadMoreWidget: CustomSkeletonizer(
-                  enable: true,
-                  child: ProductCard(),
-                ),
                 hasNextPage: state.hasFeaturedNextPage,
+                loadMoreThreshold: 9,
+
+                // ─── Loading Widget ───────────────────
+                loadingWidget: ListView.separated(
+                  scrollDirection: Axis.horizontal,
+                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
+                  itemCount: 4,
+                  separatorBuilder: (_, __) => SizedBox(width: AppSizes.w12),
+                  itemBuilder: (_, __) =>
+                      CustomSkeletonizer(enable: true, child: ProductCard()),
+                ),
+
+                // ─── Load More Widget ─────────────────
+                loadMoreWidget: Padding(
+                  padding: EdgeInsets.only(right: AppSizes.w12),
+                  child: CustomSkeletonizer(enable: true, child: ProductCard()),
+                ),
+
                 onLoadMore: () => context.read<HomeBloc>().add(
                   const HomeEvent.featuredNextPageFetched(),
                 ),
-                onRefresh: () =>
-                    context.read<HomeBloc>().add(const HomeEvent.refreshed()),
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
                 itemBuilder: (context, product, index) =>
                     ProductCard(productModel: product),

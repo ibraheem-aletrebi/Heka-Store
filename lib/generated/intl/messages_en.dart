@@ -197,6 +197,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Some fields need your attention before we can continue.",
     ),
     "expiryDate": MessageLookupByLibrary.simpleMessage("Expiry Date"),
+    "exploreCategories": MessageLookupByLibrary.simpleMessage(
+      "Explore Categories",
+    ),
     "exploreHeka": MessageLookupByLibrary.simpleMessage("Explore Heka now"),
     "failedToGetLocation": MessageLookupByLibrary.simpleMessage(
       "Failed to get location. Please try again.",

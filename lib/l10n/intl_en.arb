@@ -304,12 +304,15 @@
 
     "itemsYouMayLike": "Items You May Like",
     "@itemsYouMayLike": {},
+    "exploreCategories":"Explore Categories",
+    "@exploreCategories":{},
     "viewAll": "View All",
     "@viewAll": {},
     "recommendedForYou": "Recommended for you",
     "@recommendedForYou": {},
     "featuredBrands": "Featured Brands",
     "@featuredBrands": {},
+ 
 
     "cart": "Cart",
     "@cart": {},

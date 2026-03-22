@@ -1,0 +1,46 @@
+import 'package:flutter/material.dart';
+import 'package:heka_store/Features/home/data/models/category/category_model.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
+
+
+class CategoryItem extends StatelessWidget {
+  const CategoryItem({super.key, this.onTap,  this.category});
+  final CategoryModel? category;
+  final void Function()? onTap;
+  @override
+  Widget build(BuildContext context) {
+    final c = context.myColors;
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        width: AppSizes.w56,
+        child: Column(
+          children: [
+            Container(
+              clipBehavior: Clip.antiAlias,
+              width: AppSizes.w56,
+              height: AppSizes.w56,
+              decoration: BoxDecoration(
+                color: c.surface,
+                borderRadius: BorderRadius.circular(AppSizes.r16),
+              ),
+
+              child: CachedImage(url: category?.imageUrl??''),
+            ),
+            SizedBox(height: AppSizes.h6),
+            Text(
+              category?.nameEn??'',
+              style: TextTheme.of(
+                context,
+              ).bodyMedium?.copyWith(color: c.textSecondary),
+              overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.center,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

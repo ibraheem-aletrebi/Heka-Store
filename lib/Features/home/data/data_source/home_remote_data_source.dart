@@ -1,4 +1,3 @@
-
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/category/category_model.dart';
@@ -24,7 +23,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService _apiService;
 
   const HomeRemoteDataSourceImpl({required ApiService apiService})
-      : _apiService = apiService;
+    : _apiService = apiService;
 
   // ─── Banners ──────────────────────────────────────────────────────────────
 
@@ -42,7 +41,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   @override
   Future<List<CategoryModel>> getCategories() async {
     final response = await _apiService.get(ApiConstants.categories);
-    final data = response.data['data'] as List;
+    final data = response.data['data']['categories'] as List;
     return data
         .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
         .toList();
@@ -57,10 +56,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }) async {
     final response = await _apiService.get(
       ApiConstants.recommendedProducts,
-      queryParameters: {
-        'pageNumber': pageNumber,
-        'pageSize': pageSize,
-      },
+      queryParameters: {'pageNumber': pageNumber, 'pageSize': pageSize},
     );
     return ProductsResponseModel.fromJson(response.data['data']);
   }
@@ -74,10 +70,7 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }) async {
     final response = await _apiService.get(
       ApiConstants.featuredProducts,
-      queryParameters: {
-        'pageNumber': pageNumber,
-        'pageSize': pageSize,
-      },
+      queryParameters: {'pageNumber': pageNumber, 'pageSize': pageSize},
     );
     return ProductsResponseModel.fromJson(response.data['data']);
   }

@@ -38,7 +38,7 @@ class ProductCard extends StatelessWidget {
                   width: double.infinity,
                   url:
                       // productModel?.primaryImageUrl ??
-                      'https://via.placeholder.com/150',
+                      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D',
                 ),
                 if (productModel?.isFeatured ?? false)
                   Positioned(

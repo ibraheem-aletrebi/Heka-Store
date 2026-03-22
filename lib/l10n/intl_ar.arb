@@ -345,13 +345,16 @@
 
     "itemsYouMayLike": "منتجات قد تعجبك",
     "@itemsYouMayLike": {},
+    "exploreCategories": "استكشف الفئات",
+    "@exploreCategories": {},
     "viewAll": "عرض الكل",
     "@viewAll": {},
     "recommendedForYou": "موصى به لك",
     "@recommendedForYou": {},
-
-    "featuredBrands":"العلامات التجارية المميزة",
+    "featuredBrands": "العلامات التجارية المميزة",
     "@featuredBrands": {},
+    "brandStores": "متاجر العلامات التجارية",
+    "@brandStores": {},
 
     "cart": "سلة التسوق",
     "@cart": {},

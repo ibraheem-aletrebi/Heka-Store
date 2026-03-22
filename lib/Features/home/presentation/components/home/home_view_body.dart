@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/featured_section.dart';
+import 'package:heka_store/Features/home/presentation/components/home/categories_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/home_sliver_app_bar.dart';
 import 'package:heka_store/Features/home/presentation/components/home/recommended_for_you_section.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -21,6 +22,8 @@ class HomeViewBody extends StatelessWidget {
         slivers: [
           HomeSliverAppBar(),
           SliverToBoxAdapter(child: AppSearchBar()),
+          SliverToBoxAdapter(child: SizedBox(height: AppSizes.h16)),
+          SliverToBoxAdapter(child: CategoriesSection()),
           SliverToBoxAdapter(child: SizedBox(height: AppSizes.h16)),
           SliverToBoxAdapter(child: RecommendedForYouSection()),
           SliverToBoxAdapter(child: SizedBox(height: AppSizes.h16)),

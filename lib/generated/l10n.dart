@@ -1409,6 +1409,16 @@ class S {
     );
   }
 
+  /// `Explore Categories`
+  String get exploreCategories {
+    return Intl.message(
+      'Explore Categories',
+      name: 'exploreCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `View All`
   String get viewAll {
     return Intl.message('View All', name: 'viewAll', desc: '', args: []);
