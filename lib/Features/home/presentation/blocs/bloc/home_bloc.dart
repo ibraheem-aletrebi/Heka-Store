@@ -37,6 +37,8 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
         super(const HomeState()) {
     on<_Started>(_onStarted);
     on<_Refreshed>(_onRefreshed);
+    on<_RecommendedNextPageFetched>(_onRecommendedNextPageFetched);
+  on<_FeaturedNextPageFetched>(_onFeaturedNextPageFetched);
   }
 
   // ─── Started ───────────────────────────────────────────────────────────────
@@ -81,6 +83,64 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(isRefreshing: false));
   }
 
+
+
+
+// ─── Recommended Next Page ─────────────────────────────────────────────────
+
+Future<void> _onRecommendedNextPageFetched(
+  _RecommendedNextPageFetched event,
+  Emitter<HomeState> emit,
+) async {
+  if (state.isRecommendedLoadingMore || !state.hasRecommendedNextPage) return;
+
+  emit(state.copyWith(isRecommendedLoadingMore: true));
+
+  final response = await _getRecommendedProductsUseCase(
+    pageNumber: state.recommendedCurrentPage + 1,
+  );
+
+  response.when(
+    onSuccess: (data) => emit(state.copyWith(
+      isRecommendedLoadingMore: false,
+      recommendedProducts: [...state.recommendedProducts, ...data.products],
+      hasRecommendedNextPage: data.hasNextPage,
+      recommendedCurrentPage: data.pageNumber,
+    )),
+    onError: (error) => emit(state.copyWith(
+      isRecommendedLoadingMore: false,
+      recommendedError: error,
+    )),
+  );
+}
+
+// ─── Featured Next Page ────────────────────────────────────────────────────
+
+Future<void> _onFeaturedNextPageFetched(
+  _FeaturedNextPageFetched event,
+  Emitter<HomeState> emit,
+) async {
+  if (state.isFeaturedLoadingMore || !state.hasFeaturedNextPage) return;
+
+  emit(state.copyWith(isFeaturedLoadingMore: true));
+
+  final response = await _getFeaturedProductsUseCase(
+    pageNumber: state.featuredCurrentPage + 1,
+  );
+
+  response.when(
+    onSuccess: (data) => emit(state.copyWith(
+      isFeaturedLoadingMore: false,
+      featuredProducts: [...state.featuredProducts, ...data.products],
+      hasFeaturedNextPage: data.hasNextPage,
+      featuredCurrentPage: data.pageNumber,
+    )),
+    onError: (error) => emit(state.copyWith(
+      isFeaturedLoadingMore: false,
+      featuredError: error,
+    )),
+  );
+}
   // ─── Fetch Helpers ─────────────────────────────────────────────────────────
 
   Future<void> _fetchBanners(Emitter<HomeState> emit) async {

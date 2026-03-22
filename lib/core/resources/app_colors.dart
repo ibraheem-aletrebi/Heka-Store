@@ -25,6 +25,9 @@ class AppColors {
   final Color shimmer;
   final Color splashBg;
 
+  final Color shimmerBase;
+  final Color shimmerHighlight;
+
   const AppColors({
     required this.primary,
     required this.primaryVariant,
@@ -49,6 +52,8 @@ class AppColors {
     required this.shadow,
     required this.shimmer,
     required this.splashBg,
+    required this.shimmerBase,
+    required this.shimmerHighlight,
   });
 
   static const AppColors light = AppColors(
@@ -75,6 +80,8 @@ class AppColors {
     shadow: Color(0x1AF17300),
     shimmer: Color(0xFFF17300),
     splashBg: Color(0xFFFFFFFF),
+    shimmerBase: Color(0xFFE0E0E0),
+    shimmerHighlight: Color(0xFFF5F5F5),
   );
 
   static const AppColors dark = AppColors(
@@ -101,5 +108,7 @@ class AppColors {
     shadow: Color(0x40FF8A1A),
     shimmer: Color(0xFFFF8A1A),
     splashBg: Color(0xFF0F172A),
+    shimmerBase: Color(0xFFE0E0E0),
+    shimmerHighlight: Color(0xFFF5F5F5),
   );
 }

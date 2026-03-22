@@ -20,18 +20,24 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() recommendedNextPageFetched,
+    required TResult Function() featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? recommendedNextPageFetched,
+    TResult? Function()? featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? recommendedNextPageFetched,
+    TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +45,28 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_RecommendedNextPageFetched value)
+        recommendedNextPageFetched,
+    required TResult Function(_FeaturedNextPageFetched value)
+        featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -113,6 +129,8 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() recommendedNextPageFetched,
+    required TResult Function() featuredNextPageFetched,
   }) {
     return started();
   }
@@ -122,6 +140,8 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? recommendedNextPageFetched,
+    TResult? Function()? featuredNextPageFetched,
   }) {
     return started?.call();
   }
@@ -131,6 +151,8 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? recommendedNextPageFetched,
+    TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -144,6 +166,10 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_RecommendedNextPageFetched value)
+        recommendedNextPageFetched,
+    required TResult Function(_FeaturedNextPageFetched value)
+        featuredNextPageFetched,
   }) {
     return started(this);
   }
@@ -153,6 +179,9 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) {
     return started?.call(this);
   }
@@ -162,6 +191,9 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -215,6 +247,8 @@ class _$RefreshedImpl implements _Refreshed {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() recommendedNextPageFetched,
+    required TResult Function() featuredNextPageFetched,
   }) {
     return refreshed();
   }
@@ -224,6 +258,8 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? recommendedNextPageFetched,
+    TResult? Function()? featuredNextPageFetched,
   }) {
     return refreshed?.call();
   }
@@ -233,6 +269,8 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? recommendedNextPageFetched,
+    TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -246,6 +284,10 @@ class _$RefreshedImpl implements _Refreshed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_RecommendedNextPageFetched value)
+        recommendedNextPageFetched,
+    required TResult Function(_FeaturedNextPageFetched value)
+        featuredNextPageFetched,
   }) {
     return refreshed(this);
   }
@@ -255,6 +297,9 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) {
     return refreshed?.call(this);
   }
@@ -264,6 +309,9 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -275,6 +323,249 @@ class _$RefreshedImpl implements _Refreshed {
 
 abstract class _Refreshed implements HomeEvent {
   const factory _Refreshed() = _$RefreshedImpl;
+}
+
+/// @nodoc
+abstract class _$$RecommendedNextPageFetchedImplCopyWith<$Res> {
+  factory _$$RecommendedNextPageFetchedImplCopyWith(
+          _$RecommendedNextPageFetchedImpl value,
+          $Res Function(_$RecommendedNextPageFetchedImpl) then) =
+      __$$RecommendedNextPageFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$RecommendedNextPageFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$RecommendedNextPageFetchedImpl>
+    implements _$$RecommendedNextPageFetchedImplCopyWith<$Res> {
+  __$$RecommendedNextPageFetchedImplCopyWithImpl(
+      _$RecommendedNextPageFetchedImpl _value,
+      $Res Function(_$RecommendedNextPageFetchedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$RecommendedNextPageFetchedImpl implements _RecommendedNextPageFetched {
+  const _$RecommendedNextPageFetchedImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.recommendedNextPageFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$RecommendedNextPageFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() refreshed,
+    required TResult Function() recommendedNextPageFetched,
+    required TResult Function() featuredNextPageFetched,
+  }) {
+    return recommendedNextPageFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? refreshed,
+    TResult? Function()? recommendedNextPageFetched,
+    TResult? Function()? featuredNextPageFetched,
+  }) {
+    return recommendedNextPageFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? refreshed,
+    TResult Function()? recommendedNextPageFetched,
+    TResult Function()? featuredNextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (recommendedNextPageFetched != null) {
+      return recommendedNextPageFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_RecommendedNextPageFetched value)
+        recommendedNextPageFetched,
+    required TResult Function(_FeaturedNextPageFetched value)
+        featuredNextPageFetched,
+  }) {
+    return recommendedNextPageFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
+  }) {
+    return recommendedNextPageFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (recommendedNextPageFetched != null) {
+      return recommendedNextPageFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _RecommendedNextPageFetched implements HomeEvent {
+  const factory _RecommendedNextPageFetched() =
+      _$RecommendedNextPageFetchedImpl;
+}
+
+/// @nodoc
+abstract class _$$FeaturedNextPageFetchedImplCopyWith<$Res> {
+  factory _$$FeaturedNextPageFetchedImplCopyWith(
+          _$FeaturedNextPageFetchedImpl value,
+          $Res Function(_$FeaturedNextPageFetchedImpl) then) =
+      __$$FeaturedNextPageFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$FeaturedNextPageFetchedImplCopyWithImpl<$Res>
+    extends _$HomeEventCopyWithImpl<$Res, _$FeaturedNextPageFetchedImpl>
+    implements _$$FeaturedNextPageFetchedImplCopyWith<$Res> {
+  __$$FeaturedNextPageFetchedImplCopyWithImpl(
+      _$FeaturedNextPageFetchedImpl _value,
+      $Res Function(_$FeaturedNextPageFetchedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
+  const _$FeaturedNextPageFetchedImpl();
+
+  @override
+  String toString() {
+    return 'HomeEvent.featuredNextPageFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$FeaturedNextPageFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() refreshed,
+    required TResult Function() recommendedNextPageFetched,
+    required TResult Function() featuredNextPageFetched,
+  }) {
+    return featuredNextPageFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? refreshed,
+    TResult? Function()? recommendedNextPageFetched,
+    TResult? Function()? featuredNextPageFetched,
+  }) {
+    return featuredNextPageFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? refreshed,
+    TResult Function()? recommendedNextPageFetched,
+    TResult Function()? featuredNextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (featuredNextPageFetched != null) {
+      return featuredNextPageFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_RecommendedNextPageFetched value)
+        recommendedNextPageFetched,
+    required TResult Function(_FeaturedNextPageFetched value)
+        featuredNextPageFetched,
+  }) {
+    return featuredNextPageFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
+  }) {
+    return featuredNextPageFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_RecommendedNextPageFetched value)?
+        recommendedNextPageFetched,
+    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (featuredNextPageFetched != null) {
+      return featuredNextPageFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _FeaturedNextPageFetched implements HomeEvent {
+  const factory _FeaturedNextPageFetched() = _$FeaturedNextPageFetchedImpl;
 }
 
 /// @nodoc

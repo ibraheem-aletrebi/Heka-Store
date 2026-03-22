@@ -1424,6 +1424,16 @@ class S {
     );
   }
 
+  /// `Featured Brands`
+  String get featuredBrands {
+    return Intl.message(
+      'Featured Brands',
+      name: 'featuredBrands',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Cart`
   String get cart {
     return Intl.message('Cart', name: 'cart', desc: '', args: []);

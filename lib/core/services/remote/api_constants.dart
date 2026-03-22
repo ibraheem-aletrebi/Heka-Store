@@ -16,9 +16,9 @@ class ApiConstants {
   static String addressById(int id) => '/api/Address/$id';
   static String addressDefault(int id) => '/api/Address/$id/default';
 
-  static const String banners = '/api/Banners';
+  static const String banners = '/api/Products';
   static const String categories = '/api/Categories';
   static const String recommendedProducts = '/api/Products';
   static const String featuredProducts = '/api/Products';
-  static const String brands = '/api/Brands';
+  static const String brands = '/api/Products';
 }

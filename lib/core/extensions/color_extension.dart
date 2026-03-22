@@ -29,6 +29,8 @@ class MyColors extends ThemeExtension<MyColors> {
   Color get shadow => colors.shadow;
   Color get shimmer => colors.shimmer;
   Color get splashBg => colors.splashBg;
+  Color get shimmerBase => colors.shimmerBase;
+  Color get shimmerHighlight => colors.shimmerHighlight;
 
   static const MyColors light = MyColors(colors: AppColors.light);
   static const MyColors dark = MyColors(colors: AppColors.dark);
@@ -66,6 +68,12 @@ class MyColors extends ThemeExtension<MyColors> {
         shadow: Color.lerp(shadow, other.shadow, t)!,
         shimmer: Color.lerp(shimmer, other.shimmer, t)!,
         splashBg: Color.lerp(splashBg, other.splashBg, t)!,
+        shimmerBase: Color.lerp(shimmerBase, other.shimmerBase, t)!,
+        shimmerHighlight: Color.lerp(
+          shimmerHighlight,
+          other.shimmerHighlight,
+          t,
+        )!,
       ),
     );
   }

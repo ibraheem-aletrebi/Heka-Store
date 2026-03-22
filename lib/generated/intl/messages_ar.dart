@@ -204,6 +204,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "فشل في تحديد الموقع. حاول مرة أخرى.",
     ),
     "favourites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "featuredBrands": MessageLookupByLibrary.simpleMessage(
+      "العلامات التجارية المميزة",
+    ),
     "fetchingAddress": MessageLookupByLibrary.simpleMessage(
       "جارٍ تحديد العنوان...",
     ),

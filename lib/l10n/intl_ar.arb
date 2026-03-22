@@ -350,6 +350,9 @@
     "recommendedForYou": "موصى به لك",
     "@recommendedForYou": {},
 
+    "featuredBrands":"العلامات التجارية المميزة",
+    "@featuredBrands": {},
+
     "cart": "سلة التسوق",
     "@cart": {},
     "cartEmptyTitle": "سلة التسوق فارغة",

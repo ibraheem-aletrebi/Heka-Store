@@ -202,6 +202,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Failed to get location. Please try again.",
     ),
     "favourites": MessageLookupByLibrary.simpleMessage("Favourites"),
+    "featuredBrands": MessageLookupByLibrary.simpleMessage("Featured Brands"),
     "fetchingAddress": MessageLookupByLibrary.simpleMessage(
       "Fetching address...",
     ),

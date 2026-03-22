@@ -308,6 +308,9 @@
     "@viewAll": {},
     "recommendedForYou": "Recommended for you",
     "@recommendedForYou": {},
+    "featuredBrands": "Featured Brands",
+    "@featuredBrands": {},
+
     "cart": "Cart",
     "@cart": {},
     "cartEmptyTitle": "Your shopping cart looks empty",

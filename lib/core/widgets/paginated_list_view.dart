@@ -1,5 +1,6 @@
-
 import 'package:flutter/material.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class PaginatedListView<T> extends StatefulWidget {
   final List<T> items;
@@ -85,9 +86,8 @@ class _PaginatedListViewState<T> extends State<PaginatedListView<T>> {
   Widget build(BuildContext context) {
     // ─── Loading ──────────────────────────────────────
     if (widget.isLoading) {
-      return widget.loadingWidget ?? _DefaultLoadingWidget(
-        isHorizontal: widget.isHorizontal,
-      );
+      return widget.loadingWidget ??
+          _DefaultLoadingWidget(isHorizontal: widget.isHorizontal);
     }
 
     // ─── Empty ────────────────────────────────────────
@@ -118,7 +118,7 @@ class _PaginatedListViewState<T> extends State<PaginatedListView<T>> {
       padding: widget.padding,
       itemCount: widget.items.length + (widget.isLoadingMore ? 1 : 0),
       separatorBuilder: (_, __) =>
-          widget.separator ?? const SizedBox.shrink(),
+          widget.separator ?? SizedBox(height: AppSizes.h12),
       itemBuilder: (context, index) {
         if (index == widget.items.length) {
           return widget.loadMoreWidget ?? const _DefaultLoadMoreWidget();
@@ -139,7 +139,7 @@ class _PaginatedListViewState<T> extends State<PaginatedListView<T>> {
         padding: widget.padding,
         itemCount: widget.items.length + (widget.isLoadingMore ? 1 : 0),
         separatorBuilder: (_, __) =>
-            widget.separator ?? const SizedBox.shrink(),
+            widget.separator ?? SizedBox(width: AppSizes.w12),
         itemBuilder: (context, index) {
           if (index == widget.items.length) {
             return widget.loadMoreWidget ?? const _DefaultLoadMoreWidget();
@@ -190,8 +190,6 @@ class _DefaultEmptyWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Center(
-      child: Text('No items found'),
-    );
+    return Center(child: Text(S.of(context).noResultsFound));
   }
 }

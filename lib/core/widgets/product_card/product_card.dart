@@ -10,8 +10,8 @@ import 'package:heka_store/core/widgets/product_card/price.dart';
 import 'package:heka_store/core/widgets/product_card/rating_product_card.dart';
 
 class ProductCard extends StatelessWidget {
-  final ProductModel productModel;
-  const ProductCard({super.key, required this.productModel});
+  final ProductModel? productModel;
+  const ProductCard({super.key, this.productModel});
 
   @override
   Widget build(BuildContext context) {
@@ -36,9 +36,11 @@ class ProductCard extends StatelessWidget {
                 CachedImage(
                   height: AppSizes.h130,
                   width: double.infinity,
-                  url: productModel.primaryImageUrl,
+                  url:
+                      // productModel?.primaryImageUrl ??
+                      'https://via.placeholder.com/150',
                 ),
-                if (productModel.isFeatured)
+                if (productModel?.isFeatured ?? false)
                   Positioned(
                     top: AppSizes.h8,
                     left: AppSizes.w8,
@@ -64,11 +66,11 @@ class ProductCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      productModel.nameEn,
+                      productModel?.nameEn ?? '',
                       style: textTheme.titleSmall?.copyWith(
                         color: colors.textPrimary,
                       ),
-                      maxLines: 2,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: AppSizes.h4),
@@ -78,8 +80,8 @@ class ProductCard extends StatelessWidget {
                       children: [
                         Expanded(
                           child: Price(
-                            price: productModel.price,
-                            discountPercent: productModel.discountPercentage,
+                            price: productModel?.price ?? 0,
+                            discountPercent: productModel?.discountPercentage,
                             hasFreeShipping: true,
                           ),
                         ),
