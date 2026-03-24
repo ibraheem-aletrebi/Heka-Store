@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
+import 'package:heka_store/core/blocs/session/session_cubit.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
@@ -35,7 +36,6 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // ─── Image ────────────────────────────────
             Stack(
               children: [
                 CachedImage(
@@ -46,7 +46,6 @@ class ProductCard extends StatelessWidget {
                       'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
                 ),
 
-                // ─── Best Seller Badge ─────────────────
                 if (productModel?.isFeatured ?? false)
                   Positioned(
                     top: AppSizes.h8,
@@ -54,12 +53,11 @@ class ProductCard extends StatelessWidget {
                     child: BestSeller(),
                   ),
 
-                // ─── Favorite Button ───────────────────
                 if (productModel != null)
                   Positioned(
                     top: AppSizes.h8,
                     right: AppSizes.w8,
-                    child: // في الـ FavoriteButton onPressed
+                    child:
                     BlocBuilder<WishlistBloc, WishlistState>(
                       buildWhen: (p, c) =>
                           p.isInWishlist(productModel!.id) !=
@@ -71,15 +69,12 @@ class ProductCard extends StatelessWidget {
                           isFavorited: state.isInWishlist(productModel!.id),
                           isLoading: state.isItemLoading(productModel!.id),
                           onPressed: () {
-                            // final isGuest = context.read<SessionCubit>().isGuest;
-                            final isGuest = false;
+                            final isGuest = context.read<SessionCubit>().isGuest;
                             if (isGuest) {
-                              // ─── Guest → حفظ locally ────────────
                               context.read<WishlistBloc>().add(
                                 WishlistEvent.guestToggled(productModel!.id),
                               );
                             } else {
-                              // ─── Authenticated → API ─────────────
                               context.read<WishlistBloc>().add(
                                 WishlistEvent.toggled(productModel!.id),
                               );
@@ -92,14 +87,12 @@ class ProductCard extends StatelessWidget {
               ],
             ),
 
-            // ─── Info ─────────────────────────────────
             Expanded(
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.w12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // ─── Name ──────────────────────────
                     Text(
                       productModel?.nameEn ?? '',
                       style: textTheme.titleSmall?.copyWith(
@@ -110,14 +103,12 @@ class ProductCard extends StatelessWidget {
                     ),
                     SizedBox(height: AppSizes.h4),
 
-                    // ─── Rating ────────────────────────
                     RatingProductCard(
                       rating: productModel?.averageRating ?? 0,
                       reviewsCount: productModel?.totalReviews ?? 0,
                     ),
                     const Spacer(),
 
-                    // ─── Price + Cart ──────────────────
                     Row(
                       children: [
                         Expanded(
