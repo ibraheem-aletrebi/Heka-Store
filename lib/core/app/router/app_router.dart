@@ -67,6 +67,7 @@ Future<String> getInitialRoute() async {
   final localDataSource = sl<AuthLocalDataSource>();
 
   final isLoggedIn = await localDataSource.isLoggedIn();
+
   if (isLoggedIn) return AppRoutes.mainLayout;
 
   final pendingEmail = await localDataSource.getPendingVerifyEmail();
@@ -78,7 +79,7 @@ Future<String> getInitialRoute() async {
         LocalStorageKeys.hasSeenOnboarding,
       ) ??
       false;
-  if (hasSeenOnboarding) return AppRoutes.login;
+  if (hasSeenOnboarding) return AppRoutes.mainLayout;
 
   return AppRoutes.onboarding;
 }

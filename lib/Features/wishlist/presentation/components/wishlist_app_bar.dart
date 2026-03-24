@@ -3,7 +3,6 @@ import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_icon_button.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-
 class WishlistAppBar extends StatelessWidget {
   const WishlistAppBar({super.key, this.onClearAll, this.onBack});
   final void Function()? onClearAll;
@@ -35,7 +34,7 @@ class WishlistAppBar extends StatelessWidget {
                 ),
               ),
               CustomIconButton(
-                onPressed: () {},
+                onPressed: onClearAll,
                 icon: Icons.cleaning_services_rounded,
               ),
             ],

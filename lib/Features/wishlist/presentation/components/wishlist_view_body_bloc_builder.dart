@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/empty_wishlist.dart';
+import 'package:heka_store/Features/wishlist/presentation/components/guest_wishlist_prompt.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/wishlist_app_bar.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/wishlist_items_staggered_grid.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -67,9 +68,15 @@ class WishlistViewBodyBlocBuilder extends StatelessWidget {
                   ),
                 )
               // ─── Empty ────────────────────────────────
-              else if (state.items.isEmpty)
+              else if (state.items.isEmpty && state.guestProductIds.isEmpty)
                 const SliverFillRemaining(child: EmptyWishlist())
               // ─── Items ────────────────────────────────
+              else if (state.items.isEmpty && state.guestProductIds.isNotEmpty)
+                SliverFillRemaining(
+                  child: GuestWishlistPrompt(
+                    itemCount: state.guestProductIds.length,
+                  ),
+                )
               else
                 WishlistItemsStaggeredGrid(items: state.items),
 

@@ -11,4 +11,5 @@ abstract class WishlistRepo {
   Future<ApiResult<WishlistItemModel>> addToWishlist(int productId);
   Future<ApiResult<void>> removeFromWishlist(int productId);
   bool isInWishlist(int productId);
+  
 }

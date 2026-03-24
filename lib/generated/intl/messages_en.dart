@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m0(count) =>
+      "You have ${count} saved items. Sign in to keep them";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addCard": MessageLookupByLibrary.simpleMessage("Add card"),
@@ -230,6 +233,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Current location",
     ),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
+    "guestWishlistSubtitle": m0,
+    "guestWishlistTitle": MessageLookupByLibrary.simpleMessage(
+      "Sign in to save your wishlist",
+    ),
     "hello": MessageLookupByLibrary.simpleMessage("Hello"),
     "home": MessageLookupByLibrary.simpleMessage("Home"),
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("I agree to "),
@@ -263,6 +270,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Location permission is permanently denied. You can enable it from settings.",
     ),
     "login": MessageLookupByLibrary.simpleMessage("Login"),
+    "loginToSave": MessageLookupByLibrary.simpleMessage(
+      "Sign in to save wishlist",
+    ),
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "Login to your account",
     ),

@@ -1544,6 +1544,36 @@ class S {
     );
   }
 
+  /// `Sign in to save your wishlist`
+  String get guestWishlistTitle {
+    return Intl.message(
+      'Sign in to save your wishlist',
+      name: 'guestWishlistTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have {count} saved items. Sign in to keep them`
+  String guestWishlistSubtitle(int count) {
+    return Intl.message(
+      'You have $count saved items. Sign in to keep them',
+      name: 'guestWishlistSubtitle',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Sign in to save wishlist`
+  String get loginToSave {
+    return Intl.message(
+      'Sign in to save wishlist',
+      name: 'loginToSave',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add to Cart`
   String get addToCart {
     return Intl.message('Add to Cart', name: 'addToCart', desc: '', args: []);

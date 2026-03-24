@@ -12,7 +12,13 @@ class OnboardingSheetActions extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        CustomButton(text: S.of(context).exploreHeka, onPressed: () {}),
+        CustomButton(
+          text: S.of(context).exploreHeka,
+          onPressed: () {
+            
+            context.pushReplacement(AppRoutes.mainLayout);
+          },
+        ),
         SizedBox(height: AppSizes.h16),
         CustomButton.outlined(
           text: S.of(context).createAccount,

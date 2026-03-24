@@ -20,6 +20,8 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
+  static String m0(count) => "لديك ${count} منتج في المفضلة. سجّل دخولك لحفظهم";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
@@ -230,6 +232,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
     "gpsButtonTooltip": MessageLookupByLibrary.simpleMessage("موقعي الحالي"),
     "guest": MessageLookupByLibrary.simpleMessage("زائر"),
+    "guestWishlistSubtitle": m0,
+    "guestWishlistTitle": MessageLookupByLibrary.simpleMessage(
+      "سجّل دخولك لحفظ مفضلتك",
+    ),
     "hello": MessageLookupByLibrary.simpleMessage("مرحباً"),
     "home": MessageLookupByLibrary.simpleMessage("المنزل"),
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("أوافق على "),
@@ -256,6 +262,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم رفض إذن الموقع بشكل دائم. يمكنك تفعيله من الإعدادات.",
     ),
     "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
+    "loginToSave": MessageLookupByLibrary.simpleMessage(
+      "تسجيل الدخول لحفظ المفضلة",
+    ),
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول إلى حسابك",
     ),

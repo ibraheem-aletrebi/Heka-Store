@@ -2,7 +2,8 @@ class LocalStorageKeys {
   static const String appThemeMode = 'appThemeMode';
   static const String langCode = 'langCode';
   static const String hasSeenOnboarding = 'hasSeenOnboarding';
-
+  static const String continueAsGuest = 'continueAsGuest';
+  
   static const String user = 'user';
   static const String addresses = 'addresses';
 

@@ -336,6 +336,18 @@
     "addedToWishlist": "Added to wishlist",
     "@addedToWishlist": {},
     "removedFromWishlist": "Removed from wishlist",
+
+    "guestWishlistTitle": "Sign in to save your wishlist",
+"@guestWishlistTitle": {},
+"guestWishlistSubtitle": "You have {count} saved items. Sign in to keep them",
+"@guestWishlistSubtitle": {
+  "placeholders": {
+    "count": {"type": "int"}
+  }
+},
+"loginToSave": "Sign in to save wishlist",
+"@loginToSave": {},
+
     "@removedFromWishlist": {},
     "addToCart": "Add to Cart",
     "@addToCart": {},

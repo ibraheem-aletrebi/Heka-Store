@@ -383,6 +383,17 @@
     "removedFromWishlist": "تمت الإزالة من المفضلة",
     "@removedFromWishlist": {},
 
+    "guestWishlistTitle": "سجّل دخولك لحفظ مفضلتك",
+"@guestWishlistTitle": {},
+"guestWishlistSubtitle": "لديك {count} منتج في المفضلة. سجّل دخولك لحفظهم",
+"@guestWishlistSubtitle": {
+  "placeholders": {
+    "count": {"type": "int"}
+  }
+},
+"loginToSave": "تسجيل الدخول لحفظ المفضلة",
+"@loginToSave": {},
+
     "bestSeller": "الأكثر مبيعاً",
     "@bestSeller": {},
     "off": "خصم",

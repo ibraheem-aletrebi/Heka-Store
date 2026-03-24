@@ -113,10 +113,13 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     return user?.hasAddress ?? false;
   }
 
+
   @override
   Future<void> clearAll() async {
     await clearTokens();
     await clearUser();
     await clearPendingVerifyEmail();
   }
+  
+
 }

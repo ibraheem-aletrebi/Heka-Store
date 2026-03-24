@@ -1,4 +1,3 @@
-// wishlist_event.dart
 
 part of 'wishlist_bloc.dart';
 
