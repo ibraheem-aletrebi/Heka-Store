@@ -1,25 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/core/widgets/product_card/best_seller.dart';
 import 'package:heka_store/core/widgets/product_card/cart_button.dart';
-import 'package:heka_store/core/widgets/product_card/favorite_button.dart';
 import 'package:heka_store/core/widgets/product_card/price.dart';
 import 'package:heka_store/core/widgets/product_card/rating_product_card.dart';
+import 'package:heka_store/core/widgets/product_card/wishlist_button.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel? productModel;
+
   const ProductCard({super.key, this.productModel});
 
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
     final textTheme = TextTheme.of(context);
+
     return GestureDetector(
       onTap: () {
-        ////TODO: navigate to product details
+        // TODO: navigate to product details
       },
       child: Container(
         clipBehavior: Clip.antiAlias,
@@ -31,6 +35,7 @@ class ProductCard extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // ─── Image ────────────────────────────────
             Stack(
               children: [
                 CachedImage(
@@ -38,33 +43,50 @@ class ProductCard extends StatelessWidget {
                   width: double.infinity,
                   url:
                       // productModel?.primaryImageUrl ??
-                      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fHByb2R1Y3R8ZW58MHx8MHx8fDA%3D',
+                      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
                 ),
+
+                // ─── Best Seller Badge ─────────────────
                 if (productModel?.isFeatured ?? false)
                   Positioned(
                     top: AppSizes.h8,
                     left: AppSizes.w8,
                     child: BestSeller(),
                   ),
-                Positioned(
-                  top: AppSizes.h8,
-                  right: AppSizes.w8,
-                  child: FavoriteButton(
-                    onPressed: () {
-                      ////TODO: add to favorite
-                    },
-                    isFavorited: true,
+
+                // ─── Favorite Button ───────────────────
+                if (productModel != null)
+                  Positioned(
+                    top: AppSizes.h8,
+                    right: AppSizes.w8,
+                    child: BlocBuilder<WishlistBloc, WishlistState>(
+                      buildWhen: (previous, current) =>
+                          previous.isInWishlist(productModel!.id) !=
+                              current.isInWishlist(productModel!.id) ||
+                          previous.isItemLoading(productModel!.id) !=
+                              current.isItemLoading(productModel!.id),
+                      builder: (context, state) {
+                        return WishlistButton(
+                          isFavorited: state.isInWishlist(productModel!.id),
+                          isLoading: state.isItemLoading(productModel!.id),
+                          onPressed: () => context.read<WishlistBloc>().add(
+                            WishlistEvent.toggled(productModel!.id),
+                          ),
+                        );
+                      },
+                    ),
                   ),
-                ),
               ],
             ),
-            // Info
+
+            // ─── Info ─────────────────────────────────
             Expanded(
               child: Padding(
                 padding: EdgeInsets.all(AppSizes.w12),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    // ─── Name ──────────────────────────
                     Text(
                       productModel?.nameEn ?? '',
                       style: textTheme.titleSmall?.copyWith(
@@ -74,8 +96,15 @@ class ProductCard extends StatelessWidget {
                       overflow: TextOverflow.ellipsis,
                     ),
                     SizedBox(height: AppSizes.h4),
-                    RatingProductCard(rating: 4.5, reviewsCount: 479798),
+
+                    // ─── Rating ────────────────────────
+                    RatingProductCard(
+                      rating: productModel?.averageRating ?? 0,
+                      reviewsCount: productModel?.totalReviews ?? 0,
+                    ),
                     const Spacer(),
+
+                    // ─── Price + Cart ──────────────────
                     Row(
                       children: [
                         Expanded(
@@ -87,7 +116,7 @@ class ProductCard extends StatelessWidget {
                         ),
                         CartButton(
                           onPressed: () {
-                            ////TODO: add to cart
+                            // TODO: add to cart
                           },
                         ),
                       ],

@@ -23,6 +23,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
+    "addedToWishlist": MessageLookupByLibrary.simpleMessage(
+      "تمت الإضافة إلى المفضلة",
+    ),
     "addressNickName": MessageLookupByLibrary.simpleMessage("اسم العنوان"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "لديك حساب بالفعل؟ ",
@@ -334,6 +337,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "recommendedForYou": MessageLookupByLibrary.simpleMessage("موصى به لك"),
     "register": MessageLookupByLibrary.simpleMessage("تسجيل"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("تذكّرني"),
+    "removedFromWishlist": MessageLookupByLibrary.simpleMessage(
+      "تمت الإزالة من المفضلة",
+    ),
     "resendCode": MessageLookupByLibrary.simpleMessage("إعادة إرسال الرمز"),
     "resetPasswordNewPasswordBody": MessageLookupByLibrary.simpleMessage(
       "أدخل كلمة المرور الجديدة أدناه لتأمين حسابك.",

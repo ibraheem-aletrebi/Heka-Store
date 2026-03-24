@@ -332,6 +332,11 @@
     "@emptyFavoriteBody": {},
     "previouslyViewedItem": "Items you previously viewed",
     "@previouslyViewedItem": {},
+
+    "addedToWishlist": "Added to wishlist",
+    "@addedToWishlist": {},
+    "removedFromWishlist": "Removed from wishlist",
+    "@removedFromWishlist": {},
     "addToCart": "Add to Cart",
     "@addToCart": {},
     "bestSeller": "Best Seller",

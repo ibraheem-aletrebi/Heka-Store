@@ -1524,6 +1524,26 @@ class S {
     );
   }
 
+  /// `Added to wishlist`
+  String get addedToWishlist {
+    return Intl.message(
+      'Added to wishlist',
+      name: 'addedToWishlist',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Removed from wishlist`
+  String get removedFromWishlist {
+    return Intl.message(
+      'Removed from wishlist',
+      name: 'removedFromWishlist',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Add to Cart`
   String get addToCart {
     return Intl.message('Add to Cart', name: 'addToCart', desc: '', args: []);

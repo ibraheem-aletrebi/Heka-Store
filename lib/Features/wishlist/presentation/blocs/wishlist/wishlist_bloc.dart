@@ -1,4 +1,3 @@
-// wishlist_bloc.dart
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -33,7 +32,11 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   // ─── Load ──────────────────────────────────────────────────────────────────
 
   Future<void> _onLoaded(_Loaded event, Emitter<WishlistState> emit) async {
-    emit(state.copyWith(isLoading: true, error: null));
+    emit(state.copyWith(
+      isLoading: true,
+      error: null,
+      lastToggledProductId: null, // ← reset
+    ));
 
     final response = await _getWishlistUseCase();
     response.when(
@@ -56,9 +59,9 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     final productId = event.productId;
     final isInWishlist = state.isInWishlist(productId);
 
-    // ─── أضف للـ loading ids ──────────────────────────
     emit(state.copyWith(
       loadingProductIds: [...state.loadingProductIds, productId],
+      lastToggledProductId: null, 
       error: null,
     ));
 
@@ -73,6 +76,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
           loadingProductIds: state.loadingProductIds
               .where((id) => id != productId)
               .toList(),
+          lastToggledProductId: productId, 
         )),
         onError: (error) => emit(state.copyWith(
           loadingProductIds: state.loadingProductIds
@@ -90,6 +94,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
           loadingProductIds: state.loadingProductIds
               .where((id) => id != productId)
               .toList(),
+          lastToggledProductId: productId,
         )),
         onError: (error) => emit(state.copyWith(
           loadingProductIds: state.loadingProductIds

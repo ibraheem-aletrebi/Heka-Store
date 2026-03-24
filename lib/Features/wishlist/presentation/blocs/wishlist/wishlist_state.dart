@@ -1,3 +1,4 @@
+
 part of 'wishlist_bloc.dart';
 
 @freezed
@@ -9,6 +10,7 @@ class WishlistState with _$WishlistState {
     @Default(false) bool hasNextPage,
     @Default(1) int currentPage,
     @Default([]) List<int> loadingProductIds,
+    int? lastToggledProductId, // ← جديد
     ApiErrorModel? error,
   }) = _WishlistState;
 
@@ -17,5 +19,6 @@ class WishlistState with _$WishlistState {
   bool isInWishlist(int productId) =>
       items.any((e) => e.productId == productId);
 
-  bool isItemLoading(int productId) => loadingProductIds.contains(productId);
+  bool isItemLoading(int productId) =>
+      loadingProductIds.contains(productId);
 }

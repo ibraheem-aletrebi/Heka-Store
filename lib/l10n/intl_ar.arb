@@ -378,6 +378,11 @@
     "addToCart": "أضف إلى السلة",
     "@addToCart": {},
 
+    "addedToWishlist": "تمت الإضافة إلى المفضلة",
+    "@addedToWishlist": {},
+    "removedFromWishlist": "تمت الإزالة من المفضلة",
+    "@removedFromWishlist": {},
+
     "bestSeller": "الأكثر مبيعاً",
     "@bestSeller": {},
     "off": "خصم",

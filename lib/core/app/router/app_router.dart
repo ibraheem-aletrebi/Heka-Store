@@ -59,6 +59,8 @@ class AppRouter {
       GoRoute(path: AppRoutes.mainLayout, builder: (_, _) => MainLayoutView()),
     ],
   );
+
+  void go(String route) => router.go(route);
 }
 
 Future<String> getInitialRoute() async {

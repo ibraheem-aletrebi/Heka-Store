@@ -28,6 +28,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "addedToWishlist": MessageLookupByLibrary.simpleMessage(
+      "Added to wishlist",
+    ),
     "addressNickName": MessageLookupByLibrary.simpleMessage("Address Nickname"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
@@ -352,6 +355,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+    "removedFromWishlist": MessageLookupByLibrary.simpleMessage(
+      "Removed from wishlist",
+    ),
     "resendCode": MessageLookupByLibrary.simpleMessage("Resend Code"),
     "resetPasswordNewPasswordBody": MessageLookupByLibrary.simpleMessage(
       "Enter your new password below to secure your account.",

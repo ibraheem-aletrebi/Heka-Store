@@ -49,8 +49,9 @@ import 'package:heka_store/Features/wishlist/domain/use_cases/add_to_wishlist_us
 import 'package:heka_store/Features/wishlist/domain/use_cases/get_wishlist_use_case.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/is_in_wishlist_use_case.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/remove_from_wishlist_use_case.dart';
-import 'package:heka_store/Features/wishlist/presentation/blocs/bloc/wishlist_bloc.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
@@ -108,7 +109,7 @@ Future<void> _initCore() async {
   // ─── Error Handler ────────────────────────────────
   ApiErrorHandler.instance.init(
     onUnauthorized: () {
-      // TODO: Navigate to Login
+      AppRouter().go(AppRoutes.login);
     },
   );
 }

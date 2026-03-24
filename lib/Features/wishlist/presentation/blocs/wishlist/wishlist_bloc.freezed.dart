@@ -444,6 +444,7 @@ mixin _$WishlistState {
   bool get hasNextPage => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   List<int> get loadingProductIds => throw _privateConstructorUsedError;
+  int? get lastToggledProductId => throw _privateConstructorUsedError; // ← جديد
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -464,6 +465,7 @@ abstract class $WishlistStateCopyWith<$Res> {
       bool hasNextPage,
       int currentPage,
       List<int> loadingProductIds,
+      int? lastToggledProductId,
       ApiErrorModel? error});
 }
 
@@ -486,6 +488,7 @@ class _$WishlistStateCopyWithImpl<$Res, $Val extends WishlistState>
     Object? hasNextPage = null,
     Object? currentPage = null,
     Object? loadingProductIds = null,
+    Object? lastToggledProductId = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -513,6 +516,10 @@ class _$WishlistStateCopyWithImpl<$Res, $Val extends WishlistState>
           ? _value.loadingProductIds
           : loadingProductIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      lastToggledProductId: freezed == lastToggledProductId
+          ? _value.lastToggledProductId
+          : lastToggledProductId // ignore: cast_nullable_to_non_nullable
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -536,6 +543,7 @@ abstract class _$$WishlistStateImplCopyWith<$Res>
       bool hasNextPage,
       int currentPage,
       List<int> loadingProductIds,
+      int? lastToggledProductId,
       ApiErrorModel? error});
 }
 
@@ -556,6 +564,7 @@ class __$$WishlistStateImplCopyWithImpl<$Res>
     Object? hasNextPage = null,
     Object? currentPage = null,
     Object? loadingProductIds = null,
+    Object? lastToggledProductId = freezed,
     Object? error = freezed,
   }) {
     return _then(_$WishlistStateImpl(
@@ -583,6 +592,10 @@ class __$$WishlistStateImplCopyWithImpl<$Res>
           ? _value._loadingProductIds
           : loadingProductIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
+      lastToggledProductId: freezed == lastToggledProductId
+          ? _value.lastToggledProductId
+          : lastToggledProductId // ignore: cast_nullable_to_non_nullable
+              as int?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -601,6 +614,7 @@ class _$WishlistStateImpl extends _WishlistState {
       this.hasNextPage = false,
       this.currentPage = 1,
       final List<int> loadingProductIds = const [],
+      this.lastToggledProductId,
       this.error})
       : _items = items,
         _loadingProductIds = loadingProductIds,
@@ -638,11 +652,14 @@ class _$WishlistStateImpl extends _WishlistState {
   }
 
   @override
+  final int? lastToggledProductId;
+// ← جديد
+  @override
   final ApiErrorModel? error;
 
   @override
   String toString() {
-    return 'WishlistState(items: $items, isLoading: $isLoading, isLoadingMore: $isLoadingMore, hasNextPage: $hasNextPage, currentPage: $currentPage, loadingProductIds: $loadingProductIds, error: $error)';
+    return 'WishlistState(items: $items, isLoading: $isLoading, isLoadingMore: $isLoadingMore, hasNextPage: $hasNextPage, currentPage: $currentPage, loadingProductIds: $loadingProductIds, lastToggledProductId: $lastToggledProductId, error: $error)';
   }
 
   @override
@@ -661,6 +678,8 @@ class _$WishlistStateImpl extends _WishlistState {
                 other.currentPage == currentPage) &&
             const DeepCollectionEquality()
                 .equals(other._loadingProductIds, _loadingProductIds) &&
+            (identical(other.lastToggledProductId, lastToggledProductId) ||
+                other.lastToggledProductId == lastToggledProductId) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -673,6 +692,7 @@ class _$WishlistStateImpl extends _WishlistState {
       hasNextPage,
       currentPage,
       const DeepCollectionEquality().hash(_loadingProductIds),
+      lastToggledProductId,
       error);
 
   @JsonKey(ignore: true)
@@ -690,6 +710,7 @@ abstract class _WishlistState extends WishlistState {
       final bool hasNextPage,
       final int currentPage,
       final List<int> loadingProductIds,
+      final int? lastToggledProductId,
       final ApiErrorModel? error}) = _$WishlistStateImpl;
   const _WishlistState._() : super._();
 
@@ -706,6 +727,8 @@ abstract class _WishlistState extends WishlistState {
   @override
   List<int> get loadingProductIds;
   @override
+  int? get lastToggledProductId;
+  @override // ← جديد
   ApiErrorModel? get error;
   @override
   @JsonKey(ignore: true)
