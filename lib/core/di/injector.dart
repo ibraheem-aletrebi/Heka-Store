@@ -40,6 +40,7 @@ import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_cas
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/wishlist/data/data_source/guest_wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
@@ -86,6 +87,7 @@ Future<void> _initCore() async {
       HiveBoxes.data,
       HiveBoxes.home,
       HiveBoxes.wishlist,
+      HiveBoxes.guestWishlist,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -285,6 +287,12 @@ void _initHome() {
 }
 
 void _initWishlist() {
+  sl.registerLazySingleton<GuestWishlistLocalDataSource>(
+    () => GuestWishlistLocalDataSourceImpl(
+      localStorage: sl<LocalStorageService>(),
+    ),
+  );
+
   sl.registerLazySingleton<WishlistRemoteDataSource>(
     () => WishlistRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
@@ -311,9 +319,10 @@ void _initWishlist() {
   );
   sl.registerFactory<WishlistBloc>(
     () => WishlistBloc(
-      getWishlistUseCase: sl<GetWishlistUseCase>(),
-      addToWishlistUseCase: sl<AddToWishlistUseCase>(),
-      removeFromWishlistUseCase: sl<RemoveFromWishlistUseCase>(),
+      getWishlistUseCase: sl(),
+      addToWishlistUseCase: sl(),
+      removeFromWishlistUseCase: sl(),
+      guestLocalDataSource: sl<GuestWishlistLocalDataSource>(),
     ),
   );
 }

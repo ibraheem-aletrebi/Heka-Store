@@ -1,3 +1,4 @@
+// wishlist_remote_data_source.dart
 
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_response_model.dart';
@@ -42,9 +43,9 @@ class WishlistRemoteDataSourceImpl implements WishlistRemoteDataSource {
   Future<void> removeFromWishlist(int productId) async {
     await _apiService.delete(ApiConstants.wishlistItem(productId));
   }
-  
+
   @override
-  Future<void> clearWishlist() {
-    return _apiService.delete(ApiConstants.wishlist);
+  Future<void> clearWishlist() async {
+    await _apiService.delete(ApiConstants.wishlist);
   }
 }
