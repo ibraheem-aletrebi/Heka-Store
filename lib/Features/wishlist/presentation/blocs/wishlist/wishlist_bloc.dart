@@ -1,6 +1,8 @@
+// wishlist_bloc.dart
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:heka_store/Features/wishlist/data/data_source/guest_wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/add_to_wishlist_use_case.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/get_wishlist_use_case.dart';
@@ -15,27 +17,38 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
   final GetWishlistUseCase _getWishlistUseCase;
   final AddToWishlistUseCase _addToWishlistUseCase;
   final RemoveFromWishlistUseCase _removeFromWishlistUseCase;
+  final GuestWishlistLocalDataSource _guestLocalDataSource;
 
   WishlistBloc({
     required GetWishlistUseCase getWishlistUseCase,
     required AddToWishlistUseCase addToWishlistUseCase,
     required RemoveFromWishlistUseCase removeFromWishlistUseCase,
+    required GuestWishlistLocalDataSource guestLocalDataSource,
   })  : _getWishlistUseCase = getWishlistUseCase,
         _addToWishlistUseCase = addToWishlistUseCase,
         _removeFromWishlistUseCase = removeFromWishlistUseCase,
-        super(const WishlistState()) {
+        _guestLocalDataSource = guestLocalDataSource,
+        super(WishlistState(
+          // ─── حمل الـ guest ids عند الإنشاء ───────
+          guestProductIds: guestLocalDataSource.getProductIds(),
+        )) {
     on<_Loaded>(_onLoaded);
     on<_Toggled>(_onToggled);
     on<_NextPageFetched>(_onNextPageFetched);
+    on<_GuestToggled>(_onGuestToggled);
+    on<_SyncGuestWishlist>(_onSyncGuestWishlist);
   }
 
   // ─── Load ──────────────────────────────────────────────────────────────────
 
-  Future<void> _onLoaded(_Loaded event, Emitter<WishlistState> emit) async {
+  Future<void> _onLoaded(
+    _Loaded event,
+    Emitter<WishlistState> emit,
+  ) async {
     emit(state.copyWith(
       isLoading: true,
       error: null,
-      lastToggledProductId: null, // ← reset
+      lastToggledProductId: null,
     ));
 
     final response = await _getWishlistUseCase();
@@ -53,15 +66,18 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     );
   }
 
-  // ─── Toggle ────────────────────────────────────────────────────────────────
+  // ─── Toggle (Authenticated) ────────────────────────────────────────────────
 
-  Future<void> _onToggled(_Toggled event, Emitter<WishlistState> emit) async {
+  Future<void> _onToggled(
+    _Toggled event,
+    Emitter<WishlistState> emit,
+  ) async {
     final productId = event.productId;
-    final isInWishlist = state.isInWishlist(productId);
+    final isInWishlist = state.items.any((e) => e.productId == productId);
 
     emit(state.copyWith(
       loadingProductIds: [...state.loadingProductIds, productId],
-      lastToggledProductId: null, 
+      lastToggledProductId: null,
       error: null,
     ));
 
@@ -76,7 +92,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
           loadingProductIds: state.loadingProductIds
               .where((id) => id != productId)
               .toList(),
-          lastToggledProductId: productId, 
+          lastToggledProductId: productId,
         )),
         onError: (error) => emit(state.copyWith(
           loadingProductIds: state.loadingProductIds
@@ -104,6 +120,60 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
         )),
       );
     }
+  }
+
+  // ─── Guest Toggle ──────────────────────────────────────────────────────────
+
+  void _onGuestToggled(
+    _GuestToggled event,
+    Emitter<WishlistState> emit,
+  ) {
+    final productId = event.productId;
+    final isInGuest = state.guestProductIds.contains(productId);
+
+    if (isInGuest) {
+      _guestLocalDataSource.removeProductId(productId);
+      emit(state.copyWith(
+        guestProductIds: state.guestProductIds
+            .where((id) => id != productId)
+            .toList(),
+        lastToggledProductId: productId,
+      ));
+    } else {
+      _guestLocalDataSource.addProductId(productId);
+      emit(state.copyWith(
+        guestProductIds: [...state.guestProductIds, productId],
+        lastToggledProductId: productId,
+      ));
+    }
+  }
+
+  // ─── Sync Guest Wishlist ───────────────────────────────────────────────────
+
+  Future<void> _onSyncGuestWishlist(
+    _SyncGuestWishlist event,
+    Emitter<WishlistState> emit,
+  ) async {
+    final guestIds = _guestLocalDataSource.getProductIds();
+    if (guestIds.isEmpty) return;
+
+    emit(state.copyWith(isSyncing: true));
+
+    // ─── ارفع كل item على السيرفر ─────────────────
+    for (final productId in guestIds) {
+      await _addToWishlistUseCase(productId);
+    }
+
+    // ─── امسح الـ guest wishlist ──────────────────
+    await _guestLocalDataSource.clear();
+
+    emit(state.copyWith(
+      isSyncing: false,
+      guestProductIds: [],
+    ));
+
+    // ─── حمل الـ wishlist من السيرفر ─────────────
+    add(const WishlistEvent.loaded());
   }
 
   // ─── Next Page ─────────────────────────────────────────────────────────────

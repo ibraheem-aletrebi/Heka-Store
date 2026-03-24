@@ -1,4 +1,4 @@
-// features/wishlist/data/datasources/wishlist_local_data_source.dart
+// wishlist_local_data_source.dart
 
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
@@ -49,7 +49,9 @@ class WishlistLocalDataSourceImpl implements WishlistLocalDataSource {
   @override
   Future<void> removeItem(int productId) async {
     final items = getWishlist();
-    await saveWishlist(items.where((e) => e.productId != productId).toList());
+    await saveWishlist(
+      items.where((e) => e.productId != productId).toList(),
+    );
   }
 
   @override

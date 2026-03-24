@@ -59,19 +59,32 @@ class ProductCard extends StatelessWidget {
                   Positioned(
                     top: AppSizes.h8,
                     right: AppSizes.w8,
-                    child: BlocBuilder<WishlistBloc, WishlistState>(
-                      buildWhen: (previous, current) =>
-                          previous.isInWishlist(productModel!.id) !=
-                              current.isInWishlist(productModel!.id) ||
-                          previous.isItemLoading(productModel!.id) !=
-                              current.isItemLoading(productModel!.id),
+                    child: // في الـ FavoriteButton onPressed
+                    BlocBuilder<WishlistBloc, WishlistState>(
+                      buildWhen: (p, c) =>
+                          p.isInWishlist(productModel!.id) !=
+                              c.isInWishlist(productModel!.id) ||
+                          p.isItemLoading(productModel!.id) !=
+                              c.isItemLoading(productModel!.id),
                       builder: (context, state) {
                         return WishlistButton(
                           isFavorited: state.isInWishlist(productModel!.id),
                           isLoading: state.isItemLoading(productModel!.id),
-                          onPressed: () => context.read<WishlistBloc>().add(
-                            WishlistEvent.toggled(productModel!.id),
-                          ),
+                          onPressed: () {
+                            // final isGuest = context.read<SessionCubit>().isGuest;
+                            final isGuest = false;
+                            if (isGuest) {
+                              // ─── Guest → حفظ locally ────────────
+                              context.read<WishlistBloc>().add(
+                                WishlistEvent.guestToggled(productModel!.id),
+                              );
+                            } else {
+                              // ─── Authenticated → API ─────────────
+                              context.read<WishlistBloc>().add(
+                                WishlistEvent.toggled(productModel!.id),
+                              );
+                            }
+                          },
                         );
                       },
                     ),
