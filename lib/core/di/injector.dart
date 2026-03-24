@@ -53,6 +53,7 @@ import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlis
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
+import 'package:heka_store/core/blocs/session/session_cubit.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
@@ -171,6 +172,11 @@ void _initAuth() {
   );
 
   // ─── BLoCs ────────────────────────────────────────
+
+  sl.registerLazySingleton<SessionCubit>(
+  () => SessionCubit(localDataSource: sl<AuthLocalDataSource>()),
+ );
+
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(loginUseCase: sl<LoginUseCase>()),
   );
