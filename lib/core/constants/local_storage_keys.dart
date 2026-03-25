@@ -16,4 +16,8 @@ class LocalStorageKeys {
 
   static const String wishlist = 'wishlist';
   static const String previousVisitedProducts = 'previousVisitedProducts';
+
+  static const String cart = 'cart';
+  static const String cartCount = 'cartCount';
+  static const String cartLastFetch = 'cartLastFetch';
 }

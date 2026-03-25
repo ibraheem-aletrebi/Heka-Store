@@ -6,4 +6,5 @@ class HiveBoxes {
   static const String home = 'home_box';
   static const String wishlist = 'wishlist_box';
   static const String previousViewedProducts = 'previous_viewed_products_box';
+  static const String cart = 'cart_box';  
 }
