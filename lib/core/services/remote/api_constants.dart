@@ -25,4 +25,11 @@ class ApiConstants {
 
   static const String wishlist = '/api/Wishlist';
   static String wishlistItem(int productId) => '/api/Wishlist/$productId';
+
+
+    
+  static const String cart = '/api/Cart';
+  static const String cartItems = '/api/Cart/items';
+  static const String cartCount = '/api/Cart/count';
+  static String cartItem(int id) => '/api/Cart/items/$id';
 }
