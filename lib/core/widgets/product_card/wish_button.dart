@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
-class WishlistButton extends StatefulWidget {
+class WishButton extends StatefulWidget {
   final bool isFavorited;
   final bool isLoading;
   final VoidCallback? onPressed;
 
-  const WishlistButton({
+  const WishButton({
     super.key,
     required this.isFavorited,
     required this.onPressed,
@@ -15,10 +15,10 @@ class WishlistButton extends StatefulWidget {
   });
 
   @override
-  State<WishlistButton> createState() => _WishlistButtonState();
+  State<WishButton> createState() => _WishButtonState();
 }
 
-class _WishlistButtonState extends State<WishlistButton>
+class _WishButtonState extends State<WishButton>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fillAnimation;
@@ -58,7 +58,7 @@ class _WishlistButtonState extends State<WishlistButton>
   }
 
   @override
-  void didUpdateWidget(WishlistButton oldWidget) {
+  void didUpdateWidget(WishButton oldWidget) {
     super.didUpdateWidget(oldWidget);
 
     if (oldWidget.isLoading && !widget.isLoading && widget.isFavorited) {

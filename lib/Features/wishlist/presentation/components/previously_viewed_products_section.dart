@@ -1,31 +1,64 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/Features/home/data/models/product/product_model.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/product_card/product_card.dart';
 import 'package:heka_store/core/widgets/section_header.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-class PreviouslyViewedProductsSection extends StatelessWidget {
-  const PreviouslyViewedProductsSection({super.key, required this.products});
-  final List<ProductModel> products ;
+class PreviouslyViewedProductsSection extends StatefulWidget {
+  const PreviouslyViewedProductsSection({super.key});
+
+  @override
+  State<PreviouslyViewedProductsSection> createState() =>
+      _PreviouslyViewedProductsSectionState();
+}
+
+class _PreviouslyViewedProductsSectionState
+    extends State<PreviouslyViewedProductsSection> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PreviousViewedProductsBloc>().add(
+      const PreviousViewedProductsEvent.getProducts(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      spacing: AppSizes.h16,
-      children: [
-        SectionHeader(title: S.of(context).previouslyViewedItem),
-        SizedBox(
-          height: MediaQuery.sizeOf(context).height * 0.35,
-          child: ListView.separated(
-            padding: EdgeInsets.symmetric(horizontal: AppSizes.w12),
-            scrollDirection: Axis.horizontal,
-            physics: const BouncingScrollPhysics(),
-            itemCount: products.length,
-            separatorBuilder: (_, _) => SizedBox(width: AppSizes.w10),
-            itemBuilder: (_, i) => ProductCard(productModel: products[i],),
-          ),
-        ),
-      ],
+    return BlocBuilder<PreviousViewedProductsBloc, PreviousViewedProductsState>(
+      builder: (context, state) {
+        return state.maybeWhen(
+          loaded: (products) {
+            if (products.isEmpty) return const SizedBox.shrink();
+            return Column(
+              spacing: AppSizes.h16,
+              children: [
+                SectionHeader(
+                  title: S.of(context).previouslyViewedItem,
+                  onSeeAll: () =>
+                      context.push(AppRoutes.previousViewedProductsView),
+                ),
+                SizedBox(
+                  height: MediaQuery.sizeOf(context).height * 0.3,
+                  child: ListView.separated(
+                    padding: EdgeInsets.symmetric(horizontal: AppSizes.w12),
+                    scrollDirection: Axis.horizontal,
+                    physics: const BouncingScrollPhysics(),
+                    itemCount: products.length > 5 ? 5 : products.length,
+                    separatorBuilder: (_, __) => SizedBox(width: AppSizes.w10),
+                    itemBuilder: (_, i) =>
+                        ProductCard(productModel: products[i]),
+                  ),
+                ),
+              ],
+            );
+          },
+          orElse: () => const SizedBox.shrink(),
+        );
+      },
     );
   }
 }

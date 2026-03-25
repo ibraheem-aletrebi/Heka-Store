@@ -11,23 +11,16 @@ class OnboardingSheetActions extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         CustomButton(
-          text: S.of(context).exploreHeka,
-          onPressed: () {
-            
-            context.pushReplacement(AppRoutes.mainLayout);
-          },
+          text: S.of(context).loginToYourAccount,
+          onPressed: () => context.pushReplacement(AppRoutes.login),
         ),
         SizedBox(height: AppSizes.h16),
         CustomButton.outlined(
           text: S.of(context).createAccount,
           onPressed: () => context.pushReplacement(AppRoutes.register),
-        ),
-        SizedBox(height: AppSizes.h20),
-        TextButton(
-          onPressed: () => context.pushReplacement(AppRoutes.login),
-          child: Text(S.of(context).loginToYourAccount),
         ),
       ],
     );

@@ -1,3 +1,5 @@
+
+
 class AppRoutes {
   static const splash = '/';
   static const onboarding = '/onboarding';
@@ -9,4 +11,6 @@ class AppRoutes {
   static const locationPicker = '/location-picker';
 
   static const mainLayout = '/main-layout';
+
+  static const previousViewedProductsView='/previous-viewed-products-view';
 }

@@ -14,17 +14,18 @@ class OnboardingSheet extends StatelessWidget {
     return Align(
       alignment: Alignment.bottomCenter,
       child: Container(
-        height: MediaQuery.of(context).size.height * 0.52,
+        height: MediaQuery.of(context).size.height * 0.5,
         padding: EdgeInsets.symmetric(
           horizontal: AppSizes.w16,
-          vertical: AppSizes.h24,
         ),
         decoration: BoxDecoration(
           color: colors.surface,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppSizes.r20),
+          ),
         ),
-        child: const Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             OnboardingSheetHeader(),
             OnboardingSheetBody(),

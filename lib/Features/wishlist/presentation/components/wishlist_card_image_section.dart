@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
@@ -6,7 +5,7 @@ import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlis
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/core/widgets/product_card/best_seller.dart';
-import 'package:heka_store/core/widgets/product_card/wishlist_button.dart';
+import 'package:heka_store/core/widgets/product_card/wish_button.dart';
 
 class WishlistCardImageSection extends StatelessWidget {
   const WishlistCardImageSection({super.key, this.item});
@@ -42,16 +41,15 @@ class WishlistCardImageSection extends StatelessWidget {
               end: AppSizes.w6,
               child: BlocBuilder<WishlistBloc, WishlistState>(
                 buildWhen: (previous, current) =>
-                    
                     previous.isItemLoading(item!.productId) !=
-                        current.isItemLoading(item!.productId),
+                    current.isItemLoading(item!.productId),
                 builder: (context, state) {
-                  return WishlistButton(
+                  return WishButton(
                     isFavorited: state.isInWishlist(item!.productId),
                     isLoading: state.isItemLoading(item!.productId),
-                    onPressed: () => context
-                        .read<WishlistBloc>()
-                        .add(WishlistEvent.toggled(item!.productId)), 
+                    onPressed: () => context.read<WishlistBloc>().add(
+                      WishlistEvent.toggled(item!.productId),
+                    ),
                   );
                 },
               ),

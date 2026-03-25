@@ -8,6 +8,7 @@ import 'package:heka_store/Features/auth/presentation/views/verify_email/verify_
 import 'package:heka_store/Features/home/presentation/views/layout/main_layout_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
+import 'package:heka_store/Features/wishlist/presentation/view/previous_viewed_products_view.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/di/injector.dart';
@@ -57,6 +58,8 @@ class AppRouter {
       ),
 
       GoRoute(path: AppRoutes.mainLayout, builder: (_, _) => MainLayoutView()),
+
+      GoRoute(path: AppRoutes.previousViewedProductsView, builder: (_, _) => PreviousViewedProductsView()),
     ],
   );
 

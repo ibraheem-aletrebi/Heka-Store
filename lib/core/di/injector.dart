@@ -40,6 +40,7 @@ import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_cas
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/wishlist/data/data_source/previous_viewed_products_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
@@ -49,6 +50,7 @@ import 'package:heka_store/Features/wishlist/domain/use_cases/add_to_wishlist_us
 import 'package:heka_store/Features/wishlist/domain/use_cases/get_wishlist_use_case.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/is_in_wishlist_use_case.dart';
 import 'package:heka_store/Features/wishlist/domain/use_cases/remove_from_wishlist_use_case.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
@@ -86,6 +88,7 @@ Future<void> _initCore() async {
       HiveBoxes.data,
       HiveBoxes.home,
       HiveBoxes.wishlist,
+      HiveBoxes.previousViewedProducts,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -285,11 +288,11 @@ void _initHome() {
 }
 
 void _initWishlist() {
-  // sl.registerLazySingleton<PreviousViewedProductsDataSource>(
-  //   () => PreviousViewedProductsDataSourceImpl(
-  //     localStorage: sl<LocalStorageService>(),
-  //   ),
-  // );
+  sl.registerLazySingleton<PreviousViewedProductsDataSource>(
+    () => PreviousViewedProductsDataSourceImpl(
+      localStorage: sl<LocalStorageService>(),
+    ),
+  );
 
   sl.registerLazySingleton<WishlistRemoteDataSource>(
     () => WishlistRemoteDataSourceImpl(apiService: sl<ApiService>()),
@@ -315,6 +318,12 @@ void _initWishlist() {
   );
   sl.registerFactory<IsInWishlistUseCase>(
     () => IsInWishlistUseCase(repo: sl<WishlistRepo>()),
+  );
+
+  sl.registerFactory<PreviousViewedProductsBloc>(
+    () => PreviousViewedProductsBloc(
+      dataSource: sl<PreviousViewedProductsDataSource>(),
+    ),
   );
   sl.registerFactory<WishlistBloc>(
     () => WishlistBloc(

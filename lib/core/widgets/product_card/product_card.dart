@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -9,7 +10,7 @@ import 'package:heka_store/core/widgets/product_card/best_seller.dart';
 import 'package:heka_store/core/widgets/product_card/cart_button.dart';
 import 'package:heka_store/core/widgets/product_card/price.dart';
 import 'package:heka_store/core/widgets/product_card/rating_product_card.dart';
-import 'package:heka_store/core/widgets/product_card/wishlist_button.dart';
+import 'package:heka_store/core/widgets/product_card/wish_button.dart';
 
 class ProductCard extends StatelessWidget {
   final ProductModel? productModel;
@@ -23,7 +24,9 @@ class ProductCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        // sl<PreviousViewedProductsDataSource>().addProductId(productModel!.id);
+        context.read<PreviousViewedProductsBloc>().add(
+          PreviousViewedProductsEvent.addProduct(product: productModel!),
+        );
         // TODO: navigate to product details
       },
       child: Container(
@@ -64,15 +67,13 @@ class ProductCard extends StatelessWidget {
                           p.isItemLoading(productModel!.id) !=
                               c.isItemLoading(productModel!.id),
                       builder: (context, state) {
-                        return WishlistButton(
+                        return WishButton(
                           isFavorited: state.isInWishlist(productModel!.id),
                           isLoading: state.isItemLoading(productModel!.id),
                           onPressed: () {
-                            if (state.isInWishlist(productModel!.id)) {
-                              context.read<WishlistBloc>().add(
-                                   WishlistEvent.toggled(productModel!.id),
-                                  );
-                            }
+                            context.read<WishlistBloc>().add(
+                              WishlistEvent.toggled(productModel!.id),
+                            );
                           },
                         );
                       },
@@ -102,7 +103,6 @@ class ProductCard extends StatelessWidget {
                       reviewsCount: productModel?.totalReviews ?? 0,
                     ),
                     const Spacer(),
-
                     Row(
                       children: [
                         Expanded(

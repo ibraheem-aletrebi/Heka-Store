@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/empty_wishlist.dart';
+import 'package:heka_store/Features/wishlist/presentation/components/previously_viewed_products_section.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/wishlist_app_bar.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/wishlist_items_staggered_grid.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -22,7 +23,6 @@ class WishlistViewBodyBlocBuilder extends StatelessWidget {
               context.read<WishlistBloc>().add(const WishlistEvent.loaded()),
           child: CustomScrollView(
             slivers: [
-              // ─── AppBar ───────────────────────────────
               SliverToBoxAdapter(
                 child: WishlistAppBar(
                   onBack: () => context.read<MainLayoutBloc>().add(
@@ -36,13 +36,12 @@ class WishlistViewBodyBlocBuilder extends StatelessWidget {
 
               SliverToBoxAdapter(child: SizedBox(height: AppSizes.h24)),
 
-              // ─── Loading ──────────────────────────────
               if (state.isLoading)
                 SliverPadding(
                   padding: EdgeInsets.symmetric(horizontal: AppSizes.w12),
                   sliver: SliverList(
                     delegate: SliverChildBuilderDelegate(
-                      (_, _) => Padding(
+                      (_, __) => Padding(
                         padding: EdgeInsets.only(bottom: AppSizes.h10),
                         child: Row(
                           children: [
@@ -67,9 +66,9 @@ class WishlistViewBodyBlocBuilder extends StatelessWidget {
                   ),
                 )
               // ─── Empty ────────────────────────────────
-              else if (state.items.isEmpty )
-                const SliverFillRemaining(child: EmptyWishlist())
-             
+              else if (state.items.isEmpty)
+                const SliverToBoxAdapter(child: EmptyWishlist())
+              // ─── Grid ─────────────────────────────────
               else
                 WishlistItemsStaggeredGrid(items: state.items),
 
@@ -78,17 +77,17 @@ class WishlistViewBodyBlocBuilder extends StatelessWidget {
                 SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.all(AppSizes.h16),
-                    child: Center(
+                    child: const Center(
                       child: CircularProgressIndicator(strokeWidth: 2),
                     ),
                   ),
                 ),
-              // if (previousViewedProducts.isNotEmpty)
-              //   SliverToBoxAdapter(
-              //     child: PreviouslyViewedProductsSection(
-              //       products: previousViewedProducts,
-              //     ),
-              //   ),
+
+              // ─── Previously Viewed ────────────────────
+              SliverToBoxAdapter(child: SizedBox(height: AppSizes.h24)),
+              const SliverToBoxAdapter(
+                child: PreviouslyViewedProductsSection(),
+              ),
 
               SliverToBoxAdapter(child: SizedBox(height: AppSizes.h100)),
             ],
