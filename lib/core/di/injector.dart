@@ -40,7 +40,6 @@ import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_cas
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
-import 'package:heka_store/Features/wishlist/data/data_source/guest_wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
@@ -54,7 +53,6 @@ import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlis
 import 'package:heka_store/core/app/router/app_router.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
-import 'package:heka_store/core/blocs/session/session_cubit.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
@@ -88,7 +86,6 @@ Future<void> _initCore() async {
       HiveBoxes.data,
       HiveBoxes.home,
       HiveBoxes.wishlist,
-      HiveBoxes.guestWishlist,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -174,11 +171,6 @@ void _initAuth() {
   );
 
   // ─── BLoCs ────────────────────────────────────────
-
-  sl.registerLazySingleton<SessionCubit>(
-  () => SessionCubit(localDataSource: sl<AuthLocalDataSource>()),
- );
-
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(loginUseCase: sl<LoginUseCase>()),
   );
@@ -293,11 +285,11 @@ void _initHome() {
 }
 
 void _initWishlist() {
-  sl.registerLazySingleton<GuestWishlistLocalDataSource>(
-    () => GuestWishlistLocalDataSourceImpl(
-      localStorage: sl<LocalStorageService>(),
-    ),
-  );
+  // sl.registerLazySingleton<PreviousViewedProductsDataSource>(
+  //   () => PreviousViewedProductsDataSourceImpl(
+  //     localStorage: sl<LocalStorageService>(),
+  //   ),
+  // );
 
   sl.registerLazySingleton<WishlistRemoteDataSource>(
     () => WishlistRemoteDataSourceImpl(apiService: sl<ApiService>()),
@@ -305,6 +297,7 @@ void _initWishlist() {
   sl.registerLazySingleton<WishlistLocalDataSource>(
     () => WishlistLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
   );
+
   sl.registerLazySingleton<WishlistRepo>(
     () => WishlistRepoImpl(
       remoteDataSource: sl<WishlistRemoteDataSource>(),
@@ -328,7 +321,6 @@ void _initWishlist() {
       getWishlistUseCase: sl(),
       addToWishlistUseCase: sl(),
       removeFromWishlistUseCase: sl(),
-      guestLocalDataSource: sl<GuestWishlistLocalDataSource>(),
     ),
   );
 }

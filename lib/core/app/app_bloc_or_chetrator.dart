@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
-import 'package:heka_store/core/blocs/session/session_cubit.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/di/injector.dart';
 
@@ -20,7 +19,6 @@ class AppBlocOrchestrator extends StatelessWidget {
         BlocProvider(
           create: (_) => sl<LanguageBloc>()..add(const LanguageEvent.load()),
         ),
-        BlocProvider(create: (_) => sl<SessionCubit>()..checkSession()),
 
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(

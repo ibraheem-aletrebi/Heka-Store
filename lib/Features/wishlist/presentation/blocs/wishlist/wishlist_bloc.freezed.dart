@@ -21,8 +21,6 @@ mixin _$WishlistEvent {
     required TResult Function() loaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -30,8 +28,6 @@ mixin _$WishlistEvent {
     TResult? Function()? loaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,8 +35,6 @@ mixin _$WishlistEvent {
     TResult Function()? loaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -49,8 +43,6 @@ mixin _$WishlistEvent {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -58,8 +50,6 @@ mixin _$WishlistEvent {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,8 +57,6 @@ mixin _$WishlistEvent {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -133,8 +121,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function() loaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
   }) {
     return loaded();
   }
@@ -145,8 +131,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function()? loaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
   }) {
     return loaded?.call();
   }
@@ -157,8 +141,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function()? loaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -173,8 +155,6 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
   }) {
     return loaded(this);
   }
@@ -185,8 +165,6 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
   }) {
     return loaded?.call(this);
   }
@@ -197,8 +175,6 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -280,8 +256,6 @@ class _$ToggledImpl implements _Toggled {
     required TResult Function() loaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
   }) {
     return toggled(productId);
   }
@@ -292,8 +266,6 @@ class _$ToggledImpl implements _Toggled {
     TResult? Function()? loaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
   }) {
     return toggled?.call(productId);
   }
@@ -304,8 +276,6 @@ class _$ToggledImpl implements _Toggled {
     TResult Function()? loaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (toggled != null) {
@@ -320,8 +290,6 @@ class _$ToggledImpl implements _Toggled {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
   }) {
     return toggled(this);
   }
@@ -332,8 +300,6 @@ class _$ToggledImpl implements _Toggled {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
   }) {
     return toggled?.call(this);
   }
@@ -344,8 +310,6 @@ class _$ToggledImpl implements _Toggled {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (toggled != null) {
@@ -405,8 +369,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     required TResult Function() loaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
   }) {
     return nextPageFetched();
   }
@@ -417,8 +379,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult? Function()? loaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
   }) {
     return nextPageFetched?.call();
   }
@@ -429,8 +389,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult Function()? loaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (nextPageFetched != null) {
@@ -445,8 +403,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     required TResult Function(_Loaded value) loaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
   }) {
     return nextPageFetched(this);
   }
@@ -457,8 +413,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult? Function(_Loaded value)? loaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
   }) {
     return nextPageFetched?.call(this);
   }
@@ -469,8 +423,6 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
     TResult Function(_Loaded value)? loaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
     required TResult orElse(),
   }) {
     if (nextPageFetched != null) {
@@ -485,278 +437,6 @@ abstract class _NextPageFetched implements WishlistEvent {
 }
 
 /// @nodoc
-abstract class _$$GuestToggledImplCopyWith<$Res> {
-  factory _$$GuestToggledImplCopyWith(
-          _$GuestToggledImpl value, $Res Function(_$GuestToggledImpl) then) =
-      __$$GuestToggledImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({int productId});
-}
-
-/// @nodoc
-class __$$GuestToggledImplCopyWithImpl<$Res>
-    extends _$WishlistEventCopyWithImpl<$Res, _$GuestToggledImpl>
-    implements _$$GuestToggledImplCopyWith<$Res> {
-  __$$GuestToggledImplCopyWithImpl(
-      _$GuestToggledImpl _value, $Res Function(_$GuestToggledImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? productId = null,
-  }) {
-    return _then(_$GuestToggledImpl(
-      null == productId
-          ? _value.productId
-          : productId // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$GuestToggledImpl implements _GuestToggled {
-  const _$GuestToggledImpl(this.productId);
-
-  @override
-  final int productId;
-
-  @override
-  String toString() {
-    return 'WishlistEvent.guestToggled(productId: $productId)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GuestToggledImpl &&
-            (identical(other.productId, productId) ||
-                other.productId == productId));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, productId);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GuestToggledImplCopyWith<_$GuestToggledImpl> get copyWith =>
-      __$$GuestToggledImplCopyWithImpl<_$GuestToggledImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(int productId) toggled,
-    required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
-  }) {
-    return guestToggled(productId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
-    TResult? Function(int productId)? toggled,
-    TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
-  }) {
-    return guestToggled?.call(productId);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(int productId)? toggled,
-    TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
-    required TResult orElse(),
-  }) {
-    if (guestToggled != null) {
-      return guestToggled(productId);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Toggled value) toggled,
-    required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
-  }) {
-    return guestToggled(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Toggled value)? toggled,
-    TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
-  }) {
-    return guestToggled?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Toggled value)? toggled,
-    TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
-    required TResult orElse(),
-  }) {
-    if (guestToggled != null) {
-      return guestToggled(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _GuestToggled implements WishlistEvent {
-  const factory _GuestToggled(final int productId) = _$GuestToggledImpl;
-
-  int get productId;
-  @JsonKey(ignore: true)
-  _$$GuestToggledImplCopyWith<_$GuestToggledImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SyncGuestWishlistImplCopyWith<$Res> {
-  factory _$$SyncGuestWishlistImplCopyWith(_$SyncGuestWishlistImpl value,
-          $Res Function(_$SyncGuestWishlistImpl) then) =
-      __$$SyncGuestWishlistImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SyncGuestWishlistImplCopyWithImpl<$Res>
-    extends _$WishlistEventCopyWithImpl<$Res, _$SyncGuestWishlistImpl>
-    implements _$$SyncGuestWishlistImplCopyWith<$Res> {
-  __$$SyncGuestWishlistImplCopyWithImpl(_$SyncGuestWishlistImpl _value,
-      $Res Function(_$SyncGuestWishlistImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$SyncGuestWishlistImpl implements _SyncGuestWishlist {
-  const _$SyncGuestWishlistImpl();
-
-  @override
-  String toString() {
-    return 'WishlistEvent.syncGuestWishlist()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SyncGuestWishlistImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loaded,
-    required TResult Function(int productId) toggled,
-    required TResult Function() nextPageFetched,
-    required TResult Function(int productId) guestToggled,
-    required TResult Function() syncGuestWishlist,
-  }) {
-    return syncGuestWishlist();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loaded,
-    TResult? Function(int productId)? toggled,
-    TResult? Function()? nextPageFetched,
-    TResult? Function(int productId)? guestToggled,
-    TResult? Function()? syncGuestWishlist,
-  }) {
-    return syncGuestWishlist?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loaded,
-    TResult Function(int productId)? toggled,
-    TResult Function()? nextPageFetched,
-    TResult Function(int productId)? guestToggled,
-    TResult Function()? syncGuestWishlist,
-    required TResult orElse(),
-  }) {
-    if (syncGuestWishlist != null) {
-      return syncGuestWishlist();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Loaded value) loaded,
-    required TResult Function(_Toggled value) toggled,
-    required TResult Function(_NextPageFetched value) nextPageFetched,
-    required TResult Function(_GuestToggled value) guestToggled,
-    required TResult Function(_SyncGuestWishlist value) syncGuestWishlist,
-  }) {
-    return syncGuestWishlist(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Loaded value)? loaded,
-    TResult? Function(_Toggled value)? toggled,
-    TResult? Function(_NextPageFetched value)? nextPageFetched,
-    TResult? Function(_GuestToggled value)? guestToggled,
-    TResult? Function(_SyncGuestWishlist value)? syncGuestWishlist,
-  }) {
-    return syncGuestWishlist?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Loaded value)? loaded,
-    TResult Function(_Toggled value)? toggled,
-    TResult Function(_NextPageFetched value)? nextPageFetched,
-    TResult Function(_GuestToggled value)? guestToggled,
-    TResult Function(_SyncGuestWishlist value)? syncGuestWishlist,
-    required TResult orElse(),
-  }) {
-    if (syncGuestWishlist != null) {
-      return syncGuestWishlist(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _SyncGuestWishlist implements WishlistEvent {
-  const factory _SyncGuestWishlist() = _$SyncGuestWishlistImpl;
-}
-
-/// @nodoc
 mixin _$WishlistState {
 // ─── Authenticated ────────────────────────────
   List<WishlistItemModel> get items => throw _privateConstructorUsedError;
@@ -765,9 +445,6 @@ mixin _$WishlistState {
   bool get hasNextPage => throw _privateConstructorUsedError;
   int get currentPage => throw _privateConstructorUsedError;
   List<int> get loadingProductIds =>
-      throw _privateConstructorUsedError; // ─── Guest ────────────────────────────────────
-  List<int> get guestProductIds => throw _privateConstructorUsedError;
-  bool get isSyncing =>
       throw _privateConstructorUsedError; // ─── Shared ───────────────────────────────────
   int? get lastToggledProductId => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
@@ -790,8 +467,6 @@ abstract class $WishlistStateCopyWith<$Res> {
       bool hasNextPage,
       int currentPage,
       List<int> loadingProductIds,
-      List<int> guestProductIds,
-      bool isSyncing,
       int? lastToggledProductId,
       ApiErrorModel? error});
 }
@@ -815,8 +490,6 @@ class _$WishlistStateCopyWithImpl<$Res, $Val extends WishlistState>
     Object? hasNextPage = null,
     Object? currentPage = null,
     Object? loadingProductIds = null,
-    Object? guestProductIds = null,
-    Object? isSyncing = null,
     Object? lastToggledProductId = freezed,
     Object? error = freezed,
   }) {
@@ -845,14 +518,6 @@ class _$WishlistStateCopyWithImpl<$Res, $Val extends WishlistState>
           ? _value.loadingProductIds
           : loadingProductIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      guestProductIds: null == guestProductIds
-          ? _value.guestProductIds
-          : guestProductIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      isSyncing: null == isSyncing
-          ? _value.isSyncing
-          : isSyncing // ignore: cast_nullable_to_non_nullable
-              as bool,
       lastToggledProductId: freezed == lastToggledProductId
           ? _value.lastToggledProductId
           : lastToggledProductId // ignore: cast_nullable_to_non_nullable
@@ -880,8 +545,6 @@ abstract class _$$WishlistStateImplCopyWith<$Res>
       bool hasNextPage,
       int currentPage,
       List<int> loadingProductIds,
-      List<int> guestProductIds,
-      bool isSyncing,
       int? lastToggledProductId,
       ApiErrorModel? error});
 }
@@ -903,8 +566,6 @@ class __$$WishlistStateImplCopyWithImpl<$Res>
     Object? hasNextPage = null,
     Object? currentPage = null,
     Object? loadingProductIds = null,
-    Object? guestProductIds = null,
-    Object? isSyncing = null,
     Object? lastToggledProductId = freezed,
     Object? error = freezed,
   }) {
@@ -933,14 +594,6 @@ class __$$WishlistStateImplCopyWithImpl<$Res>
           ? _value._loadingProductIds
           : loadingProductIds // ignore: cast_nullable_to_non_nullable
               as List<int>,
-      guestProductIds: null == guestProductIds
-          ? _value._guestProductIds
-          : guestProductIds // ignore: cast_nullable_to_non_nullable
-              as List<int>,
-      isSyncing: null == isSyncing
-          ? _value.isSyncing
-          : isSyncing // ignore: cast_nullable_to_non_nullable
-              as bool,
       lastToggledProductId: freezed == lastToggledProductId
           ? _value.lastToggledProductId
           : lastToggledProductId // ignore: cast_nullable_to_non_nullable
@@ -963,13 +616,10 @@ class _$WishlistStateImpl extends _WishlistState {
       this.hasNextPage = false,
       this.currentPage = 1,
       final List<int> loadingProductIds = const [],
-      final List<int> guestProductIds = const [],
-      this.isSyncing = false,
       this.lastToggledProductId,
       this.error})
       : _items = items,
         _loadingProductIds = loadingProductIds,
-        _guestProductIds = guestProductIds,
         super._();
 
 // ─── Authenticated ────────────────────────────
@@ -1005,20 +655,6 @@ class _$WishlistStateImpl extends _WishlistState {
     return EqualUnmodifiableListView(_loadingProductIds);
   }
 
-// ─── Guest ────────────────────────────────────
-  final List<int> _guestProductIds;
-// ─── Guest ────────────────────────────────────
-  @override
-  @JsonKey()
-  List<int> get guestProductIds {
-    if (_guestProductIds is EqualUnmodifiableListView) return _guestProductIds;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_guestProductIds);
-  }
-
-  @override
-  @JsonKey()
-  final bool isSyncing;
 // ─── Shared ───────────────────────────────────
   @override
   final int? lastToggledProductId;
@@ -1027,7 +663,7 @@ class _$WishlistStateImpl extends _WishlistState {
 
   @override
   String toString() {
-    return 'WishlistState(items: $items, isLoading: $isLoading, isLoadingMore: $isLoadingMore, hasNextPage: $hasNextPage, currentPage: $currentPage, loadingProductIds: $loadingProductIds, guestProductIds: $guestProductIds, isSyncing: $isSyncing, lastToggledProductId: $lastToggledProductId, error: $error)';
+    return 'WishlistState(items: $items, isLoading: $isLoading, isLoadingMore: $isLoadingMore, hasNextPage: $hasNextPage, currentPage: $currentPage, loadingProductIds: $loadingProductIds, lastToggledProductId: $lastToggledProductId, error: $error)';
   }
 
   @override
@@ -1046,10 +682,6 @@ class _$WishlistStateImpl extends _WishlistState {
                 other.currentPage == currentPage) &&
             const DeepCollectionEquality()
                 .equals(other._loadingProductIds, _loadingProductIds) &&
-            const DeepCollectionEquality()
-                .equals(other._guestProductIds, _guestProductIds) &&
-            (identical(other.isSyncing, isSyncing) ||
-                other.isSyncing == isSyncing) &&
             (identical(other.lastToggledProductId, lastToggledProductId) ||
                 other.lastToggledProductId == lastToggledProductId) &&
             (identical(other.error, error) || other.error == error));
@@ -1064,8 +696,6 @@ class _$WishlistStateImpl extends _WishlistState {
       hasNextPage,
       currentPage,
       const DeepCollectionEquality().hash(_loadingProductIds),
-      const DeepCollectionEquality().hash(_guestProductIds),
-      isSyncing,
       lastToggledProductId,
       error);
 
@@ -1084,8 +714,6 @@ abstract class _WishlistState extends WishlistState {
       final bool hasNextPage,
       final int currentPage,
       final List<int> loadingProductIds,
-      final List<int> guestProductIds,
-      final bool isSyncing,
       final int? lastToggledProductId,
       final ApiErrorModel? error}) = _$WishlistStateImpl;
   const _WishlistState._() : super._();
@@ -1102,10 +730,6 @@ abstract class _WishlistState extends WishlistState {
   int get currentPage;
   @override
   List<int> get loadingProductIds;
-  @override // ─── Guest ────────────────────────────────────
-  List<int> get guestProductIds;
-  @override
-  bool get isSyncing;
   @override // ─── Shared ───────────────────────────────────
   int? get lastToggledProductId;
   @override

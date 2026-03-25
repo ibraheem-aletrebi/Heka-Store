@@ -42,8 +42,7 @@ class WishlistCardImageSection extends StatelessWidget {
               end: AppSizes.w6,
               child: BlocBuilder<WishlistBloc, WishlistState>(
                 buildWhen: (previous, current) =>
-                    previous.isInWishlist(item!.productId) !=
-                        current.isInWishlist(item!.productId) ||
+                    
                     previous.isItemLoading(item!.productId) !=
                         current.isItemLoading(item!.productId),
                 builder: (context, state) {

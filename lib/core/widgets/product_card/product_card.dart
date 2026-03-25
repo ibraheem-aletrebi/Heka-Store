@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
-import 'package:heka_store/core/blocs/session/session_cubit.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
@@ -24,6 +23,7 @@ class ProductCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
+        // sl<PreviousViewedProductsDataSource>().addProductId(productModel!.id);
         // TODO: navigate to product details
       },
       child: Container(
@@ -57,8 +57,7 @@ class ProductCard extends StatelessWidget {
                   Positioned(
                     top: AppSizes.h8,
                     right: AppSizes.w8,
-                    child:
-                    BlocBuilder<WishlistBloc, WishlistState>(
+                    child: BlocBuilder<WishlistBloc, WishlistState>(
                       buildWhen: (p, c) =>
                           p.isInWishlist(productModel!.id) !=
                               c.isInWishlist(productModel!.id) ||
@@ -69,15 +68,10 @@ class ProductCard extends StatelessWidget {
                           isFavorited: state.isInWishlist(productModel!.id),
                           isLoading: state.isItemLoading(productModel!.id),
                           onPressed: () {
-                            final isGuest = context.read<SessionCubit>().isGuest;
-                            if (isGuest) {
+                            if (state.isInWishlist(productModel!.id)) {
                               context.read<WishlistBloc>().add(
-                                WishlistEvent.guestToggled(productModel!.id),
-                              );
-                            } else {
-                              context.read<WishlistBloc>().add(
-                                WishlistEvent.toggled(productModel!.id),
-                              );
+                                   WishlistEvent.toggled(productModel!.id),
+                                  );
                             }
                           },
                         );

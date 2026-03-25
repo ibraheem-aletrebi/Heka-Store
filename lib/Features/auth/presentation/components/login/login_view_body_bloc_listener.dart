@@ -3,9 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/components/login/login_view_body.dart';
-import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
-import 'package:heka_store/core/blocs/session/session_cubit.dart';
 
 class LoginViewBodyBlocListener extends StatelessWidget {
   const LoginViewBodyBlocListener({super.key});
@@ -19,11 +17,7 @@ class LoginViewBodyBlocListener extends StatelessWidget {
       listener: (context, state) {
         
         if (state.isSuccess) {
-           context.read<SessionCubit>().login();
-          // ─── Sync guest wishlist ──────────────────────
-          context.read<WishlistBloc>().add(
-            const WishlistEvent.syncGuestWishlist(),
-          );
+         
           final hasAddress =
               state.loginResponse?.data?.user.hasAddress ?? false;
           if (hasAddress) {
