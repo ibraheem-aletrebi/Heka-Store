@@ -11,6 +11,7 @@ class CustomIconButton extends StatelessWidget {
     this.iconColor,
     this.size,
     this.borderRadius,
+    this.padding,
   });
 
   final IconData icon;
@@ -19,11 +20,13 @@ class CustomIconButton extends StatelessWidget {
   final Color? iconColor;
   final double? size;
   final double? borderRadius;
+  final EdgeInsetsGeometry? padding;
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
       style: IconButton.styleFrom(
+        padding: padding,
         backgroundColor: backgroundColor ?? context.myColors.surface,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
         minimumSize: Size(size ?? AppSizes.w38, size ?? AppSizes.w38),

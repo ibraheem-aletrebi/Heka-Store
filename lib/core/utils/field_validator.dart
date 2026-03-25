@@ -92,8 +92,9 @@ class FieldValidator {
 
     final normalized = trimmed.replaceAll(RegExp(r'[\s\-().]+'), '');
     if (normalized.isEmpty) return ValidationKey.phoneInvalid;
-    if (!RegExp(r'^\+?[0-9]+$').hasMatch(normalized))
+    if (!RegExp(r'^\+?[0-9]+$').hasMatch(normalized)) {
       return ValidationKey.phoneInvalid;
+    }
 
     if (normalized.startsWith('+')) {
       if (!_phoneE164.hasMatch(normalized)) return ValidationKey.phoneInvalid;

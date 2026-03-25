@@ -4,6 +4,7 @@ import 'package:heka_store/Features/home/data/models/product/product_model.dart'
 import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/core/widgets/product_card/best_seller.dart';
@@ -31,7 +32,7 @@ class ProductCard extends StatelessWidget {
       },
       child: Container(
         clipBehavior: Clip.antiAlias,
-        width: MediaQuery.sizeOf(context).width * .75,
+        width: MediaQuery.sizeOf(context).width * .7,
         decoration: BoxDecoration(
           color: colors.surface,
           borderRadius: BorderRadius.circular(AppSizes.r16),
@@ -42,7 +43,7 @@ class ProductCard extends StatelessWidget {
             Stack(
               children: [
                 CachedImage(
-                  height: AppSizes.h130,
+                  height: context.height * 0.13,
                   width: double.infinity,
                   url:
                       // productModel?.primaryImageUrl ??

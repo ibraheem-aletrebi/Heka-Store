@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
+import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/product_card/product_card.dart';
@@ -38,8 +39,17 @@ class _PreviouslyViewedProductsSectionState
               children: [
                 SectionHeader(
                   title: S.of(context).previouslyViewedItem,
-                  onSeeAll: () =>
-                      context.push(AppRoutes.previousViewedProductsView),
+                  onSeeAll: () async {
+                    await context.push(AppRoutes.previousViewedProductsView);
+                    if (context.mounted) {
+                      context.read<PreviousViewedProductsBloc>().add(
+                        const PreviousViewedProductsEvent.getProducts(),
+                      );
+                      context.read<WishlistBloc>().add(
+                        const WishlistEvent.reLoaded(),
+                      );
+                    }
+                  },
                 ),
                 SizedBox(
                   height: MediaQuery.sizeOf(context).height * 0.3,

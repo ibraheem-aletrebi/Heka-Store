@@ -25,22 +25,15 @@ class CategoriesSection extends StatelessWidget {
               p.isCategoriesLoading != c.isCategoriesLoading,
           builder: (context, state) {
             return SizedBox(
-              height: context.height * 0.1,
+              height: context.height * 0.15,
               child: PaginatedListView<CategoryModel>(
                 isHorizontal: true,
-                itemExtent: context.height * 0.1,
+                itemExtent: context.height * 0.15,
                 items: state.categories,
                 isLoading: state.isFeaturedLoading,
                 isLoadingMore: state.isFeaturedLoadingMore,
                 loadMoreThreshold: 9,
-                loadingWidget: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
-                  itemCount: 6,
-                  separatorBuilder: (_, _) => SizedBox(width: AppSizes.w12),
-                  itemBuilder: (_, _) =>
-                      CustomSkeletonizer(enable: true, child: CategoryItem()),
-                ),
+                loadingWidget: _CategoriesPlaceholderLoading(),
                 loadMoreWidget: CustomSkeletonizer(
                   enable: true,
                   child: CategoryItem(),
@@ -56,3 +49,21 @@ class CategoriesSection extends StatelessWidget {
     );
   }
 }
+
+class _CategoriesPlaceholderLoading extends StatelessWidget {
+  const _CategoriesPlaceholderLoading();
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView.separated(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
+      itemCount: 6,
+      separatorBuilder: (_, _) => SizedBox(width: AppSizes.w12),
+      itemBuilder: (_, _) =>
+          CustomSkeletonizer(enable: true, child: CategoryItem()),
+    );
+  }
+}
+
+

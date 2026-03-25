@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
@@ -27,6 +28,7 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
          ),
        ) {
     on<_Loaded>(_onLoaded);
+    on<_ReLoaded>(_onReLoaded);
     on<_Toggled>(_onToggled);
     on<_NextPageFetched>(_onNextPageFetched);
   }
@@ -51,6 +53,20 @@ class WishlistBloc extends Bloc<WishlistEvent, WishlistState> {
     );
   }
 
+  Future<void> _onReLoaded(_ReLoaded event, Emitter<WishlistState> emit) async {
+    final response = await _getWishlistUseCase();
+    response.when(
+      onSuccess: (data) => emit(
+        state.copyWith(
+          isLoading: false,
+          items: data.items,
+          hasNextPage: data.pageNumber < data.totalPages,
+          currentPage: data.pageNumber,
+        ),
+      ),
+      onError: (error) => emit(state.copyWith(isLoading: false, error: error)),
+    );
+  }
   // ─── Toggle (Authenticated) ────────────────────────────────────────────────
 
   Future<void> _onToggled(_Toggled event, Emitter<WishlistState> emit) async {

@@ -43,11 +43,11 @@ class _WishButtonState extends State<WishButton>
         TweenSequence([
           TweenSequenceItem(
             tween: Tween<double>(begin: 1.0, end: 1.3),
-            weight: 50,
+            weight: AppSizes.w50,
           ),
           TweenSequenceItem(
             tween: Tween<double>(begin: 1.3, end: 1.0),
-            weight: 50,
+            weight: AppSizes.w50,
           ),
         ]).animate(
           CurvedAnimation(
@@ -84,16 +84,12 @@ class _WishButtonState extends State<WishButton>
       onTap: widget.isLoading ? null : widget.onPressed,
       child: AnimatedBuilder(
         animation: _controller,
-        builder: (_, __) {
+        builder: (_, _) {
           return ScaleTransition(
             scale: _scaleAnimation,
-            child: Container(
+            child: SizedBox(
               width: AppSizes.w32,
               height: AppSizes.w32,
-              decoration: BoxDecoration(
-                color: colors.background,
-                shape: BoxShape.circle,
-              ),
               child: widget.isLoading
                   ? _LoadingFill(colors: colors)
                   : _HeartIcon(

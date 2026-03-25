@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/Features/home/data/models/category/category_model.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 
-
 class CategoryItem extends StatelessWidget {
-  const CategoryItem({super.key, this.onTap,  this.category});
+  const CategoryItem({super.key, this.onTap, this.category});
   final CategoryModel? category;
   final void Function()? onTap;
   @override
@@ -15,23 +15,24 @@ class CategoryItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
-        width: AppSizes.w56,
+        width: context.width * 0.17,
         child: Column(
           children: [
-            Container(
-              clipBehavior: Clip.antiAlias,
-              width: AppSizes.w56,
-              height: AppSizes.w56,
-              decoration: BoxDecoration(
-                color: c.surface,
-                borderRadius: BorderRadius.circular(AppSizes.r16),
-              ),
+            AspectRatio(
+              aspectRatio: .9,
+              child: Container(
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  color: c.surface,
+                  borderRadius: BorderRadius.circular(AppSizes.r16),
+                ),
 
-              child: CachedImage(url: category?.imageUrl??''),
+                child: CachedImage(url: category?.imageUrl ?? ''),
+              ),
             ),
             SizedBox(height: AppSizes.h6),
             Text(
-              category?.nameEn??'',
+              category?.nameEn ?? '',
               style: TextTheme.of(
                 context,
               ).bodyMedium?.copyWith(color: c.textSecondary),

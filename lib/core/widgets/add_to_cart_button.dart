@@ -3,9 +3,8 @@ import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-
-class WishlistAddToCartButton extends StatelessWidget {
-  const WishlistAddToCartButton({super.key});
+class AddToCartButton extends StatelessWidget {
+  const AddToCartButton({super.key});
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/components/previous_viewed_product_card.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_icon_button.dart';
 
 class PreviousViewedProductsViewBody extends StatelessWidget {
   const PreviousViewedProductsViewBody({super.key});
@@ -17,29 +19,57 @@ class PreviousViewedProductsViewBody extends StatelessWidget {
           loading: () => const Center(child: CircularProgressIndicator()),
           error: (msg) => Center(child: Text(msg)),
           loaded: (products) {
-            if (products.isEmpty) return _EmptyHistory();
             return Column(
+              spacing: AppSizes.h24,
               children: [
-                // Clear-all button
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: TextButton.icon(
-                    onPressed: () => context
-                        .read<PreviousViewedProductsBloc>()
-                        .add(const PreviousViewedProductsEvent.clear()),
-                    icon: const Icon(Icons.delete_sweep_rounded, size: 18),
-                    label: const Text('Clear all'),
-                  ),
+                Column(
+                  spacing: AppSizes.h12,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          CustomIconButton(
+                            icon: Icons.chevron_left_rounded,
+                            onPressed: () => context.pop(true),
+                          ),
+                          (products.isNotEmpty)
+                              ? TextButton.icon(
+                                  onPressed: () => context
+                                      .read<PreviousViewedProductsBloc>()
+                                      .add(
+                                        const PreviousViewedProductsEvent.clear(),
+                                      ),
+                                  icon: Icon(
+                                    Icons.delete_sweep_rounded,
+                                    size: AppSizes.sp22,
+                                  ),
+                                  label: Text('Clear all'),
+                                )
+                              : const SizedBox.shrink(),
+                        ],
+                      ),
+                    ),
+                    Divider(color: context.myColors.textHint),
+                  ],
                 ),
 
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: products.length,
-                    itemBuilder: (_, index) => PreviousViewedProductCard(
-                      productModel: products[index],
-                    ),
-                  ),
-                ),
+                products.isEmpty
+                    ? _EmptyHistory()
+                    : Expanded(
+                        child: ListView.separated(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: AppSizes.w16,
+                          ),
+                          separatorBuilder: (_, __) =>
+                              SizedBox(height: AppSizes.h16),
+                          itemCount: products.length,
+                          itemBuilder: (_, index) => PreviousViewedProductCard(
+                            productModel: products[index],
+                          ),
+                        ),
+                      ),
               ],
             );
           },
@@ -48,8 +78,6 @@ class PreviousViewedProductsViewBody extends StatelessWidget {
     );
   }
 }
-
-// ─── Empty History ───────────────────────────────────────────────────────────
 
 class _EmptyHistory extends StatelessWidget {
   const _EmptyHistory();

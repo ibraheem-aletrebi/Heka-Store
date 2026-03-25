@@ -19,6 +19,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
   }) =>
@@ -26,6 +27,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
   }) =>
@@ -33,6 +35,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -41,6 +44,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
   }) =>
@@ -48,6 +52,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) =>
@@ -55,6 +60,7 @@ mixin _$WishlistEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
@@ -98,12 +104,18 @@ class __$$LoadedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadedImpl implements _Loaded {
+class _$LoadedImpl with DiagnosticableTreeMixin implements _Loaded {
   const _$LoadedImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WishlistEvent.loaded()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WishlistEvent.loaded'));
   }
 
   @override
@@ -119,6 +131,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
   }) {
@@ -129,6 +142,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
   }) {
@@ -139,6 +153,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -153,6 +168,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
   }) {
@@ -163,6 +179,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) {
@@ -173,6 +190,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
@@ -186,6 +204,126 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements WishlistEvent {
   const factory _Loaded() = _$LoadedImpl;
+}
+
+/// @nodoc
+abstract class _$$ReLoadedImplCopyWith<$Res> {
+  factory _$$ReLoadedImplCopyWith(
+          _$ReLoadedImpl value, $Res Function(_$ReLoadedImpl) then) =
+      __$$ReLoadedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ReLoadedImplCopyWithImpl<$Res>
+    extends _$WishlistEventCopyWithImpl<$Res, _$ReLoadedImpl>
+    implements _$$ReLoadedImplCopyWith<$Res> {
+  __$$ReLoadedImplCopyWithImpl(
+      _$ReLoadedImpl _value, $Res Function(_$ReLoadedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ReLoadedImpl with DiagnosticableTreeMixin implements _ReLoaded {
+  const _$ReLoadedImpl();
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WishlistEvent.reLoaded()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(DiagnosticsProperty('type', 'WishlistEvent.reLoaded'));
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ReLoadedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function() reLoaded,
+    required TResult Function(int productId) toggled,
+    required TResult Function() nextPageFetched,
+  }) {
+    return reLoaded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
+    TResult? Function(int productId)? toggled,
+    TResult? Function()? nextPageFetched,
+  }) {
+    return reLoaded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function()? reLoaded,
+    TResult Function(int productId)? toggled,
+    TResult Function()? nextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
+    required TResult Function(_Toggled value) toggled,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
+  }) {
+    return reLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
+    TResult? Function(_Toggled value)? toggled,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
+  }) {
+    return reLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
+    TResult Function(_Toggled value)? toggled,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReLoaded implements WishlistEvent {
+  const factory _ReLoaded() = _$ReLoadedImpl;
 }
 
 /// @nodoc
@@ -221,15 +359,23 @@ class __$$ToggledImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ToggledImpl implements _Toggled {
+class _$ToggledImpl with DiagnosticableTreeMixin implements _Toggled {
   const _$ToggledImpl(this.productId);
 
   @override
   final int productId;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WishlistEvent.toggled(productId: $productId)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WishlistEvent.toggled'))
+      ..add(DiagnosticsProperty('productId', productId));
   }
 
   @override
@@ -254,6 +400,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
   }) {
@@ -264,6 +411,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
   }) {
@@ -274,6 +422,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -288,6 +437,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
   }) {
@@ -298,6 +448,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) {
@@ -308,6 +459,7 @@ class _$ToggledImpl implements _Toggled {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
@@ -346,12 +498,21 @@ class __$$NextPageFetchedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NextPageFetchedImpl implements _NextPageFetched {
+class _$NextPageFetchedImpl
+    with DiagnosticableTreeMixin
+    implements _NextPageFetched {
   const _$NextPageFetchedImpl();
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WishlistEvent.nextPageFetched()';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+        .add(DiagnosticsProperty('type', 'WishlistEvent.nextPageFetched'));
   }
 
   @override
@@ -367,6 +528,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId) toggled,
     required TResult Function() nextPageFetched,
   }) {
@@ -377,6 +539,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId)? toggled,
     TResult? Function()? nextPageFetched,
   }) {
@@ -387,6 +550,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId)? toggled,
     TResult Function()? nextPageFetched,
     required TResult orElse(),
@@ -401,6 +565,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_Toggled value) toggled,
     required TResult Function(_NextPageFetched value) nextPageFetched,
   }) {
@@ -411,6 +576,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_Toggled value)? toggled,
     TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) {
@@ -421,6 +587,7 @@ class _$NextPageFetchedImpl implements _NextPageFetched {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_Toggled value)? toggled,
     TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
@@ -608,7 +775,7 @@ class __$$WishlistStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WishlistStateImpl extends _WishlistState {
+class _$WishlistStateImpl extends _WishlistState with DiagnosticableTreeMixin {
   const _$WishlistStateImpl(
       {final List<WishlistItemModel> items = const [],
       this.isLoading = false,
@@ -662,8 +829,23 @@ class _$WishlistStateImpl extends _WishlistState {
   final ApiErrorModel? error;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WishlistState(items: $items, isLoading: $isLoading, isLoadingMore: $isLoadingMore, hasNextPage: $hasNextPage, currentPage: $currentPage, loadingProductIds: $loadingProductIds, lastToggledProductId: $lastToggledProductId, error: $error)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WishlistState'))
+      ..add(DiagnosticsProperty('items', items))
+      ..add(DiagnosticsProperty('isLoading', isLoading))
+      ..add(DiagnosticsProperty('isLoadingMore', isLoadingMore))
+      ..add(DiagnosticsProperty('hasNextPage', hasNextPage))
+      ..add(DiagnosticsProperty('currentPage', currentPage))
+      ..add(DiagnosticsProperty('loadingProductIds', loadingProductIds))
+      ..add(DiagnosticsProperty('lastToggledProductId', lastToggledProductId))
+      ..add(DiagnosticsProperty('error', error));
   }
 
   @override

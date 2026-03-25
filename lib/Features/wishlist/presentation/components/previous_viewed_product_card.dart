@@ -3,10 +3,10 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
-import 'package:heka_store/Features/wishlist/presentation/components/wishlist_add_to_cart_button.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/add_to_cart_button.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/core/widgets/product_card/price.dart';
 import 'package:heka_store/core/widgets/product_card/rating_product_card.dart';
@@ -36,22 +36,11 @@ class PreviousViewedProductCard extends StatelessWidget {
           // TODO: navigate to product details
         },
         child: Container(
-          height: context.height * 0.15,
+          height: context.height * 0.25,
           width: MediaQuery.sizeOf(context).width,
-          margin: EdgeInsets.symmetric(
-            horizontal: AppSizes.w16,
-            vertical: AppSizes.h6,
-          ),
           decoration: BoxDecoration(
             color: colors.surface,
             borderRadius: BorderRadius.circular(AppSizes.r16),
-            boxShadow: [
-              BoxShadow(
-                color: colors.shadow.withOpacity(0.06),
-                blurRadius: 12,
-                offset: const Offset(0, 4),
-              ),
-            ],
           ),
           child: Row(
             children: [
@@ -66,29 +55,55 @@ class PreviousViewedProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(
-                        productModel.nameEn ?? '',
-                        style: textTheme.titleSmall?.copyWith(
-                          color: colors.textPrimary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              productModel.nameEn,
+                              style: textTheme.titleSmall?.copyWith(
+                                color: colors.textPrimary,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                          ),
+                          BlocBuilder<WishlistBloc, WishlistState>(
+                            buildWhen: (p, c) =>
+                                p.isInWishlist(productModel.id) !=
+                                    c.isInWishlist(productModel.id) ||
+                                p.isItemLoading(productModel.id) !=
+                                    c.isItemLoading(productModel.id),
+                            builder: (context, state) {
+                              return WishButton(
+                                isFavorited: state.isInWishlist(
+                                  productModel.id,
+                                ),
+                                isLoading: state.isItemLoading(productModel.id),
+                                onPressed: () {
+                                  context.read<WishlistBloc>().add(
+                                    WishlistEvent.toggled(productModel.id),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                        ],
                       ),
                       RatingProductCard(
-                        rating: productModel.averageRating ?? 0,
-                        reviewsCount: productModel.totalReviews ?? 0,
+                        rating: productModel.averageRating,
+                        reviewsCount: productModel.totalReviews,
                       ),
                       Price(
-                        price: productModel.price ?? 0,
+                        price: productModel.price,
                         discountPercent: productModel.discountPercentage,
                         hasFreeShipping: true,
                       ),
+                      AddToCartButton(),
                     ],
                   ),
                 ),
               ),
-              _Actions(productModel: productModel),
             ],
           ),
         ),
@@ -112,67 +127,10 @@ class _Thumbnail extends StatelessWidget {
       ),
       child: CachedImage(
         height: double.infinity,
-        width: AppSizes.w100,
+        width: context.width * 0.3,
         url:
             // productModel.primaryImageUrl ??
             'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
-      ),
-    );
-  }
-}
-
-// ─── Actions ────────────────────────────────────────────────────────────────
-
-class _Actions extends StatelessWidget {
-  final ProductModel productModel;
-  const _Actions({required this.productModel});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        horizontal: AppSizes.w8,
-        vertical: AppSizes.h8,
-      ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          // Wishlist toggle
-          BlocBuilder<WishlistBloc, WishlistState>(
-            buildWhen: (p, c) =>
-                p.isInWishlist(productModel.id) !=
-                    c.isInWishlist(productModel.id) ||
-                p.isItemLoading(productModel.id) !=
-                    c.isItemLoading(productModel.id),
-            builder: (context, state) {
-              return WishButton(
-                isFavorited: state.isInWishlist(productModel.id),
-                isLoading: state.isItemLoading(productModel.id),
-                onPressed: () {
-                  context.read<WishlistBloc>().add(
-                    WishlistEvent.toggled(productModel.id),
-                  );
-                },
-              );
-            },
-          ),
-
-          // Remove from history
-          GestureDetector(
-            onTap: () {
-              context.read<PreviousViewedProductsBloc>().add(
-                PreviousViewedProductsEvent.removeProduct(
-                  productId: productModel.id,
-                ),
-              );
-            },
-            child: Icon(
-              Icons.history_toggle_off_rounded,
-              size: AppSizes.r20,
-              color: context.myColors.textSecondary,
-            ),
-          ),
-        ],
       ),
     );
   }

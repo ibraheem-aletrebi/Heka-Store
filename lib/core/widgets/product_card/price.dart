@@ -10,7 +10,6 @@ import 'package:heka_store/core/utils/format_price.dart';
 import 'package:heka_store/core/widgets/product_card/free_shipping_badge.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-
 class Price extends StatelessWidget {
   const Price({
     super.key,
@@ -45,6 +44,8 @@ class Price extends StatelessWidget {
           ],
           Text(
             formatEGP(amount: price, locale: locale),
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
             style: _hasDiscount
                 ? AppTextStyles.regular12.copyWith(
                     color: colors.textSecondary,
@@ -72,7 +73,7 @@ class Price extends StatelessWidget {
               borderRadius: BorderRadius.circular(AppSizes.r8),
             ),
             child: Text(
-              '${(locale == 'ar')? convertToArabicNumber(discountPercent!): discountPercent} % ${S.of(context).off}',
+              '${(locale == 'ar') ? convertToArabicNumber(discountPercent!) : discountPercent} % ${S.of(context).off}',
               style: AppTextStyles.regular10.copyWith(
                 color: colors.primary,
                 height: 1.5,
