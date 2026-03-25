@@ -19,6 +19,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -29,6 +30,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -39,6 +41,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -50,6 +53,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -60,6 +64,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -70,6 +75,7 @@ mixin _$CartEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -136,6 +142,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -149,6 +156,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -162,6 +170,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -179,6 +188,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -192,6 +202,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -205,6 +216,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -221,6 +233,138 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements CartEvent {
   const factory _Loaded() = _$LoadedImpl;
+}
+
+/// @nodoc
+abstract class _$$ReLoadedImplCopyWith<$Res> {
+  factory _$$ReLoadedImplCopyWith(
+          _$ReLoadedImpl value, $Res Function(_$ReLoadedImpl) then) =
+      __$$ReLoadedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ReLoadedImplCopyWithImpl<$Res>
+    extends _$CartEventCopyWithImpl<$Res, _$ReLoadedImpl>
+    implements _$$ReLoadedImplCopyWith<$Res> {
+  __$$ReLoadedImplCopyWithImpl(
+      _$ReLoadedImpl _value, $Res Function(_$ReLoadedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ReLoadedImpl implements _ReLoaded {
+  const _$ReLoadedImpl();
+
+  @override
+  String toString() {
+    return 'CartEvent.reLoaded()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ReLoadedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function() reLoaded,
+    required TResult Function(int productId, int quantity) itemAdded,
+    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(int cartItemId) itemRemoved,
+    required TResult Function() countFetched,
+    required TResult Function() cleared,
+  }) {
+    return reLoaded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
+    TResult? Function(int productId, int quantity)? itemAdded,
+    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(int cartItemId)? itemRemoved,
+    TResult? Function()? countFetched,
+    TResult? Function()? cleared,
+  }) {
+    return reLoaded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function()? reLoaded,
+    TResult Function(int productId, int quantity)? itemAdded,
+    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(int cartItemId)? itemRemoved,
+    TResult Function()? countFetched,
+    TResult Function()? cleared,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
+    required TResult Function(_ItemAdded value) itemAdded,
+    required TResult Function(_ItemUpdated value) itemUpdated,
+    required TResult Function(_ItemRemoved value) itemRemoved,
+    required TResult Function(_CountFetched value) countFetched,
+    required TResult Function(_Cleared value) cleared,
+  }) {
+    return reLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
+    TResult? Function(_ItemAdded value)? itemAdded,
+    TResult? Function(_ItemUpdated value)? itemUpdated,
+    TResult? Function(_ItemRemoved value)? itemRemoved,
+    TResult? Function(_CountFetched value)? countFetched,
+    TResult? Function(_Cleared value)? cleared,
+  }) {
+    return reLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
+    TResult Function(_ItemAdded value)? itemAdded,
+    TResult Function(_ItemUpdated value)? itemUpdated,
+    TResult Function(_ItemRemoved value)? itemRemoved,
+    TResult Function(_CountFetched value)? countFetched,
+    TResult Function(_Cleared value)? cleared,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _ReLoaded implements CartEvent {
+  const factory _ReLoaded() = _$ReLoadedImpl;
 }
 
 /// @nodoc
@@ -298,6 +442,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -311,6 +456,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -324,6 +470,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -341,6 +488,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -354,6 +502,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -367,6 +516,7 @@ class _$ItemAddedImpl implements _ItemAdded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -468,6 +618,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -481,6 +632,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -494,6 +646,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -511,6 +664,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -524,6 +678,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -537,6 +692,7 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -629,6 +785,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -642,6 +799,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -655,6 +813,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -672,6 +831,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -685,6 +845,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -698,6 +859,7 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -761,6 +923,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -774,6 +937,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -787,6 +951,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -804,6 +969,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -817,6 +983,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -830,6 +997,7 @@ class _$CountFetchedImpl implements _CountFetched {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,
@@ -887,6 +1055,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(int productId, int quantity) itemAdded,
     required TResult Function(int cartItemId, int quantity) itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
@@ -900,6 +1069,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(int productId, int quantity)? itemAdded,
     TResult? Function(int cartItemId, int quantity)? itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
@@ -913,6 +1083,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(int productId, int quantity)? itemAdded,
     TResult Function(int cartItemId, int quantity)? itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
@@ -930,6 +1101,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_ReLoaded value) reLoaded,
     required TResult Function(_ItemAdded value) itemAdded,
     required TResult Function(_ItemUpdated value) itemUpdated,
     required TResult Function(_ItemRemoved value) itemRemoved,
@@ -943,6 +1115,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_ReLoaded value)? reLoaded,
     TResult? Function(_ItemAdded value)? itemAdded,
     TResult? Function(_ItemUpdated value)? itemUpdated,
     TResult? Function(_ItemRemoved value)? itemRemoved,
@@ -956,6 +1129,7 @@ class _$ClearedImpl implements _Cleared {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_ReLoaded value)? reLoaded,
     TResult Function(_ItemAdded value)? itemAdded,
     TResult Function(_ItemUpdated value)? itemUpdated,
     TResult Function(_ItemRemoved value)? itemRemoved,

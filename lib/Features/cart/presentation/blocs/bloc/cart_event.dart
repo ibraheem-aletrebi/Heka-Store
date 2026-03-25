@@ -3,6 +3,7 @@ part of 'cart_bloc.dart';
 @freezed
 class CartEvent with _$CartEvent {
   const factory CartEvent.loaded() = _Loaded;
+  const factory CartEvent.reLoaded() = _ReLoaded;
   const factory CartEvent.itemAdded({
     required int productId,
     required int quantity,

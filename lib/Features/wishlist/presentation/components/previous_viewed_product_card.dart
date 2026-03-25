@@ -99,7 +99,7 @@ class PreviousViewedProductCard extends StatelessWidget {
                         discountPercent: productModel.discountPercentage,
                         hasFreeShipping: true,
                       ),
-                      AddToCartButton(),
+                      AddToCartButton(productId: productModel.id,),
                     ],
                   ),
                 ),

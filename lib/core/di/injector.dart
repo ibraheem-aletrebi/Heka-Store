@@ -26,6 +26,17 @@ import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.da
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:heka_store/Features/cart/data/data_source/cart_local_data_source.dart';
+import 'package:heka_store/Features/cart/data/data_source/cart_remote_data_source.dart';
+import 'package:heka_store/Features/cart/data/repos/cart_repository_impl.dart';
+import 'package:heka_store/Features/cart/domain/repos/cart_repository.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/add_cart_item_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/clear_cart_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/get_cart_count_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/get_cart_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/remove_cart_item_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/update_cart_item_use_case.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/bloc/cart_bloc.dart';
 import 'package:heka_store/Features/home/data/data_source/home_local_data_srouce.dart';
 import 'package:heka_store/Features/home/data/data_source/home_remote_data_source.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
@@ -74,6 +85,7 @@ Future<void> setupInjector() async {
   _initAddress();
   _initHome();
   _initWishlist();
+  _initCart();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -89,6 +101,7 @@ Future<void> _initCore() async {
       HiveBoxes.home,
       HiveBoxes.wishlist,
       HiveBoxes.previousViewedProducts,
+      HiveBoxes.cart,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -330,6 +343,56 @@ void _initWishlist() {
       getWishlistUseCase: sl(),
       addToWishlistUseCase: sl(),
       removeFromWishlistUseCase: sl(),
+    ),
+  );
+}
+
+void _initCart() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<CartRemoteDataSource>(
+    () => CartRemoteDataSourceImpl(dio: DioClient().dio),
+  );
+  sl.registerLazySingleton<CartLocalDataSource>(
+    () => CartLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<CartRepository>(
+    () => CartRepositoryImpl(
+      remote: sl<CartRemoteDataSource>(),
+      local: sl<CartLocalDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<GetCartUseCase>(
+    () => GetCartUseCase(sl<CartRepository>()),
+  );
+  sl.registerFactory<AddCartItemUseCase>(
+    () => AddCartItemUseCase(sl<CartRepository>()),
+  );
+  sl.registerFactory<UpdateCartItemUseCase>(
+    () => UpdateCartItemUseCase(sl<CartRepository>()),
+  );
+  sl.registerFactory<RemoveCartItemUseCase>(
+    () => RemoveCartItemUseCase(sl<CartRepository>()),
+  );
+  sl.registerFactory<GetCartCountUseCase>(
+    () => GetCartCountUseCase(sl<CartRepository>()),
+  );
+  sl.registerFactory<ClearCartUseCase>(
+    () => ClearCartUseCase(sl<CartRepository>()),
+  );
+
+  // ─── BLoC ─────────────────────────────────────────
+  sl.registerFactory<CartBloc>(
+    () => CartBloc(
+      getCart: sl<GetCartUseCase>(),
+      addItem: sl<AddCartItemUseCase>(),
+      updateItem: sl<UpdateCartItemUseCase>(),
+      removeItem: sl<RemoveCartItemUseCase>(),
+      getCount: sl<GetCartCountUseCase>(),
+      clearCart: sl<ClearCartUseCase>(),
     ),
   );
 }

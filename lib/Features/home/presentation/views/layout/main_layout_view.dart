@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/bloc/cart_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/layout/main_layout_view_body.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
@@ -20,6 +21,9 @@ class MainLayoutView extends StatelessWidget {
         ),
         BlocProvider<PreviousViewedProductsBloc>(
           create: (context) => sl<PreviousViewedProductsBloc>(),
+        ),
+        BlocProvider<CartBloc>(
+          create: (context) => sl<CartBloc>(),
         ),
       ],
       child: Scaffold(

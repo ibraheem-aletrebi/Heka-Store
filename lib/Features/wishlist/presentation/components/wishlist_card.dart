@@ -57,7 +57,9 @@ class WishlistCard extends StatelessWidget {
                     discountPercent: item?.discountPrice,
                   ),
                   SizedBox(height: AppSizes.h8),
-                  AddToCartButton(),
+                  AddToCartButton(
+                    productId: item?.productId ?? 0,
+                  ),
                 ],
               ),
             ),

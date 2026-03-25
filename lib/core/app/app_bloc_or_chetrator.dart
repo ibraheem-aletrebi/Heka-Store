@@ -19,7 +19,6 @@ class AppBlocOrchestrator extends StatelessWidget {
         BlocProvider(
           create: (_) => sl<LanguageBloc>()..add(const LanguageEvent.load()),
         ),
-
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {

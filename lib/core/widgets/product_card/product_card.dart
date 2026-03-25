@@ -113,11 +113,7 @@ class ProductCard extends StatelessWidget {
                             hasFreeShipping: true,
                           ),
                         ),
-                        CartButton(
-                          onPressed: () {
-                            // TODO: add to cart
-                          },
-                        ),
+                        CartButton(productId: productModel?.id??0),
                       ],
                     ),
                   ],
