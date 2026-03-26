@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:heka_store/Features/cart/data/models/cart_model.dart';
+import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -10,20 +11,18 @@ abstract class CartLocalDataSource {
   Future<void> clearCart();
   int? getCartCount();
   Future<void> saveCartCount(int count);
+  Future<void> saveProductsYouMayLike(List<ProductModel> products);
+  List<ProductModel> getProductsYouMayLike(); // fixed return type
 }
 
 class CartLocalDataSourceImpl implements CartLocalDataSource {
   final LocalStorageService _localStorage;
-
   const CartLocalDataSourceImpl({required LocalStorageService localStorage})
-      : _localStorage = localStorage;
+    : _localStorage = localStorage;
 
   @override
   CartModel? getCart() {
-    final raw = _localStorage.getValue<String>(
-      HiveBoxes.cart,
-      LocalStorageKeys.cart,
-    );
+    final raw = _localStorage.getValue<String>(HiveBoxes.cart, LocalStorageKeys.cart);
     if (raw == null) return null;
     return CartModel.fromJson(jsonDecode(raw) as Map<String, dynamic>);
   }
@@ -31,9 +30,7 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
   @override
   Future<void> saveCart(CartModel cart) async {
     await _localStorage.setValue<String>(
-      HiveBoxes.cart,
-      LocalStorageKeys.cart,
-      jsonEncode(cart.toJson()),
+      HiveBoxes.cart, LocalStorageKeys.cart, jsonEncode(cart.toJson()),
     );
   }
 
@@ -44,18 +41,26 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
 
   @override
   int? getCartCount() {
-    return _localStorage.getValue<int>(
-      HiveBoxes.cart,
-      LocalStorageKeys.cartCount,
-    );
+    return _localStorage.getValue<int>(HiveBoxes.cart, LocalStorageKeys.cartCount);
   }
 
   @override
   Future<void> saveCartCount(int count) async {
-    await _localStorage.setValue<int>(
-      HiveBoxes.cart,
-      LocalStorageKeys.cartCount,
-      count,
+    await _localStorage.setValue<int>(HiveBoxes.cart, LocalStorageKeys.cartCount, count);
+  }
+
+  @override
+  Future<void> saveProductsYouMayLike(List<ProductModel> products) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.cart, LocalStorageKeys.productsYouMayLike, products,
     );
+  }
+
+  @override
+  List<ProductModel> getProductsYouMayLike() {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.cart, LocalStorageKeys.productsYouMayLike,
+    );
+    return data?.cast<ProductModel>() ?? [];
   }
 }

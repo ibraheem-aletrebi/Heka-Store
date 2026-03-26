@@ -1,26 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/cart/data/models/cart_item_model.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
 import 'package:heka_store/Features/cart/presentation/components/quantity_control.dart';
+import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/core/utils/format_price.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 
 class CartItemTile extends StatelessWidget {
   final CartItemModel item;
-  final bool isLoading;
-  final VoidCallback onRemove;
-  final VoidCallback onIncrease;
-  final VoidCallback onDecrease;
 
-  const CartItemTile({
-    super.key,
-    required this.item,
-    required this.isLoading,
-    required this.onRemove,
-    required this.onIncrease,
-    required this.onDecrease,
-  });
+  const CartItemTile({super.key, required this.item});
 
   const CartItemTile.skeleton({super.key})
     : item = const CartItemModel(
@@ -39,18 +32,12 @@ class CartItemTile extends StatelessWidget {
         vendorId: 0,
         vendorName: 'placeholder',
         addedAt: '',
-      ),
-      isLoading = false,
-      onRemove = _noop,
-      onIncrease = _noop,
-      onDecrease = _noop;
-
-  static void _noop() {}
+      );
 
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-
+    final langCode = context.read<LanguageBloc>().state.languageCode;
     return Container(
       padding: EdgeInsets.all(AppSizes.w12),
       decoration: BoxDecoration(
@@ -65,8 +52,9 @@ class CartItemTile extends StatelessWidget {
             borderRadius: BorderRadius.circular(AppSizes.r12),
             child: CachedImage(
               width: AppSizes.w80,
-              height: AppSizes.w80,
-              url: item.productImage,
+              height: AppSizes.w100,
+              url:
+                  'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
             ),
           ),
 
@@ -112,14 +100,14 @@ class CartItemTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'EGP ${item.unitPrice.toStringAsFixed(2)}',
+                          formatEGP(amount: item.unitPrice, locale: langCode),
                           style: AppTextStyles.semiBold14.copyWith(
                             color: colors.textPrimary,
                           ),
                         ),
                         if (item.discountPrice < item.price)
                           Text(
-                            'EGP ${item.price.toStringAsFixed(2)}',
+                            formatEGP(amount: item.price, locale: langCode),
                             style: AppTextStyles.regular12.copyWith(
                               color: colors.textHint,
                               decoration: TextDecoration.lineThrough,
@@ -130,8 +118,26 @@ class CartItemTile extends StatelessWidget {
                     const Spacer(),
                     QuantityControl(
                       quantity: item.quantity,
-                      onIncrease: onIncrease,
-                      onDecrease: onDecrease,
+                      onIncrease: () => context.read<CartBloc>().add(
+                        CartEvent.itemUpdated(
+                          cartItemId: item.id,
+                          quantity: item.quantity + 1,
+                        ),
+                      ),
+                      onDecrease: () {
+                        if (item.quantity <= 1) {
+                          context.read<CartBloc>().add(
+                            CartEvent.itemRemoved(cartItemId: item.id),
+                          );
+                        } else {
+                          context.read<CartBloc>().add(
+                            CartEvent.itemUpdated(
+                              cartItemId: item.id,
+                              quantity: item.quantity - 1,
+                            ),
+                          );
+                        }
+                      },
                     ),
                   ],
                 ),
@@ -141,7 +147,9 @@ class CartItemTile extends StatelessWidget {
 
           // ── Remove ─────────────────────────────────────────────
           GestureDetector(
-            onTap: isLoading ? null : onRemove,
+            onTap: () => context.read<CartBloc>().add(
+              CartEvent.itemRemoved(cartItemId: item.id),
+            ),
             child: Padding(
               padding: EdgeInsets.only(left: AppSizes.w4),
               child: Icon(

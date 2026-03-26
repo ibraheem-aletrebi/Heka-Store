@@ -20,4 +20,5 @@ class LocalStorageKeys {
   static const String cart = 'cart';
   static const String cartCount = 'cartCount';
   static const String cartLastFetch = 'cartLastFetch';
+  static const String productsYouMayLike = 'productsYouMayLike';
 }

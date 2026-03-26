@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
-import 'package:heka_store/core/widgets/product_card/product_card.dart';
 import 'package:heka_store/core/widgets/section_header.dart';
 
 

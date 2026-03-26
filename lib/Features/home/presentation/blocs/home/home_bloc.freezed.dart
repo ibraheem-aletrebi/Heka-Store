@@ -20,7 +20,6 @@ mixin _$HomeEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
-    required TResult Function() recommendedNextPageFetched,
     required TResult Function() featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +27,6 @@ mixin _$HomeEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
-    TResult? Function()? recommendedNextPageFetched,
     TResult? Function()? featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +34,6 @@ mixin _$HomeEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
-    TResult Function()? recommendedNextPageFetched,
     TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) =>
@@ -45,8 +42,6 @@ mixin _$HomeEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
-    required TResult Function(_RecommendedNextPageFetched value)
-        recommendedNextPageFetched,
     required TResult Function(_FeaturedNextPageFetched value)
         featuredNextPageFetched,
   }) =>
@@ -55,8 +50,6 @@ mixin _$HomeEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
-    TResult? Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
@@ -64,8 +57,6 @@ mixin _$HomeEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
-    TResult Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) =>
@@ -129,7 +120,6 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
-    required TResult Function() recommendedNextPageFetched,
     required TResult Function() featuredNextPageFetched,
   }) {
     return started();
@@ -140,7 +130,6 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
-    TResult? Function()? recommendedNextPageFetched,
     TResult? Function()? featuredNextPageFetched,
   }) {
     return started?.call();
@@ -151,7 +140,6 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
-    TResult Function()? recommendedNextPageFetched,
     TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -166,8 +154,6 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
-    required TResult Function(_RecommendedNextPageFetched value)
-        recommendedNextPageFetched,
     required TResult Function(_FeaturedNextPageFetched value)
         featuredNextPageFetched,
   }) {
@@ -179,8 +165,6 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
-    TResult? Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) {
     return started?.call(this);
@@ -191,8 +175,6 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
-    TResult Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -247,7 +229,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
-    required TResult Function() recommendedNextPageFetched,
     required TResult Function() featuredNextPageFetched,
   }) {
     return refreshed();
@@ -258,7 +239,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
-    TResult? Function()? recommendedNextPageFetched,
     TResult? Function()? featuredNextPageFetched,
   }) {
     return refreshed?.call();
@@ -269,7 +249,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
-    TResult Function()? recommendedNextPageFetched,
     TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -284,8 +263,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
-    required TResult Function(_RecommendedNextPageFetched value)
-        recommendedNextPageFetched,
     required TResult Function(_FeaturedNextPageFetched value)
         featuredNextPageFetched,
   }) {
@@ -297,8 +274,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
-    TResult? Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) {
     return refreshed?.call(this);
@@ -309,8 +284,6 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
-    TResult Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -323,128 +296,6 @@ class _$RefreshedImpl implements _Refreshed {
 
 abstract class _Refreshed implements HomeEvent {
   const factory _Refreshed() = _$RefreshedImpl;
-}
-
-/// @nodoc
-abstract class _$$RecommendedNextPageFetchedImplCopyWith<$Res> {
-  factory _$$RecommendedNextPageFetchedImplCopyWith(
-          _$RecommendedNextPageFetchedImpl value,
-          $Res Function(_$RecommendedNextPageFetchedImpl) then) =
-      __$$RecommendedNextPageFetchedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RecommendedNextPageFetchedImplCopyWithImpl<$Res>
-    extends _$HomeEventCopyWithImpl<$Res, _$RecommendedNextPageFetchedImpl>
-    implements _$$RecommendedNextPageFetchedImplCopyWith<$Res> {
-  __$$RecommendedNextPageFetchedImplCopyWithImpl(
-      _$RecommendedNextPageFetchedImpl _value,
-      $Res Function(_$RecommendedNextPageFetchedImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$RecommendedNextPageFetchedImpl implements _RecommendedNextPageFetched {
-  const _$RecommendedNextPageFetchedImpl();
-
-  @override
-  String toString() {
-    return 'HomeEvent.recommendedNextPageFetched()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RecommendedNextPageFetchedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function() refreshed,
-    required TResult Function() recommendedNextPageFetched,
-    required TResult Function() featuredNextPageFetched,
-  }) {
-    return recommendedNextPageFetched();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? started,
-    TResult? Function()? refreshed,
-    TResult? Function()? recommendedNextPageFetched,
-    TResult? Function()? featuredNextPageFetched,
-  }) {
-    return recommendedNextPageFetched?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function()? refreshed,
-    TResult Function()? recommendedNextPageFetched,
-    TResult Function()? featuredNextPageFetched,
-    required TResult orElse(),
-  }) {
-    if (recommendedNextPageFetched != null) {
-      return recommendedNextPageFetched();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Started value) started,
-    required TResult Function(_Refreshed value) refreshed,
-    required TResult Function(_RecommendedNextPageFetched value)
-        recommendedNextPageFetched,
-    required TResult Function(_FeaturedNextPageFetched value)
-        featuredNextPageFetched,
-  }) {
-    return recommendedNextPageFetched(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Started value)? started,
-    TResult? Function(_Refreshed value)? refreshed,
-    TResult? Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
-    TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
-  }) {
-    return recommendedNextPageFetched?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Started value)? started,
-    TResult Function(_Refreshed value)? refreshed,
-    TResult Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
-    TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
-    required TResult orElse(),
-  }) {
-    if (recommendedNextPageFetched != null) {
-      return recommendedNextPageFetched(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _RecommendedNextPageFetched implements HomeEvent {
-  const factory _RecommendedNextPageFetched() =
-      _$RecommendedNextPageFetchedImpl;
 }
 
 /// @nodoc
@@ -490,7 +341,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
-    required TResult Function() recommendedNextPageFetched,
     required TResult Function() featuredNextPageFetched,
   }) {
     return featuredNextPageFetched();
@@ -501,7 +351,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
-    TResult? Function()? recommendedNextPageFetched,
     TResult? Function()? featuredNextPageFetched,
   }) {
     return featuredNextPageFetched?.call();
@@ -512,7 +361,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
-    TResult Function()? recommendedNextPageFetched,
     TResult Function()? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -527,8 +375,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
-    required TResult Function(_RecommendedNextPageFetched value)
-        recommendedNextPageFetched,
     required TResult Function(_FeaturedNextPageFetched value)
         featuredNextPageFetched,
   }) {
@@ -540,8 +386,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
-    TResult? Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult? Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
   }) {
     return featuredNextPageFetched?.call(this);
@@ -552,8 +396,6 @@ class _$FeaturedNextPageFetchedImpl implements _FeaturedNextPageFetched {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
-    TResult Function(_RecommendedNextPageFetched value)?
-        recommendedNextPageFetched,
     TResult Function(_FeaturedNextPageFetched value)? featuredNextPageFetched,
     required TResult orElse(),
   }) {
@@ -578,14 +420,6 @@ mixin _$HomeState {
   List<CategoryModel> get categories => throw _privateConstructorUsedError;
   bool get isCategoriesLoading => throw _privateConstructorUsedError;
   ApiErrorModel? get categoriesError =>
-      throw _privateConstructorUsedError; // ─── Recommended Products ─────────────────────
-  List<ProductModel> get recommendedProducts =>
-      throw _privateConstructorUsedError;
-  bool get isRecommendedLoading => throw _privateConstructorUsedError;
-  bool get isRecommendedLoadingMore => throw _privateConstructorUsedError;
-  bool get hasRecommendedNextPage => throw _privateConstructorUsedError;
-  int get recommendedCurrentPage => throw _privateConstructorUsedError;
-  ApiErrorModel? get recommendedError =>
       throw _privateConstructorUsedError; // ─── Featured Products ────────────────────────
   List<ProductModel> get featuredProducts => throw _privateConstructorUsedError;
   bool get isFeaturedLoading => throw _privateConstructorUsedError;
@@ -617,12 +451,6 @@ abstract class $HomeStateCopyWith<$Res> {
       List<CategoryModel> categories,
       bool isCategoriesLoading,
       ApiErrorModel? categoriesError,
-      List<ProductModel> recommendedProducts,
-      bool isRecommendedLoading,
-      bool isRecommendedLoadingMore,
-      bool hasRecommendedNextPage,
-      int recommendedCurrentPage,
-      ApiErrorModel? recommendedError,
       List<ProductModel> featuredProducts,
       bool isFeaturedLoading,
       bool isFeaturedLoadingMore,
@@ -654,12 +482,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? categories = null,
     Object? isCategoriesLoading = null,
     Object? categoriesError = freezed,
-    Object? recommendedProducts = null,
-    Object? isRecommendedLoading = null,
-    Object? isRecommendedLoadingMore = null,
-    Object? hasRecommendedNextPage = null,
-    Object? recommendedCurrentPage = null,
-    Object? recommendedError = freezed,
     Object? featuredProducts = null,
     Object? isFeaturedLoading = null,
     Object? isFeaturedLoadingMore = null,
@@ -695,30 +517,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       categoriesError: freezed == categoriesError
           ? _value.categoriesError
           : categoriesError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
-      recommendedProducts: null == recommendedProducts
-          ? _value.recommendedProducts
-          : recommendedProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      isRecommendedLoading: null == isRecommendedLoading
-          ? _value.isRecommendedLoading
-          : isRecommendedLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isRecommendedLoadingMore: null == isRecommendedLoadingMore
-          ? _value.isRecommendedLoadingMore
-          : isRecommendedLoadingMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasRecommendedNextPage: null == hasRecommendedNextPage
-          ? _value.hasRecommendedNextPage
-          : hasRecommendedNextPage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      recommendedCurrentPage: null == recommendedCurrentPage
-          ? _value.recommendedCurrentPage
-          : recommendedCurrentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      recommendedError: freezed == recommendedError
-          ? _value.recommendedError
-          : recommendedError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
       featuredProducts: null == featuredProducts
           ? _value.featuredProducts
@@ -779,12 +577,6 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       List<CategoryModel> categories,
       bool isCategoriesLoading,
       ApiErrorModel? categoriesError,
-      List<ProductModel> recommendedProducts,
-      bool isRecommendedLoading,
-      bool isRecommendedLoadingMore,
-      bool hasRecommendedNextPage,
-      int recommendedCurrentPage,
-      ApiErrorModel? recommendedError,
       List<ProductModel> featuredProducts,
       bool isFeaturedLoading,
       bool isFeaturedLoadingMore,
@@ -814,12 +606,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? categories = null,
     Object? isCategoriesLoading = null,
     Object? categoriesError = freezed,
-    Object? recommendedProducts = null,
-    Object? isRecommendedLoading = null,
-    Object? isRecommendedLoadingMore = null,
-    Object? hasRecommendedNextPage = null,
-    Object? recommendedCurrentPage = null,
-    Object? recommendedError = freezed,
     Object? featuredProducts = null,
     Object? isFeaturedLoading = null,
     Object? isFeaturedLoadingMore = null,
@@ -855,30 +641,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       categoriesError: freezed == categoriesError
           ? _value.categoriesError
           : categoriesError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
-      recommendedProducts: null == recommendedProducts
-          ? _value._recommendedProducts
-          : recommendedProducts // ignore: cast_nullable_to_non_nullable
-              as List<ProductModel>,
-      isRecommendedLoading: null == isRecommendedLoading
-          ? _value.isRecommendedLoading
-          : isRecommendedLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isRecommendedLoadingMore: null == isRecommendedLoadingMore
-          ? _value.isRecommendedLoadingMore
-          : isRecommendedLoadingMore // ignore: cast_nullable_to_non_nullable
-              as bool,
-      hasRecommendedNextPage: null == hasRecommendedNextPage
-          ? _value.hasRecommendedNextPage
-          : hasRecommendedNextPage // ignore: cast_nullable_to_non_nullable
-              as bool,
-      recommendedCurrentPage: null == recommendedCurrentPage
-          ? _value.recommendedCurrentPage
-          : recommendedCurrentPage // ignore: cast_nullable_to_non_nullable
-              as int,
-      recommendedError: freezed == recommendedError
-          ? _value.recommendedError
-          : recommendedError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
       featuredProducts: null == featuredProducts
           ? _value._featuredProducts
@@ -934,12 +696,6 @@ class _$HomeStateImpl extends _HomeState {
       final List<CategoryModel> categories = const [],
       this.isCategoriesLoading = false,
       this.categoriesError,
-      final List<ProductModel> recommendedProducts = const [],
-      this.isRecommendedLoading = false,
-      this.isRecommendedLoadingMore = false,
-      this.hasRecommendedNextPage = false,
-      this.recommendedCurrentPage = 1,
-      this.recommendedError,
       final List<ProductModel> featuredProducts = const [],
       this.isFeaturedLoading = false,
       this.isFeaturedLoadingMore = false,
@@ -952,7 +708,6 @@ class _$HomeStateImpl extends _HomeState {
       this.isRefreshing = false})
       : _banners = banners,
         _categories = categories,
-        _recommendedProducts = recommendedProducts,
         _featuredProducts = featuredProducts,
         _brands = brands,
         super._();
@@ -989,32 +744,6 @@ class _$HomeStateImpl extends _HomeState {
   final bool isCategoriesLoading;
   @override
   final ApiErrorModel? categoriesError;
-// ─── Recommended Products ─────────────────────
-  final List<ProductModel> _recommendedProducts;
-// ─── Recommended Products ─────────────────────
-  @override
-  @JsonKey()
-  List<ProductModel> get recommendedProducts {
-    if (_recommendedProducts is EqualUnmodifiableListView)
-      return _recommendedProducts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_recommendedProducts);
-  }
-
-  @override
-  @JsonKey()
-  final bool isRecommendedLoading;
-  @override
-  @JsonKey()
-  final bool isRecommendedLoadingMore;
-  @override
-  @JsonKey()
-  final bool hasRecommendedNextPage;
-  @override
-  @JsonKey()
-  final int recommendedCurrentPage;
-  @override
-  final ApiErrorModel? recommendedError;
 // ─── Featured Products ────────────────────────
   final List<ProductModel> _featuredProducts;
 // ─── Featured Products ────────────────────────
@@ -1064,7 +793,7 @@ class _$HomeStateImpl extends _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, categories: $categories, isCategoriesLoading: $isCategoriesLoading, categoriesError: $categoriesError, recommendedProducts: $recommendedProducts, isRecommendedLoading: $isRecommendedLoading, isRecommendedLoadingMore: $isRecommendedLoadingMore, hasRecommendedNextPage: $hasRecommendedNextPage, recommendedCurrentPage: $recommendedCurrentPage, recommendedError: $recommendedError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, brands: $brands, isBrandsLoading: $isBrandsLoading, brandsError: $brandsError, isRefreshing: $isRefreshing)';
+    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, categories: $categories, isCategoriesLoading: $isCategoriesLoading, categoriesError: $categoriesError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, brands: $brands, isBrandsLoading: $isBrandsLoading, brandsError: $brandsError, isRefreshing: $isRefreshing)';
   }
 
   @override
@@ -1083,19 +812,6 @@ class _$HomeStateImpl extends _HomeState {
                 other.isCategoriesLoading == isCategoriesLoading) &&
             (identical(other.categoriesError, categoriesError) ||
                 other.categoriesError == categoriesError) &&
-            const DeepCollectionEquality()
-                .equals(other._recommendedProducts, _recommendedProducts) &&
-            (identical(other.isRecommendedLoading, isRecommendedLoading) ||
-                other.isRecommendedLoading == isRecommendedLoading) &&
-            (identical(
-                    other.isRecommendedLoadingMore, isRecommendedLoadingMore) ||
-                other.isRecommendedLoadingMore == isRecommendedLoadingMore) &&
-            (identical(other.hasRecommendedNextPage, hasRecommendedNextPage) ||
-                other.hasRecommendedNextPage == hasRecommendedNextPage) &&
-            (identical(other.recommendedCurrentPage, recommendedCurrentPage) ||
-                other.recommendedCurrentPage == recommendedCurrentPage) &&
-            (identical(other.recommendedError, recommendedError) ||
-                other.recommendedError == recommendedError) &&
             const DeepCollectionEquality()
                 .equals(other._featuredProducts, _featuredProducts) &&
             (identical(other.isFeaturedLoading, isFeaturedLoading) ||
@@ -1118,31 +834,24 @@ class _$HomeStateImpl extends _HomeState {
   }
 
   @override
-  int get hashCode => Object.hashAll([
-        runtimeType,
-        const DeepCollectionEquality().hash(_banners),
-        isBannersLoading,
-        bannersError,
-        const DeepCollectionEquality().hash(_categories),
-        isCategoriesLoading,
-        categoriesError,
-        const DeepCollectionEquality().hash(_recommendedProducts),
-        isRecommendedLoading,
-        isRecommendedLoadingMore,
-        hasRecommendedNextPage,
-        recommendedCurrentPage,
-        recommendedError,
-        const DeepCollectionEquality().hash(_featuredProducts),
-        isFeaturedLoading,
-        isFeaturedLoadingMore,
-        hasFeaturedNextPage,
-        featuredCurrentPage,
-        featuredError,
-        const DeepCollectionEquality().hash(_brands),
-        isBrandsLoading,
-        brandsError,
-        isRefreshing
-      ]);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_banners),
+      isBannersLoading,
+      bannersError,
+      const DeepCollectionEquality().hash(_categories),
+      isCategoriesLoading,
+      categoriesError,
+      const DeepCollectionEquality().hash(_featuredProducts),
+      isFeaturedLoading,
+      isFeaturedLoadingMore,
+      hasFeaturedNextPage,
+      featuredCurrentPage,
+      featuredError,
+      const DeepCollectionEquality().hash(_brands),
+      isBrandsLoading,
+      brandsError,
+      isRefreshing);
 
   @JsonKey(ignore: true)
   @override
@@ -1159,12 +868,6 @@ abstract class _HomeState extends HomeState {
       final List<CategoryModel> categories,
       final bool isCategoriesLoading,
       final ApiErrorModel? categoriesError,
-      final List<ProductModel> recommendedProducts,
-      final bool isRecommendedLoading,
-      final bool isRecommendedLoadingMore,
-      final bool hasRecommendedNextPage,
-      final int recommendedCurrentPage,
-      final ApiErrorModel? recommendedError,
       final List<ProductModel> featuredProducts,
       final bool isFeaturedLoading,
       final bool isFeaturedLoadingMore,
@@ -1189,18 +892,6 @@ abstract class _HomeState extends HomeState {
   bool get isCategoriesLoading;
   @override
   ApiErrorModel? get categoriesError;
-  @override // ─── Recommended Products ─────────────────────
-  List<ProductModel> get recommendedProducts;
-  @override
-  bool get isRecommendedLoading;
-  @override
-  bool get isRecommendedLoadingMore;
-  @override
-  bool get hasRecommendedNextPage;
-  @override
-  int get recommendedCurrentPage;
-  @override
-  ApiErrorModel? get recommendedError;
   @override // ─── Featured Products ────────────────────────
   List<ProductModel> get featuredProducts;
   @override

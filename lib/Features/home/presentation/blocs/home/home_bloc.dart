@@ -19,7 +19,6 @@ part 'home_bloc.freezed.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetBannersUseCase _getBannersUseCase;
   final GetCategoriesUseCase _getCategoriesUseCase;
-  final GetRecommendedProductsUseCase _getRecommendedProductsUseCase;
   final GetFeaturedProductsUseCase _getFeaturedProductsUseCase;
   final GetBrandsUseCase _getBrandsUseCase;
 
@@ -31,13 +30,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required GetBrandsUseCase getBrandsUseCase,
   })  : _getBannersUseCase = getBannersUseCase,
         _getCategoriesUseCase = getCategoriesUseCase,
-        _getRecommendedProductsUseCase = getRecommendedProductsUseCase,
         _getFeaturedProductsUseCase = getFeaturedProductsUseCase,
         _getBrandsUseCase = getBrandsUseCase,
         super(const HomeState()) {
     on<_Started>(_onStarted);
     on<_Refreshed>(_onRefreshed);
-    on<_RecommendedNextPageFetched>(_onRecommendedNextPageFetched);
   on<_FeaturedNextPageFetched>(_onFeaturedNextPageFetched);
   }
 
@@ -50,7 +47,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       isBannersLoading: true,
       isCategoriesLoading: true,
-      isRecommendedLoading: true,
       isFeaturedLoading: true,
       isBrandsLoading: true,
     ));
@@ -58,7 +54,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await Future.wait([
       _fetchBanners(emit),
       _fetchCategories(emit),
-      _fetchRecommendedProducts(emit),
       _fetchFeaturedProducts(emit),
       _fetchBrands(emit),
     ]);
@@ -75,7 +70,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await Future.wait([
       _fetchBanners(emit),
       _fetchCategories(emit),
-      _fetchRecommendedProducts(emit),
       _fetchFeaturedProducts(emit),
       _fetchBrands(emit),
     ]);
@@ -86,33 +80,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
 
 
-// ─── Recommended Next Page ─────────────────────────────────────────────────
-
-Future<void> _onRecommendedNextPageFetched(
-  _RecommendedNextPageFetched event,
-  Emitter<HomeState> emit,
-) async {
-  if (state.isRecommendedLoadingMore || !state.hasRecommendedNextPage) return;
-
-  emit(state.copyWith(isRecommendedLoadingMore: true));
-
-  final response = await _getRecommendedProductsUseCase(
-    pageNumber: state.recommendedCurrentPage + 1,
-  );
-
-  response.when(
-    onSuccess: (data) => emit(state.copyWith(
-      isRecommendedLoadingMore: false,
-      recommendedProducts: [...state.recommendedProducts, ...data.products],
-      hasRecommendedNextPage: data.hasNextPage,
-      recommendedCurrentPage: data.pageNumber,
-    )),
-    onError: (error) => emit(state.copyWith(
-      isRecommendedLoadingMore: false,
-      recommendedError: error,
-    )),
-  );
-}
 
 // ─── Featured Next Page ────────────────────────────────────────────────────
 
@@ -169,23 +136,6 @@ Future<void> _onFeaturedNextPageFetched(
       onError: (error) => emit(state.copyWith(
         isCategoriesLoading: false,
         categoriesError: error,
-      )),
-    );
-  }
-
-  Future<void> _fetchRecommendedProducts(Emitter<HomeState> emit) async {
-    final response = await _getRecommendedProductsUseCase();
-    response.when(
-      onSuccess: (data) => emit(state.copyWith(
-        recommendedProducts: data.products,
-        isRecommendedLoading: false,
-        hasRecommendedNextPage: data.hasNextPage,
-        recommendedCurrentPage: data.pageNumber,
-        recommendedError: null,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isRecommendedLoading: false,
-        recommendedError: error,
       )),
     );
   }

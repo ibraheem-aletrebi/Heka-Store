@@ -32,4 +32,5 @@ class ApiConstants {
   static const String cartItems = '/api/Cart/items';
   static const String cartCount = '/api/Cart/count';
   static String cartItem(int id) => '/api/Cart/items/$id';
+  static const String productsYouMayLike = '/api/Products';
 }

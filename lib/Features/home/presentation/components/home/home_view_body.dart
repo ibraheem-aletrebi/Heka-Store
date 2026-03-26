@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_stores_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/featured_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/categories_section.dart';

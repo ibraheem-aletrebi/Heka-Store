@@ -6,7 +6,7 @@ class CartState with _$CartState {
     @Default(CartStatus.initial) CartStatus status,
     CartModel? cart,
     @Default(0) int count,
-    @Default({}) Map<int, bool> loadingItems, // cartItemId → isLoading
+    @Default({}) Map<int, bool> loadingItems, 
     ApiErrorModel? error,
   }) = _CartState;
 

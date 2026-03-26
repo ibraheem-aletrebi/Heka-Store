@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
-import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
@@ -21,7 +21,7 @@ class RecommendedForYouSection extends StatelessWidget {
       spacing: AppSizes.h12,
       children: [
         SectionHeader(title: S.of(context).recommendedForYou, onSeeAll: () {}),
-        BlocBuilder<HomeBloc, HomeState>(
+        BlocBuilder<RecommendedForYouBloc, RecommendedForYouState>(
           buildWhen: (p, c) =>
               p.recommendedProducts != c.recommendedProducts ||
               p.isRecommendedLoading != c.isRecommendedLoading ||
@@ -38,7 +38,6 @@ class RecommendedForYouSection extends StatelessWidget {
                 hasNextPage: state.hasRecommendedNextPage,
                 loadMoreThreshold: 9,
 
-                // ─── Loading Widget ───────────────────
                 loadingWidget: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
@@ -48,14 +47,13 @@ class RecommendedForYouSection extends StatelessWidget {
                       CustomSkeletonizer(enable: true, child: ProductCard()),
                 ),
 
-                // ─── Load More Widget ─────────────────
                 loadMoreWidget: Padding(
                   padding: EdgeInsetsDirectional.only(end: AppSizes.w12),
                   child: CustomSkeletonizer(enable: true, child: ProductCard()),
                 ),
 
-                onLoadMore: () => context.read<HomeBloc>().add(
-                  const HomeEvent.recommendedNextPageFetched(),
+                onLoadMore: () => context.read<RecommendedForYouBloc>().add(
+                  const RecommendedForYouEvent.recommendedNextPageFetched(),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
                 itemBuilder: (context, product, index) =>

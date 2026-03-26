@@ -126,7 +126,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         ),
       ),
       onSuccess: (_) {
-        add(const CartEvent.reLoaded()); // ← re-fetch for updated totals
+        add(const CartEvent.reLoaded()); 
       },
     );
   }

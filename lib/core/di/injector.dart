@@ -34,9 +34,11 @@ import 'package:heka_store/Features/cart/domain/use_cases/add_cart_item_use_case
 import 'package:heka_store/Features/cart/domain/use_cases/clear_cart_use_case.dart';
 import 'package:heka_store/Features/cart/domain/use_cases/get_cart_count_use_case.dart';
 import 'package:heka_store/Features/cart/domain/use_cases/get_cart_use_case.dart';
+import 'package:heka_store/Features/cart/domain/use_cases/get_products_you_may_like.dart';
 import 'package:heka_store/Features/cart/domain/use_cases/remove_cart_item_use_case.dart';
 import 'package:heka_store/Features/cart/domain/use_cases/update_cart_item_use_case.dart';
-import 'package:heka_store/Features/cart/presentation/blocs/bloc/cart_bloc.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/products_you_may_like/may_like_bloc.dart';
 import 'package:heka_store/Features/home/data/data_source/home_local_data_srouce.dart';
 import 'package:heka_store/Features/home/data/data_source/home_remote_data_source.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
@@ -50,7 +52,8 @@ import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.da
 import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
-import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/previous_viewed_products_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
@@ -289,6 +292,12 @@ void _initHome() {
   );
 
   // ─── BLoCs ────────────────────────────────────────
+
+  sl.registerFactory<RecommendedForYouBloc>(
+    () => RecommendedForYouBloc(
+      getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
+    ),
+  );
   sl.registerFactory<HomeBloc>(
     () => HomeBloc(
       getBannersUseCase: sl<GetBannersUseCase>(),
@@ -350,7 +359,7 @@ void _initWishlist() {
 void _initCart() {
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<CartRemoteDataSource>(
-    () => CartRemoteDataSourceImpl(dio: DioClient().dio),
+    () => CartRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
   sl.registerLazySingleton<CartLocalDataSource>(
     () => CartLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
@@ -383,9 +392,16 @@ void _initCart() {
   sl.registerFactory<ClearCartUseCase>(
     () => ClearCartUseCase(sl<CartRepository>()),
   );
+  sl.registerFactory<GetProductsYouMayLike>(
+    () => GetProductsYouMayLike(sl<CartRepository>()),
+  );
 
   // ─── BLoC ─────────────────────────────────────────
-  sl.registerFactory<CartBloc>(
+  sl.registerFactory<MayLikeBloc>(
+    () => MayLikeBloc(getProductsYouMayLike: sl<GetProductsYouMayLike>()),
+  );
+
+  sl.registerLazySingleton<CartBloc>(
     () => CartBloc(
       getCart: sl<GetCartUseCase>(),
       addItem: sl<AddCartItemUseCase>(),

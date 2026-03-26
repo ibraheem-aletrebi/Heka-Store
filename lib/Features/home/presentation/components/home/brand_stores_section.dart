@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/presentation/blocs/bloc/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_item.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_tile.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';

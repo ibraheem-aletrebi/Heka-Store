@@ -4,11 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/main_layout/main_layout_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/layout/nav_icon.dart';
-
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
-
 
 class FloatingBottomNavBar extends StatelessWidget {
   const FloatingBottomNavBar({super.key});
@@ -41,13 +39,10 @@ class FloatingBottomNavBar extends StatelessWidget {
     return BlocBuilder<MainLayoutBloc, MainLayoutState>(
       builder: (context, state) {
         final cubit = context.read<MainLayoutBloc>();
-        final isDark = context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+        final isDark =
+            context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
         final primary = context.myColors.primary;
-        final cartHasItems = state.cartCount > 0;
         final isRtl = Directionality.of(context) == TextDirection.rtl;
-
-        // mirror the selected index for RTL
-        // LTR: [0, 1, 2, 3]  →  RTL: [3, 2, 1, 0]
         final visualIndex = isRtl
             ? (_tabs.length - 1 - state.currentIndex)
             : state.currentIndex;
@@ -62,6 +57,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                 return Stack(
                   clipBehavior: Clip.none,
                   children: [
+                    // frosted glass background
                     ClipRRect(
                       borderRadius: BorderRadius.circular(28),
                       child: BackdropFilter(
@@ -78,6 +74,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                       ),
                     ),
 
+                    // sliding active-tab highlight
                     AnimatedPositioned(
                       duration: const Duration(milliseconds: 300),
                       curve: Curves.easeInOut,
@@ -122,7 +119,7 @@ class FloatingBottomNavBar extends StatelessWidget {
                                   icon: isSelected
                                       ? _tabs[i].activeIcon
                                       : _tabs[i].icon,
-                                  showBadge: isCart && cartHasItems,
+                                  showBadge: isCart && state.cartCount > 0,
                                   count: state.cartCount,
                                 ),
                               ),
@@ -146,7 +143,6 @@ class _NavItem {
   final IconData icon;
   final IconData activeIcon;
   final String label;
-
   const _NavItem({
     required this.icon,
     required this.activeIcon,

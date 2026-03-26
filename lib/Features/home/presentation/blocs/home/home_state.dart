@@ -14,13 +14,6 @@ class HomeState with _$HomeState {
     @Default(false) bool isCategoriesLoading,
     ApiErrorModel? categoriesError,
 
-    // ─── Recommended Products ─────────────────────
-    @Default([]) List<ProductModel> recommendedProducts,
-    @Default(false) bool isRecommendedLoading,
-    @Default(false) bool isRecommendedLoadingMore,
-    @Default(false) bool hasRecommendedNextPage,
-    @Default(1) int recommendedCurrentPage,
-    ApiErrorModel? recommendedError,
 
     // ─── Featured Products ────────────────────────
     @Default([]) List<ProductModel> featuredProducts,
@@ -44,14 +37,12 @@ class HomeState with _$HomeState {
   bool get isInitialLoading =>
       isBannersLoading ||
       isCategoriesLoading ||
-      isRecommendedLoading ||
       isFeaturedLoading ||
       isBrandsLoading;
 
   bool get hasError =>
       bannersError != null ||
       categoriesError != null ||
-      recommendedError != null ||
       featuredError != null ||
       brandsError != null;
 }
