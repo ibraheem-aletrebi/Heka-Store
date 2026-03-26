@@ -15,9 +15,7 @@ class LoginViewBodyBlocListener extends StatelessWidget {
           previous.isSuccess != current.isSuccess ||
           previous.error != current.error,
       listener: (context, state) {
-        
         if (state.isSuccess) {
-         
           final hasAddress =
               state.loginResponse?.data?.user.hasAddress ?? false;
           if (hasAddress) {

@@ -1,5 +1,5 @@
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import 'package:heka_store/core/services/local/secure_storage_keys.dart';
+import 'package:heka_store/core/constants/secure_storage_keys.dart';
 
 class SecureStorageService {
   SecureStorageService._internal();
@@ -62,4 +62,3 @@ class SecureStorageService {
     await deleteRefreshToken();
   }
 }
-

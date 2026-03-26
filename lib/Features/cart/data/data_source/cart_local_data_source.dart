@@ -12,7 +12,7 @@ abstract class CartLocalDataSource {
   int? getCartCount();
   Future<void> saveCartCount(int count);
   Future<void> saveProductsYouMayLike(List<ProductModel> products);
-  List<ProductModel> getProductsYouMayLike(); // fixed return type
+  List<ProductModel> getProductsYouMayLike(); 
 }
 
 class CartLocalDataSourceImpl implements CartLocalDataSource {

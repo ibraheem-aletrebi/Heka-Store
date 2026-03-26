@@ -302,8 +302,7 @@ void _initHome() {
     ),
   );
 
-  // ── Categories BLoC (singleton — shared across screens) ──
-  sl.registerLazySingleton<CategoriesBloc>(
+  sl.registerFactory<CategoriesBloc>(
     () => CategoriesBloc(
       getCategoriesUseCase: sl<GetCategoriesUseCase>(),
     ),

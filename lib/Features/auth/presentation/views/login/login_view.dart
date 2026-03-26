@@ -16,7 +16,6 @@ class LoginView extends StatelessWidget {
     final translate = S.of(context);
     return BlocProvider(
       create: (context) => sl<LoginBloc>(),
-
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(child: Center(child: LoginViewBodyBlocListener())),

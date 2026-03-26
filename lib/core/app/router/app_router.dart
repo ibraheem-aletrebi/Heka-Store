@@ -85,19 +85,16 @@ Future<String> getInitialRoute() async {
   final localDataSource = sl<AuthLocalDataSource>();
 
   final isLoggedIn = await localDataSource.isLoggedIn();
-
-  if (isLoggedIn) return AppRoutes.mainLayout;
+  if (isLoggedIn) return AppRoutes.mainLayout; 
 
   final pendingEmail = await localDataSource.getPendingVerifyEmail();
-  if (pendingEmail != null) return AppRoutes.verifyEmail;
+  if (pendingEmail != null) return AppRoutes.verifyEmail; 
 
   final hasSeenOnboarding =
       LocalStorageService().getValue<bool>(
         HiveBoxes.app,
         LocalStorageKeys.hasSeenOnboarding,
-      ) ??
-      false;
-  if (hasSeenOnboarding) return AppRoutes.mainLayout;
+      ) ?? false;
 
-  return AppRoutes.onboarding;
+  return hasSeenOnboarding ? AppRoutes.login : AppRoutes.onboarding;
 }
