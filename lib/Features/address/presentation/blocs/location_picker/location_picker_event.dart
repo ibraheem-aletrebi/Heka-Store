@@ -1,4 +1,3 @@
-
 part of 'location_picker_bloc.dart';
 
 @freezed
@@ -12,4 +11,5 @@ sealed class LocationPickerEvent with _$LocationPickerEvent {
   const factory LocationPickerEvent.languageChanged(String language) = _LanguageChanged;
   const factory LocationPickerEvent.nicknameChanged(String nickname) = _NicknameChanged;
   const factory LocationPickerEvent.isDefaultToggled() = _IsDefaultToggled;
+  const factory LocationPickerEvent.phoneNumberChanged(String phoneNumber) = _PhoneNumberChanged;
 }

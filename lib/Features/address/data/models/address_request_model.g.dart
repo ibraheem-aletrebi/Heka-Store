@@ -14,6 +14,7 @@ _$AddressRequestModelImpl _$$AddressRequestModelImplFromJson(
       latitude: (json['latitude'] as num).toDouble(),
       longitude: (json['longitude'] as num).toDouble(),
       isDefault: json['isDefault'] as bool,
+      phoneNumber: json['phoneNumber'] as String?,
     );
 
 Map<String, dynamic> _$$AddressRequestModelImplToJson(
@@ -24,4 +25,5 @@ Map<String, dynamic> _$$AddressRequestModelImplToJson(
       'latitude': instance.latitude,
       'longitude': instance.longitude,
       'isDefault': instance.isDefault,
+      'phoneNumber': instance.phoneNumber,
     };

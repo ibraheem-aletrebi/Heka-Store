@@ -24,13 +24,14 @@ class AddressModelAdapter extends TypeAdapter<AddressModel> {
       longitude: fields[4] as double,
       isDefault: fields[5] as bool,
       createdAt: fields[6] as String,
+      phoneNumber: fields[7] as String?,
     );
   }
 
   @override
   void write(BinaryWriter writer, AddressModel obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class AddressModelAdapter extends TypeAdapter<AddressModel> {
       ..writeByte(5)
       ..write(obj.isDefault)
       ..writeByte(6)
-      ..write(obj.createdAt);
+      ..write(obj.createdAt)
+      ..writeByte(7)
+      ..write(obj.phoneNumber);
   }
 
   @override
@@ -71,6 +74,7 @@ _$AddressModelImpl _$$AddressModelImplFromJson(Map<String, dynamic> json) =>
       longitude: (json['longitude'] as num).toDouble(),
       isDefault: json['isDefault'] as bool,
       createdAt: json['createdAt'] as String,
+      phoneNumber: json['phoneNumber'] as String?,
     );
 
 Map<String, dynamic> _$$AddressModelImplToJson(_$AddressModelImpl instance) =>
@@ -82,4 +86,5 @@ Map<String, dynamic> _$$AddressModelImplToJson(_$AddressModelImpl instance) =>
       'longitude': instance.longitude,
       'isDefault': instance.isDefault,
       'createdAt': instance.createdAt,
+      'phoneNumber': instance.phoneNumber,
     };

@@ -11,9 +11,9 @@ class AddressRequestModel with _$AddressRequestModel {
     required double latitude,
     required double longitude,
     required bool isDefault,
+    String? phoneNumber, 
   }) = _AddressRequestModel;
 
   factory AddressRequestModel.fromJson(Map<String, dynamic> json) =>
       _$AddressRequestModelFromJson(json);
-  
 }

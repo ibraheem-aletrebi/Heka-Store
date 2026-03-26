@@ -93,6 +93,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "لا توجد عناصر محفوظة!",
     ),
     "enterCouponCode": MessageLookupByLibrary.simpleMessage("أدخل كود الخصم"),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage("ادخل رقم الهاتف"),
     "enterYourEmailAndPasswordToLogin": MessageLookupByLibrary.simpleMessage(
       "أدخل بريدك الإلكتروني وكلمة المرور لتسجيل الدخول",
     ),

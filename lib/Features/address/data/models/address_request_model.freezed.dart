@@ -25,6 +25,7 @@ mixin _$AddressRequestModel {
   double get latitude => throw _privateConstructorUsedError;
   double get longitude => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -43,7 +44,8 @@ abstract class $AddressRequestModelCopyWith<$Res> {
       String fullAddress,
       double latitude,
       double longitude,
-      bool isDefault});
+      bool isDefault,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$AddressRequestModelCopyWithImpl<$Res, $Val extends AddressRequestModel>
     Object? latitude = null,
     Object? longitude = null,
     Object? isDefault = null,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       nickname: null == nickname
@@ -86,6 +89,10 @@ class _$AddressRequestModelCopyWithImpl<$Res, $Val extends AddressRequestModel>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -103,7 +110,8 @@ abstract class _$$AddressRequestModelImplCopyWith<$Res>
       String fullAddress,
       double latitude,
       double longitude,
-      bool isDefault});
+      bool isDefault,
+      String? phoneNumber});
 }
 
 /// @nodoc
@@ -122,6 +130,7 @@ class __$$AddressRequestModelImplCopyWithImpl<$Res>
     Object? latitude = null,
     Object? longitude = null,
     Object? isDefault = null,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_$AddressRequestModelImpl(
       nickname: null == nickname
@@ -144,6 +153,10 @@ class __$$AddressRequestModelImplCopyWithImpl<$Res>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -156,7 +169,8 @@ class _$AddressRequestModelImpl implements _AddressRequestModel {
       required this.fullAddress,
       required this.latitude,
       required this.longitude,
-      required this.isDefault});
+      required this.isDefault,
+      this.phoneNumber});
 
   factory _$AddressRequestModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressRequestModelImplFromJson(json);
@@ -171,10 +185,12 @@ class _$AddressRequestModelImpl implements _AddressRequestModel {
   final double longitude;
   @override
   final bool isDefault;
+  @override
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'AddressRequestModel(nickname: $nickname, fullAddress: $fullAddress, latitude: $latitude, longitude: $longitude, isDefault: $isDefault)';
+    return 'AddressRequestModel(nickname: $nickname, fullAddress: $fullAddress, latitude: $latitude, longitude: $longitude, isDefault: $isDefault, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -191,13 +207,15 @@ class _$AddressRequestModelImpl implements _AddressRequestModel {
             (identical(other.longitude, longitude) ||
                 other.longitude == longitude) &&
             (identical(other.isDefault, isDefault) ||
-                other.isDefault == isDefault));
+                other.isDefault == isDefault) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, nickname, fullAddress, latitude, longitude, isDefault);
+  int get hashCode => Object.hash(runtimeType, nickname, fullAddress, latitude,
+      longitude, isDefault, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -220,7 +238,8 @@ abstract class _AddressRequestModel implements AddressRequestModel {
       required final String fullAddress,
       required final double latitude,
       required final double longitude,
-      required final bool isDefault}) = _$AddressRequestModelImpl;
+      required final bool isDefault,
+      final String? phoneNumber}) = _$AddressRequestModelImpl;
 
   factory _AddressRequestModel.fromJson(Map<String, dynamic> json) =
       _$AddressRequestModelImpl.fromJson;
@@ -235,6 +254,8 @@ abstract class _AddressRequestModel implements AddressRequestModel {
   double get longitude;
   @override
   bool get isDefault;
+  @override
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$$AddressRequestModelImplCopyWith<_$AddressRequestModelImpl> get copyWith =>

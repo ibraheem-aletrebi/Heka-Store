@@ -329,6 +329,9 @@
     "failedToGetLocation": "فشل في تحديد الموقع. حاول مرة أخرى.",
     "@failedToGetLocation": {},
 
+    "enterPhoneNumber":"ادخل رقم الهاتف",
+    "@enterPhoneNumber":{},
+    
 
 
 

@@ -15,6 +15,7 @@ class AddressModel with _$AddressModel {
     @HiveField(4) required double longitude,
     @HiveField(5) required bool isDefault,
     @HiveField(6) required String createdAt,
+    @HiveField(7) String? phoneNumber,
   }) = _AddressModel;
 
   factory AddressModel.fromJson(Map<String, dynamic> json) =>

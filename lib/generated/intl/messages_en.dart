@@ -92,6 +92,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterCouponCode": MessageLookupByLibrary.simpleMessage(
       "Enter Coupon code",
     ),
+    "enterPhoneNumber": MessageLookupByLibrary.simpleMessage(
+      "Enter phone number",
+    ),
     "enterYourCardNumber": MessageLookupByLibrary.simpleMessage(
       "Enter your card number",
     ),

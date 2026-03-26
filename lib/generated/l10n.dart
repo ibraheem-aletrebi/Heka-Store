@@ -1359,6 +1359,16 @@ class S {
     );
   }
 
+  /// `Enter phone number`
+  String get enterPhoneNumber {
+    return Intl.message(
+      'Enter phone number',
+      name: 'enterPhoneNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Good morning`
   String get goodMorning {
     return Intl.message(

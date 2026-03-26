@@ -40,16 +40,13 @@ class LocationPickerBottomPanel extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ─── Drag Handle ──────────────────────────
               const _DragHandle(),
 
-              // ─── Location Detail ──────────────────────
               if (locationState.hasLocation) ...[
                 const LocationPickerDetail(),
                 SizedBox(height: AppSizes.h20),
               ],
 
-              // ─── Nickname ─────────────────────────────
               if (locationState.hasLocation) ...[
                 Text(
                   s.addressNickName,
@@ -59,6 +56,27 @@ class LocationPickerBottomPanel extends StatelessWidget {
                 ),
                 SizedBox(height: AppSizes.h8),
                 const LocationPickerNicknameSelector(),
+                SizedBox(height: AppSizes.h16),
+              ],
+
+              // ─── Phone Number ─────────────────────────
+              if (locationState.hasLocation) ...[
+                Text(
+                  s.phoneNumber,
+                  style: AppTextStyles.semiBold14.copyWith(
+                    color: colors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: AppSizes.h8),
+                TextFormField(
+                  keyboardType: TextInputType.phone,
+                  onChanged: (value) => context
+                      .read<LocationPickerBloc>()
+                      .add(LocationPickerEvent.phoneNumberChanged(value)),
+                  decoration: InputDecoration(
+                    hintText: s.enterPhoneNumber,
+                  ),
+                ),
                 SizedBox(height: AppSizes.h16),
               ],
 
@@ -86,7 +104,6 @@ class LocationPickerBottomPanel extends StatelessWidget {
               ),
               SizedBox(height: AppSizes.h8),
 
-              // ─── Skip ─────────────────────────────────
               Center(
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -115,6 +132,9 @@ class LocationPickerBottomPanel extends StatelessWidget {
           latitude: locationState.latitude!,
           longitude: locationState.longitude!,
           isDefault: locationState.isDefault,
+          phoneNumber: locationState.phoneNumber.trim().isEmpty
+              ? null
+              : locationState.phoneNumber.trim(),
         ),
       ),
     );

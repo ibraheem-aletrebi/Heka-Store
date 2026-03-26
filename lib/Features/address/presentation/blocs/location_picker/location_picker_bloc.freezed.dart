@@ -27,6 +27,7 @@ mixin _$LocationPickerEvent {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -40,6 +41,7 @@ mixin _$LocationPickerEvent {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -53,6 +55,7 @@ mixin _$LocationPickerEvent {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,6 +71,7 @@ mixin _$LocationPickerEvent {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +86,7 @@ mixin _$LocationPickerEvent {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,6 +100,7 @@ mixin _$LocationPickerEvent {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -169,6 +175,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return currentLocationRequested();
   }
@@ -185,6 +192,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return currentLocationRequested?.call();
   }
@@ -201,6 +209,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -222,6 +231,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return currentLocationRequested(this);
   }
@@ -239,6 +249,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return currentLocationRequested?.call(this);
   }
@@ -255,6 +266,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -349,6 +361,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return mapTapped(lat, lng);
   }
@@ -365,6 +378,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return mapTapped?.call(lat, lng);
   }
@@ -381,6 +395,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -402,6 +417,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return mapTapped(this);
   }
@@ -419,6 +435,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return mapTapped?.call(this);
   }
@@ -435,6 +452,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -528,6 +546,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return searchChanged(query);
   }
@@ -544,6 +563,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return searchChanged?.call(query);
   }
@@ -560,6 +580,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -581,6 +602,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return searchChanged(this);
   }
@@ -598,6 +620,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return searchChanged?.call(this);
   }
@@ -614,6 +637,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -705,6 +729,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return placeSelected(place);
   }
@@ -721,6 +746,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return placeSelected?.call(place);
   }
@@ -737,6 +763,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -758,6 +785,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return placeSelected(this);
   }
@@ -775,6 +803,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return placeSelected?.call(this);
   }
@@ -791,6 +820,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -857,6 +887,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return searchCleared();
   }
@@ -873,6 +904,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return searchCleared?.call();
   }
@@ -889,6 +921,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -910,6 +943,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return searchCleared(this);
   }
@@ -927,6 +961,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return searchCleared?.call(this);
   }
@@ -943,6 +978,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -1003,6 +1039,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return locationConfirmed();
   }
@@ -1019,6 +1056,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return locationConfirmed?.call();
   }
@@ -1035,6 +1073,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1056,6 +1095,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return locationConfirmed(this);
   }
@@ -1073,6 +1113,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return locationConfirmed?.call(this);
   }
@@ -1089,6 +1130,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1177,6 +1219,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return languageChanged(language);
   }
@@ -1193,6 +1236,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return languageChanged?.call(language);
   }
@@ -1209,6 +1253,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1230,6 +1275,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return languageChanged(this);
   }
@@ -1247,6 +1293,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return languageChanged?.call(this);
   }
@@ -1263,6 +1310,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1356,6 +1404,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return nicknameChanged(nickname);
   }
@@ -1372,6 +1421,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return nicknameChanged?.call(nickname);
   }
@@ -1388,6 +1438,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1409,6 +1460,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return nicknameChanged(this);
   }
@@ -1426,6 +1478,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return nicknameChanged?.call(this);
   }
@@ -1442,6 +1495,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1507,6 +1561,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function(String language) languageChanged,
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
   }) {
     return isDefaultToggled();
   }
@@ -1523,6 +1578,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function(String language)? languageChanged,
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
   }) {
     return isDefaultToggled?.call();
   }
@@ -1539,6 +1595,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function(String language)? languageChanged,
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1560,6 +1617,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function(_LanguageChanged value) languageChanged,
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
   }) {
     return isDefaultToggled(this);
   }
@@ -1577,6 +1635,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function(_LanguageChanged value)? languageChanged,
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
   }) {
     return isDefaultToggled?.call(this);
   }
@@ -1593,6 +1652,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function(_LanguageChanged value)? languageChanged,
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1604,6 +1664,192 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
 
 abstract class _IsDefaultToggled implements LocationPickerEvent {
   const factory _IsDefaultToggled() = _$IsDefaultToggledImpl;
+}
+
+/// @nodoc
+abstract class _$$PhoneNumberChangedImplCopyWith<$Res> {
+  factory _$$PhoneNumberChangedImplCopyWith(_$PhoneNumberChangedImpl value,
+          $Res Function(_$PhoneNumberChangedImpl) then) =
+      __$$PhoneNumberChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String phoneNumber});
+}
+
+/// @nodoc
+class __$$PhoneNumberChangedImplCopyWithImpl<$Res>
+    extends _$LocationPickerEventCopyWithImpl<$Res, _$PhoneNumberChangedImpl>
+    implements _$$PhoneNumberChangedImplCopyWith<$Res> {
+  __$$PhoneNumberChangedImplCopyWithImpl(_$PhoneNumberChangedImpl _value,
+      $Res Function(_$PhoneNumberChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? phoneNumber = null,
+  }) {
+    return _then(_$PhoneNumberChangedImpl(
+      null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
+  const _$PhoneNumberChangedImpl(this.phoneNumber);
+
+  @override
+  final String phoneNumber;
+
+  @override
+  String toString() {
+    return 'LocationPickerEvent.phoneNumberChanged(phoneNumber: $phoneNumber)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$PhoneNumberChangedImpl &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, phoneNumber);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$PhoneNumberChangedImplCopyWith<_$PhoneNumberChangedImpl> get copyWith =>
+      __$$PhoneNumberChangedImplCopyWithImpl<_$PhoneNumberChangedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() currentLocationRequested,
+    required TResult Function(double lat, double lng) mapTapped,
+    required TResult Function(String query) searchChanged,
+    required TResult Function(NominatimPlace place) placeSelected,
+    required TResult Function() searchCleared,
+    required TResult Function() locationConfirmed,
+    required TResult Function(String language) languageChanged,
+    required TResult Function(String nickname) nicknameChanged,
+    required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+  }) {
+    return phoneNumberChanged(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? currentLocationRequested,
+    TResult? Function(double lat, double lng)? mapTapped,
+    TResult? Function(String query)? searchChanged,
+    TResult? Function(NominatimPlace place)? placeSelected,
+    TResult? Function()? searchCleared,
+    TResult? Function()? locationConfirmed,
+    TResult? Function(String language)? languageChanged,
+    TResult? Function(String nickname)? nicknameChanged,
+    TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
+  }) {
+    return phoneNumberChanged?.call(phoneNumber);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? currentLocationRequested,
+    TResult Function(double lat, double lng)? mapTapped,
+    TResult Function(String query)? searchChanged,
+    TResult Function(NominatimPlace place)? placeSelected,
+    TResult Function()? searchCleared,
+    TResult Function()? locationConfirmed,
+    TResult Function(String language)? languageChanged,
+    TResult Function(String nickname)? nicknameChanged,
+    TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChanged != null) {
+      return phoneNumberChanged(phoneNumber);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentLocationRequested value)
+        currentLocationRequested,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_SearchChanged value) searchChanged,
+    required TResult Function(_PlaceSelected value) placeSelected,
+    required TResult Function(_SearchCleared value) searchCleared,
+    required TResult Function(_LocationConfirmed value) locationConfirmed,
+    required TResult Function(_LanguageChanged value) languageChanged,
+    required TResult Function(_NicknameChanged value) nicknameChanged,
+    required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+  }) {
+    return phoneNumberChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CurrentLocationRequested value)?
+        currentLocationRequested,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_SearchChanged value)? searchChanged,
+    TResult? Function(_PlaceSelected value)? placeSelected,
+    TResult? Function(_SearchCleared value)? searchCleared,
+    TResult? Function(_LocationConfirmed value)? locationConfirmed,
+    TResult? Function(_LanguageChanged value)? languageChanged,
+    TResult? Function(_NicknameChanged value)? nicknameChanged,
+    TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+  }) {
+    return phoneNumberChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentLocationRequested value)? currentLocationRequested,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_SearchChanged value)? searchChanged,
+    TResult Function(_PlaceSelected value)? placeSelected,
+    TResult Function(_SearchCleared value)? searchCleared,
+    TResult Function(_LocationConfirmed value)? locationConfirmed,
+    TResult Function(_LanguageChanged value)? languageChanged,
+    TResult Function(_NicknameChanged value)? nicknameChanged,
+    TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    required TResult orElse(),
+  }) {
+    if (phoneNumberChanged != null) {
+      return phoneNumberChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _PhoneNumberChanged implements LocationPickerEvent {
+  const factory _PhoneNumberChanged(final String phoneNumber) =
+      _$PhoneNumberChangedImpl;
+
+  String get phoneNumber;
+  @JsonKey(ignore: true)
+  _$$PhoneNumberChangedImplCopyWith<_$PhoneNumberChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1620,6 +1866,7 @@ mixin _$LocationPickerState {
   bool get isPermissionDeniedForever => throw _privateConstructorUsedError;
   String get nickname => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
+  String get phoneNumber => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1646,6 +1893,7 @@ abstract class $LocationPickerStateCopyWith<$Res> {
       bool isPermissionDeniedForever,
       String nickname,
       bool isDefault,
+      String phoneNumber,
       String? errorMessage});
 }
 
@@ -1674,6 +1922,7 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
     Object? isPermissionDeniedForever = null,
     Object? nickname = null,
     Object? isDefault = null,
+    Object? phoneNumber = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1725,6 +1974,10 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -1754,6 +2007,7 @@ abstract class _$$LocationPickerStateImplCopyWith<$Res>
       bool isPermissionDeniedForever,
       String nickname,
       bool isDefault,
+      String phoneNumber,
       String? errorMessage});
 }
 
@@ -1780,6 +2034,7 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
     Object? isPermissionDeniedForever = null,
     Object? nickname = null,
     Object? isDefault = null,
+    Object? phoneNumber = null,
     Object? errorMessage = freezed,
   }) {
     return _then(_$LocationPickerStateImpl(
@@ -1831,6 +2086,10 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
           ? _value.isDefault
           : isDefault // ignore: cast_nullable_to_non_nullable
               as bool,
+      phoneNumber: null == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -1855,6 +2114,7 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       this.isPermissionDeniedForever = false,
       this.nickname = '',
       this.isDefault = false,
+      this.phoneNumber = '',
       this.errorMessage})
       : _searchResults = searchResults,
         super._();
@@ -1899,11 +2159,14 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
   @JsonKey()
   final bool isDefault;
   @override
+  @JsonKey()
+  final String phoneNumber;
+  @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, errorMessage: $errorMessage)';
+    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, phoneNumber: $phoneNumber, errorMessage: $errorMessage)';
   }
 
   @override
@@ -1935,6 +2198,8 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
                 other.nickname == nickname) &&
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -1954,6 +2219,7 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       isPermissionDeniedForever,
       nickname,
       isDefault,
+      phoneNumber,
       errorMessage);
 
   @JsonKey(ignore: true)
@@ -1978,6 +2244,7 @@ abstract class _LocationPickerState extends LocationPickerState {
       final bool isPermissionDeniedForever,
       final String nickname,
       final bool isDefault,
+      final String phoneNumber,
       final String? errorMessage}) = _$LocationPickerStateImpl;
   const _LocationPickerState._() : super._();
 
@@ -2005,6 +2272,8 @@ abstract class _LocationPickerState extends LocationPickerState {
   String get nickname;
   @override
   bool get isDefault;
+  @override
+  String get phoneNumber;
   @override
   String? get errorMessage;
   @override

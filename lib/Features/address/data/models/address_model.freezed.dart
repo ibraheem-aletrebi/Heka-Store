@@ -34,6 +34,8 @@ mixin _$AddressModel {
   bool get isDefault => throw _privateConstructorUsedError;
   @HiveField(6)
   String get createdAt => throw _privateConstructorUsedError;
+  @HiveField(7)
+  String? get phoneNumber => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -54,7 +56,8 @@ abstract class $AddressModelCopyWith<$Res> {
       @HiveField(3) double latitude,
       @HiveField(4) double longitude,
       @HiveField(5) bool isDefault,
-      @HiveField(6) String createdAt});
+      @HiveField(6) String createdAt,
+      @HiveField(7) String? phoneNumber});
 }
 
 /// @nodoc
@@ -77,6 +80,7 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
     Object? longitude = null,
     Object? isDefault = null,
     Object? createdAt = null,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -107,6 +111,10 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -126,7 +134,8 @@ abstract class _$$AddressModelImplCopyWith<$Res>
       @HiveField(3) double latitude,
       @HiveField(4) double longitude,
       @HiveField(5) bool isDefault,
-      @HiveField(6) String createdAt});
+      @HiveField(6) String createdAt,
+      @HiveField(7) String? phoneNumber});
 }
 
 /// @nodoc
@@ -147,6 +156,7 @@ class __$$AddressModelImplCopyWithImpl<$Res>
     Object? longitude = null,
     Object? isDefault = null,
     Object? createdAt = null,
+    Object? phoneNumber = freezed,
   }) {
     return _then(_$AddressModelImpl(
       id: null == id
@@ -177,6 +187,10 @@ class __$$AddressModelImplCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -191,7 +205,8 @@ class _$AddressModelImpl implements _AddressModel {
       @HiveField(3) required this.latitude,
       @HiveField(4) required this.longitude,
       @HiveField(5) required this.isDefault,
-      @HiveField(6) required this.createdAt});
+      @HiveField(6) required this.createdAt,
+      @HiveField(7) this.phoneNumber});
 
   factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$AddressModelImplFromJson(json);
@@ -217,10 +232,13 @@ class _$AddressModelImpl implements _AddressModel {
   @override
   @HiveField(6)
   final String createdAt;
+  @override
+  @HiveField(7)
+  final String? phoneNumber;
 
   @override
   String toString() {
-    return 'AddressModel(id: $id, nickname: $nickname, fullAddress: $fullAddress, latitude: $latitude, longitude: $longitude, isDefault: $isDefault, createdAt: $createdAt)';
+    return 'AddressModel(id: $id, nickname: $nickname, fullAddress: $fullAddress, latitude: $latitude, longitude: $longitude, isDefault: $isDefault, createdAt: $createdAt, phoneNumber: $phoneNumber)';
   }
 
   @override
@@ -240,13 +258,15 @@ class _$AddressModelImpl implements _AddressModel {
             (identical(other.isDefault, isDefault) ||
                 other.isDefault == isDefault) &&
             (identical(other.createdAt, createdAt) ||
-                other.createdAt == createdAt));
+                other.createdAt == createdAt) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, nickname, fullAddress,
-      latitude, longitude, isDefault, createdAt);
+      latitude, longitude, isDefault, createdAt, phoneNumber);
 
   @JsonKey(ignore: true)
   @override
@@ -270,7 +290,8 @@ abstract class _AddressModel implements AddressModel {
       @HiveField(3) required final double latitude,
       @HiveField(4) required final double longitude,
       @HiveField(5) required final bool isDefault,
-      @HiveField(6) required final String createdAt}) = _$AddressModelImpl;
+      @HiveField(6) required final String createdAt,
+      @HiveField(7) final String? phoneNumber}) = _$AddressModelImpl;
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
       _$AddressModelImpl.fromJson;
@@ -296,6 +317,9 @@ abstract class _AddressModel implements AddressModel {
   @override
   @HiveField(6)
   String get createdAt;
+  @override
+  @HiveField(7)
+  String? get phoneNumber;
   @override
   @JsonKey(ignore: true)
   _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>

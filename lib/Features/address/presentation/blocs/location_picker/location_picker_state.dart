@@ -1,4 +1,3 @@
-
 part of 'location_picker_bloc.dart';
 
 @freezed
@@ -7,19 +6,16 @@ class LocationPickerState with _$LocationPickerState {
     double? latitude,
     double? longitude,
     String? address,
-
     @Default('') String searchQuery,
     @Default([]) List<NominatimPlace> searchResults,
     @Default(false) bool isSearching,
-
     @Default(false) bool isLoadingLocation,
     @Default(false) bool isConfirmed,
     @Default(false) bool isPermissionDenied,
     @Default(false) bool isPermissionDeniedForever,
-
     @Default('') String nickname,
-  @Default(false) bool isDefault,
-
+    @Default(false) bool isDefault,
+    @Default('') String phoneNumber,
     String? errorMessage,
   }) = _LocationPickerState;
 

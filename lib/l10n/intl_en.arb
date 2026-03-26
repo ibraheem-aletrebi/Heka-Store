@@ -290,6 +290,10 @@
     "failedToGetLocation": "Failed to get location. Please try again.",
     "@failedToGetLocation": {},
 
+    "enterPhoneNumber":"Enter phone number",
+    "@enterPhoneNumber":{},
+    
+
     "goodMorning": "Good morning",
     "@goodMorning": {},
     "goodAfternoon": "Good afternoon",

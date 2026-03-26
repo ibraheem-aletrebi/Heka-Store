@@ -1,19 +1,17 @@
-
 import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_place.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
+
 part 'location_picker_event.dart';
 part 'location_picker_state.dart';
 part 'location_picker_bloc.freezed.dart';
 
-class LocationPickerBloc
-    extends Bloc<LocationPickerEvent, LocationPickerState> {
+class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> {
   final NominatimService _nominatimService;
   String language;
-
   Timer? _debounceTimer;
 
   LocationPickerBloc({
@@ -29,24 +27,25 @@ class LocationPickerBloc
     on<_LocationConfirmed>(_onLocationConfirmed);
     on<_LanguageChanged>(_onLanguageChanged);
     on<_NicknameChanged>(_onNicknameChanged);
-on<_IsDefaultToggled>(_onIsDefaultToggled);
+    on<_IsDefaultToggled>(_onIsDefaultToggled);
+    on<_PhoneNumberChanged>(_onPhoneNumberChanged);
   }
 
+  void _onNicknameChanged(_NicknameChanged event, Emitter<LocationPickerState> emit) {
+    emit(state.copyWith(nickname: event.nickname));
+  }
 
-void _onNicknameChanged(_NicknameChanged event, Emitter<LocationPickerState> emit) {
-  emit(state.copyWith(nickname: event.nickname));
-}
+  void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> emit) {
+    emit(state.copyWith(isDefault: !state.isDefault));
+  }
 
-void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> emit) {
-  emit(state.copyWith(isDefault: !state.isDefault));
-}
-  void _onLanguageChanged(
-    _LanguageChanged event,
-    Emitter<LocationPickerState> emit,
-  ) {
+  void _onPhoneNumberChanged(_PhoneNumberChanged event, Emitter<LocationPickerState> emit) {
+    emit(state.copyWith(phoneNumber: event.phoneNumber));
+  }
+
+  void _onLanguageChanged(_LanguageChanged event, Emitter<LocationPickerState> emit) {
     language = event.language;
   }
-
 
   Future<void> _onCurrentLocationRequested(
     _CurrentLocationRequested event,
@@ -95,11 +94,7 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
         address: null,
       ));
 
-      await _fetchAddress(
-        emit,
-        lat: position.latitude,
-        lng: position.longitude,
-      );
+      await _fetchAddress(emit, lat: position.latitude, lng: position.longitude);
     } catch (e) {
       emit(state.copyWith(
         isLoadingLocation: false,
@@ -107,7 +102,6 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
       ));
     }
   }
-
 
   Future<void> _onMapTapped(
     _MapTapped event,
@@ -123,7 +117,6 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
 
     await _fetchAddress(emit, lat: event.lat, lng: event.lng);
   }
-
 
   Future<void> _onSearchChanged(
     _SearchChanged event,
@@ -177,11 +170,7 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
     await completer.future;
   }
 
-
-  void _onPlaceSelected(
-    _PlaceSelected event,
-    Emitter<LocationPickerState> emit,
-  ) {
+  void _onPlaceSelected(_PlaceSelected event, Emitter<LocationPickerState> emit) {
     emit(state.copyWith(
       latitude: event.place.lat,
       longitude: event.place.lng,
@@ -192,11 +181,7 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
     ));
   }
 
-
-  void _onSearchCleared(
-    _SearchCleared event,
-    Emitter<LocationPickerState> emit,
-  ) {
+  void _onSearchCleared(_SearchCleared event, Emitter<LocationPickerState> emit) {
     _debounceTimer?.cancel();
     emit(state.copyWith(
       searchQuery: '',
@@ -205,15 +190,10 @@ void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> e
     ));
   }
 
-
-  void _onLocationConfirmed(
-    _LocationConfirmed event,
-    Emitter<LocationPickerState> emit,
-  ) {
+  void _onLocationConfirmed(_LocationConfirmed event, Emitter<LocationPickerState> emit) {
     if (!state.hasLocation) return;
     emit(state.copyWith(isConfirmed: true));
   }
-
 
   Future<void> _fetchAddress(
     Emitter<LocationPickerState> emit, {
