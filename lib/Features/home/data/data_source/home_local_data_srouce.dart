@@ -1,34 +1,28 @@
-
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
+import 'package:heka_store/Features/home/data/models/category/categories_data.dart';
+import 'package:heka_store/Features/home/data/models/category/categories_data_hive.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 abstract class HomeLocalDataSource {
-  // ─── Banners ──────────────────────────────────────
   Future<void> saveBanners(List<BannerModel> banners);
   List<BannerModel> getBanners();
 
-  // ─── Categories ───────────────────────────────────
-  Future<void> saveCategories(List<CategoryModel> categories);
-  List<CategoryModel> getCategories();
+  Future<void> saveCategories(CategoriesData categoriesData);  
+  CategoriesData? getCachedCategories();                      
 
-  // ─── Recommended Products ─────────────────────────
   Future<void> saveRecommendedProducts(List<ProductModel> products);
   List<ProductModel> getRecommendedProducts();
 
-  // ─── Featured Products ────────────────────────────
   Future<void> saveFeaturedProducts(List<ProductModel> products);
   List<ProductModel> getFeaturedProducts();
 
-  // ─── Brands ───────────────────────────────────────
   Future<void> saveBrands(List<BrandModel> brands);
   List<BrandModel> getBrands();
 
-  // ─── Cache ────────────────────────────────────────
   Future<void> saveLastFetchTime();
   bool isCacheValid({int maxAgeMinutes = 20});
   Future<void> clearAll();
@@ -36,11 +30,9 @@ abstract class HomeLocalDataSource {
 
 class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   final LocalStorageService _localStorage;
-
   const HomeLocalDataSourceImpl({required LocalStorageService localStorage})
       : _localStorage = localStorage;
 
-  // ─── Banners ──────────────────────────────────────
 
   @override
   Future<void> saveBanners(List<BannerModel> banners) async {
@@ -60,27 +52,26 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     return data?.cast<BannerModel>() ?? [];
   }
 
-  // ─── Categories ───────────────────────────────────
 
   @override
-  Future<void> saveCategories(List<CategoryModel> categories) async {
-    await _localStorage.setValue<List>(
+  Future<void> saveCategories(CategoriesData categoriesData) async {
+    await _localStorage.setValue<CategoriesDataHive>(
       HiveBoxes.home,
       LocalStorageKeys.categories,
-      categories,
+      CategoriesDataHive.fromDomain(categoriesData),
     );
   }
 
   @override
-  List<CategoryModel> getCategories() {
-    final data = _localStorage.getValue<List>(
+  CategoriesData? getCachedCategories() {
+    final data = _localStorage.getValue<CategoriesDataHive>(
       HiveBoxes.home,
       LocalStorageKeys.categories,
     );
-    return data?.cast<CategoryModel>() ?? [];
+    return data?.toDomain();
   }
 
-  // ─── Recommended Products ─────────────────────────
+  
 
   @override
   Future<void> saveRecommendedProducts(List<ProductModel> products) async {
@@ -100,7 +91,6 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     return data?.cast<ProductModel>() ?? [];
   }
 
-  // ─── Featured Products ────────────────────────────
 
   @override
   Future<void> saveFeaturedProducts(List<ProductModel> products) async {
@@ -120,7 +110,6 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     return data?.cast<ProductModel>() ?? [];
   }
 
-  // ─── Brands ───────────────────────────────────────
 
   @override
   Future<void> saveBrands(List<BrandModel> brands) async {
@@ -140,7 +129,6 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
     return data?.cast<BrandModel>() ?? [];
   }
 
-  // ─── Cache ────────────────────────────────────────
 
   @override
   Future<void> saveLastFetchTime() async {

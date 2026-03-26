@@ -343,6 +343,11 @@
     "hello": "مرحباً",
     "@hello": {},
 
+     "Categories": "الفئات",
+    "@Categories": {},
+    "noSubCategories": "لا توجد فئات فرعية",
+    "@noSubCategories": {},
+  
     "itemsYouMayLike": "منتجات قد تعجبك",
     "@itemsYouMayLike": {},
     "exploreCategories": "استكشف الفئات",

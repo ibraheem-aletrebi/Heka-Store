@@ -1,13 +1,17 @@
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
 import 'package:heka_store/core/services/remote/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
+import 'package:heka_store/Features/home/data/models/category/categories_data.dart'; // ← with pagination
+
 abstract class HomeRemoteDataSource {
   Future<List<BannerModel>> getBanners();
-  Future<List<CategoryModel>> getCategories();
+  Future<CategoriesData> getCategories({
+    int pageNumber = 1,
+    int pageSize = 20,
+  });             
   Future<ProductsResponseModel> getRecommendedProducts({
     int pageNumber = 1,
     int pageSize = 10,
@@ -21,11 +25,8 @@ abstract class HomeRemoteDataSource {
 
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService _apiService;
-
   const HomeRemoteDataSourceImpl({required ApiService apiService})
-    : _apiService = apiService;
-
-  // ─── Banners ──────────────────────────────────────────────────────────────
+      : _apiService = apiService;
 
   @override
   Future<List<BannerModel>> getBanners() async {
@@ -36,18 +37,19 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
         .toList();
   }
 
-  // ─── Categories ───────────────────────────────────────────────────────────
-
   @override
-  Future<List<CategoryModel>> getCategories() async {
-    final response = await _apiService.get(ApiConstants.categories);
-    final data = response.data['data']['categories'] as List;
-    return data
-        .map((e) => CategoryModel.fromJson(e as Map<String, dynamic>))
-        .toList();
+  Future<CategoriesData> getCategories({
+    int pageNumber = 1,
+    int pageSize = 20,
+  }) async {
+    final response = await _apiService.get(
+      ApiConstants.categories,
+      queryParameters: {'pageNumber': pageNumber, 'pageSize': pageSize},
+    );
+    return CategoriesData.fromJson(
+      response.data['data'] as Map<String, dynamic>,
+    );
   }
-
-  // ─── Recommended Products ─────────────────────────────────────────────────
 
   @override
   Future<ProductsResponseModel> getRecommendedProducts({
@@ -61,8 +63,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     return ProductsResponseModel.fromJson(response.data['data']);
   }
 
-  // ─── Featured Products ────────────────────────────────────────────────────
-
   @override
   Future<ProductsResponseModel> getFeaturedProducts({
     int pageNumber = 1,
@@ -74,8 +74,6 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     );
     return ProductsResponseModel.fromJson(response.data['data']);
   }
-
-  // ─── Brands ───────────────────────────────────────────────────────────────
 
   @override
   Future<List<BrandModel>> getBrands() async {

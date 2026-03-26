@@ -1153,8 +1153,7 @@ mixin _$CartState {
   CartStatus get status => throw _privateConstructorUsedError;
   CartModel? get cart => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
-  Map<int, bool> get loadingItems =>
-      throw _privateConstructorUsedError; // cartItemId → isLoading
+  Map<int, bool> get loadingItems => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1323,7 +1322,6 @@ class _$CartStateImpl extends _CartState {
     return EqualUnmodifiableMapView(_loadingItems);
   }
 
-// cartItemId → isLoading
   @override
   final ApiErrorModel? error;
 
@@ -1373,7 +1371,7 @@ abstract class _CartState extends CartState {
   int get count;
   @override
   Map<int, bool> get loadingItems;
-  @override // cartItemId → isLoading
+  @override
   ApiErrorModel? get error;
   @override
   @JsonKey(ignore: true)

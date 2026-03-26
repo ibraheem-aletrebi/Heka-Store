@@ -11,7 +11,7 @@ class CustomIconButton extends StatelessWidget {
     this.iconColor,
     this.size,
     this.borderRadius,
-    this.padding,
+    this.padding, this.iconSize,
   });
 
   final IconData icon;
@@ -19,6 +19,7 @@ class CustomIconButton extends StatelessWidget {
   final Color? backgroundColor;
   final Color? iconColor;
   final double? size;
+  final double? iconSize;
   final double? borderRadius;
   final EdgeInsetsGeometry? padding;
 
@@ -29,7 +30,7 @@ class CustomIconButton extends StatelessWidget {
         padding: padding,
         backgroundColor: backgroundColor ?? context.myColors.surface,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: Size(size ?? AppSizes.w38, size ?? AppSizes.w38),
+        minimumSize: Size(size ?? AppSizes.w32, size ?? AppSizes.w32),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? AppSizes.r12),
         ),
@@ -38,7 +39,7 @@ class CustomIconButton extends StatelessWidget {
       icon: Icon(
         icon,
         color: iconColor ?? context.myColors.textPrimary,
-        size: AppSizes.sp22,
+        size:iconSize?? AppSizes.sp22,
       ),
     );
   }

@@ -9,11 +9,7 @@ class HomeState with _$HomeState {
     @Default(false) bool isBannersLoading,
     ApiErrorModel? bannersError,
 
-    // ─── Categories ───────────────────────────────
-    @Default([]) List<CategoryModel> categories,
-    @Default(false) bool isCategoriesLoading,
-    ApiErrorModel? categoriesError,
-
+   
 
     // ─── Featured Products ────────────────────────
     @Default([]) List<ProductModel> featuredProducts,
@@ -36,13 +32,11 @@ class HomeState with _$HomeState {
 
   bool get isInitialLoading =>
       isBannersLoading ||
-      isCategoriesLoading ||
       isFeaturedLoading ||
       isBrandsLoading;
 
   bool get hasError =>
       bannersError != null ||
-      categoriesError != null ||
       featuredError != null ||
       brandsError != null;
 }

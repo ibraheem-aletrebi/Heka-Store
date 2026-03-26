@@ -5,7 +5,10 @@ import 'package:heka_store/Features/auth/presentation/views/forgot_password/forg
 import 'package:heka_store/Features/auth/presentation/views/login/login_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/register/register_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/verify_email/verify_email_view.dart';
-import 'package:heka_store/Features/home/presentation/views/layout/main_layout_view.dart';
+import 'package:heka_store/Features/home/data/models/category/category.dart';
+import 'package:heka_store/Features/home/presentation/views/categories_view.dart';
+import 'package:heka_store/Features/home/presentation/views/main_layout_view.dart';
+import 'package:heka_store/Features/home/presentation/views/sub_category_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/Features/wishlist/presentation/view/previous_viewed_products_view.dart';
@@ -59,7 +62,19 @@ class AppRouter {
 
       GoRoute(path: AppRoutes.mainLayout, builder: (_, _) => MainLayoutView()),
 
-      GoRoute(path: AppRoutes.previousViewedProductsView, builder: (_, _) => PreviousViewedProductsView()),
+      GoRoute(
+        path: AppRoutes.previousViewedProductsView,
+        builder: (_, _) => PreviousViewedProductsView(),
+      ),
+
+      GoRoute(path: AppRoutes.categories, builder: (_, _) => CategoriesView()),
+      GoRoute(
+        path: AppRoutes.subCategories,
+        builder: (context, state) {
+          final extra = state.extra as Category;
+          return SubCategoryView(category: extra);
+        },
+      ),
     ],
   );
 

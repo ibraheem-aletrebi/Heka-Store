@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "Categories": MessageLookupByLibrary.simpleMessage("Categories"),
     "addCard": MessageLookupByLibrary.simpleMessage("Add card"),
     "addDebitOrCreditCard": MessageLookupByLibrary.simpleMessage(
       "Add Debit or Credit Card",
@@ -294,6 +295,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "No location selected yet",
     ),
     "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
+    "noSubCategories": MessageLookupByLibrary.simpleMessage(
+      "No Sub Categories",
+    ),
     "off": MessageLookupByLibrary.simpleMessage("Off"),
     "onboardingBody": MessageLookupByLibrary.simpleMessage(
       "Connect directly with local artisans and trusted vendors. From handcrafted treasures to modern Egyptian design all in one trusted marketplace.",

@@ -416,10 +416,6 @@ mixin _$HomeState {
   List<BannerModel> get banners => throw _privateConstructorUsedError;
   bool get isBannersLoading => throw _privateConstructorUsedError;
   ApiErrorModel? get bannersError =>
-      throw _privateConstructorUsedError; // ─── Categories ───────────────────────────────
-  List<CategoryModel> get categories => throw _privateConstructorUsedError;
-  bool get isCategoriesLoading => throw _privateConstructorUsedError;
-  ApiErrorModel? get categoriesError =>
       throw _privateConstructorUsedError; // ─── Featured Products ────────────────────────
   List<ProductModel> get featuredProducts => throw _privateConstructorUsedError;
   bool get isFeaturedLoading => throw _privateConstructorUsedError;
@@ -448,9 +444,6 @@ abstract class $HomeStateCopyWith<$Res> {
       {List<BannerModel> banners,
       bool isBannersLoading,
       ApiErrorModel? bannersError,
-      List<CategoryModel> categories,
-      bool isCategoriesLoading,
-      ApiErrorModel? categoriesError,
       List<ProductModel> featuredProducts,
       bool isFeaturedLoading,
       bool isFeaturedLoadingMore,
@@ -479,9 +472,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? banners = null,
     Object? isBannersLoading = null,
     Object? bannersError = freezed,
-    Object? categories = null,
-    Object? isCategoriesLoading = null,
-    Object? categoriesError = freezed,
     Object? featuredProducts = null,
     Object? isFeaturedLoading = null,
     Object? isFeaturedLoadingMore = null,
@@ -505,18 +495,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
       bannersError: freezed == bannersError
           ? _value.bannersError
           : bannersError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
-      categories: null == categories
-          ? _value.categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>,
-      isCategoriesLoading: null == isCategoriesLoading
-          ? _value.isCategoriesLoading
-          : isCategoriesLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      categoriesError: freezed == categoriesError
-          ? _value.categoriesError
-          : categoriesError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
       featuredProducts: null == featuredProducts
           ? _value.featuredProducts
@@ -574,9 +552,6 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       {List<BannerModel> banners,
       bool isBannersLoading,
       ApiErrorModel? bannersError,
-      List<CategoryModel> categories,
-      bool isCategoriesLoading,
-      ApiErrorModel? categoriesError,
       List<ProductModel> featuredProducts,
       bool isFeaturedLoading,
       bool isFeaturedLoadingMore,
@@ -603,9 +578,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? banners = null,
     Object? isBannersLoading = null,
     Object? bannersError = freezed,
-    Object? categories = null,
-    Object? isCategoriesLoading = null,
-    Object? categoriesError = freezed,
     Object? featuredProducts = null,
     Object? isFeaturedLoading = null,
     Object? isFeaturedLoadingMore = null,
@@ -629,18 +601,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
       bannersError: freezed == bannersError
           ? _value.bannersError
           : bannersError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
-      categories: null == categories
-          ? _value._categories
-          : categories // ignore: cast_nullable_to_non_nullable
-              as List<CategoryModel>,
-      isCategoriesLoading: null == isCategoriesLoading
-          ? _value.isCategoriesLoading
-          : isCategoriesLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      categoriesError: freezed == categoriesError
-          ? _value.categoriesError
-          : categoriesError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
       featuredProducts: null == featuredProducts
           ? _value._featuredProducts
@@ -693,9 +653,6 @@ class _$HomeStateImpl extends _HomeState {
       {final List<BannerModel> banners = const [],
       this.isBannersLoading = false,
       this.bannersError,
-      final List<CategoryModel> categories = const [],
-      this.isCategoriesLoading = false,
-      this.categoriesError,
       final List<ProductModel> featuredProducts = const [],
       this.isFeaturedLoading = false,
       this.isFeaturedLoadingMore = false,
@@ -707,7 +664,6 @@ class _$HomeStateImpl extends _HomeState {
       this.brandsError,
       this.isRefreshing = false})
       : _banners = banners,
-        _categories = categories,
         _featuredProducts = featuredProducts,
         _brands = brands,
         super._();
@@ -728,22 +684,6 @@ class _$HomeStateImpl extends _HomeState {
   final bool isBannersLoading;
   @override
   final ApiErrorModel? bannersError;
-// ─── Categories ───────────────────────────────
-  final List<CategoryModel> _categories;
-// ─── Categories ───────────────────────────────
-  @override
-  @JsonKey()
-  List<CategoryModel> get categories {
-    if (_categories is EqualUnmodifiableListView) return _categories;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_categories);
-  }
-
-  @override
-  @JsonKey()
-  final bool isCategoriesLoading;
-  @override
-  final ApiErrorModel? categoriesError;
 // ─── Featured Products ────────────────────────
   final List<ProductModel> _featuredProducts;
 // ─── Featured Products ────────────────────────
@@ -793,7 +733,7 @@ class _$HomeStateImpl extends _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, categories: $categories, isCategoriesLoading: $isCategoriesLoading, categoriesError: $categoriesError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, brands: $brands, isBrandsLoading: $isBrandsLoading, brandsError: $brandsError, isRefreshing: $isRefreshing)';
+    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, brands: $brands, isBrandsLoading: $isBrandsLoading, brandsError: $brandsError, isRefreshing: $isRefreshing)';
   }
 
   @override
@@ -806,12 +746,6 @@ class _$HomeStateImpl extends _HomeState {
                 other.isBannersLoading == isBannersLoading) &&
             (identical(other.bannersError, bannersError) ||
                 other.bannersError == bannersError) &&
-            const DeepCollectionEquality()
-                .equals(other._categories, _categories) &&
-            (identical(other.isCategoriesLoading, isCategoriesLoading) ||
-                other.isCategoriesLoading == isCategoriesLoading) &&
-            (identical(other.categoriesError, categoriesError) ||
-                other.categoriesError == categoriesError) &&
             const DeepCollectionEquality()
                 .equals(other._featuredProducts, _featuredProducts) &&
             (identical(other.isFeaturedLoading, isFeaturedLoading) ||
@@ -839,9 +773,6 @@ class _$HomeStateImpl extends _HomeState {
       const DeepCollectionEquality().hash(_banners),
       isBannersLoading,
       bannersError,
-      const DeepCollectionEquality().hash(_categories),
-      isCategoriesLoading,
-      categoriesError,
       const DeepCollectionEquality().hash(_featuredProducts),
       isFeaturedLoading,
       isFeaturedLoadingMore,
@@ -865,9 +796,6 @@ abstract class _HomeState extends HomeState {
       {final List<BannerModel> banners,
       final bool isBannersLoading,
       final ApiErrorModel? bannersError,
-      final List<CategoryModel> categories,
-      final bool isCategoriesLoading,
-      final ApiErrorModel? categoriesError,
       final List<ProductModel> featuredProducts,
       final bool isFeaturedLoading,
       final bool isFeaturedLoadingMore,
@@ -886,12 +814,6 @@ abstract class _HomeState extends HomeState {
   bool get isBannersLoading;
   @override
   ApiErrorModel? get bannersError;
-  @override // ─── Categories ───────────────────────────────
-  List<CategoryModel> get categories;
-  @override
-  bool get isCategoriesLoading;
-  @override
-  ApiErrorModel? get categoriesError;
   @override // ─── Featured Products ────────────────────────
   List<ProductModel> get featuredProducts;
   @override

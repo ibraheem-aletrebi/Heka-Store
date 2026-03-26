@@ -47,6 +47,7 @@ class AuthInterceptor extends Interceptor {
   ) async {
     final requestOptions = error.requestOptions;
 
+   
     if (_isRefreshing) {
       _queue.add(PendingRequest(requestOptions, handler));
       return;
@@ -55,7 +56,8 @@ class AuthInterceptor extends Interceptor {
     _isRefreshing = true;
 
     try {
-      final refreshToken = await SecureStorageService().getRefreshToken();
+      final refreshToken =
+          await SecureStorageService().getRefreshToken();
 
       if (refreshToken == null) {
         throw Exception('No refresh token');
@@ -63,15 +65,18 @@ class AuthInterceptor extends Interceptor {
 
       final response = await dio.post(
         ApiConstants.refreshToken,
-        data: {'refresh': refreshToken},
+        data: {
+          'refreshToken': refreshToken,
+        },
         options: Options(
-          headers: {'Authorization': null},
-          extra: {'skipAuthInterceptor': true},
+          extra: {'skipAuthInterceptor': true}, 
         ),
       );
 
-      final newAccess = response.data['accessToken'] as String;
-      final newRefresh = response.data['refreshToken'] as String;
+      final tokenData = response.data['data']['token'];
+
+      final newAccess = tokenData['accessToken'] as String;
+      final newRefresh = tokenData['refreshToken'] as String;
 
       await SecureStorageService().saveTokens(
         access: newAccess,
@@ -79,12 +84,13 @@ class AuthInterceptor extends Interceptor {
       );
 
       _isRefreshing = false;
-
+      
       final retryResponse = await _retry(requestOptions);
       handler.resolve(retryResponse);
 
+    
       await _flushQueue();
-    } catch (_) {
+    } catch (e) {
       _isRefreshing = false;
 
       _rejectQueue(error);
@@ -98,9 +104,18 @@ class AuthInterceptor extends Interceptor {
   Future<Response> _retry(RequestOptions requestOptions) async {
     final token = await SecureStorageService().getAccessToken();
 
-    requestOptions.headers['Authorization'] = 'Bearer $token';
+    final options = Options(
+      method: requestOptions.method,
+      headers: Map<String, dynamic>.from(requestOptions.headers)
+        ..['Authorization'] = 'Bearer $token',
+    );
 
-    return dio.fetch(requestOptions);
+    return dio.request(
+      requestOptions.path,
+      data: requestOptions.data,
+      queryParameters: requestOptions.queryParameters,
+      options: options,
+    );
   }
 
   Future<void> _flushQueue() async {
@@ -111,11 +126,12 @@ class AuthInterceptor extends Interceptor {
       try {
         final response = await _retry(request.requestOptions);
         request.handler.resolve(response);
-      } on DioException catch (e) {
-        request.handler.reject(e);
       } catch (e) {
         request.handler.reject(
-          DioException(requestOptions: request.requestOptions, error: e),
+          DioException(
+            requestOptions: request.requestOptions,
+            error: e,
+          ),
         );
       }
     }
@@ -126,14 +142,7 @@ class AuthInterceptor extends Interceptor {
     _queue.clear();
 
     for (final request in pending) {
-      request.handler.reject(
-        DioException(
-          requestOptions: request.requestOptions,
-          response: error.response,
-          type: error.type,
-          error: error.error,
-        ),
-      );
+      request.handler.reject(error);
     }
   }
 }
@@ -141,5 +150,6 @@ class AuthInterceptor extends Interceptor {
 class PendingRequest {
   final RequestOptions requestOptions;
   final ErrorInterceptorHandler handler;
+
   const PendingRequest(this.requestOptions, this.handler);
 }

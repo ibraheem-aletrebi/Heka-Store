@@ -3,11 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_banners_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.dart';
-import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/core/services/remote/error/api_error_model.dart';
@@ -18,18 +16,15 @@ part 'home_bloc.freezed.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetBannersUseCase _getBannersUseCase;
-  final GetCategoriesUseCase _getCategoriesUseCase;
   final GetFeaturedProductsUseCase _getFeaturedProductsUseCase;
   final GetBrandsUseCase _getBrandsUseCase;
 
   HomeBloc({
     required GetBannersUseCase getBannersUseCase,
-    required GetCategoriesUseCase getCategoriesUseCase,
     required GetRecommendedProductsUseCase getRecommendedProductsUseCase,
     required GetFeaturedProductsUseCase getFeaturedProductsUseCase,
     required GetBrandsUseCase getBrandsUseCase,
   })  : _getBannersUseCase = getBannersUseCase,
-        _getCategoriesUseCase = getCategoriesUseCase,
         _getFeaturedProductsUseCase = getFeaturedProductsUseCase,
         _getBrandsUseCase = getBrandsUseCase,
         super(const HomeState()) {
@@ -46,14 +41,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   ) async {
     emit(state.copyWith(
       isBannersLoading: true,
-      isCategoriesLoading: true,
       isFeaturedLoading: true,
       isBrandsLoading: true,
     ));
 
     await Future.wait([
       _fetchBanners(emit),
-      _fetchCategories(emit),
       _fetchFeaturedProducts(emit),
       _fetchBrands(emit),
     ]);
@@ -69,7 +62,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
 
     await Future.wait([
       _fetchBanners(emit),
-      _fetchCategories(emit),
       _fetchFeaturedProducts(emit),
       _fetchBrands(emit),
     ]);
@@ -121,21 +113,6 @@ Future<void> _onFeaturedNextPageFetched(
       onError: (error) => emit(state.copyWith(
         isBannersLoading: false,
         bannersError: error,
-      )),
-    );
-  }
-
-  Future<void> _fetchCategories(Emitter<HomeState> emit) async {
-    final response = await _getCategoriesUseCase();
-    response.when(
-      onSuccess: (categories) => emit(state.copyWith(
-        categories: categories,
-        isCategoriesLoading: false,
-        categoriesError: null,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isCategoriesLoading: false,
-        categoriesError: error,
       )),
     );
   }

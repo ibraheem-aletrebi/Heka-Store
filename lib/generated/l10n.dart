@@ -1399,6 +1399,21 @@ class S {
     return Intl.message('Hello', name: 'hello', desc: '', args: []);
   }
 
+  /// `Categories`
+  String get Categories {
+    return Intl.message('Categories', name: 'Categories', desc: '', args: []);
+  }
+
+  /// `No Sub Categories`
+  String get noSubCategories {
+    return Intl.message(
+      'No Sub Categories',
+      name: 'noSubCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Items You May Like`
   String get itemsYouMayLike {
     return Intl.message(

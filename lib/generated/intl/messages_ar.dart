@@ -24,6 +24,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+    "Categories": MessageLookupByLibrary.simpleMessage("الفئات"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى المفضلة",
@@ -285,6 +286,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "لم يتم تحديد موقع بعد",
     ),
     "noResultsFound": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
+    "noSubCategories": MessageLookupByLibrary.simpleMessage(
+      "لا توجد فئات فرعية",
+    ),
     "off": MessageLookupByLibrary.simpleMessage("خصم"),
     "onboardingBody": MessageLookupByLibrary.simpleMessage(
       "تواصل مباشرةً مع الحرفيين المحليين والبائعين الموثوقين. من الكنوز اليدوية إلى التصميم المصري الحديث، كل ذلك في سوق واحد موثوق.",

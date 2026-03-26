@@ -302,6 +302,11 @@
     "@hello": {},
 
 
+    "Categories": "Categories",
+    "@Categories": {},
+    "noSubCategories": "No Sub Categories",
+    "@noSubCategories": {},
+
     "itemsYouMayLike": "Items You May Like",
     "@itemsYouMayLike": {},
     "exploreCategories":"Explore Categories",

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
-import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:heka_store/Features/home/data/models/category/category.dart';
+import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/category_item.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
@@ -17,30 +19,49 @@ class CategoriesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SectionHeader(title: S.of(context).exploreCategories, onSeeAll: () {}),
+        SectionHeader(
+          title: S.of(context).exploreCategories,
+          onSeeAll: () {
+            context.push(AppRoutes.categories);
+          },
+        ),
         SizedBox(height: AppSizes.h14),
-        BlocBuilder<HomeBloc, HomeState>(
-          buildWhen: (p, c) =>
-              p.categories != c.categories ||
-              p.isCategoriesLoading != c.isCategoriesLoading,
+        BlocBuilder<CategoriesBloc, CategoriesState>(
+          buildWhen: (prev, curr) => prev != curr,
           builder: (context, state) {
+            final categories = state.categories;
+
+            final isLoading = state.isLoading;
+
+            final isLoadingMore = state.isLoadingMore;
+
+            final hasNextPage = state.hasNextPage;
+
             return SizedBox(
               height: context.height * 0.15,
-              child: PaginatedListView<CategoryModel>(
+              child: PaginatedListView<Category>(
                 isHorizontal: true,
-                itemExtent: context.height * 0.15,
-                items: state.categories,
-                isLoading: state.isFeaturedLoading,
-                isLoadingMore: state.isFeaturedLoadingMore,
+                itemExtent: context.width * 0.17,
+                items: categories,
+                isLoading: isLoading,
+                isLoadingMore: isLoadingMore,
                 loadMoreThreshold: 9,
-                loadingWidget: _CategoriesPlaceholderLoading(),
+                hasNextPage: hasNextPage,
+                onLoadMore: () => context.read<CategoriesBloc>().add(
+                  const CategoriesEvent.nextPageFetched(),
+                ),
+                loadingWidget: const _CategoriesPlaceholderLoading(),
                 loadMoreWidget: CustomSkeletonizer(
                   enable: true,
-                  child: CategoryItem(),
+                  child: const CategoryItem(),
                 ),
                 padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
-                itemBuilder: (context, category, index) =>
-                    CategoryItem(category: category),
+                itemBuilder: (context, category, index) => CategoryItem(
+                  category: category,
+                  onTap: () {
+                    context.push(AppRoutes.subCategories, extra: category);
+                  },
+                ),
               ),
             );
           },
@@ -61,9 +82,7 @@ class _CategoriesPlaceholderLoading extends StatelessWidget {
       itemCount: 6,
       separatorBuilder: (_, _) => SizedBox(width: AppSizes.w12),
       itemBuilder: (_, _) =>
-          CustomSkeletonizer(enable: true, child: CategoryItem()),
+          CustomSkeletonizer(enable: true, child: const CategoryItem()),
     );
   }
 }
-
-

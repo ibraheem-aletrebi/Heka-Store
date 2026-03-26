@@ -43,7 +43,8 @@ import 'package:heka_store/Features/home/data/data_source/home_local_data_srouce
 import 'package:heka_store/Features/home/data/data_source/home_remote_data_source.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
+import 'package:heka_store/Features/home/data/models/category/categories_data_hive.dart';
+import 'package:heka_store/Features/home/data/models/category/category_hive.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/home/data/repos/home_repo_imp.dart';
 import 'package:heka_store/Features/home/domain/repos/home_repo.dart';
@@ -52,6 +53,7 @@ import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.da
 import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
+import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/previous_viewed_products_data_source.dart';
@@ -138,10 +140,13 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<UserModel>(UserModelAdapter());
   Hive.registerAdapter<AddressModel>(AddressModelAdapter());
   Hive.registerAdapter<BannerModel>(BannerModelAdapter());
-  Hive.registerAdapter<CategoryModel>(CategoryModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<BrandModel>(BrandModelAdapter());
   Hive.registerAdapter<WishlistItemModel>(WishlistItemModelAdapter());
+
+  // ─── Category Hive Adapters ───────────────────────
+  Hive.registerAdapter<CategoryHive>(CategoryHiveAdapter());          
+  Hive.registerAdapter<CategoriesDataHive>(CategoriesDataHiveAdapter()); 
 }
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
@@ -256,7 +261,6 @@ void _initAddress() {
     ),
   );
 }
-
 void _initHome() {
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<HomeRemoteDataSource>(
@@ -292,23 +296,28 @@ void _initHome() {
   );
 
   // ─── BLoCs ────────────────────────────────────────
-
   sl.registerFactory<RecommendedForYouBloc>(
     () => RecommendedForYouBloc(
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
     ),
   );
+
+  // ── Categories BLoC (singleton — shared across screens) ──
+  sl.registerLazySingleton<CategoriesBloc>(
+    () => CategoriesBloc(
+      getCategoriesUseCase: sl<GetCategoriesUseCase>(),
+    ),
+  );
+
   sl.registerFactory<HomeBloc>(
     () => HomeBloc(
       getBannersUseCase: sl<GetBannersUseCase>(),
-      getCategoriesUseCase: sl<GetCategoriesUseCase>(),
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
       getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
       getBrandsUseCase: sl<GetBrandsUseCase>(),
     ),
   );
 }
-
 void _initWishlist() {
   sl.registerLazySingleton<PreviousViewedProductsDataSource>(
     () => PreviousViewedProductsDataSourceImpl(

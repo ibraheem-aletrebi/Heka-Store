@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:heka_store/Features/home/data/models/category/category_model.dart';
+import 'package:heka_store/Features/home/data/models/category/category.dart'; // ✅ Freezed model
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -7,8 +7,10 @@ import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 
 class CategoryItem extends StatelessWidget {
   const CategoryItem({super.key, this.onTap, this.category});
-  final CategoryModel? category;
+
+  final Category? category;
   final void Function()? onTap;
+
   @override
   Widget build(BuildContext context) {
     final c = context.myColors;
@@ -26,16 +28,15 @@ class CategoryItem extends StatelessWidget {
                   color: c.surface,
                   borderRadius: BorderRadius.circular(AppSizes.r16),
                 ),
-
-                child: CachedImage(url: category?.imageUrl ?? ''),
+                child: CachedImage(url: category?.imageUrl ?? ''), // ✅ imageUrl not .i
               ),
             ),
             SizedBox(height: AppSizes.h6),
             Text(
               category?.nameEn ?? '',
-              style: TextTheme.of(
-                context,
-              ).bodyMedium?.copyWith(color: c.textSecondary),
+              style: TextTheme.of(context)
+                  .bodyMedium
+                  ?.copyWith(color: c.textSecondary),
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),

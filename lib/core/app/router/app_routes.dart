@@ -13,4 +13,7 @@ class AppRoutes {
   static const mainLayout = '/main-layout';
 
   static const previousViewedProductsView='/previous-viewed-products-view';
+
+  static const String categories = '/categories';
+  static const String subCategories = '/sub-categories';
 }
