@@ -33,6 +33,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         _setDefaultAddressUseCase = setDefaultAddressUseCase,
         super(const AddressState()) {
     on<_Loaded>(_onLoaded);
+    on<_Reloaded>(_onReloaded);
     on<_Added>(_onAdded);
     on<_Updated>(_onUpdated);
     on<_Deleted>(_onDeleted);
@@ -45,6 +46,23 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     Emitter<AddressState> emit,
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
+
+    final response = await _getAddressesUseCase();
+    response.when(
+      onSuccess: (addresses) => emit(state.copyWith(
+        isLoading: false,
+        addresses: addresses,
+      )),
+      onError: (error) => emit(state.copyWith(
+        isLoading: false,
+        error: error,
+      )),
+    );
+  }
+    Future<void> _onReloaded(
+    _Reloaded event,
+    Emitter<AddressState> emit,
+  ) async {
 
     final response = await _getAddressesUseCase();
     response.when(

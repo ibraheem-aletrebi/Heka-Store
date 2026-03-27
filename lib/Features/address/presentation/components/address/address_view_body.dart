@@ -35,11 +35,10 @@ class _AddressViewBodyState extends State<AddressViewBody> {
   }
 
   Future<void> _navigateToEdit(AddressModel address) async {
-    // Navigate to the dedicated edit route, passing the address as extra
     final bool? updated =
         await context.push(AppRoutes.editAddress, extra: address) as bool?;
     if (updated == true && mounted) {
-      context.read<AddressBloc>().add(const AddressEvent.loaded());
+      context.read<AddressBloc>().add(const AddressEvent.reLoaded());
     }
   }
 
@@ -47,7 +46,7 @@ class _AddressViewBodyState extends State<AddressViewBody> {
     final bool? added =
         await context.push(AppRoutes.locationPicker) as bool?;
     if (added == true && mounted) {
-      context.read<AddressBloc>().add(const AddressEvent.loaded());
+      context.read<AddressBloc>().add(const AddressEvent.reLoaded());
     }
   }
 
@@ -83,14 +82,12 @@ class _AddressViewBodyState extends State<AddressViewBody> {
           SizedBox(height: AppSizes.h8),
           BlocBuilder<AddressBloc, AddressState>(
             builder: (context, state) {
-              // ─── Loading ──────────────────────────────
               if (state.isLoading) {
                 return const Expanded(
                   child: Center(child: CupertinoActivityIndicator()),
                 );
               }
 
-              // ─── No addresses at all ──────────────────
               if (!state.hasAddresses) {
                 return Expanded(
                   child: AddressEmptyView(
@@ -102,7 +99,6 @@ class _AddressViewBodyState extends State<AddressViewBody> {
 
               final filtered = state.filteredAddresses;
 
-              // ─── Search returned no results ───────────
               if (filtered.isEmpty) {
                 return Expanded(
                   child: AddressEmptyView(
@@ -112,7 +108,6 @@ class _AddressViewBodyState extends State<AddressViewBody> {
                 );
               }
 
-              // ─── Address list ─────────────────────────
               return Expanded(
                 child: SingleChildScrollView(
                   padding: EdgeInsets.symmetric(

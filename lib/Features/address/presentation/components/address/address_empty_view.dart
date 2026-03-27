@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class AddressEmptyView extends StatelessWidget {
   final bool isSearch;
@@ -13,79 +16,43 @@ class AddressEmptyView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
+    final s = S.of(context);
+    final textTheme = TextTheme.of(context);
     return Center(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 40),
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.w40),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // ─── Bug fix: background = primarySoft, icon = primary ───
             Container(
-              width: 88,
-              height: 88,
+              width: AppSizes.w80,
+              height: AppSizes.w80,
               decoration: BoxDecoration(
                 color: colors.primary.withValues(alpha: 0.12),
-                borderRadius: BorderRadius.circular(24),
+                borderRadius: BorderRadius.circular(AppSizes.r16),
               ),
               child: Icon(
                 isSearch
                     ? Icons.search_off_rounded
                     : Icons.location_off_rounded,
                 color: colors.primary,
-                size: 40,
+                size: AppSizes.w48,
               ),
             ),
             const SizedBox(height: 20),
             Text(
-              isSearch ? 'No results found' : 'No addresses yet',
-              style: TextStyle(
-                color: colors.textPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.w800,
-              ),
+              isSearch ? s.noResultsFound : s.noAddressesYet,
+              style: textTheme.titleMedium?.copyWith(color: colors.textPrimary),
             ),
             const SizedBox(height: 8),
             Text(
-              isSearch
-                  ? 'Try a different name, street or city.'
-                  : 'Add your first delivery address\nto get started.',
+              isSearch ? s.tryDifferentSearch : s.addFirstAddress,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                color: colors.textSecondary,
-                fontSize: 14,
-                height: 1.5,
-              ),
+              style: textTheme.bodyMedium,
             ),
             if (!isSearch) ...[
               const SizedBox(height: 28),
-              GestureDetector(
-                onTap: onAdd,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 28,
-                    vertical: 14,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colors.primary,
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  child: const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(Icons.add_rounded, color: Colors.white, size: 20),
-                      SizedBox(width: 8),
-                      Text(
-                        'Add Address',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+              CustomButton(text: s.addAddress, onPressed: onAdd),
             ],
           ],
         ),

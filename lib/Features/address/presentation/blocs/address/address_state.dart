@@ -28,12 +28,20 @@ class AddressState with _$AddressState {
   bool get hasAddresses => addresses.isNotEmpty;
 
   List<AddressModel> get filteredAddresses {
-    if (searchQuery.trim().isEmpty) return addresses;
-    final q = searchQuery.toLowerCase();
-    return addresses.where((a) {
-      return a.nickname.toLowerCase().contains(q) ||
-          a.fullAddress.toLowerCase().contains(q) ||
-          (a.phoneNumber?.toLowerCase().contains(q) ?? false);
-    }).toList();
+    final list = searchQuery.trim().isEmpty
+        ? List<AddressModel>.from(addresses)
+        : addresses.where((a) {
+            final q = searchQuery.toLowerCase();
+            return a.nickname.toLowerCase().contains(q) ||
+                a.fullAddress.toLowerCase().contains(q) ||
+                (a.phoneNumber?.toLowerCase().contains(q) ?? false);
+          }).toList();
+
+    list.sort((a, b) {
+      if (a.isDefault == b.isDefault) return 0;
+      return a.isDefault ? -1 : 1;
+    });
+
+    return list;
   }
 }

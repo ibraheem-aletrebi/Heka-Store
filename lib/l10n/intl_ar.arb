@@ -347,7 +347,36 @@
 
     "addNewAddress":"اضافة عنوان جديد",
     "@addNewAddress": {},
-    
+    "defaultAddress":"افتراضي",
+    "@defaultAddress": {},
+    "Edit": "تعديل",
+    "@Edit": {},
+    "setAsDefault": "تعيين كافتراضي",
+    "@setAsDefault": {},
+    "delete": "حذف",
+    "@delete": {},
+    "deleteAddressTitle": "حذف العنوان؟",
+    "@deleteAddressTitle": {},
+    "deleteAddressMessage": "هل تريد حذف \"{address}\"؟\nلا يمكن التراجع عن هذا الإجراء.",
+    "@deleteAddressMessage": {
+    "placeholders": {
+        "address": {
+        "type": "String"
+        }
+    }
+    },
+
+"tryDifferentSearch": "جرب اسماً أو شارعاً أو مدينة مختلفة.",
+    "@tryDifferentSearch": {},
+"noAddressesYet": "لا توجد عناوين بعد",
+    "@noAddressesYet": {},
+"addFirstAddress": "أضف أول عنوان توصيل\nللبدء.",
+    "@addFirstAddress": {},
+"addAddress": "إضافة عنوان",
+    "@addAddress": {},
+     "searchAddressHint":"ابحث بالاسم او الشارع او المدينة",
+    "@searchAddressHint": {},
+
 
     "goodMorning": "صباح الخير",
     "@goodMorning": {},

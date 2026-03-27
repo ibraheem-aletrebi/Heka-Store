@@ -19,6 +19,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -29,6 +30,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -39,6 +41,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -50,6 +53,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -60,6 +64,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -70,6 +75,7 @@ mixin _$AddressEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -137,6 +143,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -150,6 +157,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -163,6 +171,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -180,6 +189,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -193,6 +203,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -206,6 +217,7 @@ class _$LoadedImpl implements _Loaded {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -222,6 +234,138 @@ class _$LoadedImpl implements _Loaded {
 
 abstract class _Loaded implements AddressEvent {
   const factory _Loaded() = _$LoadedImpl;
+}
+
+/// @nodoc
+abstract class _$$ReloadedImplCopyWith<$Res> {
+  factory _$$ReloadedImplCopyWith(
+          _$ReloadedImpl value, $Res Function(_$ReloadedImpl) then) =
+      __$$ReloadedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ReloadedImplCopyWithImpl<$Res>
+    extends _$AddressEventCopyWithImpl<$Res, _$ReloadedImpl>
+    implements _$$ReloadedImplCopyWith<$Res> {
+  __$$ReloadedImplCopyWithImpl(
+      _$ReloadedImpl _value, $Res Function(_$ReloadedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ReloadedImpl implements _Reloaded {
+  const _$ReloadedImpl();
+
+  @override
+  String toString() {
+    return 'AddressEvent.reLoaded()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ReloadedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function() reLoaded,
+    required TResult Function(AddressRequestModel request) added,
+    required TResult Function(int id, AddressRequestModel request) updated,
+    required TResult Function(int id) deleted,
+    required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
+  }) {
+    return reLoaded();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
+    TResult? Function(AddressRequestModel request)? added,
+    TResult? Function(int id, AddressRequestModel request)? updated,
+    TResult? Function(int id)? deleted,
+    TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
+  }) {
+    return reLoaded?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function()? reLoaded,
+    TResult Function(AddressRequestModel request)? added,
+    TResult Function(int id, AddressRequestModel request)? updated,
+    TResult Function(int id)? deleted,
+    TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
+    required TResult Function(_Added value) added,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
+  }) {
+    return reLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
+    TResult? Function(_Added value)? added,
+    TResult? Function(_Updated value)? updated,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
+  }) {
+    return reLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
+    TResult Function(_Added value)? added,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
+    required TResult orElse(),
+  }) {
+    if (reLoaded != null) {
+      return reLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reloaded implements AddressEvent {
+  const factory _Reloaded() = _$ReloadedImpl;
 }
 
 /// @nodoc
@@ -299,6 +443,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -312,6 +457,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -325,6 +471,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -342,6 +489,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -355,6 +503,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -368,6 +517,7 @@ class _$AddedImpl implements _Added {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -474,6 +624,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -487,6 +638,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -500,6 +652,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -517,6 +670,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -530,6 +684,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -543,6 +698,7 @@ class _$UpdatedImpl implements _Updated {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -633,6 +789,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -646,6 +803,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -659,6 +817,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -676,6 +835,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -689,6 +849,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -702,6 +863,7 @@ class _$DeletedImpl implements _Deleted {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -790,6 +952,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -803,6 +966,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -816,6 +980,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -833,6 +998,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -846,6 +1012,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -859,6 +1026,7 @@ class _$SetDefaultImpl implements _SetDefault {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
@@ -947,6 +1115,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
+    required TResult Function() reLoaded,
     required TResult Function(AddressRequestModel request) added,
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
@@ -960,6 +1129,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
+    TResult? Function()? reLoaded,
     TResult? Function(AddressRequestModel request)? added,
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
@@ -973,6 +1143,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
+    TResult Function()? reLoaded,
     TResult Function(AddressRequestModel request)? added,
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
@@ -990,6 +1161,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Reloaded value) reLoaded,
     required TResult Function(_Added value) added,
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
@@ -1003,6 +1175,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Reloaded value)? reLoaded,
     TResult? Function(_Added value)? added,
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
@@ -1016,6 +1189,7 @@ class _$SearchChangedImpl implements _SearchChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Loaded value)? loaded,
+    TResult Function(_Reloaded value)? reLoaded,
     TResult Function(_Added value)? added,
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,

@@ -1404,6 +1404,96 @@ class S {
     );
   }
 
+  /// `Default`
+  String get defaultAddress {
+    return Intl.message('Default', name: 'defaultAddress', desc: '', args: []);
+  }
+
+  /// `Edit`
+  String get Edit {
+    return Intl.message('Edit', name: 'Edit', desc: '', args: []);
+  }
+
+  /// `Set as Default`
+  String get setAsDefault {
+    return Intl.message(
+      'Set as Default',
+      name: 'setAsDefault',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get delete {
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
+  }
+
+  /// `Delete Address?`
+  String get deleteAddressTitle {
+    return Intl.message(
+      'Delete Address?',
+      name: 'deleteAddressTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove "{address}"?\nThis action cannot be undone.`
+  String deleteAddressMessage(String address) {
+    return Intl.message(
+      'Remove "$address"?\nThis action cannot be undone.',
+      name: 'deleteAddressMessage',
+      desc: '',
+      args: [address],
+    );
+  }
+
+  /// `Try a different name, street or city.`
+  String get tryDifferentSearch {
+    return Intl.message(
+      'Try a different name, street or city.',
+      name: 'tryDifferentSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No addresses yet`
+  String get noAddressesYet {
+    return Intl.message(
+      'No addresses yet',
+      name: 'noAddressesYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add your first delivery address\nto get started.`
+  String get addFirstAddress {
+    return Intl.message(
+      'Add your first delivery address\nto get started.',
+      name: 'addFirstAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add Address`
+  String get addAddress {
+    return Intl.message('Add Address', name: 'addAddress', desc: '', args: []);
+  }
+
+  /// `Search by name, street, city…`
+  String get searchAddressHint {
+    return Intl.message(
+      'Search by name, street, city…',
+      name: 'searchAddressHint',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Good morning`
   String get goodMorning {
     return Intl.message(

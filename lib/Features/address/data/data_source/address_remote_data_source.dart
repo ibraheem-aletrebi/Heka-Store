@@ -1,4 +1,3 @@
-
 import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/Features/address/data/models/address_request_model.dart';
 import 'package:heka_store/core/services/remote/api_constants.dart';
@@ -16,7 +15,7 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource {
   final ApiService _apiService;
 
   const AddressRemoteDataSourceImpl({required ApiService apiService})
-      : _apiService = apiService;
+    : _apiService = apiService;
 
   @override
   Future<List<AddressModel>> getAddresses() async {
@@ -53,9 +52,7 @@ class AddressRemoteDataSourceImpl implements AddressRemoteDataSource {
 
   @override
   Future<AddressModel> setDefaultAddress(int id) async {
-    final response = await _apiService.patch(
-      ApiConstants.addressDefault(id),
-    );
+    final response = await _apiService.put(ApiConstants.addressDefault(id));
     return AddressModel.fromJson(response.data['data']);
   }
 }

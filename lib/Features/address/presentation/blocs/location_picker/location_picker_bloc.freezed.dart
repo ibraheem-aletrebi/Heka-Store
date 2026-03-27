@@ -28,6 +28,7 @@ mixin _$LocationPickerEvent {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -42,6 +43,7 @@ mixin _$LocationPickerEvent {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -56,6 +58,7 @@ mixin _$LocationPickerEvent {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,6 +75,7 @@ mixin _$LocationPickerEvent {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -87,6 +91,7 @@ mixin _$LocationPickerEvent {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -101,6 +106,7 @@ mixin _$LocationPickerEvent {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -176,6 +182,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return currentLocationRequested();
   }
@@ -193,6 +200,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return currentLocationRequested?.call();
   }
@@ -210,6 +218,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -232,6 +241,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return currentLocationRequested(this);
   }
@@ -250,6 +260,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return currentLocationRequested?.call(this);
   }
@@ -267,6 +278,7 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -362,6 +374,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return mapTapped(lat, lng);
   }
@@ -379,6 +392,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return mapTapped?.call(lat, lng);
   }
@@ -396,6 +410,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -418,6 +433,7 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return mapTapped(this);
   }
@@ -436,6 +452,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return mapTapped?.call(this);
   }
@@ -453,6 +470,7 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -547,6 +565,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return searchChanged(query);
   }
@@ -564,6 +583,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return searchChanged?.call(query);
   }
@@ -581,6 +601,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -603,6 +624,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return searchChanged(this);
   }
@@ -621,6 +643,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return searchChanged?.call(this);
   }
@@ -638,6 +661,7 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -730,6 +754,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return placeSelected(place);
   }
@@ -747,6 +772,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return placeSelected?.call(place);
   }
@@ -764,6 +790,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -786,6 +813,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return placeSelected(this);
   }
@@ -804,6 +832,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return placeSelected?.call(this);
   }
@@ -821,6 +850,7 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -888,6 +918,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return searchCleared();
   }
@@ -905,6 +936,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return searchCleared?.call();
   }
@@ -922,6 +954,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -944,6 +977,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return searchCleared(this);
   }
@@ -962,6 +996,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return searchCleared?.call(this);
   }
@@ -979,6 +1014,7 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -1040,6 +1076,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return locationConfirmed();
   }
@@ -1057,6 +1094,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return locationConfirmed?.call();
   }
@@ -1074,6 +1112,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1096,6 +1135,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return locationConfirmed(this);
   }
@@ -1114,6 +1154,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return locationConfirmed?.call(this);
   }
@@ -1131,6 +1172,7 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1220,6 +1262,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return languageChanged(language);
   }
@@ -1237,6 +1280,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return languageChanged?.call(language);
   }
@@ -1254,6 +1298,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1276,6 +1321,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return languageChanged(this);
   }
@@ -1294,6 +1340,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return languageChanged?.call(this);
   }
@@ -1311,6 +1358,7 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1405,6 +1453,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return nicknameChanged(nickname);
   }
@@ -1422,6 +1471,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return nicknameChanged?.call(nickname);
   }
@@ -1439,6 +1489,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1461,6 +1512,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return nicknameChanged(this);
   }
@@ -1479,6 +1531,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return nicknameChanged?.call(this);
   }
@@ -1496,6 +1549,7 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1562,6 +1616,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return isDefaultToggled();
   }
@@ -1579,6 +1634,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return isDefaultToggled?.call();
   }
@@ -1596,6 +1652,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1618,6 +1675,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return isDefaultToggled(this);
   }
@@ -1636,6 +1694,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return isDefaultToggled?.call(this);
   }
@@ -1653,6 +1712,7 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1742,6 +1802,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     required TResult Function(String nickname) nicknameChanged,
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
   }) {
     return phoneNumberChanged(phoneNumber);
   }
@@ -1759,6 +1820,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult? Function(String nickname)? nicknameChanged,
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
   }) {
     return phoneNumberChanged?.call(phoneNumber);
   }
@@ -1776,6 +1838,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult Function(String nickname)? nicknameChanged,
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -1798,6 +1861,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     required TResult Function(_NicknameChanged value) nicknameChanged,
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
   }) {
     return phoneNumberChanged(this);
   }
@@ -1816,6 +1880,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult? Function(_NicknameChanged value)? nicknameChanged,
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -1833,6 +1898,7 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult Function(_NicknameChanged value)? nicknameChanged,
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -1849,6 +1915,207 @@ abstract class _PhoneNumberChanged implements LocationPickerEvent {
   String get phoneNumber;
   @JsonKey(ignore: true)
   _$$PhoneNumberChangedImplCopyWith<_$PhoneNumberChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$EditAddressLoadedImplCopyWith<$Res> {
+  factory _$$EditAddressLoadedImplCopyWith(_$EditAddressLoadedImpl value,
+          $Res Function(_$EditAddressLoadedImpl) then) =
+      __$$EditAddressLoadedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AddressModel address});
+
+  $AddressModelCopyWith<$Res> get address;
+}
+
+/// @nodoc
+class __$$EditAddressLoadedImplCopyWithImpl<$Res>
+    extends _$LocationPickerEventCopyWithImpl<$Res, _$EditAddressLoadedImpl>
+    implements _$$EditAddressLoadedImplCopyWith<$Res> {
+  __$$EditAddressLoadedImplCopyWithImpl(_$EditAddressLoadedImpl _value,
+      $Res Function(_$EditAddressLoadedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? address = null,
+  }) {
+    return _then(_$EditAddressLoadedImpl(
+      null == address
+          ? _value.address
+          : address // ignore: cast_nullable_to_non_nullable
+              as AddressModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $AddressModelCopyWith<$Res> get address {
+    return $AddressModelCopyWith<$Res>(_value.address, (value) {
+      return _then(_value.copyWith(address: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$EditAddressLoadedImpl implements _EditAddressLoaded {
+  const _$EditAddressLoadedImpl(this.address);
+
+  @override
+  final AddressModel address;
+
+  @override
+  String toString() {
+    return 'LocationPickerEvent.editAddressLoaded(address: $address)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EditAddressLoadedImpl &&
+            (identical(other.address, address) || other.address == address));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, address);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$EditAddressLoadedImplCopyWith<_$EditAddressLoadedImpl> get copyWith =>
+      __$$EditAddressLoadedImplCopyWithImpl<_$EditAddressLoadedImpl>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() currentLocationRequested,
+    required TResult Function(double lat, double lng) mapTapped,
+    required TResult Function(String query) searchChanged,
+    required TResult Function(NominatimPlace place) placeSelected,
+    required TResult Function() searchCleared,
+    required TResult Function() locationConfirmed,
+    required TResult Function(String language) languageChanged,
+    required TResult Function(String nickname) nicknameChanged,
+    required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
+  }) {
+    return editAddressLoaded(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? currentLocationRequested,
+    TResult? Function(double lat, double lng)? mapTapped,
+    TResult? Function(String query)? searchChanged,
+    TResult? Function(NominatimPlace place)? placeSelected,
+    TResult? Function()? searchCleared,
+    TResult? Function()? locationConfirmed,
+    TResult? Function(String language)? languageChanged,
+    TResult? Function(String nickname)? nicknameChanged,
+    TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
+  }) {
+    return editAddressLoaded?.call(address);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? currentLocationRequested,
+    TResult Function(double lat, double lng)? mapTapped,
+    TResult Function(String query)? searchChanged,
+    TResult Function(NominatimPlace place)? placeSelected,
+    TResult Function()? searchCleared,
+    TResult Function()? locationConfirmed,
+    TResult Function(String language)? languageChanged,
+    TResult Function(String nickname)? nicknameChanged,
+    TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
+    required TResult orElse(),
+  }) {
+    if (editAddressLoaded != null) {
+      return editAddressLoaded(address);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentLocationRequested value)
+        currentLocationRequested,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_SearchChanged value) searchChanged,
+    required TResult Function(_PlaceSelected value) placeSelected,
+    required TResult Function(_SearchCleared value) searchCleared,
+    required TResult Function(_LocationConfirmed value) locationConfirmed,
+    required TResult Function(_LanguageChanged value) languageChanged,
+    required TResult Function(_NicknameChanged value) nicknameChanged,
+    required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+  }) {
+    return editAddressLoaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CurrentLocationRequested value)?
+        currentLocationRequested,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_SearchChanged value)? searchChanged,
+    TResult? Function(_PlaceSelected value)? placeSelected,
+    TResult? Function(_SearchCleared value)? searchCleared,
+    TResult? Function(_LocationConfirmed value)? locationConfirmed,
+    TResult? Function(_LanguageChanged value)? languageChanged,
+    TResult? Function(_NicknameChanged value)? nicknameChanged,
+    TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+  }) {
+    return editAddressLoaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentLocationRequested value)? currentLocationRequested,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_SearchChanged value)? searchChanged,
+    TResult Function(_PlaceSelected value)? placeSelected,
+    TResult Function(_SearchCleared value)? searchCleared,
+    TResult Function(_LocationConfirmed value)? locationConfirmed,
+    TResult Function(_LanguageChanged value)? languageChanged,
+    TResult Function(_NicknameChanged value)? nicknameChanged,
+    TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    required TResult orElse(),
+  }) {
+    if (editAddressLoaded != null) {
+      return editAddressLoaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _EditAddressLoaded implements LocationPickerEvent {
+  const factory _EditAddressLoaded(final AddressModel address) =
+      _$EditAddressLoadedImpl;
+
+  AddressModel get address;
+  @JsonKey(ignore: true)
+  _$$EditAddressLoadedImplCopyWith<_$EditAddressLoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

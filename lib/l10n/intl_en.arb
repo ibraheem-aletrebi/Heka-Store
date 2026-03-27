@@ -304,7 +304,37 @@
     
     "addNewAddress":"Add New Address",
     "@addNewAddress":{},
+    "defaultAddress":"Default",
+    "@defaultAddress": {},
+    "Edit": "Edit",
+    "@Edit": {},
+    "setAsDefault": "Set as Default",
+    "@setAsDefault": {},
+    "delete": "Delete",
+    "@delete": {},
+    "deleteAddressTitle": "Delete Address?",
+    "@deleteAddressTitle": {},
+    "deleteAddressMessage": "Remove \"{address}\"?\nThis action cannot be undone.",
+    "@deleteAddressMessage": {
+    "placeholders": {
+        "address": {
+        "type": "String"
+        }
+    }
+    },
 
+"tryDifferentSearch": "Try a different name, street or city.",
+    "@tryDifferentSearch": {},
+"noAddressesYet": "No addresses yet",
+    "@noAddressesYet": {},
+"addFirstAddress": "Add your first delivery address\nto get started.",
+    "@addFirstAddress": {},
+"addAddress": "Add Address",
+    "@addAddress": {},
+  
+    "searchAddressHint":"Search by name, street, city…",
+    "@searchAddressHint": {},
+    
     "goodMorning": "Good morning",
     "@goodMorning": {},
     "goodAfternoon": "Good afternoon",

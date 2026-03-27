@@ -20,14 +20,22 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ar';
 
-  static String m0(count) => "لديك ${count} منتج في المفضلة. سجّل دخولك لحفظهم";
+  static String m0(address) =>
+      "هل تريد حذف \"${address}\"؟\nلا يمكن التراجع عن هذا الإجراء.";
+
+  static String m1(count) => "لديك ${count} منتج في المفضلة. سجّل دخولك لحفظهم";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "AddressBook": MessageLookupByLibrary.simpleMessage("العناوين"),
     "Categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+    "Edit": MessageLookupByLibrary.simpleMessage("تعديل"),
     "EditProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "account": MessageLookupByLibrary.simpleMessage("حسابي"),
+    "addAddress": MessageLookupByLibrary.simpleMessage("إضافة عنوان"),
+    "addFirstAddress": MessageLookupByLibrary.simpleMessage(
+      "أضف أول عنوان توصيل\nللبدء.",
+    ),
     "addNewAddress": MessageLookupByLibrary.simpleMessage("اضافة عنوان جديد"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
@@ -64,6 +72,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccountToContinue": MessageLookupByLibrary.simpleMessage(
       "أنشئ حساباً للمتابعة",
     ),
+    "defaultAddress": MessageLookupByLibrary.simpleMessage("افتراضي"),
+    "delete": MessageLookupByLibrary.simpleMessage("حذف"),
+    "deleteAddressMessage": m0,
+    "deleteAddressTitle": MessageLookupByLibrary.simpleMessage("حذف العنوان؟"),
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("عنوان التوصيل"),
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "ليس لديك حساب؟ ",
@@ -238,7 +250,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
     "gpsButtonTooltip": MessageLookupByLibrary.simpleMessage("موقعي الحالي"),
     "guest": MessageLookupByLibrary.simpleMessage("زائر"),
-    "guestWishlistSubtitle": m0,
+    "guestWishlistSubtitle": m1,
     "guestWishlistTitle": MessageLookupByLibrary.simpleMessage(
       "سجّل دخولك لحفظ مفضلتك",
     ),
@@ -287,6 +299,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "newPassword": MessageLookupByLibrary.simpleMessage("كلمة المرور الجديدة"),
     "next": MessageLookupByLibrary.simpleMessage("التالي"),
     "nicknameHint": MessageLookupByLibrary.simpleMessage("مثال: بيت ماما"),
+    "noAddressesYet": MessageLookupByLibrary.simpleMessage(
+      "لا توجد عناوين بعد",
+    ),
     "noLocationSelected": MessageLookupByLibrary.simpleMessage(
       "لم يتم تحديد موقع بعد",
     ),
@@ -381,11 +396,15 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم تغيير كلمة المرور بنجاح",
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
+    "searchAddressHint": MessageLookupByLibrary.simpleMessage(
+      "ابحث بالاسم او الشارع او المدينة",
+    ),
     "searchForLocation": MessageLookupByLibrary.simpleMessage("ابحث عن مكان"),
     "selectLocationSubtitle": MessageLookupByLibrary.simpleMessage(
       "ابحث أو اضغط في أي مكان على الخريطة",
     ),
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage("موقعك"),
+    "setAsDefault": MessageLookupByLibrary.simpleMessage("تعيين كافتراضي"),
     "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
       "تعيين كعنوان افتراضي",
     ),
@@ -412,6 +431,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "فشل في تبديل المظهر.",
     ),
     "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
+    "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
+      "جرب اسماً أو شارعاً أو مدينة مختلفة.",
+    ),
     "vat": MessageLookupByLibrary.simpleMessage("ضريبة القيمة المضافة (%)"),
     "verify": MessageLookupByLibrary.simpleMessage("تحقق"),
     "verifyEmailOtpBody": MessageLookupByLibrary.simpleMessage(

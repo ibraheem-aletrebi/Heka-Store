@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class AddressSearchBar extends StatelessWidget {
   final TextEditingController controller;
@@ -13,44 +15,33 @@ class AddressSearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
+    final textTheme = TextTheme.of(context);
+    final s = S.of(context);
     return Container(
-      height: 46,
+      height: AppSizes.h40,
       decoration: BoxDecoration(
         color: colors.surface,
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: colors.border),
       ),
       child: TextField(
         controller: controller,
         onChanged: onChanged,
-        style: TextStyle(
-          fontSize: 14,
-          color: colors.textPrimary,
-          fontWeight: FontWeight.w500,
-        ),
+        style: textTheme.titleSmall?.copyWith(color: colors.textPrimary),
         decoration: InputDecoration(
-          hintText: 'Search by name, street, city…',
-          hintStyle: const TextStyle(color: Color(0xFF9CA3AF), fontSize: 13),
-          prefixIcon: const Icon(
-            Icons.search_rounded,
-            color: Color(0xFF9CA3AF),
-            size: 20,
-          ),
+          hintText: s.searchAddressHint,
+          hintStyle: textTheme.bodyMedium?.copyWith(color: colors.textHint),
+          prefixIcon: Icon(Icons.search_rounded, size: AppSizes.sp20),
           suffixIcon: controller.text.isNotEmpty
               ? GestureDetector(
                   onTap: () {
                     controller.clear();
                     onChanged('');
                   },
-                  child: const Icon(
-                    Icons.cancel_rounded,
-                    color: Color(0xFF9CA3AF),
-                    size: 18,
-                  ),
+                  child: Icon(Icons.cancel_rounded),
                 )
               : null,
           border: InputBorder.none,
-          contentPadding: const EdgeInsets.symmetric(vertical: 13),
+          contentPadding: EdgeInsets.symmetric(vertical: AppSizes.h12),
         ),
       ),
     );

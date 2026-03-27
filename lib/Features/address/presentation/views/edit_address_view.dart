@@ -16,8 +16,9 @@ class EditAddressView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) => LocationPickerBloc(nominatimService: sl()),
-            // ..add(LocationPickerEvent.editAddressLoaded(address)),
+          create: (_) =>
+              sl<LocationPickerBloc>()
+                ..add(LocationPickerEvent.editAddressLoaded(address)),
         ),
         BlocProvider(create: (_) => sl<AddressBloc>()),
       ],

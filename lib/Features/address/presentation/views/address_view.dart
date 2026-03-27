@@ -16,17 +16,22 @@ class AddressView extends StatelessWidget {
       create: (context) => sl<AddressBloc>()..add(const AddressEvent.loaded()),
       child: Scaffold(
         body: SafeArea(child: AddressViewBody()),
-        floatingActionButton: Builder(
-          builder:(context)=> FloatingActionButton.extended(
-            onPressed: () async {
-              final bool? added =
-                  await context.push(AppRoutes.locationPicker) as bool?;
-              if (added == true && context.mounted) {
-                context.read<AddressBloc>().add(const AddressEvent.loaded());
-              }
-            },
-            label: Text(S.of(context).addNewAddress),
-            icon: Icon(Icons.add),
+        floatingActionButton: BlocBuilder<AddressBloc, AddressState>(
+          builder: (context, state) => Visibility(
+            visible: (context.read<AddressBloc>().state.addresses.isNotEmpty),
+            child: FloatingActionButton.extended(
+              onPressed: () async {
+                final bool? added =
+                    await context.push(AppRoutes.locationPicker) as bool?;
+                if (added == true && context.mounted) {
+                  context.read<AddressBloc>().add(
+                    const AddressEvent.reLoaded(),
+                  );
+                }
+              },
+              label: Text(S.of(context).addNewAddress),
+              icon: Icon(Icons.add),
+            ),
           ),
         ),
       ),

@@ -20,18 +20,26 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m0(count) =>
+  static String m0(address) =>
+      "Remove \"${address}\"?\nThis action cannot be undone.";
+
+  static String m1(count) =>
       "You have ${count} saved items. Sign in to keep them";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "AddressBook": MessageLookupByLibrary.simpleMessage("Address Book"),
     "Categories": MessageLookupByLibrary.simpleMessage("Categories"),
+    "Edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "EditProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "account": MessageLookupByLibrary.simpleMessage("Account"),
+    "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
     "addCard": MessageLookupByLibrary.simpleMessage("Add card"),
     "addDebitOrCreditCard": MessageLookupByLibrary.simpleMessage(
       "Add Debit or Credit Card",
+    ),
+    "addFirstAddress": MessageLookupByLibrary.simpleMessage(
+      "Add your first delivery address\nto get started.",
     ),
     "addNewAddress": MessageLookupByLibrary.simpleMessage("Add New Address"),
     "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
@@ -66,6 +74,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
     "createAccountToContinue": MessageLookupByLibrary.simpleMessage(
       "Create an account to continue",
+    ),
+    "defaultAddress": MessageLookupByLibrary.simpleMessage("Default"),
+    "delete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "deleteAddressMessage": m0,
+    "deleteAddressTitle": MessageLookupByLibrary.simpleMessage(
+      "Delete Address?",
     ),
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("Delivery Address"),
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
@@ -241,7 +255,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Current location",
     ),
     "guest": MessageLookupByLibrary.simpleMessage("Guest"),
-    "guestWishlistSubtitle": m0,
+    "guestWishlistSubtitle": m1,
     "guestWishlistTitle": MessageLookupByLibrary.simpleMessage(
       "Sign in to save your wishlist",
     ),
@@ -298,6 +312,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "newPassword": MessageLookupByLibrary.simpleMessage("New Password"),
     "next": MessageLookupByLibrary.simpleMessage("Next"),
     "nicknameHint": MessageLookupByLibrary.simpleMessage("e.g. Mom\'s house"),
+    "noAddressesYet": MessageLookupByLibrary.simpleMessage("No addresses yet"),
     "noLocationSelected": MessageLookupByLibrary.simpleMessage(
       "No location selected yet",
     ),
@@ -403,6 +418,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "savedCards": MessageLookupByLibrary.simpleMessage("Saved Cards"),
+    "searchAddressHint": MessageLookupByLibrary.simpleMessage(
+      "Search by name, street, city…",
+    ),
     "searchForLocation": MessageLookupByLibrary.simpleMessage(
       "Search for a place",
     ),
@@ -413,6 +431,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage(
       "Your Location",
     ),
+    "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
       "Make this as a default address",
     ),
@@ -439,6 +458,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Failed to switch theme.",
     ),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
+    "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
+      "Try a different name, street or city.",
+    ),
     "vat": MessageLookupByLibrary.simpleMessage("VAT (%)"),
     "verify": MessageLookupByLibrary.simpleMessage("Verify"),
     "verifyEmailOtpBody": MessageLookupByLibrary.simpleMessage(

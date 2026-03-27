@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_place.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
@@ -31,6 +32,23 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     on<_NicknameChanged>(_onNicknameChanged);
     on<_IsDefaultToggled>(_onIsDefaultToggled);
     on<_PhoneNumberChanged>(_onPhoneNumberChanged);
+    on<_EditAddressLoaded>(_onEditAddressLoaded); // ← جديد
+  }
+
+  // ── جديد ────────────────────────────────────────────────────────
+  void _onEditAddressLoaded(
+    _EditAddressLoaded event,
+    Emitter<LocationPickerState> emit,
+  ) {
+    final a = event.address;
+    emit(state.copyWith(
+      latitude: a.latitude,
+      longitude: a.longitude,
+      address: a.fullAddress,
+      nickname: a.nickname,
+      phoneNumber: a.phoneNumber ?? '',
+      isDefault: a.isDefault,
+    ));
   }
 
   void _onNicknameChanged(
