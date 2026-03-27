@@ -12,7 +12,8 @@ class CategoriesView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => sl<CategoriesBloc>(),
+      create: (context) =>
+          sl<CategoriesBloc>()..add(const CategoriesEvent.loaded()),
       child: Scaffold(
         appBar: AppBar(
           title: Text(S.of(context).Categories),
