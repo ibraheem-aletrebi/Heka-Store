@@ -1867,6 +1867,7 @@ mixin _$LocationPickerState {
   String get nickname => throw _privateConstructorUsedError;
   bool get isDefault => throw _privateConstructorUsedError;
   String get phoneNumber => throw _privateConstructorUsedError;
+  ValidationKey? get phoneNumberError => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1894,6 +1895,7 @@ abstract class $LocationPickerStateCopyWith<$Res> {
       String nickname,
       bool isDefault,
       String phoneNumber,
+      ValidationKey? phoneNumberError,
       String? errorMessage});
 }
 
@@ -1923,6 +1925,7 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
     Object? nickname = null,
     Object? isDefault = null,
     Object? phoneNumber = null,
+    Object? phoneNumberError = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1978,6 +1981,10 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumberError: freezed == phoneNumberError
+          ? _value.phoneNumberError
+          : phoneNumberError // ignore: cast_nullable_to_non_nullable
+              as ValidationKey?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -2008,6 +2015,7 @@ abstract class _$$LocationPickerStateImplCopyWith<$Res>
       String nickname,
       bool isDefault,
       String phoneNumber,
+      ValidationKey? phoneNumberError,
       String? errorMessage});
 }
 
@@ -2035,6 +2043,7 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
     Object? nickname = null,
     Object? isDefault = null,
     Object? phoneNumber = null,
+    Object? phoneNumberError = freezed,
     Object? errorMessage = freezed,
   }) {
     return _then(_$LocationPickerStateImpl(
@@ -2090,6 +2099,10 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
           ? _value.phoneNumber
           : phoneNumber // ignore: cast_nullable_to_non_nullable
               as String,
+      phoneNumberError: freezed == phoneNumberError
+          ? _value.phoneNumberError
+          : phoneNumberError // ignore: cast_nullable_to_non_nullable
+              as ValidationKey?,
       errorMessage: freezed == errorMessage
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
@@ -2115,6 +2128,7 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       this.nickname = '',
       this.isDefault = false,
       this.phoneNumber = '',
+      this.phoneNumberError,
       this.errorMessage})
       : _searchResults = searchResults,
         super._();
@@ -2162,11 +2176,13 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
   @JsonKey()
   final String phoneNumber;
   @override
+  final ValidationKey? phoneNumberError;
+  @override
   final String? errorMessage;
 
   @override
   String toString() {
-    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, phoneNumber: $phoneNumber, errorMessage: $errorMessage)';
+    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, phoneNumber: $phoneNumber, phoneNumberError: $phoneNumberError, errorMessage: $errorMessage)';
   }
 
   @override
@@ -2200,6 +2216,8 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
                 other.isDefault == isDefault) &&
             (identical(other.phoneNumber, phoneNumber) ||
                 other.phoneNumber == phoneNumber) &&
+            (identical(other.phoneNumberError, phoneNumberError) ||
+                other.phoneNumberError == phoneNumberError) &&
             (identical(other.errorMessage, errorMessage) ||
                 other.errorMessage == errorMessage));
   }
@@ -2220,6 +2238,7 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       nickname,
       isDefault,
       phoneNumber,
+      phoneNumberError,
       errorMessage);
 
   @JsonKey(ignore: true)
@@ -2245,6 +2264,7 @@ abstract class _LocationPickerState extends LocationPickerState {
       final String nickname,
       final bool isDefault,
       final String phoneNumber,
+      final ValidationKey? phoneNumberError,
       final String? errorMessage}) = _$LocationPickerStateImpl;
   const _LocationPickerState._() : super._();
 
@@ -2274,6 +2294,8 @@ abstract class _LocationPickerState extends LocationPickerState {
   bool get isDefault;
   @override
   String get phoneNumber;
+  @override
+  ValidationKey? get phoneNumberError;
   @override
   String? get errorMessage;
   @override

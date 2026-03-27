@@ -105,6 +105,24 @@ class FieldValidator {
     return null;
   }
 
+  static ValidationKey? optionalPhone(String value) {
+    final trimmed = value.trim();
+    if (trimmed.isEmpty) return null;
+
+    final normalized = trimmed.replaceAll(RegExp(r'[\s\-().]+'), '');
+    if (normalized.isEmpty) return null;
+    if (!RegExp(r'^\+?[0-9]+$').hasMatch(normalized)) {
+      return ValidationKey.phoneInvalid;
+    }
+
+    if (normalized.startsWith('+')) {
+      if (!_phoneE164.hasMatch(normalized)) return ValidationKey.phoneInvalid;
+      return null;
+    }
+
+    if (!_phoneLocal.hasMatch(normalized)) return ValidationKey.phoneInvalid;
+    return null;
+  }
   static ValidationKey? otp(String value, {int length = 6}) {
     if (value.trim().isEmpty) return ValidationKey.otpRequired;
     if (!_otpRegex.hasMatch(value)) return ValidationKey.otpInvalid;

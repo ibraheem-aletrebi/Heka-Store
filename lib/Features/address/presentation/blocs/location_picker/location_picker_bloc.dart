@@ -2,8 +2,10 @@ import 'dart:async';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_place.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
+import 'package:heka_store/core/utils/field_validator.dart';
 
 part 'location_picker_event.dart';
 part 'location_picker_state.dart';
@@ -31,19 +33,34 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     on<_PhoneNumberChanged>(_onPhoneNumberChanged);
   }
 
-  void _onNicknameChanged(_NicknameChanged event, Emitter<LocationPickerState> emit) {
+  void _onNicknameChanged(
+    _NicknameChanged event,
+    Emitter<LocationPickerState> emit,
+  ) {
     emit(state.copyWith(nickname: event.nickname));
   }
 
-  void _onIsDefaultToggled(_IsDefaultToggled event, Emitter<LocationPickerState> emit) {
+  void _onIsDefaultToggled(
+    _IsDefaultToggled event,
+    Emitter<LocationPickerState> emit,
+  ) {
     emit(state.copyWith(isDefault: !state.isDefault));
   }
 
-  void _onPhoneNumberChanged(_PhoneNumberChanged event, Emitter<LocationPickerState> emit) {
-    emit(state.copyWith(phoneNumber: event.phoneNumber));
+  void _onPhoneNumberChanged(
+    _PhoneNumberChanged event,
+    Emitter<LocationPickerState> emit,
+  ) {
+    emit(state.copyWith(
+      phoneNumber: event.phoneNumber,
+      phoneNumberError: FieldValidator.optionalPhone(event.phoneNumber),
+    ));
   }
 
-  void _onLanguageChanged(_LanguageChanged event, Emitter<LocationPickerState> emit) {
+  void _onLanguageChanged(
+    _LanguageChanged event,
+    Emitter<LocationPickerState> emit,
+  ) {
     language = event.language;
   }
 
@@ -170,7 +187,10 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     await completer.future;
   }
 
-  void _onPlaceSelected(_PlaceSelected event, Emitter<LocationPickerState> emit) {
+  void _onPlaceSelected(
+    _PlaceSelected event,
+    Emitter<LocationPickerState> emit,
+  ) {
     emit(state.copyWith(
       latitude: event.place.lat,
       longitude: event.place.lng,
@@ -181,7 +201,10 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     ));
   }
 
-  void _onSearchCleared(_SearchCleared event, Emitter<LocationPickerState> emit) {
+  void _onSearchCleared(
+    _SearchCleared event,
+    Emitter<LocationPickerState> emit,
+  ) {
     _debounceTimer?.cancel();
     emit(state.copyWith(
       searchQuery: '',
@@ -190,7 +213,10 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     ));
   }
 
-  void _onLocationConfirmed(_LocationConfirmed event, Emitter<LocationPickerState> emit) {
+  void _onLocationConfirmed(
+    _LocationConfirmed event,
+    Emitter<LocationPickerState> emit,
+  ) {
     if (!state.hasLocation) return;
     emit(state.copyWith(isConfirmed: true));
   }

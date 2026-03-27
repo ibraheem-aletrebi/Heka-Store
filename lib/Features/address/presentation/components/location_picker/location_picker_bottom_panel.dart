@@ -7,9 +7,11 @@ import 'package:heka_store/Features/address/presentation/components/location_pic
 import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_detail.dart';
 import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_nickname_selector.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/extensions/validation_key_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
+import 'package:heka_store/core/widgets/custom_text_form_field.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class LocationPickerBottomPanel extends StatelessWidget {
@@ -40,13 +42,16 @@ class LocationPickerBottomPanel extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // ─── Drag Handle ──────────────────────────
               const _DragHandle(),
 
+              // ─── Location Detail ──────────────────────
               if (locationState.hasLocation) ...[
                 const LocationPickerDetail(),
                 SizedBox(height: AppSizes.h20),
               ],
 
+              // ─── Nickname ─────────────────────────────
               if (locationState.hasLocation) ...[
                 Text(
                   s.addressNickName,
@@ -68,23 +73,30 @@ class LocationPickerBottomPanel extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppSizes.h8),
-                TextFormField(
-                  keyboardType: TextInputType.phone,
-                  onChanged: (value) => context
-                      .read<LocationPickerBloc>()
-                      .add(LocationPickerEvent.phoneNumberChanged(value)),
-                  decoration: InputDecoration(
-                    hintText: s.enterPhoneNumber,
-                  ),
+                BlocBuilder<LocationPickerBloc, LocationPickerState>(
+                  buildWhen: (previous, current) =>
+                      previous.phoneNumberError != current.phoneNumberError,
+                  builder: (context, state) {
+                    return CustomTextFormField(
+                      hint: s.enterPhoneNumber,
+                      keyboardType: TextInputType.phone,
+                      errorText: state.phoneNumberError?.translate(context),
+                      onChanged: (value) => context
+                          .read<LocationPickerBloc>()
+                          .add(LocationPickerEvent.phoneNumberChanged(value)),
+                    );
+                  },
                 ),
                 SizedBox(height: AppSizes.h16),
               ],
 
+              // ─── Default Toggle ───────────────────────
               if (locationState.hasLocation) ...[
                 const LocationPickerDefaultToggle(),
                 SizedBox(height: AppSizes.h20),
               ],
 
+              // ─── Confirm Button ───────────────────────
               BlocBuilder<AddressBloc, AddressState>(
                 buildWhen: (previous, current) =>
                     previous.isAddLoading != current.isAddLoading,
@@ -104,6 +116,7 @@ class LocationPickerBottomPanel extends StatelessWidget {
               ),
               SizedBox(height: AppSizes.h8),
 
+              // ─── Skip ─────────────────────────────────
               Center(
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
@@ -121,6 +134,8 @@ class LocationPickerBottomPanel extends StatelessWidget {
   }
 
   void _onConfirm(BuildContext context, LocationPickerState locationState) {
+    if (locationState.phoneNumberError != null) return; // ✅
+
     context.read<AddressBloc>().add(
       AddressEvent.added(
         AddressRequestModel(

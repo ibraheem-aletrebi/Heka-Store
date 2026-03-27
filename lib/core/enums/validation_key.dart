@@ -1,3 +1,4 @@
+
 enum ValidationKey {
 emailRequired,
   emailInvalid,
@@ -29,5 +30,6 @@ emailRequired,
   phoneRequired,
   phoneInvalid,
 
-  fieldRequired,
+  fieldRequired;
+
 }

@@ -16,6 +16,7 @@ class LocationPickerState with _$LocationPickerState {
     @Default('') String nickname,
     @Default(false) bool isDefault,
     @Default('') String phoneNumber,
+    ValidationKey? phoneNumberError,
     String? errorMessage,
   }) = _LocationPickerState;
 
