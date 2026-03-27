@@ -11,7 +11,8 @@ class CustomIconButton extends StatelessWidget {
     this.iconColor,
     this.size,
     this.borderRadius,
-    this.padding, this.iconSize,
+    this.padding,
+    this.iconSize,
   });
 
   final IconData icon;
@@ -30,7 +31,7 @@ class CustomIconButton extends StatelessWidget {
         padding: padding,
         backgroundColor: backgroundColor ?? context.myColors.surface,
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: Size(size ?? AppSizes.w32, size ?? AppSizes.w32),
+        minimumSize: Size(size ?? AppSizes.w38, size ?? AppSizes.w38),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius ?? AppSizes.r12),
         ),
@@ -39,7 +40,7 @@ class CustomIconButton extends StatelessWidget {
       icon: Icon(
         icon,
         color: iconColor ?? context.myColors.textPrimary,
-        size:iconSize?? AppSizes.sp22,
+        size: iconSize ?? AppSizes.sp22,
       ),
     );
   }

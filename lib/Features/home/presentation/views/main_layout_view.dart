@@ -30,7 +30,10 @@ class MainLayoutView extends StatelessWidget {
           create: (context) => sl<PreviousViewedProductsBloc>(),
         ),
       ],
-      child: const Scaffold(extendBody: true, body: MainLayoutViewBody()),
+      child: const Scaffold(
+        extendBody: true,
+        body: SafeArea(child: MainLayoutViewBody()),
+      ),
     );
   }
 }

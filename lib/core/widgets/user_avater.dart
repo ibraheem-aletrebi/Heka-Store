@@ -7,14 +7,14 @@ import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 class UserAvatar extends StatelessWidget {
   final String? imageUrl;
   final String? name;
-  final double size;
+  final double? size;
   final VoidCallback? onTap;
 
   const UserAvatar({
     super.key,
     this.imageUrl,
     this.name,
-    this.size = 44,
+    this.size,
     this.onTap,
   });
 
@@ -25,8 +25,8 @@ class UserAvatar extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: AppSizes.w45,
-        height: AppSizes.w45,
+        width: size ?? AppSizes.w45,
+        height: size ?? AppSizes.w45,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
           border: Border.all(

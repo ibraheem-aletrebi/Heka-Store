@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
     "Categories": MessageLookupByLibrary.simpleMessage("الفئات"),
+    "EditProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+    "account": MessageLookupByLibrary.simpleMessage("حسابي"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى المفضلة",

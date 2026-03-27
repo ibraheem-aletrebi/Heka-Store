@@ -333,7 +333,14 @@
     "@enterPhoneNumber":{},
     
 
+    
+    "account":"حسابي",
+    "@account":{},
 
+
+     "EditProfile":"تعديل الملف الشخصي",
+    "@EditProfile":{},
+   
 
     "goodMorning": "صباح الخير",
     "@goodMorning": {},

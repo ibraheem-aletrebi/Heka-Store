@@ -293,6 +293,11 @@
     "enterPhoneNumber":"Enter phone number",
     "@enterPhoneNumber":{},
     
+    "account":"Account",
+    "@account":{},
+    
+    "EditProfile":"Edit Profile",
+    "@EditProfile":{},
 
     "goodMorning": "Good morning",
     "@goodMorning": {},

@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_icon_button.dart';
 
 class NotificationButton extends StatelessWidget {
   const NotificationButton({super.key});
@@ -12,19 +14,7 @@ class NotificationButton extends StatelessWidget {
       child: Stack(
         clipBehavior: Clip.none,
         children: [
-          Container(
-            width: AppSizes.w40,
-            height: AppSizes.w40,
-            decoration: BoxDecoration(
-              color: context.myColors.surface,
-              borderRadius: BorderRadius.circular(AppSizes.r12),
-            ),
-            child: Icon(
-              CupertinoIcons.bell_fill,
-              size: AppSizes.sp22,
-              color: context.myColors.textPrimary,
-            ),
-          ),
+          CustomIconButton(icon: Icons.notifications_rounded, onPressed: () {}),
           Positioned(
             top: AppSizes.w8,
             right: AppSizes.w8,
