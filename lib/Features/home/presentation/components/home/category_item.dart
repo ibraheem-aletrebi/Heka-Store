@@ -28,15 +28,15 @@ class CategoryItem extends StatelessWidget {
                   color: c.surface,
                   borderRadius: BorderRadius.circular(AppSizes.r16),
                 ),
-                child: CachedImage(url: category?.imageUrl ?? ''), // ✅ imageUrl not .i
+                child: CachedImage(url: category?.imageUrl, fit: BoxFit.cover),
               ),
             ),
             SizedBox(height: AppSizes.h6),
             Text(
               category?.nameEn ?? '',
-              style: TextTheme.of(context)
-                  .bodyMedium
-                  ?.copyWith(color: c.textSecondary),
+              style: TextTheme.of(
+                context,
+              ).bodyMedium?.copyWith(color: c.textSecondary),
               overflow: TextOverflow.ellipsis,
               textAlign: TextAlign.center,
             ),

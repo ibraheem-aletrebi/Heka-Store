@@ -1,5 +1,9 @@
 import 'package:go_router/go_router.dart';
-import 'package:heka_store/Features/address/presentation/views/location_picker/location_picker_view.dart';
+import 'package:heka_store/Features/account/presentation/views/edit_profile_view.dart';
+import 'package:heka_store/Features/address/data/models/address_model.dart';
+import 'package:heka_store/Features/address/presentation/views/address_view.dart';
+import 'package:heka_store/Features/address/presentation/views/edit_address_view.dart';
+import 'package:heka_store/Features/address/presentation/views/location_picker_view.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/presentation/views/forgot_password/forgot_password_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/login/login_view.dart';
@@ -75,6 +79,18 @@ class AppRouter {
           return SubCategoryView(category: extra);
         },
       ),
+      GoRoute(path: AppRoutes.addresses, builder: (_, _) => AddressView()),
+      GoRoute(
+        path: AppRoutes.editProfile,
+        builder: (_, _) => EditProfileView(),
+      ),
+      GoRoute(
+        path: AppRoutes.editAddress,
+        builder: (context, state) {
+          final extra = state.extra as AddressModel;
+          return EditAddressView(address: extra);
+        },
+      ),
     ],
   );
 
@@ -85,16 +101,17 @@ Future<String> getInitialRoute() async {
   final localDataSource = sl<AuthLocalDataSource>();
 
   final isLoggedIn = await localDataSource.isLoggedIn();
-  if (isLoggedIn) return AppRoutes.mainLayout; 
+  if (isLoggedIn) return AppRoutes.mainLayout;
 
   final pendingEmail = await localDataSource.getPendingVerifyEmail();
-  if (pendingEmail != null) return AppRoutes.verifyEmail; 
+  if (pendingEmail != null) return AppRoutes.verifyEmail;
 
   final hasSeenOnboarding =
       LocalStorageService().getValue<bool>(
         HiveBoxes.app,
         LocalStorageKeys.hasSeenOnboarding,
-      ) ?? false;
+      ) ??
+      false;
 
   return hasSeenOnboarding ? AppRoutes.login : AppRoutes.onboarding;
 }

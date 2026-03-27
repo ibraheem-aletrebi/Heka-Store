@@ -338,9 +338,16 @@
     "@account":{},
 
 
-     "EditProfile":"تعديل الملف الشخصي",
+    "EditProfile":"تعديل الملف الشخصي",
     "@EditProfile":{},
    
+    
+    "AddressBook":"العناوين",
+    "@AddressBook":{},
+
+    "addNewAddress":"اضافة عنوان جديد",
+    "@addNewAddress": {},
+    
 
     "goodMorning": "صباح الخير",
     "@goodMorning": {},

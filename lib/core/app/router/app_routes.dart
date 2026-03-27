@@ -16,4 +16,12 @@ class AppRoutes {
 
   static const String categories = '/categories';
   static const String subCategories = '/sub-categories';
+
+
+  static const String productDetails = '/product-details';
+  static const String addresses = '/addresses';
+  static const String editAddress = '/edit-address';
+  static const String orders = '/orders';
+  static const String editProfile = '/edit-profile';
+
 }

@@ -38,10 +38,9 @@ class CategoriesSection extends StatelessWidget {
             final hasNextPage = state.hasNextPage;
 
             return SizedBox(
-              height: context.height * 0.15,
+              height: context.height * 0.119,
               child: PaginatedListView<Category>(
                 isHorizontal: true,
-                itemExtent: context.width * 0.17,
                 items: categories,
                 isLoading: isLoading,
                 isLoadingMore: isLoadingMore,

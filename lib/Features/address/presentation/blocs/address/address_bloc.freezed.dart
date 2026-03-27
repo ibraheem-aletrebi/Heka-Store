@@ -23,6 +23,7 @@ mixin _$AddressEvent {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -32,6 +33,7 @@ mixin _$AddressEvent {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -41,6 +43,7 @@ mixin _$AddressEvent {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -51,6 +54,7 @@ mixin _$AddressEvent {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -60,6 +64,7 @@ mixin _$AddressEvent {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -69,6 +74,7 @@ mixin _$AddressEvent {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -135,6 +141,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) {
     return loaded();
   }
@@ -147,6 +154,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) {
     return loaded?.call();
   }
@@ -159,6 +167,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -175,6 +184,7 @@ class _$LoadedImpl implements _Loaded {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) {
     return loaded(this);
   }
@@ -187,6 +197,7 @@ class _$LoadedImpl implements _Loaded {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) {
     return loaded?.call(this);
   }
@@ -199,6 +210,7 @@ class _$LoadedImpl implements _Loaded {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) {
     if (loaded != null) {
@@ -291,6 +303,7 @@ class _$AddedImpl implements _Added {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) {
     return added(request);
   }
@@ -303,6 +316,7 @@ class _$AddedImpl implements _Added {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) {
     return added?.call(request);
   }
@@ -315,6 +329,7 @@ class _$AddedImpl implements _Added {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) {
     if (added != null) {
@@ -331,6 +346,7 @@ class _$AddedImpl implements _Added {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) {
     return added(this);
   }
@@ -343,6 +359,7 @@ class _$AddedImpl implements _Added {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) {
     return added?.call(this);
   }
@@ -355,6 +372,7 @@ class _$AddedImpl implements _Added {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) {
     if (added != null) {
@@ -460,6 +478,7 @@ class _$UpdatedImpl implements _Updated {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) {
     return updated(id, request);
   }
@@ -472,6 +491,7 @@ class _$UpdatedImpl implements _Updated {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) {
     return updated?.call(id, request);
   }
@@ -484,6 +504,7 @@ class _$UpdatedImpl implements _Updated {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -500,6 +521,7 @@ class _$UpdatedImpl implements _Updated {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) {
     return updated(this);
   }
@@ -512,6 +534,7 @@ class _$UpdatedImpl implements _Updated {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) {
     return updated?.call(this);
   }
@@ -524,6 +547,7 @@ class _$UpdatedImpl implements _Updated {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) {
     if (updated != null) {
@@ -613,6 +637,7 @@ class _$DeletedImpl implements _Deleted {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) {
     return deleted(id);
   }
@@ -625,6 +650,7 @@ class _$DeletedImpl implements _Deleted {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) {
     return deleted?.call(id);
   }
@@ -637,6 +663,7 @@ class _$DeletedImpl implements _Deleted {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -653,6 +680,7 @@ class _$DeletedImpl implements _Deleted {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) {
     return deleted(this);
   }
@@ -665,6 +693,7 @@ class _$DeletedImpl implements _Deleted {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) {
     return deleted?.call(this);
   }
@@ -677,6 +706,7 @@ class _$DeletedImpl implements _Deleted {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) {
     if (deleted != null) {
@@ -764,6 +794,7 @@ class _$SetDefaultImpl implements _SetDefault {
     required TResult Function(int id, AddressRequestModel request) updated,
     required TResult Function(int id) deleted,
     required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
   }) {
     return setDefault(id);
   }
@@ -776,6 +807,7 @@ class _$SetDefaultImpl implements _SetDefault {
     TResult? Function(int id, AddressRequestModel request)? updated,
     TResult? Function(int id)? deleted,
     TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
   }) {
     return setDefault?.call(id);
   }
@@ -788,6 +820,7 @@ class _$SetDefaultImpl implements _SetDefault {
     TResult Function(int id, AddressRequestModel request)? updated,
     TResult Function(int id)? deleted,
     TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
     required TResult orElse(),
   }) {
     if (setDefault != null) {
@@ -804,6 +837,7 @@ class _$SetDefaultImpl implements _SetDefault {
     required TResult Function(_Updated value) updated,
     required TResult Function(_Deleted value) deleted,
     required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
   }) {
     return setDefault(this);
   }
@@ -816,6 +850,7 @@ class _$SetDefaultImpl implements _SetDefault {
     TResult? Function(_Updated value)? updated,
     TResult? Function(_Deleted value)? deleted,
     TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
   }) {
     return setDefault?.call(this);
   }
@@ -828,6 +863,7 @@ class _$SetDefaultImpl implements _SetDefault {
     TResult Function(_Updated value)? updated,
     TResult Function(_Deleted value)? deleted,
     TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
     required TResult orElse(),
   }) {
     if (setDefault != null) {
@@ -847,8 +883,166 @@ abstract class _SetDefault implements AddressEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchChangedImplCopyWith<$Res> {
+  factory _$$SearchChangedImplCopyWith(
+          _$SearchChangedImpl value, $Res Function(_$SearchChangedImpl) then) =
+      __$$SearchChangedImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({String query});
+}
+
+/// @nodoc
+class __$$SearchChangedImplCopyWithImpl<$Res>
+    extends _$AddressEventCopyWithImpl<$Res, _$SearchChangedImpl>
+    implements _$$SearchChangedImplCopyWith<$Res> {
+  __$$SearchChangedImplCopyWithImpl(
+      _$SearchChangedImpl _value, $Res Function(_$SearchChangedImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? query = null,
+  }) {
+    return _then(_$SearchChangedImpl(
+      null == query
+          ? _value.query
+          : query // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$SearchChangedImpl implements _SearchChanged {
+  const _$SearchChangedImpl(this.query);
+
+  @override
+  final String query;
+
+  @override
+  String toString() {
+    return 'AddressEvent.searchChanged(query: $query)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$SearchChangedImpl &&
+            (identical(other.query, query) || other.query == query));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, query);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$SearchChangedImplCopyWith<_$SearchChangedImpl> get copyWith =>
+      __$$SearchChangedImplCopyWithImpl<_$SearchChangedImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loaded,
+    required TResult Function(AddressRequestModel request) added,
+    required TResult Function(int id, AddressRequestModel request) updated,
+    required TResult Function(int id) deleted,
+    required TResult Function(int id) setDefault,
+    required TResult Function(String query) searchChanged,
+  }) {
+    return searchChanged(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loaded,
+    TResult? Function(AddressRequestModel request)? added,
+    TResult? Function(int id, AddressRequestModel request)? updated,
+    TResult? Function(int id)? deleted,
+    TResult? Function(int id)? setDefault,
+    TResult? Function(String query)? searchChanged,
+  }) {
+    return searchChanged?.call(query);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loaded,
+    TResult Function(AddressRequestModel request)? added,
+    TResult Function(int id, AddressRequestModel request)? updated,
+    TResult Function(int id)? deleted,
+    TResult Function(int id)? setDefault,
+    TResult Function(String query)? searchChanged,
+    required TResult orElse(),
+  }) {
+    if (searchChanged != null) {
+      return searchChanged(query);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Loaded value) loaded,
+    required TResult Function(_Added value) added,
+    required TResult Function(_Updated value) updated,
+    required TResult Function(_Deleted value) deleted,
+    required TResult Function(_SetDefault value) setDefault,
+    required TResult Function(_SearchChanged value) searchChanged,
+  }) {
+    return searchChanged(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Loaded value)? loaded,
+    TResult? Function(_Added value)? added,
+    TResult? Function(_Updated value)? updated,
+    TResult? Function(_Deleted value)? deleted,
+    TResult? Function(_SetDefault value)? setDefault,
+    TResult? Function(_SearchChanged value)? searchChanged,
+  }) {
+    return searchChanged?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Loaded value)? loaded,
+    TResult Function(_Added value)? added,
+    TResult Function(_Updated value)? updated,
+    TResult Function(_Deleted value)? deleted,
+    TResult Function(_SetDefault value)? setDefault,
+    TResult Function(_SearchChanged value)? searchChanged,
+    required TResult orElse(),
+  }) {
+    if (searchChanged != null) {
+      return searchChanged(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchChanged implements AddressEvent {
+  const factory _SearchChanged(final String query) = _$SearchChangedImpl;
+
+  String get query;
+  @JsonKey(ignore: true)
+  _$$SearchChangedImplCopyWith<_$SearchChangedImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$AddressState {
   List<AddressModel> get addresses => throw _privateConstructorUsedError;
+  String get searchQuery => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
   bool get isAddLoading => throw _privateConstructorUsedError;
   bool get isUpdateLoading => throw _privateConstructorUsedError;
@@ -873,6 +1067,7 @@ abstract class $AddressStateCopyWith<$Res> {
   @useResult
   $Res call(
       {List<AddressModel> addresses,
+      String searchQuery,
       bool isLoading,
       bool isAddLoading,
       bool isUpdateLoading,
@@ -899,6 +1094,7 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
   @override
   $Res call({
     Object? addresses = null,
+    Object? searchQuery = null,
     Object? isLoading = null,
     Object? isAddLoading = null,
     Object? isUpdateLoading = null,
@@ -915,6 +1111,10 @@ class _$AddressStateCopyWithImpl<$Res, $Val extends AddressState>
           ? _value.addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<AddressModel>,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -969,6 +1169,7 @@ abstract class _$$AddressStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {List<AddressModel> addresses,
+      String searchQuery,
       bool isLoading,
       bool isAddLoading,
       bool isUpdateLoading,
@@ -993,6 +1194,7 @@ class __$$AddressStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? addresses = null,
+    Object? searchQuery = null,
     Object? isLoading = null,
     Object? isAddLoading = null,
     Object? isUpdateLoading = null,
@@ -1009,6 +1211,10 @@ class __$$AddressStateImplCopyWithImpl<$Res>
           ? _value._addresses
           : addresses // ignore: cast_nullable_to_non_nullable
               as List<AddressModel>,
+      searchQuery: null == searchQuery
+          ? _value.searchQuery
+          : searchQuery // ignore: cast_nullable_to_non_nullable
+              as String,
       isLoading: null == isLoading
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
@@ -1058,6 +1264,7 @@ class __$$AddressStateImplCopyWithImpl<$Res>
 class _$AddressStateImpl extends _AddressState {
   const _$AddressStateImpl(
       {final List<AddressModel> addresses = const [],
+      this.searchQuery = '',
       this.isLoading = false,
       this.isAddLoading = false,
       this.isUpdateLoading = false,
@@ -1080,6 +1287,9 @@ class _$AddressStateImpl extends _AddressState {
     return EqualUnmodifiableListView(_addresses);
   }
 
+  @override
+  @JsonKey()
+  final String searchQuery;
   @override
   @JsonKey()
   final bool isLoading;
@@ -1112,7 +1322,7 @@ class _$AddressStateImpl extends _AddressState {
 
   @override
   String toString() {
-    return 'AddressState(addresses: $addresses, isLoading: $isLoading, isAddLoading: $isAddLoading, isUpdateLoading: $isUpdateLoading, isDeleteLoading: $isDeleteLoading, isSetDefaultLoading: $isSetDefaultLoading, isAddSuccess: $isAddSuccess, isUpdateSuccess: $isUpdateSuccess, isDeleteSuccess: $isDeleteSuccess, isSetDefaultSuccess: $isSetDefaultSuccess, error: $error)';
+    return 'AddressState(addresses: $addresses, searchQuery: $searchQuery, isLoading: $isLoading, isAddLoading: $isAddLoading, isUpdateLoading: $isUpdateLoading, isDeleteLoading: $isDeleteLoading, isSetDefaultLoading: $isSetDefaultLoading, isAddSuccess: $isAddSuccess, isUpdateSuccess: $isUpdateSuccess, isDeleteSuccess: $isDeleteSuccess, isSetDefaultSuccess: $isSetDefaultSuccess, error: $error)';
   }
 
   @override
@@ -1122,6 +1332,8 @@ class _$AddressStateImpl extends _AddressState {
             other is _$AddressStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._addresses, _addresses) &&
+            (identical(other.searchQuery, searchQuery) ||
+                other.searchQuery == searchQuery) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
             (identical(other.isAddLoading, isAddLoading) ||
@@ -1147,6 +1359,7 @@ class _$AddressStateImpl extends _AddressState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_addresses),
+      searchQuery,
       isLoading,
       isAddLoading,
       isUpdateLoading,
@@ -1168,6 +1381,7 @@ class _$AddressStateImpl extends _AddressState {
 abstract class _AddressState extends AddressState {
   const factory _AddressState(
       {final List<AddressModel> addresses,
+      final String searchQuery,
       final bool isLoading,
       final bool isAddLoading,
       final bool isUpdateLoading,
@@ -1182,6 +1396,8 @@ abstract class _AddressState extends AddressState {
 
   @override
   List<AddressModel> get addresses;
+  @override
+  String get searchQuery;
   @override
   bool get isLoading;
   @override

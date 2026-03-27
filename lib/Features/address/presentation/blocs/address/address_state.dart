@@ -4,6 +4,7 @@ part of 'address_bloc.dart';
 class AddressState with _$AddressState {
   const factory AddressState({
     @Default([]) List<AddressModel> addresses,
+    @Default('') String searchQuery,
 
     @Default(false) bool isLoading,
     @Default(false) bool isAddLoading,
@@ -25,4 +26,14 @@ class AddressState with _$AddressState {
       addresses.where((a) => a.isDefault).firstOrNull;
 
   bool get hasAddresses => addresses.isNotEmpty;
+
+  List<AddressModel> get filteredAddresses {
+    if (searchQuery.trim().isEmpty) return addresses;
+    final q = searchQuery.toLowerCase();
+    return addresses.where((a) {
+      return a.nickname.toLowerCase().contains(q) ||
+          a.fullAddress.toLowerCase().contains(q) ||
+          (a.phoneNumber?.toLowerCase().contains(q) ?? false);
+    }).toList();
+  }
 }

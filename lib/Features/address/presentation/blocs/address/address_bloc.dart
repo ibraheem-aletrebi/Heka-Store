@@ -1,4 +1,3 @@
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
@@ -38,8 +37,8 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     on<_Updated>(_onUpdated);
     on<_Deleted>(_onDeleted);
     on<_SetDefault>(_onSetDefault);
+    on<_SearchChanged>(_onSearchChanged);
   }
-
 
   Future<void> _onLoaded(
     _Loaded event,
@@ -59,7 +58,6 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       )),
     );
   }
-
 
   Future<void> _onAdded(
     _Added event,
@@ -84,7 +82,6 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       )),
     );
   }
-
 
   Future<void> _onUpdated(
     _Updated event,
@@ -112,7 +109,6 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
     );
   }
 
-
   Future<void> _onDeleted(
     _Deleted event,
     Emitter<AddressState> emit,
@@ -128,9 +124,7 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
       onSuccess: (_) => emit(state.copyWith(
         isDeleteLoading: false,
         isDeleteSuccess: true,
-        addresses: state.addresses
-            .where((a) => a.id != event.id)
-            .toList(),
+        addresses: state.addresses.where((a) => a.id != event.id).toList(),
       )),
       onError: (error) => emit(state.copyWith(
         isDeleteLoading: false,
@@ -163,5 +157,12 @@ class AddressBloc extends Bloc<AddressEvent, AddressState> {
         error: error,
       )),
     );
+  }
+
+  void _onSearchChanged(
+    _SearchChanged event,
+    Emitter<AddressState> emit,
+  ) {
+    emit(state.copyWith(searchQuery: event.query));
   }
 }

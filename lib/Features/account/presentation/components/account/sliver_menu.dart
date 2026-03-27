@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/presentation/components/account/menu_item.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 
 class SliverMenu extends StatefulWidget {
   const SliverMenu({super.key});
@@ -9,7 +11,7 @@ class SliverMenu extends StatefulWidget {
 }
 
 class _SliverMenuState extends State<SliverMenu> {
-  final List<Widget> menuItems = [
+  List<Widget> get menuItems => [
     MenuItem(
       icon: Icons.shopping_bag_outlined,
       label: 'My Orders',
@@ -21,12 +23,7 @@ class _SliverMenuState extends State<SliverMenu> {
       icon: Icons.home_outlined,
       label: 'Address Book',
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   MaterialPageRoute(
-        //     // builder: (_) => const AddressManagementScreen(),
-        //   ),
-        // );
+       context.push(AppRoutes.addresses);
       },
     ),
     MenuItem(

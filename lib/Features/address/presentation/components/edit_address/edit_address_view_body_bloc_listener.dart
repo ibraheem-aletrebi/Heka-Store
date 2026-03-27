@@ -1,37 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
-import 'package:heka_store/Features/address/presentation/components/location_picker/location_picker_view_body.dart';
-import 'package:heka_store/core/app/router/app_routes.dart';
+import 'package:heka_store/Features/address/presentation/components/edit_address/edit_address_view_body.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-class LocationPickerViewBodyBlocListener extends StatelessWidget {
-  const LocationPickerViewBodyBlocListener({
-    super.key,
-    this.isOnboarding = false,
-    this.editAddress,
-  });
+class EditAddressViewBodyBlocListener extends StatelessWidget {
+  final AddressModel address;
 
-  final bool isOnboarding;
-  final AddressModel? editAddress;
+  const EditAddressViewBodyBlocListener({super.key, required this.address});
 
   @override
   Widget build(BuildContext context) {
     return MultiBlocListener(
       listeners: [
-        // ─── LocationPickerBloc: permission / error ────────────
+        // ─── Location errors / permission ──────────────────────
         BlocListener<LocationPickerBloc, LocationPickerState>(
-          listenWhen: (previous, current) =>
-              previous.isPermissionDenied != current.isPermissionDenied ||
-              previous.isPermissionDeniedForever !=
-                  current.isPermissionDeniedForever ||
-              previous.errorMessage != current.errorMessage,
+          listenWhen: (prev, curr) =>
+              prev.isPermissionDenied != curr.isPermissionDenied ||
+              prev.isPermissionDeniedForever != curr.isPermissionDeniedForever ||
+              prev.errorMessage != curr.errorMessage,
           listener: (context, state) {
             if (state.isPermissionDenied) {
               _showSnackBar(
@@ -53,34 +45,28 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
           },
         ),
 
-        // ─── AddressBloc: add / update / error ────────────────
+        // ─── Address update success / error ────────────────────
         BlocListener<AddressBloc, AddressState>(
-          listenWhen: (previous, current) =>
-              previous.isAddSuccess != current.isAddSuccess ||
-              previous.isUpdateSuccess != current.isUpdateSuccess ||
-              previous.error != current.error,
+          listenWhen: (prev, curr) =>
+              prev.isUpdateSuccess != curr.isUpdateSuccess ||
+              prev.error != curr.error,
           listener: (context, state) {
-            if (state.isAddSuccess || state.isUpdateSuccess) {
-              if (isOnboarding) {
-                context.go(AppRoutes.mainLayout);
-              } else {
-                context.pop(true); // true = list should refresh
-              }
+            if (state.isUpdateSuccess) {
+              // Pop with true so the list knows to refresh
+              Navigator.of(context).pop(true);
             }
             if (state.error != null) {
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(
-                    state.error!.serverMessage ??
-                        state.error!.failure.message(context),
-                  ),
-                ),
+              _showSnackBar(
+                context,
+                message: state.error!.serverMessage ??
+                    state.error!.failure.message(context),
+                isError: true,
               );
             }
           },
         ),
       ],
-      child: LocationPickerViewBody(),
+      child: EditAddressViewBody(address: address),
     );
   }
 
@@ -92,9 +78,8 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text(message),
-        backgroundColor: isError
-            ? context.myColors.error
-            : context.myColors.success,
+        backgroundColor:
+            isError ? context.myColors.error : context.myColors.success,
         behavior: SnackBarBehavior.floating,
         margin: EdgeInsets.only(
           bottom: 200,

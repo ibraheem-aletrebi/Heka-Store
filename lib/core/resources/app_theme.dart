@@ -256,9 +256,6 @@ class AppTheme {
       subtitleTextStyle: AppTextStyles.regular14.copyWith(
         color: AppColors.light.textSecondary,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSizes.r12),
-      ),
     ),
 
     switchTheme: SwitchThemeData(
@@ -575,9 +572,7 @@ class AppTheme {
       subtitleTextStyle: AppTextStyles.regular14.copyWith(
         color: AppColors.dark.textSecondary,
       ),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(AppSizes.r12),
-      ),
+     
     ),
 
     switchTheme: SwitchThemeData(

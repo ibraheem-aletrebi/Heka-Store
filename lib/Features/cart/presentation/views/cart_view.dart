@@ -37,7 +37,7 @@ class _CartViewState extends State<CartView> {
       ],
       child: Scaffold(
         body: SafeArea(bottom: false, child: CartViewBodyBlocBuilder()),
-        bottomNavigationBar: SizedBox(height: AppSizes.h90),
+        bottomNavigationBar: SizedBox(height: AppSizes.h70),
       ),
     );
   }

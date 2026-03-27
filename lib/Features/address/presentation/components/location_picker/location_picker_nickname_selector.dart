@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
@@ -9,7 +8,14 @@ import 'package:heka_store/core/widgets/custom_text_form_field.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class LocationPickerNicknameSelector extends StatefulWidget {
-  const LocationPickerNicknameSelector({super.key});
+  /// Pre-selected nickname when editing an existing address.
+  /// Pass null (or omit) in add mode.
+  final String? initialNickname;
+
+  const LocationPickerNicknameSelector({
+    super.key,
+    this.initialNickname,
+  });
 
   @override
   State<LocationPickerNicknameSelector> createState() =>
@@ -23,6 +29,29 @@ class _LocationPickerNicknameSelectorState
   final _customCtrl = TextEditingController();
   String? _selected;
   bool _showCustom = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _initFromNickname(widget.initialNickname);
+  }
+
+  void _initFromNickname(String? nickname) {
+    if (nickname == null || nickname.isEmpty) return;
+
+    final knownKeys = _chips.map((c) => c.$2).toList();
+    final matchedKey = knownKeys.firstWhere(
+      (key) => key.toLowerCase() == nickname.toLowerCase(),
+      orElse: () => '',
+    );
+
+    if (matchedKey.isNotEmpty) {
+      _selected = matchedKey;
+    } else {
+      _showCustom = true;
+      _customCtrl.text = nickname;
+    }
+  }
 
   String _chipLabel(BuildContext context, String key) {
     final s = S.of(context);

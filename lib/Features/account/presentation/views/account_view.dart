@@ -4,8 +4,6 @@ import 'package:heka_store/Features/account/presentation/components/account/logo
 import 'package:heka_store/Features/account/presentation/components/account/profile_header.dart';
 import 'package:heka_store/Features/account/presentation/components/account/sliver_menu.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
-import 'package:heka_store/core/widgets/custom_text_form_field.dart';
-import 'package:heka_store/core/widgets/user_avater.dart';
 
 class AccountView extends StatelessWidget {
   const AccountView({super.key});

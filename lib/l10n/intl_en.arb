@@ -299,6 +299,12 @@
     "EditProfile":"Edit Profile",
     "@EditProfile":{},
 
+    "AddressBook":"Address Book",
+    "@AddressBook":{},
+    
+    "addNewAddress":"Add New Address",
+    "@addNewAddress":{},
+
     "goodMorning": "Good morning",
     "@goodMorning": {},
     "goodAfternoon": "Good afternoon",

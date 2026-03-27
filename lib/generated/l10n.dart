@@ -1384,6 +1384,26 @@ class S {
     );
   }
 
+  /// `Address Book`
+  String get AddressBook {
+    return Intl.message(
+      'Address Book',
+      name: 'AddressBook',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add New Address`
+  String get addNewAddress {
+    return Intl.message(
+      'Add New Address',
+      name: 'addNewAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Good morning`
   String get goodMorning {
     return Intl.message(
