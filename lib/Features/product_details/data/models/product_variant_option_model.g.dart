@@ -3,6 +3,66 @@
 part of 'product_variant_option_model.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class ProductVariantOptionModelAdapter
+    extends TypeAdapter<ProductVariantOptionModel> {
+  @override
+  final int typeId = 15;
+
+  @override
+  ProductVariantOptionModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return ProductVariantOptionModel(
+      id: fields[0] as int,
+      typeName: fields[1] as String,
+      value: fields[2] as String,
+      colorHex: fields[3] as String,
+      priceAdjustment: fields[4] as double,
+      stockQuantity: fields[5] as int,
+      displayOrder: fields[6] as int,
+      isActive: fields[7] as bool,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, ProductVariantOptionModel obj) {
+    writer
+      ..writeByte(8)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.typeName)
+      ..writeByte(2)
+      ..write(obj.value)
+      ..writeByte(3)
+      ..write(obj.colorHex)
+      ..writeByte(4)
+      ..write(obj.priceAdjustment)
+      ..writeByte(5)
+      ..write(obj.stockQuantity)
+      ..writeByte(6)
+      ..write(obj.displayOrder)
+      ..writeByte(7)
+      ..write(obj.isActive);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is ProductVariantOptionModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

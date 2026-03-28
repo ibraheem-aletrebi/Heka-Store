@@ -20,7 +20,9 @@ ProductVariantModel _$ProductVariantModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductVariantModel {
+  @HiveField(0)
   String get typeName => throw _privateConstructorUsedError;
+  @HiveField(1)
   List<ProductVariantOptionModel> get options =>
       throw _privateConstructorUsedError;
 
@@ -36,7 +38,9 @@ abstract class $ProductVariantModelCopyWith<$Res> {
           ProductVariantModel value, $Res Function(ProductVariantModel) then) =
       _$ProductVariantModelCopyWithImpl<$Res, ProductVariantModel>;
   @useResult
-  $Res call({String typeName, List<ProductVariantOptionModel> options});
+  $Res call(
+      {@HiveField(0) String typeName,
+      @HiveField(1) List<ProductVariantOptionModel> options});
 }
 
 /// @nodoc
@@ -76,7 +80,9 @@ abstract class _$$ProductVariantModelImplCopyWith<$Res>
       __$$ProductVariantModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String typeName, List<ProductVariantOptionModel> options});
+  $Res call(
+      {@HiveField(0) String typeName,
+      @HiveField(1) List<ProductVariantOptionModel> options});
 }
 
 /// @nodoc
@@ -110,17 +116,19 @@ class __$$ProductVariantModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductVariantModelImpl implements _ProductVariantModel {
   const _$ProductVariantModelImpl(
-      {required this.typeName,
-      required final List<ProductVariantOptionModel> options})
+      {@HiveField(0) required this.typeName,
+      @HiveField(1) required final List<ProductVariantOptionModel> options})
       : _options = options;
 
   factory _$ProductVariantModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductVariantModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final String typeName;
   final List<ProductVariantOptionModel> _options;
   @override
+  @HiveField(1)
   List<ProductVariantOptionModel> get options {
     if (_options is EqualUnmodifiableListView) return _options;
     // ignore: implicit_dynamic_type
@@ -164,7 +172,8 @@ class _$ProductVariantModelImpl implements _ProductVariantModel {
 
 abstract class _ProductVariantModel implements ProductVariantModel {
   const factory _ProductVariantModel(
-          {required final String typeName,
+          {@HiveField(0) required final String typeName,
+          @HiveField(1)
           required final List<ProductVariantOptionModel> options}) =
       _$ProductVariantModelImpl;
 
@@ -172,8 +181,10 @@ abstract class _ProductVariantModel implements ProductVariantModel {
       _$ProductVariantModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   String get typeName;
   @override
+  @HiveField(1)
   List<ProductVariantOptionModel> get options;
   @override
   @JsonKey(ignore: true)

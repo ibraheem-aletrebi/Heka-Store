@@ -5,7 +5,7 @@ import 'package:heka_store/Features/auth/data/models/forgot_password/verify_otp_
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class AuthRemoteDataSource {

@@ -23,5 +23,6 @@ class AppRoutes {
   static const String editAddress = '/edit-address';
   static const String orders = '/orders';
   static const String editProfile = '/edit-profile';
+  
 
 }

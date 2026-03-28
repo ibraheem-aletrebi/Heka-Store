@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/interceptors/auth_interceptor.dart';
 import 'package:heka_store/core/services/remote/interceptors/logger_interceptor.dart';
 

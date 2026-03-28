@@ -2,7 +2,7 @@
 
 import 'package:heka_store/Features/wishlist/data/models/wishlist_item_model.dart';
 import 'package:heka_store/Features/wishlist/data/models/wishlist_response_model.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class WishlistRemoteDataSource {

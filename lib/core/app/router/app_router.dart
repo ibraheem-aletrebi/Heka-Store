@@ -14,6 +14,7 @@ import 'package:heka_store/Features/home/presentation/views/categories_view.dart
 import 'package:heka_store/Features/home/presentation/views/main_layout_view.dart';
 import 'package:heka_store/Features/home/presentation/views/sub_category_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
+import 'package:heka_store/Features/product_details/presentation/views/product_details_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/Features/wishlist/presentation/view/previous_viewed_products_view.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
@@ -89,6 +90,14 @@ class AppRouter {
         builder: (context, state) {
           final extra = state.extra as AddressModel;
           return EditAddressView(address: extra);
+        },
+      ),
+
+       GoRoute(
+        path: AppRoutes.productDetails,
+        builder: (context, state) {
+          final extra = state.extra as int;
+          return ProductDetailsView(productId: extra);
         },
       ),
     ],

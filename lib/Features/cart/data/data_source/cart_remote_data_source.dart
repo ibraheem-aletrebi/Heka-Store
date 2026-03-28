@@ -1,7 +1,7 @@
 import 'package:heka_store/Features/cart/data/models/cart_item_model.dart';
 import 'package:heka_store/Features/cart/data/models/cart_model.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class CartRemoteDataSource {

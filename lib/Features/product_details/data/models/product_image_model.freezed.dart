@@ -20,9 +20,13 @@ ProductImageModel _$ProductImageModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$ProductImageModel {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get imageUrl => throw _privateConstructorUsedError;
+  @HiveField(2)
   bool get isPrimary => throw _privateConstructorUsedError;
+  @HiveField(3)
   int get displayOrder => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -37,7 +41,11 @@ abstract class $ProductImageModelCopyWith<$Res> {
           ProductImageModel value, $Res Function(ProductImageModel) then) =
       _$ProductImageModelCopyWithImpl<$Res, ProductImageModel>;
   @useResult
-  $Res call({int id, String imageUrl, bool isPrimary, int displayOrder});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String imageUrl,
+      @HiveField(2) bool isPrimary,
+      @HiveField(3) int displayOrder});
 }
 
 /// @nodoc
@@ -87,7 +95,11 @@ abstract class _$$ProductImageModelImplCopyWith<$Res>
       __$$ProductImageModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String imageUrl, bool isPrimary, int displayOrder});
+  $Res call(
+      {@HiveField(0) int id,
+      @HiveField(1) String imageUrl,
+      @HiveField(2) bool isPrimary,
+      @HiveField(3) int displayOrder});
 }
 
 /// @nodoc
@@ -131,21 +143,25 @@ class __$$ProductImageModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductImageModelImpl implements _ProductImageModel {
   const _$ProductImageModelImpl(
-      {required this.id,
-      required this.imageUrl,
-      required this.isPrimary,
-      required this.displayOrder});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.imageUrl,
+      @HiveField(2) required this.isPrimary,
+      @HiveField(3) required this.displayOrder});
 
   factory _$ProductImageModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductImageModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String imageUrl;
   @override
+  @HiveField(2)
   final bool isPrimary;
   @override
+  @HiveField(3)
   final int displayOrder;
 
   @override
@@ -189,21 +205,25 @@ class _$ProductImageModelImpl implements _ProductImageModel {
 
 abstract class _ProductImageModel implements ProductImageModel {
   const factory _ProductImageModel(
-      {required final int id,
-      required final String imageUrl,
-      required final bool isPrimary,
-      required final int displayOrder}) = _$ProductImageModelImpl;
+      {@HiveField(0) required final int id,
+      @HiveField(1) required final String imageUrl,
+      @HiveField(2) required final bool isPrimary,
+      @HiveField(3) required final int displayOrder}) = _$ProductImageModelImpl;
 
   factory _ProductImageModel.fromJson(Map<String, dynamic> json) =
       _$ProductImageModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get imageUrl;
   @override
+  @HiveField(2)
   bool get isPrimary;
   @override
+  @HiveField(3)
   int get displayOrder;
   @override
   @JsonKey(ignore: true)

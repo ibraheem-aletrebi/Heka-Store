@@ -21,13 +21,21 @@ ProductVariantOptionModel _$ProductVariantOptionModelFromJson(
 
 /// @nodoc
 mixin _$ProductVariantOptionModel {
+  @HiveField(0)
   int get id => throw _privateConstructorUsedError;
+  @HiveField(1)
   String get typeName => throw _privateConstructorUsedError;
+  @HiveField(2)
   String get value => throw _privateConstructorUsedError;
+  @HiveField(3)
   String get colorHex => throw _privateConstructorUsedError;
+  @HiveField(4)
   double get priceAdjustment => throw _privateConstructorUsedError;
+  @HiveField(5)
   int get stockQuantity => throw _privateConstructorUsedError;
+  @HiveField(6)
   int get displayOrder => throw _privateConstructorUsedError;
+  @HiveField(7)
   bool get isActive => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -43,14 +51,14 @@ abstract class $ProductVariantOptionModelCopyWith<$Res> {
       _$ProductVariantOptionModelCopyWithImpl<$Res, ProductVariantOptionModel>;
   @useResult
   $Res call(
-      {int id,
-      String typeName,
-      String value,
-      String colorHex,
-      double priceAdjustment,
-      int stockQuantity,
-      int displayOrder,
-      bool isActive});
+      {@HiveField(0) int id,
+      @HiveField(1) String typeName,
+      @HiveField(2) String value,
+      @HiveField(3) String colorHex,
+      @HiveField(4) double priceAdjustment,
+      @HiveField(5) int stockQuantity,
+      @HiveField(6) int displayOrder,
+      @HiveField(7) bool isActive});
 }
 
 /// @nodoc
@@ -123,14 +131,14 @@ abstract class _$$ProductVariantOptionModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int id,
-      String typeName,
-      String value,
-      String colorHex,
-      double priceAdjustment,
-      int stockQuantity,
-      int displayOrder,
-      bool isActive});
+      {@HiveField(0) int id,
+      @HiveField(1) String typeName,
+      @HiveField(2) String value,
+      @HiveField(3) String colorHex,
+      @HiveField(4) double priceAdjustment,
+      @HiveField(5) int stockQuantity,
+      @HiveField(6) int displayOrder,
+      @HiveField(7) bool isActive});
 }
 
 /// @nodoc
@@ -196,33 +204,41 @@ class __$$ProductVariantOptionModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$ProductVariantOptionModelImpl implements _ProductVariantOptionModel {
   const _$ProductVariantOptionModelImpl(
-      {required this.id,
-      required this.typeName,
-      required this.value,
-      required this.colorHex,
-      required this.priceAdjustment,
-      required this.stockQuantity,
-      required this.displayOrder,
-      required this.isActive});
+      {@HiveField(0) required this.id,
+      @HiveField(1) required this.typeName,
+      @HiveField(2) required this.value,
+      @HiveField(3) required this.colorHex,
+      @HiveField(4) required this.priceAdjustment,
+      @HiveField(5) required this.stockQuantity,
+      @HiveField(6) required this.displayOrder,
+      @HiveField(7) required this.isActive});
 
   factory _$ProductVariantOptionModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$ProductVariantOptionModelImplFromJson(json);
 
   @override
+  @HiveField(0)
   final int id;
   @override
+  @HiveField(1)
   final String typeName;
   @override
+  @HiveField(2)
   final String value;
   @override
+  @HiveField(3)
   final String colorHex;
   @override
+  @HiveField(4)
   final double priceAdjustment;
   @override
+  @HiveField(5)
   final int stockQuantity;
   @override
+  @HiveField(6)
   final int displayOrder;
   @override
+  @HiveField(7)
   final bool isActive;
 
   @override
@@ -273,33 +289,42 @@ class _$ProductVariantOptionModelImpl implements _ProductVariantOptionModel {
 
 abstract class _ProductVariantOptionModel implements ProductVariantOptionModel {
   const factory _ProductVariantOptionModel(
-      {required final int id,
-      required final String typeName,
-      required final String value,
-      required final String colorHex,
-      required final double priceAdjustment,
-      required final int stockQuantity,
-      required final int displayOrder,
-      required final bool isActive}) = _$ProductVariantOptionModelImpl;
+          {@HiveField(0) required final int id,
+          @HiveField(1) required final String typeName,
+          @HiveField(2) required final String value,
+          @HiveField(3) required final String colorHex,
+          @HiveField(4) required final double priceAdjustment,
+          @HiveField(5) required final int stockQuantity,
+          @HiveField(6) required final int displayOrder,
+          @HiveField(7) required final bool isActive}) =
+      _$ProductVariantOptionModelImpl;
 
   factory _ProductVariantOptionModel.fromJson(Map<String, dynamic> json) =
       _$ProductVariantOptionModelImpl.fromJson;
 
   @override
+  @HiveField(0)
   int get id;
   @override
+  @HiveField(1)
   String get typeName;
   @override
+  @HiveField(2)
   String get value;
   @override
+  @HiveField(3)
   String get colorHex;
   @override
+  @HiveField(4)
   double get priceAdjustment;
   @override
+  @HiveField(5)
   int get stockQuantity;
   @override
+  @HiveField(6)
   int get displayOrder;
   @override
+  @HiveField(7)
   bool get isActive;
   @override
   @JsonKey(ignore: true)

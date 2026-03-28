@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:heka_store/core/services/local/secure_storage_service.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 
 class AuthInterceptor extends Interceptor {
   final Dio dio;

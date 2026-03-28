@@ -56,6 +56,22 @@ import 'package:heka_store/Features/home/domain/use_cases/get_recommended_produc
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/product_details/data/data_source/product_local_data_source.dart';
+import 'package:heka_store/Features/product_details/data/data_source/product_remote_data_source.dart';
+// ─── Product Details imports ──────────────────────────────────────────────────
+
+import 'package:heka_store/Features/product_details/data/models/product_details_model.dart';
+import 'package:heka_store/Features/product_details/data/models/product_image_model.dart';
+import 'package:heka_store/Features/product_details/data/models/product_variant_model.dart';
+import 'package:heka_store/Features/product_details/data/models/product_variant_option_model.dart';
+import 'package:heka_store/Features/product_details/data/repos/product_repo_imp.dart';
+import 'package:heka_store/Features/product_details/domain/repos/product_repo.dart';
+
+import 'package:heka_store/Features/product_details/domain/use_cases/get_product_details_use_case.dart';
+import 'package:heka_store/Features/product_details/domain/use_cases/get_similar_product_use_case.dart';
+import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
+import 'package:heka_store/Features/product_details/presentation/blocs/similar_products/similar_products_bloc.dart';
+// ─────────────────────────────────────────────────────────────────────────────
 import 'package:heka_store/Features/wishlist/data/data_source/previous_viewed_products_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_remote_data_source.dart';
@@ -91,6 +107,7 @@ Future<void> setupInjector() async {
   _initHome();
   _initWishlist();
   _initCart();
+  _initProductDetails(); // ← جديد
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -142,12 +159,23 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<BannerModel>(BannerModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<BrandModel>(BrandModelAdapter());
+
+  // ─── Wishlist Hive Adapters ───────────────────────
   Hive.registerAdapter<WishlistItemModel>(WishlistItemModelAdapter());
 
   // ─── Category Hive Adapters ───────────────────────
-  Hive.registerAdapter<CategoryHive>(CategoryHiveAdapter());          
-  Hive.registerAdapter<CategoriesDataHive>(CategoriesDataHiveAdapter()); 
+  Hive.registerAdapter<CategoryHive>(CategoryHiveAdapter());
+  Hive.registerAdapter<CategoriesDataHive>(CategoriesDataHiveAdapter());
+
+  // ─── Product Details Hive Adapters ───────────────
+  Hive.registerAdapter<ProductDetailsModel>(ProductDetailsModelAdapter());
+  Hive.registerAdapter<ProductImageModel>(ProductImageModelAdapter());
+  Hive.registerAdapter<ProductVariantModel>(ProductVariantModelAdapter());
+  Hive.registerAdapter<ProductVariantOptionModel>(
+    ProductVariantOptionModelAdapter(),
+  );
 }
+
 // ─── Auth ─────────────────────────────────────────────────────────────────────
 
 void _initAuth() {
@@ -155,7 +183,6 @@ void _initAuth() {
   sl.registerLazySingleton<AuthRemoteDataSource>(
     () => AuthRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
-
   sl.registerLazySingleton<AuthLocalDataSource>(
     () => AuthLocalDataSourceImpl(
       secureStorage: sl<SecureStorageService>(),
@@ -211,8 +238,11 @@ void _initAuth() {
   );
 }
 
+// ─── Address ──────────────────────────────────────────────────────────────────
+
 void _initAddress() {
   sl.registerLazySingleton<NominatimService>(() => NominatimService());
+
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<AddressRemoteDataSource>(
     () => AddressRemoteDataSourceImpl(apiService: sl<ApiService>()),
@@ -250,7 +280,6 @@ void _initAddress() {
   sl.registerFactory<LocationPickerBloc>(
     () => LocationPickerBloc(nominatimService: sl<NominatimService>()),
   );
-
   sl.registerFactory<AddressBloc>(
     () => AddressBloc(
       getAddressesUseCase: sl<GetAddressesUseCase>(),
@@ -261,6 +290,9 @@ void _initAddress() {
     ),
   );
 }
+
+// ─── Home ─────────────────────────────────────────────────────────────────────
+
 void _initHome() {
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<HomeRemoteDataSource>(
@@ -301,13 +333,9 @@ void _initHome() {
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
     ),
   );
-
   sl.registerFactory<CategoriesBloc>(
-    () => CategoriesBloc(
-      getCategoriesUseCase: sl<GetCategoriesUseCase>(),
-    ),
+    () => CategoriesBloc(getCategoriesUseCase: sl<GetCategoriesUseCase>()),
   );
-
   sl.registerFactory<HomeBloc>(
     () => HomeBloc(
       getBannersUseCase: sl<GetBannersUseCase>(),
@@ -317,20 +345,21 @@ void _initHome() {
     ),
   );
 }
+
+// ─── Wishlist ─────────────────────────────────────────────────────────────────
+
 void _initWishlist() {
   sl.registerLazySingleton<PreviousViewedProductsDataSource>(
     () => PreviousViewedProductsDataSourceImpl(
       localStorage: sl<LocalStorageService>(),
     ),
   );
-
   sl.registerLazySingleton<WishlistRemoteDataSource>(
     () => WishlistRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
   sl.registerLazySingleton<WishlistLocalDataSource>(
     () => WishlistLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
   );
-
   sl.registerLazySingleton<WishlistRepo>(
     () => WishlistRepoImpl(
       remoteDataSource: sl<WishlistRemoteDataSource>(),
@@ -349,7 +378,6 @@ void _initWishlist() {
   sl.registerFactory<IsInWishlistUseCase>(
     () => IsInWishlistUseCase(repo: sl<WishlistRepo>()),
   );
-
   sl.registerFactory<PreviousViewedProductsBloc>(
     () => PreviousViewedProductsBloc(
       dataSource: sl<PreviousViewedProductsDataSource>(),
@@ -363,6 +391,8 @@ void _initWishlist() {
     ),
   );
 }
+
+// ─── Cart ─────────────────────────────────────────────────────────────────────
 
 void _initCart() {
   // ─── DataSources ──────────────────────────────────
@@ -404,11 +434,10 @@ void _initCart() {
     () => GetProductsYouMayLike(sl<CartRepository>()),
   );
 
-  // ─── BLoC ─────────────────────────────────────────
+  // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<MayLikeBloc>(
     () => MayLikeBloc(getProductsYouMayLike: sl<GetProductsYouMayLike>()),
   );
-
   sl.registerLazySingleton<CartBloc>(
     () => CartBloc(
       getCart: sl<GetCartUseCase>(),
@@ -417,6 +446,47 @@ void _initCart() {
       removeItem: sl<RemoveCartItemUseCase>(),
       getCount: sl<GetCartCountUseCase>(),
       clearCart: sl<ClearCartUseCase>(),
+    ),
+  );
+}
+
+// ─── Product Details ──────────────────────────────────────────────────────────
+
+void _initProductDetails() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<ProductRemoteDataSource>(
+    // ← abstract مش Impl
+    () => ProductRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<ProductLocalDataSource>(
+    () => ProductLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<ProductRepo>(
+    () => ProductRepoImpl(
+      remoteDataSource: sl<ProductRemoteDataSource>(),
+      localDataSource: sl<ProductLocalDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<GetProductDetailsUseCase>(
+    () => GetProductDetailsUseCase(repo: sl<ProductRepo>()),
+  );
+  sl.registerFactory<GetSimilarProductsUseCase>(
+    () => GetSimilarProductsUseCase(repo: sl<ProductRepo>()),
+  );
+
+  // ─── BLoCs ────────────────────────────────────────
+  sl.registerFactory<ProductDetailsBloc>(
+    () => ProductDetailsBloc(
+      getProductDetailsUseCase: sl<GetProductDetailsUseCase>(),
+    ),
+  );
+  sl.registerFactory<SimilarProductsBloc>(
+    () => SimilarProductsBloc(
+      getSimilarProductsUseCase: sl<GetSimilarProductsUseCase>(),
     ),
   );
 }

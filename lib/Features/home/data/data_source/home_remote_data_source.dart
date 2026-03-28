@@ -1,7 +1,7 @@
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
-import 'package:heka_store/core/services/remote/api_constants.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 import 'package:heka_store/Features/home/data/models/category/categories_data.dart'; // ← with pagination
