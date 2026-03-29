@@ -7,17 +7,24 @@ import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/di/injector.dart';
 
-class MainLayoutView extends StatelessWidget {
+class MainLayoutView extends StatefulWidget {
   const MainLayoutView({super.key});
 
+  @override
+  State<MainLayoutView> createState() => _MainLayoutViewState();
+}
+
+class _MainLayoutViewState extends State<MainLayoutView> {
+
+  @override
+  void initState() {
+    context.read<CartBloc>().add(const CartEvent.loaded());
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider<CartBloc>(
-          create: (context) =>
-              sl<CartBloc>()..add(const CartEvent.countFetched()),
-        ),
         BlocProvider<MainLayoutBloc>(
           create: (context) =>
               MainLayoutBloc(cartBloc: context.read<CartBloc>()),
@@ -30,6 +37,8 @@ class MainLayoutView extends StatelessWidget {
           create: (context) => sl<PreviousViewedProductsBloc>(),
         ),
       ],
+
+      
       child: const Scaffold(
         extendBody: true,
         body: SafeArea(child: MainLayoutViewBody()),

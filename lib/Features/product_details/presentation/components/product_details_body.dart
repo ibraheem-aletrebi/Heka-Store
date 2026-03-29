@@ -13,6 +13,7 @@ import 'package:heka_store/Features/product_details/presentation/components/prod
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   const ProductDetailsBody({super.key});
@@ -20,15 +21,14 @@ class ProductDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<ProductDetailsBloc, ProductDetailsState>(
-      listenWhen: (prev, curr) =>
-          prev.product == null && curr.product != null,
+      listenWhen: (prev, curr) => prev.product == null && curr.product != null,
       listener: (context, state) {
         context.read<SimilarProductsBloc>().add(
-              SimilarProductsEvent.started(
-                categoryId: state.product!.categoryId,
-                excludeProductId: state.product!.id,
-              ),
-            );
+          SimilarProductsEvent.started(
+            categoryId: state.product!.categoryId,
+            excludeProductId: state.product!.id,
+          ),
+        );
       },
       builder: (context, state) {
         if (state.isLoading) {
@@ -38,25 +38,26 @@ class ProductDetailsBody extends StatelessWidget {
         }
 
         if (state.error != null) {
-          return Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(Icons.error_outline_rounded,
-                      size: 48, color: context.myColors.error),
-                  const SizedBox(height: 12),
-                  Text(
-                    state.error!.failure.message(context),
-                    textAlign: TextAlign.center,
-                  ),
-                  const SizedBox(height: 16),
-                  ElevatedButton(
-                    onPressed: () => context.pop(),
-                    child: const Text('Go Back'),
-                  ),
-                ],
-              ),
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.error_outline_rounded,
+                  size: AppSizes.w48,
+                  color: context.myColors.error,
+                ),
+                const SizedBox(height: 12),
+                Text(
+                  state.error!.failure.message(context),
+                  textAlign: TextAlign.center,
+                ),
+                const SizedBox(height: 16),
+                CustomButton.outlined(
+                  onPressed: () => context.pop(),
+                  text: 'Go back',
+                ),
+              ],
             ),
           );
         }
@@ -66,76 +67,72 @@ class ProductDetailsBody extends StatelessWidget {
         final product = state.product!;
         final langCode = context.read<LanguageBloc>().state.languageCode;
 
-        return Scaffold(
-          backgroundColor: context.myColors.background,
-          body: Stack(
-            children: [
-              CustomScrollView(
-                slivers: [
-                  SliverAppBar(
-                    expandedHeight: 320,
-                    pinned: true,
-                    backgroundColor: context.myColors.background,
-                    leading: GestureDetector(
-                      onTap: () => context.pop(),
-                      child: Container(
-                        margin: EdgeInsets.all(AppSizes.w8),
-                        decoration: BoxDecoration(
-                          color: context.myColors.surface,
-                          borderRadius: BorderRadius.circular(AppSizes.r12),
-                        ),
-                        child: Icon(
-                          Icons.arrow_back_ios_new_rounded,
-                          size: AppSizes.sp18,
-                          color: context.myColors.textPrimary,
-                        ),
+        return Stack(
+          children: [
+            CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  expandedHeight: 320,
+                  pinned: true,
+                  backgroundColor: context.myColors.background,
+                  leading: GestureDetector(
+                    onTap: () => context.pop(),
+                    child: Container(
+                      margin: EdgeInsets.all(AppSizes.w8),
+                      decoration: BoxDecoration(
+                        color: context.myColors.surface,
+                        borderRadius: BorderRadius.circular(AppSizes.r12),
                       ),
-                    ),
-                    flexibleSpace: FlexibleSpaceBar(
-                      background: ProductImageGallery(
-                        images: product.images,
-                        currentIndex: state.currentImageIndex,
-                        onPageChanged: (index) => context
-                            .read<ProductDetailsBloc>()
-                            .add(ProductDetailsEvent.imagePageChanged(index)),
+                      child: Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: AppSizes.sp18,
+                        color: context.myColors.textPrimary,
                       ),
                     ),
                   ),
-                  SliverToBoxAdapter(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        ProductInfoSection(product: product, langCode: langCode),
+                  flexibleSpace: FlexibleSpaceBar(
+                    background: ProductImageGallery(
+                      images: product.images,
+                      currentIndex: state.currentImageIndex,
+                      onPageChanged: (index) => context
+                          .read<ProductDetailsBloc>()
+                          .add(ProductDetailsEvent.imagePageChanged(index)),
+                    ),
+                  ),
+                ),
+                SliverToBoxAdapter(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      ProductInfoSection(product: product, langCode: langCode),
+                      _divider(context),
+                      if (product.variants.isNotEmpty) ...[
+                        ProductVariantsSection(product: product),
                         _divider(context),
-                        if (product.variants.isNotEmpty) ...[
-                          ProductVariantsSection(product: product),
-                          _divider(context),
-                        ],
-                        ProductVendorSection(product: product, langCode: langCode),
-                        _divider(context),
-                        const ProductSimilarSection(),
-                        SizedBox(height: AppSizes.h80 + AppSizes.h24),
                       ],
-                    ),
+                      ProductVendorSection(
+                        product: product,
+                        langCode: langCode,
+                      ),
+                      _divider(context),
+                      ProductSimilarSection(product: product),
+                      SizedBox(height: AppSizes.h80 + AppSizes.h24),
+                    ],
                   ),
-                ],
-              ),
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: ProductAddToCartBar(product: product, state: state),
-              ),
-            ],
-          ),
+                ),
+              ],
+            ),
+            Positioned(
+              left: 0,
+              right: 0,
+              bottom: 0,
+              child: ProductAddToCartBar(product: product, state: state),
+            ),
+          ],
         );
       },
     );
   }
 
-  Widget _divider(BuildContext context) => Divider(
-        color: context.myColors.border,
-        thickness: 1,
-        height: 1,
-      );
+  Widget _divider(BuildContext context) => Divider(thickness: 1, height: 1);
 }

@@ -4,7 +4,6 @@ import 'package:heka_store/Features/product_details/presentation/blocs/product_d
 import 'package:heka_store/Features/product_details/presentation/blocs/similar_products/similar_products_bloc.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_details_body.dart';
 import 'package:heka_store/core/di/injector.dart';
-import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
 
 class ProductDetailsView extends StatelessWidget {
   final int productId;
@@ -21,16 +20,7 @@ class ProductDetailsView extends StatelessWidget {
         ),
         BlocProvider(create: (_) => sl<SimilarProductsBloc>()),
       ],
-      child: Scaffold(
-        body: SafeArea(
-          child: Builder(
-            builder: (context) => CustomSkeletonizer(
-              enable: context.read<ProductDetailsBloc>().state.isLoading,
-              child: const ProductDetailsBody(),
-            ),
-          ),
-        ),
-      ),
+      child: Scaffold(body: SafeArea(child: const ProductDetailsBody())),
     );
   }
 }

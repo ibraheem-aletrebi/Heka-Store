@@ -15,26 +15,25 @@ class ProductVariantsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
-      buildWhen: (prev, curr) =>
-          prev.selectedOptions != curr.selectedOptions,
+      buildWhen: (prev, curr) => prev.selectedOptions != curr.selectedOptions,
       builder: (context, state) {
         return Padding(
-          padding: EdgeInsets.all(AppSizes.w20),
+          padding: EdgeInsets.all(AppSizes.w16),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: product.variants.map((variant) {
               return Padding(
-                padding: EdgeInsets.only(bottom: AppSizes.h20),
+                padding: EdgeInsets.only(bottom: AppSizes.w8),
                 child: _VariantRow(
                   typeName: variant.typeName,
                   options: variant.options,
                   selectedOption: state.selectedOptions[variant.typeName],
-                  onSelect: (option) => context
-                      .read<ProductDetailsBloc>()
-                      .add(ProductDetailsEvent.variantOptionSelected(
-                        variant.typeName,
-                        option,
-                      )),
+                  onSelect: (option) => context.read<ProductDetailsBloc>().add(
+                    ProductDetailsEvent.variantOptionSelected(
+                      variant.typeName,
+                      option,
+                    ),
+                  ),
                 ),
               );
             }).toList(),
@@ -67,7 +66,6 @@ class _VariantRow extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        // ─── Type label + selected value ────────────
         Row(
           children: [
             Text(
@@ -96,13 +94,10 @@ class _VariantRow extends StatelessWidget {
             ],
           ],
         ),
-
-        SizedBox(height: AppSizes.h10),
-
-        // ─── Option chips ────────────────────────────
+        SizedBox(height: AppSizes.h8),
         Wrap(
           spacing: AppSizes.w8,
-          runSpacing: AppSizes.h8,
+          runSpacing: AppSizes.h4,
           children: options.map((option) {
             final isSelected = selectedOption?.id == option.id;
             final isOutOfStock = option.stockQuantity == 0;
@@ -144,8 +139,7 @@ class _ColorChip extends StatelessWidget {
 
   Color get _parsedColor {
     try {
-      return Color(
-          int.parse(option.colorHex.replaceFirst('#', '0xFF')));
+      return Color(int.parse(option.colorHex.replaceFirst('#', '0xFF')));
     } catch (_) {
       return Colors.grey;
     }
@@ -160,8 +154,8 @@ class _ColorChip extends StatelessWidget {
         opacity: isOutOfStock ? 0.4 : 1.0,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
-          width: 36,
-          height: 36,
+          width: AppSizes.w38,
+          height: AppSizes.w38,
           decoration: BoxDecoration(
             color: _parsedColor,
             shape: BoxShape.circle,
@@ -171,8 +165,7 @@ class _ColorChip extends StatelessWidget {
             ),
           ),
           child: isSelected
-              ? Icon(Icons.check_rounded,
-                  size: 16, color: Colors.white)
+              ? Icon(Icons.check_rounded, size: 16, color: Colors.white)
               : null,
         ),
       ),
@@ -217,8 +210,7 @@ class _TextChip extends StatelessWidget {
             option.value,
             style: AppTextStyles.regular13.copyWith(
               color: isSelected ? Colors.white : colors.textSecondary,
-              fontWeight:
-                  isSelected ? FontWeight.w600 : FontWeight.w400,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
             ),
           ),
         ),

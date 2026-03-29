@@ -19,7 +19,6 @@ class HekaStoreApp extends StatelessWidget {
           return GestureDetector(
             onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
             child: MaterialApp.router(
-              
               routerConfig: sl<AppRouter>().router,
               locale: Locale(langState.languageCode),
               localizationsDelegates: const [

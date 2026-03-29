@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
 
 import 'package:heka_store/Features/product_details/data/models/product_details_model.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
@@ -133,12 +134,13 @@ class ProductAddToCartBar extends StatelessWidget {
   }
 
   void _onAddToCart(BuildContext context) {
-    // TODO: dispatch cart event
-    // context.read<CartBloc>().add(CartEvent.added(
-    //   productId: product.id,
-    //   quantity: state.quantity,
-    //   selectedOptions: state.selectedOptions,
-    // ));
+    context.read<CartBloc>().add(
+      CartEvent.itemAdded(
+        productId: product.id,
+        quantity: state.quantity,
+        // selectedOptions: state.selectedOptions,
+      ),
+    );
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Added ${state.quantity}x to cart'),

@@ -20,7 +20,6 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
   const ProductLocalDataSourceImpl({required LocalStorageService localStorage})
       : _localStorage = localStorage;
 
-  // ── Product Details ───────────────────────────────────────────
 
   @override
   Future<void> saveProductDetails(ProductDetailsModel product) async {

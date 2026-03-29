@@ -93,11 +93,11 @@ class AppRouter {
         },
       ),
 
-       GoRoute(
+      GoRoute(
         path: AppRoutes.productDetails,
         builder: (context, state) {
           final extra = state.extra as int;
-          return ProductDetailsView(productId: extra);
+          return ProductDetailsView(productId: extra,);
         },
       ),
     ],
