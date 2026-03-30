@@ -53,6 +53,8 @@ import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.da
 import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
+import 'package:heka_store/Features/home/domain/use_cases/get_user_profile_use_case.dart';
+import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
@@ -90,6 +92,7 @@ import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/enums/app_theme_mode_enum.dart';
+import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/local/secure_storage_service.dart';
 import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
@@ -107,7 +110,7 @@ Future<void> setupInjector() async {
   _initHome();
   _initWishlist();
   _initCart();
-  _initProductDetails(); // ← جديد
+  _initProductDetails();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -155,6 +158,7 @@ Future<void> _initCore() async {
 Future<void> _registerAdapters() async {
   Hive.registerAdapter<AppThemeModeEnum>(AppThemeModeEnumAdapter());
   Hive.registerAdapter<UserModel>(UserModelAdapter());
+  Hive.registerAdapter<UserProfile>(UserProfileAdapter());
   Hive.registerAdapter<AddressModel>(AddressModelAdapter());
   Hive.registerAdapter<BannerModel>(BannerModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
@@ -327,7 +331,15 @@ void _initHome() {
     () => GetBrandsUseCase(repo: sl<HomeRepo>()),
   );
 
+  sl.registerFactory<GetUserProfileUseCase>(
+    () => GetUserProfileUseCase(repo: sl<HomeRepo>()),
+  );
+
   // ─── BLoCs ────────────────────────────────────────
+
+  sl.registerFactory<UserProfileBloc>(
+    () => UserProfileBloc(getUserProfileUseCase: sl<GetUserProfileUseCase>()),
+  );
   sl.registerFactory<RecommendedForYouBloc>(
     () => RecommendedForYouBloc(
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),

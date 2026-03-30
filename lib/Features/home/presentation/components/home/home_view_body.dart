@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_stores_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/featured_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/categories_section.dart';
@@ -18,6 +20,10 @@ class HomeViewBody extends StatelessWidget {
     return RefreshIndicator(
       onRefresh: () async {
         context.read<HomeBloc>().add(const HomeEvent.refreshed());
+        context.read<RecommendedForYouBloc>().add(
+          const RecommendedForYouEvent.reLoaded(),
+        );
+        context.read<CategoriesBloc>().add(const CategoriesEvent.reloaded());
       },
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),

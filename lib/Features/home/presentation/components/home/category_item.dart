@@ -21,7 +21,7 @@ class CategoryItem extends StatelessWidget {
         child: Column(
           children: [
             AspectRatio(
-              aspectRatio: .9,
+              aspectRatio: 1,
               child: Container(
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(

@@ -5,6 +5,7 @@ import 'package:heka_store/Features/home/data/models/category/categories_data_hi
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
+import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 abstract class HomeLocalDataSource {
@@ -12,7 +13,10 @@ abstract class HomeLocalDataSource {
   List<BannerModel> getBanners();
 
   Future<void> saveCategories(CategoriesData categoriesData);  
-  CategoriesData? getCachedCategories();                      
+  CategoriesData? getCachedCategories();    
+
+  Future<void> saveUserProfile(UserProfile userProfileModel);   
+  UserProfile? getUserProfile();               
 
   Future<void> saveRecommendedProducts(List<ProductModel> products);
   List<ProductModel> getRecommendedProducts();
@@ -155,5 +159,23 @@ class HomeLocalDataSourceImpl implements HomeLocalDataSource {
   @override
   Future<void> clearAll() async {
     await _localStorage.clearBox(HiveBoxes.home);
+  }
+  
+  @override
+  UserProfile? getUserProfile() {
+     final data = _localStorage.getValue<UserProfile>(
+      HiveBoxes.data,
+      LocalStorageKeys.userProfile,
+    );
+    return data;
+  }
+  
+  @override
+  Future<void> saveUserProfile(UserProfile userProfileModel) {
+    return _localStorage.setValue<UserProfile>(
+      HiveBoxes.data,
+      LocalStorageKeys.userProfile,
+      userProfileModel,
+    );
   }
 }

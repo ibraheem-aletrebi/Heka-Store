@@ -5,6 +5,7 @@ import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/category/categories_data.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
 import 'package:heka_store/Features/home/domain/repos/home_repo.dart';
+import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
 
@@ -34,16 +35,11 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   // ─── Categories ───────────────────────────────────────────────────────────
-@override
+  @override
   Future<ApiResult<CategoriesData>> getCategories({
     int pageNumber = 1,
     int pageSize = 20,
   }) async {
-    if (pageNumber == 1) {
-      final cached = _localDataSource.getCachedCategories();
-      if (cached != null) return ApiResult.success(cached);
-    }
-
     try {
       final response = await _remoteDataSource.getCategories(
         pageNumber: pageNumber,
@@ -61,7 +57,6 @@ class HomeRepoImpl implements HomeRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
-
 
   @override
   Future<ApiResult<ProductsResponseModel>> getRecommendedProducts({
@@ -115,7 +110,6 @@ class HomeRepoImpl implements HomeRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
-
 
   @override
   Future<ApiResult<ProductsResponseModel>> getFeaturedProducts({
@@ -183,4 +177,14 @@ class HomeRepoImpl implements HomeRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
+
+ @override
+Future<ApiResult<UserProfile>> getUserProfile() async {
+  try {
+    final response = await _remoteDataSource.getUserProfile();
+    return ApiResult.success(response.data!);
+  } catch (e) {
+    return ApiResult.error(ApiErrorHandler.instance.handle(e));
+  }
+}
 }

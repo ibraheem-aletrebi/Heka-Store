@@ -47,7 +47,6 @@ class CategoriesBloc extends Bloc<CategoriesEvent, CategoriesState> {
     ));
 
     await _fetchCategories(emit);
-
     emit(state.copyWith(isRefreshing: false));
   }
 

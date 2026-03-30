@@ -33,9 +33,10 @@ class _CartBottomBarState extends State<CartBottomBar>
       curve: Curves.easeOutCubic,
       reverseCurve: Curves.easeInCubic,
     );
-    _arrowAnim = Tween<double>(begin: 0, end: 0.5).animate(
-      CurvedAnimation(parent: _sheetCtrl, curve: Curves.easeOut),
-    );
+    _arrowAnim = Tween<double>(
+      begin: 0,
+      end: 0.5,
+    ).animate(CurvedAnimation(parent: _sheetCtrl, curve: Curves.easeOut));
   }
 
   @override
@@ -57,9 +58,6 @@ class _CartBottomBarState extends State<CartBottomBar>
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        // ════════════════════════════════════
-        //  Summary Sheet
-        // ════════════════════════════════════
         SizeTransition(
           sizeFactor: _sheetAnim,
           axisAlignment: -1,
@@ -77,7 +75,6 @@ class _CartBottomBarState extends State<CartBottomBar>
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                // ── Drag Handle ──
                 Center(
                   child: Container(
                     width: 40,
@@ -153,10 +150,6 @@ class _CartBottomBarState extends State<CartBottomBar>
             ),
           ),
         ),
-
-        // ════════════════════════════════════
-        //  Bottom Bar
-        // ════════════════════════════════════
         Container(
           padding: EdgeInsets.fromLTRB(
             AppSizes.w16,
@@ -172,7 +165,6 @@ class _CartBottomBarState extends State<CartBottomBar>
             top: false,
             child: Row(
               children: [
-                // ── Total + toggle arrow ──
                 GestureDetector(
                   onTap: _toggleSummary,
                   behavior: HitTestBehavior.opaque,
@@ -219,9 +211,15 @@ class _CartBottomBarState extends State<CartBottomBar>
                 // ── Checkout Button ──
                 Expanded(
                   child: GestureDetector(
-                    onTap: cart.hasOutOfStockItems ? null : () {
-                      // TODO: navigate to checkout
-                    },
+                    onTap: cart.hasOutOfStockItems
+                        ? null
+                        : () {
+                            // Navigator.of(context).push(
+                            //   MaterialPageRoute(
+                            //     builder: (_) => CreateOrderScreen(),
+                            //   ),
+                            // );
+                          },
                     child: AnimatedContainer(
                       duration: const Duration(milliseconds: 200),
                       height: 50,

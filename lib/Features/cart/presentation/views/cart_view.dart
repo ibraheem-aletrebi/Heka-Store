@@ -5,6 +5,7 @@ import 'package:heka_store/Features/cart/presentation/blocs/products_you_may_lik
 import 'package:heka_store/Features/cart/presentation/components/cart_view_body_bloc_builder.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/core/di/injector.dart';
+import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
 class CartView extends StatefulWidget {
@@ -37,7 +38,9 @@ class _CartViewState extends State<CartView> {
       ],
       child: Scaffold(
         body: SafeArea(bottom: false, child: CartViewBodyBlocBuilder()),
-        bottomNavigationBar: SizedBox(height: AppSizes.h70),
+        bottomNavigationBar: SizedBox(
+          height: context.height * 0.1 + AppSizes.w12,
+        ),
       ),
     );
   }

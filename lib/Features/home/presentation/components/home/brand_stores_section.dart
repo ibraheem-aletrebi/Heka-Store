@@ -10,8 +10,6 @@ import 'package:heka_store/generated/l10n.dart';
 
 class BrandStoresSection extends StatelessWidget {
   const BrandStoresSection({super.key});
-
-  // ─── Fallback ─────────────────────────────────────
   static const _fallbackBrands = [
     Brand(name: 'Bata', rating: 4.5, reviews: '4.4k', isVerified: true),
     Brand(name: 'Adidas', rating: 4.5, reviews: '4.4k', isVerified: true),
@@ -26,7 +24,6 @@ class BrandStoresSection extends StatelessWidget {
       buildWhen: (p, c) =>
           p.brands != c.brands || p.isBrandsLoading != c.isBrandsLoading,
       builder: (context, state) {
-        // ─── Loading ──────────────────────────────────
         if (state.isBrandsLoading) {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -34,7 +31,7 @@ class BrandStoresSection extends StatelessWidget {
               SectionHeader(title: S.of(context).brandStores, onSeeAll: () {}),
               SizedBox(height: AppSizes.h12),
               SizedBox(
-                height: MediaQuery.sizeOf(context).height * 0.2,
+                height: MediaQuery.sizeOf(context).height * 0.35,
                 child: ListView.separated(
                   scrollDirection: Axis.horizontal,
                   padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
@@ -92,7 +89,7 @@ class BrandStoresSection extends StatelessWidget {
             SectionHeader(title: S.of(context).brandStores, onSeeAll: () {}),
             SizedBox(height: AppSizes.h14),
             SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.3,
+              height: MediaQuery.sizeOf(context).height * 0.35,
               child: ListView.separated(
                 physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,

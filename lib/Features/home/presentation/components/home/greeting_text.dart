@@ -15,29 +15,28 @@ class GreetingText extends StatelessWidget {
     return s.goodEvening;
   }
 
-  String _displayName(BuildContext context) =>
-      name?.trim().split(' ').first ?? S.of(context).guest;
-
-  String _prefix(BuildContext context) => name != null
-      ? '${_greeting(context)}, '
-      : '${S.of(context).hello}, ';
+  String? _firstName() => name?.trim().split(' ').first;
 
   @override
   Widget build(BuildContext context) {
     final c = context.myColors;
+    final firstName = _firstName();
 
     return RichText(
       overflow: TextOverflow.ellipsis,
       text: TextSpan(
         children: [
           TextSpan(
-            text: _prefix(context),
+            text: firstName != null
+                ? '${_greeting(context)}, '
+                : _greeting(context),
             style: AppTextStyles.regular13.copyWith(color: c.textHint),
           ),
-          TextSpan(
-            text: '${_displayName(context)} 👋',
-            style: AppTextStyles.semiBold13.copyWith(color: c.textPrimary),
-          ),
+          if (firstName != null)
+            TextSpan(
+              text: '$firstName 👋',
+              style: AppTextStyles.semiBold13.copyWith(color: c.textPrimary),
+            ),
         ],
       ),
     );

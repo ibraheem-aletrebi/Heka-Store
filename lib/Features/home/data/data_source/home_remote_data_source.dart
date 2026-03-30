@@ -2,16 +2,16 @@ import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
 import 'package:heka_store/core/constants/api_constants.dart';
+import 'package:heka_store/core/models/user_profile/user_profile_response.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 import 'package:heka_store/Features/home/data/models/category/categories_data.dart'; // ← with pagination
 
 abstract class HomeRemoteDataSource {
   Future<List<BannerModel>> getBanners();
-  Future<CategoriesData> getCategories({
-    int pageNumber = 1,
-    int pageSize = 20,
-  });             
+  Future<CategoriesData> getCategories({int pageNumber = 1, int pageSize = 20});
+
+  Future<UserProfileResponse> getUserProfile();
   Future<ProductsResponseModel> getRecommendedProducts({
     int pageNumber = 1,
     int pageSize = 10,
@@ -26,7 +26,7 @@ abstract class HomeRemoteDataSource {
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   final ApiService _apiService;
   const HomeRemoteDataSourceImpl({required ApiService apiService})
-      : _apiService = apiService;
+    : _apiService = apiService;
 
   @override
   Future<List<BannerModel>> getBanners() async {
@@ -82,5 +82,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
     return data
         .map((e) => BrandModel.fromJson(e as Map<String, dynamic>))
         .toList();
+  }
+
+  @override
+  Future<UserProfileResponse> getUserProfile() async {
+    final response = await _apiService.get(ApiConstants.userProfile);
+    return UserProfileResponse.fromJson(response.data as Map<String, dynamic>);
   }
 }

@@ -5,6 +5,7 @@ class LocalStorageKeys {
   static const String continueAsGuest = 'continueAsGuest';
 
   static const String user = 'user';
+  static const String userProfile = 'userProfile';
   static const String addresses = 'addresses';
   static const String banners = 'banners';
   static const String categories = 'categories';

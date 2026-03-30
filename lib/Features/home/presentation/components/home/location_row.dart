@@ -16,20 +16,19 @@ class LocationRow extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         children: [
           Icon(Icons.location_on_rounded, color: c.primary, size: 13),
           SizedBox(width: AppSizes.w2),
-          Text(
-            location,
-            style: AppTextStyles.semiBold12.copyWith(color: c.textPrimary),
+          Flexible(
+            child: Text(
+              location,
+              style: AppTextStyles.semiBold12.copyWith(color: c.textPrimary),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+            ),
           ),
           SizedBox(width: AppSizes.w2),
-          Icon(
-            Icons.keyboard_arrow_down_rounded,
-            color: c.textSecondary,
-            size: 14,
-          ),
+          Icon(Icons.keyboard_arrow_down_rounded, size: AppSizes.sp16),
         ],
       ),
     );

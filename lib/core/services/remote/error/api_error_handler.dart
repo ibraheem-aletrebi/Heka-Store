@@ -14,13 +14,9 @@ class ApiErrorHandler {
 
   VoidCallback? _onUnauthorized;
 
-  // ─── Init ─────────────────────────────────────────────────────────────────
-
   void init({VoidCallback? onUnauthorized}) {
     _onUnauthorized = onUnauthorized;
   }
-
-  // ─── Handle ───────────────────────────────────────────────────────────────
 
   ApiErrorModel handle(dynamic e) {
     if (e is DioException) return _handleDioException(e);
@@ -29,8 +25,6 @@ class ApiErrorHandler {
     if (e is Exception) return _handleGenericException(e);
     return _build(RemoteFailure.unknown);
   }
-
-  // ─── Dio ──────────────────────────────────────────────────────────────────
 
   ApiErrorModel _handleDioException(DioException e) {
     return switch (e.type) {
@@ -57,29 +51,22 @@ class ApiErrorHandler {
     final data = e.response?.data;
     final serverMsg = _extractServerMessage(data);
     final validationErrors = _extractValidationErrors(data);
-
-    // ─── Session expired ──────────────────────────────
-    if ([419, 440, 498, 499].contains(statusCode)) {
+    if ([419, 440, 498, 499, 401].contains(statusCode)) {
       return _build(
         RemoteFailure.tokenExpired,
         serverMessage: serverMsg,
         validationErrors: validationErrors,
       );
     }
-
-    // ─── 401 ─────────────────────────────────────────
     if (statusCode == 401) {
-      final failure = _resolve401(serverMsg);
-      if (failure == RemoteFailure.unauthorized) {
         _handleUnauthorized();
-      }
+      final failure = _resolve401(serverMsg);
       return _build(
         failure,
         serverMessage: serverMsg,
         validationErrors: validationErrors,
       );
     }
-
     return _build(
       RemoteFailure.fromStatusCode(statusCode),
       serverMessage: serverMsg,
@@ -87,20 +74,15 @@ class ApiErrorHandler {
     );
   }
 
-  // ─── 401 Resolver ─────────────────────────────────────────────────────────
-
   RemoteFailure _resolve401(String? message) {
     if (message == null) return RemoteFailure.unauthorized;
-
     final msg = message.toLowerCase();
-
     if (msg.contains('invalid credentials') ||
         msg.contains('invalid email') ||
         msg.contains('invalid password') ||
         msg.contains('wrong password')) {
       return RemoteFailure.invalidCredentials;
     }
-
     if (msg.contains('token') ||
         msg.contains('expired') ||
         msg.contains('jwt')) {
@@ -114,19 +96,13 @@ class ApiErrorHandler {
     return RemoteFailure.unauthorized;
   }
 
-  // ─── Generic ──────────────────────────────────────────────────────────────
-
   ApiErrorModel _handleGenericException(Exception e) {
     if (e is SocketException) return _build(RemoteFailure.noInternet);
     if (e is FormatException) return _build(RemoteFailure.unknown);
     return _build(RemoteFailure.unknown);
   }
 
-  // ─── Unauthorized ─────────────────────────────────────────────────────────
-
   void _handleUnauthorized() => _onUnauthorized?.call();
-
-  // ─── Build ────────────────────────────────────────────────────────────────
 
   ApiErrorModel _build(
     RemoteFailure failure, {
@@ -151,32 +127,25 @@ class ApiErrorHandler {
     };
   }
 
-  // ─── Extractors ───────────────────────────────────────────────────────────
-
   String? _extractServerMessage(dynamic data) {
     if (data is! Map<String, dynamic>) return null;
-
     if (data['message'] is String) return data['message'] as String;
     if (data['detail'] is String) return data['detail'] as String;
     if (data['title'] is String) return data['title'] as String;
     if (data['error'] is String) return data['error'] as String;
-
     if (data['error'] is Map<String, dynamic>) {
       final err = data['error'] as Map<String, dynamic>;
       if (err['message'] is String) return err['message'] as String;
     }
-
     return null;
   }
 
   List<String>? _extractValidationErrors(dynamic data) {
     if (data is! Map<String, dynamic>) return null;
-
     if (data['errors'] is List) {
       final list = (data['errors'] as List).whereType<String>().toList();
       return list.isEmpty ? null : list;
     }
-
     if (data['errors'] is Map) {
       final list = (data['errors'] as Map).values
           .whereType<List>()
@@ -184,7 +153,6 @@ class ApiErrorHandler {
           .toList();
       return list.isEmpty ? null : list;
     }
-
     return null;
   }
 }

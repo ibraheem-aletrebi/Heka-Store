@@ -2,6 +2,7 @@ import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/category/categories_data.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
+import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 
 abstract class HomeRepo {
@@ -19,4 +20,6 @@ abstract class HomeRepo {
     int pageSize = 10,
   });
   Future<ApiResult<List<BrandModel>>> getBrands();
+
+  Future<ApiResult<UserProfile>> getUserProfile();
 }

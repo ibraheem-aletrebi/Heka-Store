@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
@@ -23,12 +22,10 @@ class MainLayoutBloc extends Bloc<MainLayoutEvent, MainLayoutState> {
     );
   }
 
-  final PageController pageController = PageController(initialPage: 0);
   late final StreamSubscription<CartState> _cartSub;
 
   void _onChangePage(ChangePage event, Emitter<MainLayoutState> emit) {
     if (event.index == state.currentIndex) return;
-    pageController.jumpToPage(event.index);
     emit(state.copyWith(currentIndex: event.index));
   }
 
@@ -56,7 +53,6 @@ class MainLayoutBloc extends Bloc<MainLayoutEvent, MainLayoutState> {
   @override
   Future<void> close() {
     _cartSub.cancel();
-    pageController.dispose();
     return super.close();
   }
 }
