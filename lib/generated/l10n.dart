@@ -1534,6 +1534,46 @@ class S {
     return Intl.message('Hello', name: 'hello', desc: '', args: []);
   }
 
+  /// `Edit Profile`
+  String get editProfile {
+    return Intl.message(
+      'Edit Profile',
+      name: 'editProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Logout`
+  String get logout {
+    return Intl.message('Logout', name: 'logout', desc: '', args: []);
+  }
+
+  /// `Out of Stock`
+  String get out_of_stock {
+    return Intl.message(
+      'Out of Stock',
+      name: 'out_of_stock',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select Options`
+  String get select_options {
+    return Intl.message(
+      'Select Options',
+      name: 'select_options',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to Cart`
+  String get add_to_cart {
+    return Intl.message('Add to Cart', name: 'add_to_cart', desc: '', args: []);
+  }
+
   /// `Categories`
   String get Categories {
     return Intl.message('Categories', name: 'Categories', desc: '', args: []);

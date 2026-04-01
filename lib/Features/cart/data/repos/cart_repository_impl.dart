@@ -29,37 +29,44 @@ class CartRepositoryImpl implements CartRepository {
     }
   }
 
-  @override
-  Future<ApiResult<CartItemModel>> addItem({
-    required int productId,
-    required int quantity,
-  }) async {
-    try {
-      final item = await _remote.addItem(
-        productId: productId,
-        quantity: quantity,
-      );
-      return ApiResult.success(item);
-    } catch (e) {
-      return ApiResult.error(e);
-    }
+ @override
+Future<ApiResult<CartItemModel>> addItem({
+  required int productId,
+  required int quantity,
+  List<int>? selectedVariantIds,   // ✅ added
+}) async {
+  try {
+    final item = await _remote.addItem(
+      productId: productId,
+      quantity: quantity,
+      selectedVariantIds: selectedVariantIds,  // ✅ forwarded
+    );
+    return ApiResult.success(item);
+  } catch (e) {
+    return ApiResult.error(e);
   }
+}
 
-  @override
-  Future<ApiResult<CartItemModel>> updateItem({
-    required int cartItemId,
-    required int quantity,
-  }) async {
-    try {
-      final item = await _remote.updateItem(
-        cartItemId: cartItemId,
-        quantity: quantity,
-      );
-      return ApiResult.success(item);
-    } catch (e) {
-      return ApiResult.error(e);
-    }
+
+
+// impl
+@override
+Future<ApiResult<CartItemModel>> updateItem({
+  required int cartItemId,
+  required int quantity,
+  List<int>? selectedVariantIds, // ✅ added
+}) async {
+  try {
+    final item = await _remote.updateItem(
+      cartItemId: cartItemId,
+      quantity: quantity,
+      selectedVariantIds: selectedVariantIds, // ✅ forwarded
+    );
+    return ApiResult.success(item);
+  } catch (e) {
+    return ApiResult.error(e);
   }
+}
 
   @override
   Future<ApiResult<void>> removeItem({required int cartItemId}) async {

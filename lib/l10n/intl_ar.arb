@@ -377,6 +377,19 @@
      "searchAddressHint":"ابحث بالاسم او الشارع او المدينة",
     "@searchAddressHint": {},
 
+    
+    "editProfile": "تعديل الملف الشخصي",
+    "@editProfile": {},
+    "logout": "تسجيل الخروج",
+    "@logout": {},
+
+     "out_of_stock": "نفذت الكمية",
+    "@out_of_stock": {},
+    "select_options": "اختر الخيارات",
+    "@select_options": {},
+    "add_to_cart": "أضف إلى السلة",
+    "@add_to_cart": {},
+    
 
     "goodMorning": "صباح الخير",
     "@goodMorning": {},

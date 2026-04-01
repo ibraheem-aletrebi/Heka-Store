@@ -9,10 +9,12 @@ abstract class CartRemoteDataSource {
   Future<CartItemModel> addItem({
     required int productId,
     required int quantity,
+    List<int>? selectedVariantIds, // ✅ added
   });
   Future<CartItemModel> updateItem({
     required int cartItemId,
     required int quantity,
+    List<int>? selectedVariantIds,
   });
   Future<void> removeItem({required int cartItemId});
   Future<int> getCartCount();
@@ -25,7 +27,6 @@ abstract class CartRemoteDataSource {
 
 class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   final ApiService _apiService;
-
   const CartRemoteDataSourceImpl({required ApiService apiService})
     : _apiService = apiService;
 
@@ -39,10 +40,15 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   Future<CartItemModel> addItem({
     required int productId,
     required int quantity,
+    List<int>? selectedVariantIds,
   }) async {
     final response = await _apiService.post(
       ApiConstants.cartItems,
-      data: {'productId': productId, 'quantity': quantity},
+      data: {
+        'productId': productId,
+        'quantity': quantity,
+        'variantIds': selectedVariantIds ?? [],
+      },
     );
     return CartItemModel.fromJson(
       response.data['data'] as Map<String, dynamic>,
@@ -53,10 +59,14 @@ class CartRemoteDataSourceImpl implements CartRemoteDataSource {
   Future<CartItemModel> updateItem({
     required int cartItemId,
     required int quantity,
+    List<int>? selectedVariantIds, // ✅ added
   }) async {
     final response = await _apiService.put(
-      ApiConstants.cartItem(cartItemId),
-      data: {'quantity': quantity},
+      ApiConstants.updateCartItem(cartItemId),
+      data: {
+        'quantity': quantity,
+        'variantIds': selectedVariantIds ?? [], // ✅ added
+      },
     );
     return CartItemModel.fromJson(
       response.data['data'] as Map<String, dynamic>,

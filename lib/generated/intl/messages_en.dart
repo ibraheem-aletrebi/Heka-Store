@@ -44,6 +44,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "addNewAddress": MessageLookupByLibrary.simpleMessage("Add New Address"),
     "addNewCard": MessageLookupByLibrary.simpleMessage("Add New Card"),
     "addToCart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
+    "add_to_cart": MessageLookupByLibrary.simpleMessage("Add to Cart"),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "Added to wishlist",
     ),
@@ -85,6 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
     "emailInvalidDomain": MessageLookupByLibrary.simpleMessage(
@@ -298,6 +300,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "Login to your account",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("Logout"),
     "nameInvalid": MessageLookupByLibrary.simpleMessage(
       "Name contains invalid characters",
     ),
@@ -342,6 +345,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "otpTooShort": MessageLookupByLibrary.simpleMessage(
       "Verification code is incomplete",
     ),
+    "out_of_stock": MessageLookupByLibrary.simpleMessage("Out of Stock"),
     "password": MessageLookupByLibrary.simpleMessage("Password"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "Passwords do not match",
@@ -431,6 +435,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage(
       "Your Location",
     ),
+    "select_options": MessageLookupByLibrary.simpleMessage("Select Options"),
     "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
       "Make this as a default address",

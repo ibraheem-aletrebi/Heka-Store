@@ -346,6 +346,18 @@
     "hello": "Hello",
     "@hello": {},
 
+    "editProfile": "Edit Profile",
+    "@editProfile": {},
+    "logout": "Logout",
+    "@logout": {},
+    
+     "out_of_stock": "Out of Stock",
+    "@out_of_stock": {},
+    "select_options": "Select Options",
+    "@select_options": {},
+    "add_to_cart": "Add to Cart",
+    "@add_to_cart": {},
+
 
     "Categories": "Categories",
     "@Categories": {},

@@ -15,11 +15,11 @@ class MainLayoutView extends StatefulWidget {
 }
 
 class _MainLayoutViewState extends State<MainLayoutView> {
-
-  @override
-  void initState() {
-    context.read<CartBloc>().add(const CartEvent.loaded());
+  
+  initState() {
     super.initState();
+    context.read<CartBloc>().add(const CartEvent.countFetched());
+    context.read<WishlistBloc>().add(const WishlistEvent.loaded());
   }
   @override
   Widget build(BuildContext context) {
@@ -29,10 +29,7 @@ class _MainLayoutViewState extends State<MainLayoutView> {
           create: (context) =>
               MainLayoutBloc(cartBloc: context.read<CartBloc>()),
         ),
-        BlocProvider<WishlistBloc>(
-          create: (context) =>
-              sl<WishlistBloc>()..add(const WishlistEvent.loaded()),
-        ),
+       
         BlocProvider<PreviousViewedProductsBloc>(
           create: (context) => sl<PreviousViewedProductsBloc>(),
         ),

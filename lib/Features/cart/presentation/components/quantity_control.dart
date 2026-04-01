@@ -3,17 +3,22 @@ import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 
-
 class QuantityControl extends StatelessWidget {
   final int quantity;
-  final VoidCallback onIncrease;
-  final VoidCallback onDecrease;
+  final VoidCallback? onIncrease;
+  final VoidCallback? onDecrease;
+  final double? iconSize;
+  final double? buttonSize;
+  final bool? richEnd;
 
   const QuantityControl({
     super.key,
     required this.quantity,
     required this.onIncrease,
     required this.onDecrease,
+    this.iconSize,
+    this.buttonSize,
+    this.richEnd = false,
   });
 
   @override
@@ -21,16 +26,27 @@ class QuantityControl extends StatelessWidget {
     final colors = context.myColors;
     return Row(
       children: [
-        QtyButton(icon: Icons.remove_rounded, onTap: onDecrease, filled: false),
+        QtyButton(
+          icon: Icons.remove_rounded,
+          onTap: onDecrease,
+          filled: false,
+          buttonSize: buttonSize,
+        ),
         SizedBox(
-          width: 28,
+          width: AppSizes.w24,
           child: Text(
             '$quantity',
             style: AppTextStyles.semiBold14.copyWith(color: colors.textPrimary),
             textAlign: TextAlign.center,
           ),
         ),
-        QtyButton(icon: Icons.add_rounded, onTap: onIncrease, filled: true),
+        QtyButton(
+          icon: Icons.add_rounded,
+          onTap: onIncrease,
+          filled: true,
+          buttonSize: buttonSize,
+          backgroundColor: richEnd ?? false ? colors.textHint : null,
+        ),
       ],
     );
   }
@@ -38,14 +54,19 @@ class QuantityControl extends StatelessWidget {
 
 class QtyButton extends StatelessWidget {
   final IconData icon;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final bool filled;
-
+  final double? iconSize;
+  final double? buttonSize;
+  final Color? backgroundColor;
   const QtyButton({
     super.key,
     required this.icon,
     required this.onTap,
     required this.filled,
+    this.iconSize,
+    this.buttonSize,
+    this.backgroundColor,
   });
 
   @override
@@ -54,16 +75,17 @@ class QtyButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 26,
-        height: 26,
+        width: buttonSize ?? AppSizes.w38,
+        height: buttonSize ?? AppSizes.w38,
         decoration: BoxDecoration(
-          color: filled ? colors.primary : colors.background,
+          color:
+              backgroundColor ?? (filled ? colors.primary : colors.background),
           borderRadius: BorderRadius.circular(AppSizes.r8),
           border: filled ? null : Border.all(color: colors.divider, width: 1),
         ),
         child: Icon(
           icon,
-          size: 14,
+          size: iconSize ?? AppSizes.sp16,
           color: filled ? Colors.white : colors.textSecondary,
         ),
       ),

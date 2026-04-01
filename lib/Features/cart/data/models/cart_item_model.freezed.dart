@@ -35,6 +35,9 @@ mixin _$CartItemModel {
   int get vendorId => throw _privateConstructorUsedError;
   String get vendorName => throw _privateConstructorUsedError;
   String get addedAt => throw _privateConstructorUsedError;
+  List<SelectedVariantModel> get selectedVariants =>
+      throw _privateConstructorUsedError;
+  double get variantPriceAdjustment => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -63,7 +66,9 @@ abstract class $CartItemModelCopyWith<$Res> {
       bool inStock,
       int vendorId,
       String vendorName,
-      String addedAt});
+      String addedAt,
+      List<SelectedVariantModel> selectedVariants,
+      double variantPriceAdjustment});
 }
 
 /// @nodoc
@@ -94,6 +99,8 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? vendorId = null,
     Object? vendorName = null,
     Object? addedAt = null,
+    Object? selectedVariants = null,
+    Object? variantPriceAdjustment = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -156,6 +163,14 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.addedAt
           : addedAt // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedVariants: null == selectedVariants
+          ? _value.selectedVariants
+          : selectedVariants // ignore: cast_nullable_to_non_nullable
+              as List<SelectedVariantModel>,
+      variantPriceAdjustment: null == variantPriceAdjustment
+          ? _value.variantPriceAdjustment
+          : variantPriceAdjustment // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -183,7 +198,9 @@ abstract class _$$CartItemModelImplCopyWith<$Res>
       bool inStock,
       int vendorId,
       String vendorName,
-      String addedAt});
+      String addedAt,
+      List<SelectedVariantModel> selectedVariants,
+      double variantPriceAdjustment});
 }
 
 /// @nodoc
@@ -212,6 +229,8 @@ class __$$CartItemModelImplCopyWithImpl<$Res>
     Object? vendorId = null,
     Object? vendorName = null,
     Object? addedAt = null,
+    Object? selectedVariants = null,
+    Object? variantPriceAdjustment = null,
   }) {
     return _then(_$CartItemModelImpl(
       id: null == id
@@ -274,6 +293,14 @@ class __$$CartItemModelImplCopyWithImpl<$Res>
           ? _value.addedAt
           : addedAt // ignore: cast_nullable_to_non_nullable
               as String,
+      selectedVariants: null == selectedVariants
+          ? _value._selectedVariants
+          : selectedVariants // ignore: cast_nullable_to_non_nullable
+              as List<SelectedVariantModel>,
+      variantPriceAdjustment: null == variantPriceAdjustment
+          ? _value.variantPriceAdjustment
+          : variantPriceAdjustment // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -296,7 +323,10 @@ class _$CartItemModelImpl implements _CartItemModel {
       required this.inStock,
       required this.vendorId,
       required this.vendorName,
-      required this.addedAt});
+      required this.addedAt,
+      final List<SelectedVariantModel> selectedVariants = const [],
+      this.variantPriceAdjustment = 0.0})
+      : _selectedVariants = selectedVariants;
 
   factory _$CartItemModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartItemModelImplFromJson(json);
@@ -331,10 +361,23 @@ class _$CartItemModelImpl implements _CartItemModel {
   final String vendorName;
   @override
   final String addedAt;
+  final List<SelectedVariantModel> _selectedVariants;
+  @override
+  @JsonKey()
+  List<SelectedVariantModel> get selectedVariants {
+    if (_selectedVariants is EqualUnmodifiableListView)
+      return _selectedVariants;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_selectedVariants);
+  }
+
+  @override
+  @JsonKey()
+  final double variantPriceAdjustment;
 
   @override
   String toString() {
-    return 'CartItemModel(id: $id, productId: $productId, productNameAr: $productNameAr, productNameEn: $productNameEn, productImage: $productImage, price: $price, discountPrice: $discountPrice, unitPrice: $unitPrice, quantity: $quantity, totalPrice: $totalPrice, stockAvailable: $stockAvailable, inStock: $inStock, vendorId: $vendorId, vendorName: $vendorName, addedAt: $addedAt)';
+    return 'CartItemModel(id: $id, productId: $productId, productNameAr: $productNameAr, productNameEn: $productNameEn, productImage: $productImage, price: $price, discountPrice: $discountPrice, unitPrice: $unitPrice, quantity: $quantity, totalPrice: $totalPrice, stockAvailable: $stockAvailable, inStock: $inStock, vendorId: $vendorId, vendorName: $vendorName, addedAt: $addedAt, selectedVariants: $selectedVariants, variantPriceAdjustment: $variantPriceAdjustment)';
   }
 
   @override
@@ -367,7 +410,11 @@ class _$CartItemModelImpl implements _CartItemModel {
                 other.vendorId == vendorId) &&
             (identical(other.vendorName, vendorName) ||
                 other.vendorName == vendorName) &&
-            (identical(other.addedAt, addedAt) || other.addedAt == addedAt));
+            (identical(other.addedAt, addedAt) || other.addedAt == addedAt) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedVariants, _selectedVariants) &&
+            (identical(other.variantPriceAdjustment, variantPriceAdjustment) ||
+                other.variantPriceAdjustment == variantPriceAdjustment));
   }
 
   @JsonKey(ignore: true)
@@ -388,7 +435,9 @@ class _$CartItemModelImpl implements _CartItemModel {
       inStock,
       vendorId,
       vendorName,
-      addedAt);
+      addedAt,
+      const DeepCollectionEquality().hash(_selectedVariants),
+      variantPriceAdjustment);
 
   @JsonKey(ignore: true)
   @override
@@ -420,7 +469,9 @@ abstract class _CartItemModel implements CartItemModel {
       required final bool inStock,
       required final int vendorId,
       required final String vendorName,
-      required final String addedAt}) = _$CartItemModelImpl;
+      required final String addedAt,
+      final List<SelectedVariantModel> selectedVariants,
+      final double variantPriceAdjustment}) = _$CartItemModelImpl;
 
   factory _CartItemModel.fromJson(Map<String, dynamic> json) =
       _$CartItemModelImpl.fromJson;
@@ -455,6 +506,10 @@ abstract class _CartItemModel implements CartItemModel {
   String get vendorName;
   @override
   String get addedAt;
+  @override
+  List<SelectedVariantModel> get selectedVariants;
+  @override
+  double get variantPriceAdjustment;
   @override
   @JsonKey(ignore: true)
   _$$CartItemModelImplCopyWith<_$CartItemModelImpl> get copyWith =>

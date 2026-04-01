@@ -61,7 +61,7 @@ class CartViewBodyBlocBuilder extends StatelessWidget {
                           final item = state.cart!.items[i];
                           return Padding(
                             padding: EdgeInsets.only(bottom: AppSizes.h12),
-                            child: CartItemTile(item: item),
+                            child: CartItemTile(item: item,),
                           );
                         }, childCount: state.cart!.items.length),
                       ),

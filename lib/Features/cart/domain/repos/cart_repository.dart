@@ -8,14 +8,19 @@ abstract class CartRepository {
   Future<ApiResult<CartItemModel>> addItem({
     required int productId,
     required int quantity,
+    List<int>? selectedVariantIds,   // ✅ added
   });
-  Future<ApiResult<CartItemModel>> updateItem({
-    required int cartItemId,
-    required int quantity,
-  });
+    // abstract
+Future<ApiResult<CartItemModel>> updateItem({
+  required int cartItemId,
+  required int quantity,
+  List<int>? selectedVariantIds, // ✅ added
+});
   Future<ApiResult<void>> removeItem({required int cartItemId});
   Future<ApiResult<int>> getCartCount();
   Future<ApiResult<void>> clearCart();
-
-  Future<ApiResult<ProductsResponseModel>> getProductsYouMayLike({ required int pageNumber, required int pageSize}) ;
+  Future<ApiResult<ProductsResponseModel>> getProductsYouMayLike({
+    required int pageNumber,
+    required int pageSize,
+  });
 }

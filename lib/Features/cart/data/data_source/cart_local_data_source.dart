@@ -49,18 +49,27 @@ class CartLocalDataSourceImpl implements CartLocalDataSource {
     await _localStorage.setValue<int>(HiveBoxes.cart, LocalStorageKeys.cartCount, count);
   }
 
-  @override
-  Future<void> saveProductsYouMayLike(List<ProductModel> products) async {
-    await _localStorage.setValue<List>(
-      HiveBoxes.cart, LocalStorageKeys.productsYouMayLike, products,
-    );
-  }
+@override
+Future<void> saveProductsYouMayLike(List<ProductModel> products) async {
+  final encoded = products.map((p) => jsonEncode(p.toJson())).toList();
+  await _localStorage.setValue<List>(
+    HiveBoxes.cart,
+    LocalStorageKeys.productsYouMayLike,
+    encoded,
+  );
+}
 
-  @override
-  List<ProductModel> getProductsYouMayLike() {
-    final data = _localStorage.getValue<List>(
-      HiveBoxes.cart, LocalStorageKeys.productsYouMayLike,
-    );
-    return data?.cast<ProductModel>() ?? [];
-  }
+@override
+List<ProductModel> getProductsYouMayLike() {
+  final data = _localStorage.getValue<List>(
+    HiveBoxes.cart,
+    LocalStorageKeys.productsYouMayLike,
+  );
+  if (data == null) return [];
+  // ✅ Decode back from JSON string list
+  return data
+      .whereType<String>()
+      .map((e) => ProductModel.fromJson(jsonDecode(e) as Map<String, dynamic>))
+      .toList();
+}
 }

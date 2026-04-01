@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/enums/button/button_size.dart';
 import 'package:heka_store/core/enums/button/button_variant.dart';
@@ -166,10 +167,45 @@ class CustomButton extends StatelessWidget {
     _ => 0,
   };
 
+  // ── spinner sized to match the icon slot ─────────────────────────────────
+  Widget _buildSpinner(Color color) => SizedBox(
+    width: _iconSize,
+    height: _iconSize,
+    child: CupertinoActivityIndicator(),
+  );
+
   @override
   Widget build(BuildContext context) {
+    // isLoading blocks interaction exactly like disabled
     final bool isButtonEnabled = enabled && !isLoading;
     final Color effectiveTextColor = _resolveTextColor(context);
+
+    // ── direction from ambient locale — no extra import needed ───────────
+    final bool isRtl = Directionality.of(context) == TextDirection.rtl;
+    final spinner = _buildSpinner(effectiveTextColor);
+
+    // ── resolve the icon slot ─────────────────────────────────────────────
+    // Rule:
+    //   loading + icon exists  → replace icon with spinner, keep text
+    //   loading + no icon      → spinner goes BEFORE text in LTR (AFTER in RTL)
+    //                            achieved by placing it as the leading icon
+    final Widget? resolvedIcon = isLoading
+        ? spinner // replaces icon OR acts as leading spinner
+        : icon;
+
+    // When there is no icon at all and we are loading, we still want the
+    // spinner on the correct side. We pass it as `icon` (leading) for LTR
+    // and as `trailingIcon` for RTL so it always appears on the start side
+    // relative to reading direction.
+    final Widget? resolvedLeading = (!isLoading || icon != null)
+        ? resolvedIcon
+        : isRtl
+        ? null
+        : spinner;
+
+    final Widget? resolvedTrailing = isLoading && icon == null && isRtl
+        ? spinner
+        : (!isLoading ? trailingIcon : null);
 
     return Semantics(
       label: semanticLabel ?? text,
@@ -198,9 +234,11 @@ class CustomButton extends StatelessWidget {
           ),
           child: ButtonContent(
             text: text,
-            isLoading: isLoading,
-            icon: icon,
-            trailingIcon: trailingIcon,
+            // ✅ isLoading=false — we own the spinner rendering above,
+            // ButtonContent must not double-render its own loader
+            isLoading: false,
+            icon: resolvedLeading,
+            trailingIcon: resolvedTrailing,
             textColor: effectiveTextColor,
             textStyle: _textStyle,
             iconSize: _iconSize,

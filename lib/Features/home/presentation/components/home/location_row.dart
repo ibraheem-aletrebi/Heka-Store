@@ -17,7 +17,11 @@ class LocationRow extends StatelessWidget {
       onTap: onTap,
       child: Row(
         children: [
-          Icon(Icons.location_on_rounded, color: c.primary, size: 13),
+          Icon(
+            Icons.location_on_rounded,
+            color: c.primary,
+            size: AppSizes.sp14,
+          ),
           SizedBox(width: AppSizes.w2),
           Flexible(
             child: Text(

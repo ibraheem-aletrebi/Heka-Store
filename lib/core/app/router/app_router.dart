@@ -21,6 +21,7 @@ import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
+import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 
 class AppRouter {
@@ -83,7 +84,10 @@ class AppRouter {
       GoRoute(path: AppRoutes.addresses, builder: (_, _) => AddressView()),
       GoRoute(
         path: AppRoutes.editProfile,
-        builder: (_, _) => EditProfileView(),
+        builder: (context, state) {
+          final extra = state.extra as UserProfile;
+          return EditProfileView(userProfile: extra);
+        },
       ),
       GoRoute(
         path: AppRoutes.editAddress,
@@ -97,7 +101,7 @@ class AppRouter {
         path: AppRoutes.productDetails,
         builder: (context, state) {
           final extra = state.extra as int;
-          return ProductDetailsView(productId: extra,);
+          return ProductDetailsView(productId: extra);
         },
       ),
     ],

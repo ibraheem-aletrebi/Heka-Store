@@ -104,7 +104,11 @@ class ProductDetailsBody extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      ProductInfoSection(product: product, langCode: langCode),
+                      ProductInfoSection(
+                        product: product,
+                        langCode: langCode,
+                        state: state, // ✅ added
+                      ),
                       _divider(context),
                       if (product.variants.isNotEmpty) ...[
                         ProductVariantsSection(product: product),
@@ -126,7 +130,7 @@ class ProductDetailsBody extends StatelessWidget {
               left: 0,
               right: 0,
               bottom: 0,
-              child: ProductAddToCartBar(product: product, state: state),
+              child: ProductAddToCartBar(product: product, ),
             ),
           ],
         );

@@ -28,13 +28,13 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     required RemoveCartItemUseCase removeItem,
     required GetCartCountUseCase getCount,
     required ClearCartUseCase clearCart,
-  }) : _getCart = getCart,
-       _addItem = addItem,
-       _updateItem = updateItem,
-       _removeItem = removeItem,
-       _getCount = getCount,
-       _clearCart = clearCart,
-       super(const CartState()) {
+  })  : _getCart = getCart,
+        _addItem = addItem,
+        _updateItem = updateItem,
+        _removeItem = removeItem,
+        _getCount = getCount,
+        _clearCart = clearCart,
+        super(const CartState()) {
     on<_Loaded>(_onLoaded);
     on<_ReLoaded>(_onReLoaded);
     on<_ItemAdded>(_onItemAdded);
@@ -59,6 +59,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(state.copyWith(status: CartStatus.error, error: failure)),
     );
   }
+
   Future<void> _onReLoaded(_ReLoaded event, Emitter<CartState> emit) async {
     final result = await _getCart();
     result.when(
@@ -73,20 +74,38 @@ class CartBloc extends Bloc<CartEvent, CartState> {
           emit(state.copyWith(status: CartStatus.error, error: failure)),
     );
   }
+
   Future<void> _onItemAdded(_ItemAdded event, Emitter<CartState> emit) async {
-    // Optimistic count increment
-    emit(state.copyWith(count: state.count + event.quantity));
+    // reset النتيجة القديمة + ابدأ الـ loading
+    emit(state.copyWith(
+      isAddingToCart: true,
+      addedToCartSuccess: null,
+      error: null,
+    ));
+
     final result = await _addItem(
       productId: event.productId,
       quantity: event.quantity,
+      selectedVariantIds: event.selectedVariantIds,
     );
+
     result.when(
       onError: (failure) {
-        emit(
-          state.copyWith(count: state.count - event.quantity, error: failure),
-        );
+        // ✅ false → الـ listener في app.dart يعرض error snackbar
+        emit(state.copyWith(
+          isAddingToCart: false,
+          addedToCartSuccess: false,
+          error: failure,
+        ));
       },
       onSuccess: (_) {
+        // ✅ true → الـ listener في app.dart يعرض success snackbar
+        emit(state.copyWith(
+          isAddingToCart: false,
+          addedToCartSuccess: true,
+          count: state.count + event.quantity,
+        ));
+        // reLoaded بييجي بعدين — مش بيأثر على الـ listener خالص
         add(const CartEvent.reLoaded());
       },
     );
@@ -96,18 +115,46 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     _ItemUpdated event,
     Emitter<CartState> emit,
   ) async {
+    final previousCart = state.cart;
+
+    if (state.cart != null) {
+      final updatedItems = state.cart!.items.map((item) {
+        if (item.id == event.cartItemId) {
+          return item.copyWith(
+            quantity: event.quantity,
+            totalPrice: item.unitPrice * event.quantity,
+          );
+        }
+        return item;
+      }).toList();
+
+      emit(
+        state.copyWith(
+          cart: state.cart!.copyWith(items: updatedItems),
+          loadingItems: {...state.loadingItems, event.cartItemId: true},
+        ),
+      );
+    }
+
     final result = await _updateItem(
       cartItemId: event.cartItemId,
       quantity: event.quantity,
+      selectedVariantIds: event.selectedVariantIds,
     );
 
     result.when(
-      onError: (failure) => emit(state.copyWith(error: failure)),
-      onSuccess: (_) {
+      onError: (failure) {
         emit(
-          state.copyWith(loadingItems: _removeLoadingItem(event.cartItemId)),
+          state.copyWith(
+            cart: previousCart,
+            loadingItems: _removeLoadingItem(event.cartItemId),
+            error: failure,
+          ),
         );
-        add(const CartEvent.reLoaded()); // ← re-fetch for updated totals
+      },
+      onSuccess: (_) {
+        emit(state.copyWith(loadingItems: _removeLoadingItem(event.cartItemId)));
+        add(const CartEvent.reLoaded());
       },
     );
   }
@@ -126,7 +173,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
         ),
       ),
       onSuccess: (_) {
-        add(const CartEvent.reLoaded()); 
+        add(const CartEvent.reLoaded());
       },
     );
   }
@@ -138,7 +185,7 @@ class CartBloc extends Bloc<CartEvent, CartState> {
     final result = await _getCount();
     result.when(
       onError: (_) {},
-      onSuccess: (count) => emit(state.copyWith(count: count)),
+      onSuccess: (count) => emit(state.copyWith(count: count,)),
     );
   }
 

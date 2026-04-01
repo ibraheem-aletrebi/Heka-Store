@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 
+
 class UserAvatar extends StatelessWidget {
   final String? imageUrl;
+  final File? imageFile;
   final String? name;
   final double? size;
   final VoidCallback? onTap;
@@ -13,6 +17,7 @@ class UserAvatar extends StatelessWidget {
   const UserAvatar({
     super.key,
     this.imageUrl,
+    this.imageFile,        
     this.name,
     this.size,
     this.onTap,
@@ -40,15 +45,24 @@ class UserAvatar extends StatelessWidget {
   }
 
   Widget _buildContent(BuildContext context) {
-    if (imageUrl != null) {
-      return CachedImage(
-        url: imageUrl,
-        fallback: (name != null)
-            ? Text(name!, style: AppTextStyles.regular14)
-            : null,
+    //   File > URL > Initials > GuestIcon
+    if (imageFile != null) {
+      return Image.file(
+        imageFile!,
+        fit: BoxFit.cover,
+        width: double.infinity,
+        height: double.infinity,
+        errorBuilder: (_, __, ___) =>
+            name != null ? _Initials(name: name!) : const _GuestIcon(),
       );
     }
-    if (name != null) return _Initials(name: name!);
+    if (imageUrl != null && imageUrl!.isNotEmpty) {
+      return CachedImage(
+        url: imageUrl,
+        fallback: name != null ? _Initials(name: name!) : const _GuestIcon(),
+      );
+    }
+    if (name != null && name!.isNotEmpty) return _Initials(name: name!);
     return const _GuestIcon();
   }
 }

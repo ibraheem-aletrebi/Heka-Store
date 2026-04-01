@@ -28,12 +28,13 @@ class ProductVariantsSection extends StatelessWidget {
                   typeName: variant.typeName,
                   options: variant.options,
                   selectedOption: state.selectedOptions[variant.typeName],
-                  onSelect: (option) => context.read<ProductDetailsBloc>().add(
-                    ProductDetailsEvent.variantOptionSelected(
-                      variant.typeName,
-                      option,
-                    ),
-                  ),
+                  onSelect: (option) =>
+                      context.read<ProductDetailsBloc>().add(
+                        ProductDetailsEvent.variantOptionSelected(
+                          variant.typeName,
+                          option,
+                        ),
+                      ),
                 ),
               );
             }).toList(),
@@ -107,6 +108,7 @@ class _VariantRow extends StatelessWidget {
                 option: option,
                 isSelected: isSelected,
                 isOutOfStock: isOutOfStock,
+                // لو out of stock → onTap = null (مش قابل للضغط)
                 onTap: isOutOfStock ? null : () => onSelect(option),
               );
             }
@@ -148,10 +150,12 @@ class _ColorChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
+
     return GestureDetector(
       onTap: onTap,
       child: Opacity(
-        opacity: isOutOfStock ? 0.4 : 1.0,
+        // out of stock → opacity منخفضة جداً توضح إنه مش متاح
+        opacity: isOutOfStock ? 0.35 : 1.0,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           width: AppSizes.w38,
@@ -165,8 +169,15 @@ class _ColorChip extends StatelessWidget {
             ),
           ),
           child: isSelected
-              ? Icon(Icons.check_rounded, size: 16, color: Colors.white)
-              : null,
+              ? const Icon(Icons.check_rounded, size: 16, color: Colors.white)
+              : isOutOfStock
+                  // ✕ علامة واضحة إن الكولور ده out of stock
+                  ? Icon(
+                      Icons.close_rounded,
+                      size: 14,
+                      color: Colors.white.withValues(alpha: 0.9),
+                    )
+                  : null,
         ),
       ),
     );
@@ -189,10 +200,11 @@ class _TextChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
+
     return GestureDetector(
       onTap: onTap,
       child: Opacity(
-        opacity: isOutOfStock ? 0.4 : 1.0,
+        opacity: isOutOfStock ? 0.45 : 1.0,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
           padding: EdgeInsets.symmetric(
@@ -209,8 +221,17 @@ class _TextChip extends StatelessWidget {
           child: Text(
             option.value,
             style: AppTextStyles.regular13.copyWith(
-              color: isSelected ? Colors.white : colors.textSecondary,
+              color: isSelected
+                  ? Colors.white
+                  : isOutOfStock
+                      ? colors.textHint
+                      : colors.textSecondary,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+              // strikethrough على الـ text لو out of stock
+              decoration: isOutOfStock
+                  ? TextDecoration.lineThrough
+                  : TextDecoration.none,
+              decorationColor: colors.textHint,
             ),
           ),
         ),

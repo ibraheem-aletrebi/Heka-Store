@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_stores_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/featured_section.dart';
 import 'package:heka_store/Features/home/presentation/components/home/categories_section.dart';
@@ -24,6 +25,7 @@ class HomeViewBody extends StatelessWidget {
           const RecommendedForYouEvent.reLoaded(),
         );
         context.read<CategoriesBloc>().add(const CategoriesEvent.reloaded());
+        context.read<UserProfileBloc>().add(const UserProfileEvent.reloaded());
       },
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),

@@ -1,0 +1,180 @@
+import 'package:flutter/material.dart';
+import 'package:heka_store/Features/product_details/data/models/product_variant_option_model.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/resources/app_text_styles.dart';
+
+class VariantRow extends StatelessWidget {
+  final String typeName;
+  final List<ProductVariantOptionModel> options;
+  final ProductVariantOptionModel? selectedOption;
+  final ValueChanged<ProductVariantOptionModel> onSelect;
+
+  const VariantRow({super.key, 
+    required this.typeName,
+    required this.options,
+    required this.selectedOption,
+    required this.onSelect,
+  });
+
+  bool get _isColorVariant => typeName.toLowerCase() == 'color';
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Text(
+              typeName,
+              style: AppTextStyles.semiBold14.copyWith(
+                color: colors.textPrimary,
+              ),
+            ),
+            if (selectedOption != null) ...[
+              SizedBox(width: AppSizes.w8),
+              Text(
+                ': ${selectedOption!.value}',
+                style: AppTextStyles.regular14.copyWith(
+                  color: colors.textSecondary,
+                ),
+              ),
+              if (selectedOption!.priceAdjustment > 0) ...[
+                SizedBox(width: AppSizes.w4),
+                Text(
+                  '+EGP ${selectedOption!.priceAdjustment.toStringAsFixed(0)}',
+                  style: AppTextStyles.regular12.copyWith(
+                    color: colors.primary,
+                  ),
+                ),
+              ],
+            ],
+          ],
+        ),
+        SizedBox(height: AppSizes.h8),
+        Wrap(
+          spacing: AppSizes.w8,
+          runSpacing: AppSizes.h4,
+          children: options.map((option) {
+            final isSelected = selectedOption?.id == option.id;
+            final isOutOfStock = option.stockQuantity == 0;
+
+            if (_isColorVariant && option.colorHex.isNotEmpty) {
+              return _ColorChip(
+                option: option,
+                isSelected: isSelected,
+                isOutOfStock: isOutOfStock,
+                onTap: isOutOfStock ? null : () => onSelect(option),
+              );
+            }
+
+            return _TextChip(
+              option: option,
+              isSelected: isSelected,
+              isOutOfStock: isOutOfStock,
+              onTap: isOutOfStock ? null : () => onSelect(option),
+            );
+          }).toList(),
+        ),
+      ],
+    );
+  }
+}
+
+class _ColorChip extends StatelessWidget {
+  final ProductVariantOptionModel option;
+  final bool isSelected;
+  final bool isOutOfStock;
+  final VoidCallback? onTap;
+
+  const _ColorChip({
+    required this.option,
+    required this.isSelected,
+    required this.isOutOfStock,
+    required this.onTap,
+  });
+
+  Color get _parsedColor {
+    try {
+      return Color(int.parse(option.colorHex.replaceFirst('#', '0xFF')));
+    } catch (_) {
+      return Colors.grey;
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    return GestureDetector(
+      onTap: onTap,
+      child: Opacity(
+        opacity: isOutOfStock ? 0.4 : 1.0,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          width: AppSizes.w38,
+          height: AppSizes.w38,
+          decoration: BoxDecoration(
+            color: _parsedColor,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: isSelected ? colors.primary : colors.border,
+              width: isSelected ? 3 : 1.5,
+            ),
+          ),
+          child: isSelected
+              ? const Icon(Icons.check_rounded, size: 16, color: Colors.white)
+              : null,
+        ),
+      ),
+    );
+  }
+}
+
+class _TextChip extends StatelessWidget {
+  final ProductVariantOptionModel option;
+  final bool isSelected;
+  final bool isOutOfStock;
+  final VoidCallback? onTap;
+
+  const _TextChip({
+    required this.option,
+    required this.isSelected,
+    required this.isOutOfStock,
+    required this.onTap,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    return GestureDetector(
+      onTap: onTap,
+      child: Opacity(
+        opacity: isOutOfStock ? 0.4 : 1.0,
+        child: AnimatedContainer(
+          duration: const Duration(milliseconds: 180),
+          padding: EdgeInsets.symmetric(
+            horizontal: AppSizes.w16,
+            vertical: AppSizes.h8,
+          ),
+          decoration: BoxDecoration(
+            color: isSelected ? colors.primary : colors.surface,
+            border: Border.all(
+              color: isSelected ? colors.primary : colors.border,
+            ),
+            borderRadius: BorderRadius.circular(AppSizes.r20),
+          ),
+          child: Text(
+            option.value,
+            style: AppTextStyles.regular13.copyWith(
+              color: isSelected ? Colors.white : colors.textSecondary,
+              fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}

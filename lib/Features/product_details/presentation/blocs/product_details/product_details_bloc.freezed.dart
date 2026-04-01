@@ -19,6 +19,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -29,6 +30,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -39,6 +41,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -50,6 +53,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -60,6 +64,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -69,6 +74,7 @@ mixin _$ProductDetailsEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,
@@ -162,6 +168,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -175,6 +182,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -188,6 +196,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -205,6 +214,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -218,6 +228,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -230,6 +241,7 @@ class _$StartedImpl implements _Started {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,
@@ -250,6 +262,136 @@ abstract class _Started implements ProductDetailsEvent {
   @JsonKey(ignore: true)
   _$$StartedImplCopyWith<_$StartedImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResetImplCopyWith<$Res> {
+  factory _$$ResetImplCopyWith(
+          _$ResetImpl value, $Res Function(_$ResetImpl) then) =
+      __$$ResetImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$ResetImplCopyWithImpl<$Res>
+    extends _$ProductDetailsEventCopyWithImpl<$Res, _$ResetImpl>
+    implements _$$ResetImplCopyWith<$Res> {
+  __$$ResetImplCopyWithImpl(
+      _$ResetImpl _value, $Res Function(_$ResetImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$ResetImpl implements _Reset {
+  const _$ResetImpl();
+
+  @override
+  String toString() {
+    return 'ProductDetailsEvent.reset()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$ResetImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(int productId) started,
+    required TResult Function() reset,
+    required TResult Function(String typeName, ProductVariantOptionModel option)
+        variantOptionSelected,
+    required TResult Function() quantityIncremented,
+    required TResult Function() quantityDecremented,
+    required TResult Function(int index) imagePageChanged,
+  }) {
+    return reset();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(int productId)? started,
+    TResult? Function()? reset,
+    TResult? Function(String typeName, ProductVariantOptionModel option)?
+        variantOptionSelected,
+    TResult? Function()? quantityIncremented,
+    TResult? Function()? quantityDecremented,
+    TResult? Function(int index)? imagePageChanged,
+  }) {
+    return reset?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(int productId)? started,
+    TResult Function()? reset,
+    TResult Function(String typeName, ProductVariantOptionModel option)?
+        variantOptionSelected,
+    TResult Function()? quantityIncremented,
+    TResult Function()? quantityDecremented,
+    TResult Function(int index)? imagePageChanged,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
+    required TResult Function(_VariantOptionSelected value)
+        variantOptionSelected,
+    required TResult Function(_QuantityIncremented value) quantityIncremented,
+    required TResult Function(_QuantityDecremented value) quantityDecremented,
+    required TResult Function(_ImagePageChanged value) imagePageChanged,
+  }) {
+    return reset(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
+    TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
+    TResult? Function(_QuantityIncremented value)? quantityIncremented,
+    TResult? Function(_QuantityDecremented value)? quantityDecremented,
+    TResult? Function(_ImagePageChanged value)? imagePageChanged,
+  }) {
+    return reset?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
+    TResult Function(_VariantOptionSelected value)? variantOptionSelected,
+    TResult Function(_QuantityIncremented value)? quantityIncremented,
+    TResult Function(_QuantityDecremented value)? quantityDecremented,
+    TResult Function(_ImagePageChanged value)? imagePageChanged,
+    required TResult orElse(),
+  }) {
+    if (reset != null) {
+      return reset(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _Reset implements ProductDetailsEvent {
+  const factory _Reset() = _$ResetImpl;
 }
 
 /// @nodoc
@@ -338,6 +480,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -351,6 +494,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -364,6 +508,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -381,6 +526,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -394,6 +540,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -406,6 +553,7 @@ class _$VariantOptionSelectedImpl implements _VariantOptionSelected {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,
@@ -471,6 +619,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -484,6 +633,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -497,6 +647,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -514,6 +665,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -527,6 +679,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -539,6 +692,7 @@ class _$QuantityIncrementedImpl implements _QuantityIncremented {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,
@@ -596,6 +750,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -609,6 +764,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -622,6 +778,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -639,6 +796,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -652,6 +810,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -664,6 +823,7 @@ class _$QuantityDecrementedImpl implements _QuantityDecremented {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,
@@ -747,6 +907,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int productId) started,
+    required TResult Function() reset,
     required TResult Function(String typeName, ProductVariantOptionModel option)
         variantOptionSelected,
     required TResult Function() quantityIncremented,
@@ -760,6 +921,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int productId)? started,
+    TResult? Function()? reset,
     TResult? Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult? Function()? quantityIncremented,
@@ -773,6 +935,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int productId)? started,
+    TResult Function()? reset,
     TResult Function(String typeName, ProductVariantOptionModel option)?
         variantOptionSelected,
     TResult Function()? quantityIncremented,
@@ -790,6 +953,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
+    required TResult Function(_Reset value) reset,
     required TResult Function(_VariantOptionSelected value)
         variantOptionSelected,
     required TResult Function(_QuantityIncremented value) quantityIncremented,
@@ -803,6 +967,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
+    TResult? Function(_Reset value)? reset,
     TResult? Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult? Function(_QuantityIncremented value)? quantityIncremented,
     TResult? Function(_QuantityDecremented value)? quantityDecremented,
@@ -815,6 +980,7 @@ class _$ImagePageChangedImpl implements _ImagePageChanged {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
+    TResult Function(_Reset value)? reset,
     TResult Function(_VariantOptionSelected value)? variantOptionSelected,
     TResult Function(_QuantityIncremented value)? quantityIncremented,
     TResult Function(_QuantityDecremented value)? quantityDecremented,

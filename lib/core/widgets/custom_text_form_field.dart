@@ -128,7 +128,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             widget.label!,
             style: AppTextStyles.semiBold13.copyWith(color: labelColor),
           ),
-          SizedBox(height: AppSizes.h8),
+          SizedBox(height: AppSizes.h4),
         ],
 
         TextFormField(

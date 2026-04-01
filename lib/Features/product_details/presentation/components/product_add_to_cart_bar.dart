@@ -1,28 +1,38 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
-
+import 'package:heka_store/Features/cart/presentation/components/quantity_control.dart';
 import 'package:heka_store/Features/product_details/data/models/product_details_model.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductAddToCartBar extends StatelessWidget {
   final ProductDetailsModel product;
-  final ProductDetailsState state;
 
-  const ProductAddToCartBar({
-    super.key,
-    required this.product,
-    required this.state,
-  });
+  const ProductAddToCartBar({super.key, required this.product});
+
+  void _onAddToCart(BuildContext context, ProductDetailsState productState) {
+    final variantIds = productState.selectedOptions.values
+        .map((v) => v.id)
+        .toList();
+    context.read<CartBloc>().add(
+      CartEvent.itemAdded(
+        productId: product.id,
+        quantity: productState.quantity,
+        selectedVariantIds: variantIds,
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-    final bottomPadding = MediaQuery.of(context).padding.bottom + AppSizes.h16;
-    final canAddToCart = product.inStock;
+    final bottomPadding = MediaQuery.paddingOf(context).bottom + AppSizes.h16;
 
     return Container(
       padding: EdgeInsets.fromLTRB(
@@ -42,139 +52,108 @@ class ProductAddToCartBar extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(
-        children: [
-          // ─── Quantity Selector ───────────────────────
-          Container(
-            decoration: BoxDecoration(
-              color: colors.surface,
-              borderRadius: BorderRadius.circular(AppSizes.r12),
-              border: Border.all(color: colors.border),
-            ),
-            child: Row(
-              children: [
-                _QtyButton(
-                  icon: Icons.remove_rounded,
-                  onTap: state.quantity > 1
-                      ? () => context.read<ProductDetailsBloc>().add(
-                          const ProductDetailsEvent.quantityDecremented(),
-                        )
-                      : null,
-                ),
+      child: BlocBuilder<ProductDetailsBloc, ProductDetailsState>(
+        builder: (context, productState) {
+          final s = S.of(context);
+          final stockQty = product.stockQuantity;
+          final inStock = product.inStock;
+
+          // ── حالات الـ stock ──────────────────────────
+          // isLowStock = في stock بس أقل من أو يساوي 5
+          final isLowStock = inStock && stockQty <= 5;
+
+          // canProceed = المنتج موجود + كل الـ variants متاختارة
+          final canProceed = inStock && productState.allVariantsSelected;
+
+          // ── نص الزرار بيتغير حسب الحالة ─────────────
+          // حالة 1: out of stock كلياً
+          // حالة 2: في stock بس لسه محددتش الـ variants
+          // حالة 3: جاهز يتضاف للكارت
+          final buttonLabel = !inStock
+              ? s.out_of_stock
+              : !productState.allVariantsSelected
+                  ? s.select_options
+                  : s.addToCart;
+
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              // ── Low stock warning ────────────────────
+              if (isLowStock)
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w14),
-                  child: Text(
-                    '${state.quantity}',
-                    style: AppTextStyles.semiBold16.copyWith(
-                      color: colors.textPrimary,
-                    ),
+                  padding: EdgeInsets.only(bottom: AppSizes.h8),
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.warning_amber_rounded,
+                        size: AppSizes.sp14,
+                        color: const Color(0xFFB45309),
+                      ),
+                      SizedBox(width: AppSizes.w4),
+                      Text(
+                        'Only $stockQty items left in stock!',
+                        style: AppTextStyles.regular12.copyWith(
+                          color: const Color(0xFFB45309),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-                _QtyButton(
-                  icon: Icons.add_rounded,
-                  onTap: state.quantity < product.stockQuantity
-                      ? () => context.read<ProductDetailsBloc>().add(
-                          const ProductDetailsEvent.quantityIncremented(),
-                        )
-                      : null,
-                ),
-              ],
-            ),
-          ),
 
-          SizedBox(width: AppSizes.w12),
+              Row(
+                children: [
+                  // ── Quantity control ─────────────────
+                  Container(
+                    decoration: BoxDecoration(
+                      color: colors.surface,
+                      borderRadius: BorderRadius.circular(AppSizes.r12),
+                      border: Border.all(color: colors.border),
+                    ),
+                    child: QuantityControl(
+                      quantity: productState.quantity,
+                      // زرار + disabled لو وصلنا لأقصى كمية في الـ stock
+                      onIncrease: inStock &&
+                              productState.quantity < stockQty
+                          ? () => context.read<ProductDetailsBloc>().add(
+                                const ProductDetailsEvent.quantityIncremented(),
+                              )
+                          : null,
+                      // زرار - disabled لو الكمية 1
+                      onDecrease: productState.quantity > 1
+                          ? () => context.read<ProductDetailsBloc>().add(
+                                const ProductDetailsEvent.quantityDecremented(),
+                              )
+                          : null,
+                    ),
+                  ),
 
-          // ─── Add to Cart Button ──────────────────────
-          Expanded(
-            child: GestureDetector(
-              onTap: canAddToCart ? () => _onAddToCart(context) : null,
-              child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                height: AppSizes.h50,
-                decoration: BoxDecoration(
-                  color: canAddToCart ? colors.primary : colors.border,
-                  borderRadius: BorderRadius.circular(AppSizes.r14),
-                ),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.shopping_cart_outlined,
-                      color: Colors.white,
-                      size: AppSizes.sp20,
+                  SizedBox(width: AppSizes.w12),
+
+                  // ── Add-to-cart button ───────────────
+                  Expanded(
+                    child: BlocBuilder<CartBloc, CartState>(
+                      buildWhen: (prev, curr) =>
+                          prev.isAddingToCart != curr.isAddingToCart,
+                      builder: (context, cartState) {
+                        final isBusy = cartState.isAddingToCart;
+                        return CustomButton(
+                          enabled: canProceed && !isBusy,
+                          isLoading: isBusy,
+                          onPressed: canProceed && !isBusy
+                              ? () => _onAddToCart(context, productState)
+                              : null,
+                          borderRadius: AppSizes.r16,
+                          text: buttonLabel,
+                          icon: Icon(CupertinoIcons.cart_fill),
+                        );
+                      },
                     ),
-                    SizedBox(width: AppSizes.w8),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          canAddToCart ? 'Add to Cart' : 'Out of Stock',
-                          style: AppTextStyles.semiBold14.copyWith(
-                            color: Colors.white,
-                          ),
-                        ),
-                        if (canAddToCart)
-                          Text(
-                            'EGP ${state.totalPrice.toStringAsFixed(2)}',
-                            style: AppTextStyles.regular12.copyWith(
-                              color: Colors.white.withValues(alpha: 0.85),
-                            ),
-                          ),
-                      ],
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  void _onAddToCart(BuildContext context) {
-    context.read<CartBloc>().add(
-      CartEvent.itemAdded(
-        productId: product.id,
-        quantity: state.quantity,
-        // selectedOptions: state.selectedOptions,
-      ),
-    );
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Added ${state.quantity}x to cart'),
-        behavior: SnackBarBehavior.floating,
-        margin: EdgeInsets.only(
-          bottom: 80,
-          left: AppSizes.w16,
-          right: AppSizes.w16,
-        ),
-      ),
-    );
-  }
-}
-
-class _QtyButton extends StatelessWidget {
-  final IconData icon;
-  final VoidCallback? onTap;
-
-  const _QtyButton({required this.icon, required this.onTap});
-
-  @override
-  Widget build(BuildContext context) {
-    final colors = context.myColors;
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: AppSizes.w40,
-        height: AppSizes.w40,
-        alignment: Alignment.center,
-        child: Icon(
-          icon,
-          size: AppSizes.sp20,
-          color: onTap != null ? colors.primary : colors.border,
-        ),
+            ],
+          );
+        },
       ),
     );
   }

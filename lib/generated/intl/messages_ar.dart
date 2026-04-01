@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "addNewAddress": MessageLookupByLibrary.simpleMessage("اضافة عنوان جديد"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
+    "add_to_cart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى المفضلة",
     ),
@@ -80,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "ليس لديك حساب؟ ",
     ),
+    "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني غير صحيح",
@@ -286,6 +288,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "loginToYourAccount": MessageLookupByLibrary.simpleMessage(
       "تسجيل الدخول إلى حسابك",
     ),
+    "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
     "nameInvalid": MessageLookupByLibrary.simpleMessage(
       "الاسم يحتوي على أحرف غير مسموح بها",
     ),
@@ -329,6 +332,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إرسال الرمز مرة أخرى بنجاح",
     ),
     "otpTooShort": MessageLookupByLibrary.simpleMessage("رمز التحقق غير مكتمل"),
+    "out_of_stock": MessageLookupByLibrary.simpleMessage("نفذت الكمية"),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "كلمة المرور غير متطابقة",
@@ -404,6 +408,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "ابحث أو اضغط في أي مكان على الخريطة",
     ),
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage("موقعك"),
+    "select_options": MessageLookupByLibrary.simpleMessage("اختر الخيارات"),
     "setAsDefault": MessageLookupByLibrary.simpleMessage("تعيين كافتراضي"),
     "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
       "تعيين كعنوان افتراضي",

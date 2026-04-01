@@ -4,6 +4,7 @@ import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart'
 import 'package:heka_store/Features/cart/presentation/blocs/products_you_may_like/may_like_bloc.dart';
 import 'package:heka_store/Features/cart/presentation/components/cart_view_body_bloc_builder.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
 import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -34,6 +35,9 @@ class _CartViewState extends State<CartView> {
         BlocProvider(
           create: (context) =>
               sl<MayLikeBloc>()..add(const MayLikeEvent.loaded()),
+        ),
+        BlocProvider(
+          create: (context) => sl<ProductDetailsBloc>(),
         ),
       ],
       child: Scaffold(

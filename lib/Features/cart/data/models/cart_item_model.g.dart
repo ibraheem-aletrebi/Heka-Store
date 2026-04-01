@@ -23,6 +23,13 @@ _$CartItemModelImpl _$$CartItemModelImplFromJson(Map<String, dynamic> json) =>
       vendorId: (json['vendorId'] as num).toInt(),
       vendorName: json['vendorName'] as String,
       addedAt: json['addedAt'] as String,
+      selectedVariants: (json['selectedVariants'] as List<dynamic>?)
+              ?.map((e) =>
+                  SelectedVariantModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      variantPriceAdjustment:
+          (json['variantPriceAdjustment'] as num?)?.toDouble() ?? 0.0,
     );
 
 Map<String, dynamic> _$$CartItemModelImplToJson(_$CartItemModelImpl instance) =>
@@ -42,4 +49,6 @@ Map<String, dynamic> _$$CartItemModelImplToJson(_$CartItemModelImpl instance) =>
       'vendorId': instance.vendorId,
       'vendorName': instance.vendorName,
       'addedAt': instance.addedAt,
+      'selectedVariants': instance.selectedVariants,
+      'variantPriceAdjustment': instance.variantPriceAdjustment,
     };

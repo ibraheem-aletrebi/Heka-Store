@@ -9,8 +9,7 @@ part 'product_details_event.dart';
 part 'product_details_state.dart';
 part 'product_details_bloc.freezed.dart';
 
-class ProductDetailsBloc
-    extends Bloc<ProductDetailsEvent, ProductDetailsState> {
+class ProductDetailsBloc extends Bloc<ProductDetailsEvent, ProductDetailsState> {
   final GetProductDetailsUseCase _getProductDetailsUseCase;
 
   ProductDetailsBloc({
@@ -22,19 +21,24 @@ class ProductDetailsBloc
     on<_QuantityIncremented>(_onQuantityIncremented);
     on<_QuantityDecremented>(_onQuantityDecremented);
     on<_ImagePageChanged>(_onImagePageChanged);
+    on<_Reset>(_onReset);
   }
 
+void _onReset(_Reset event, Emitter<ProductDetailsState> emit) {
+  emit(const ProductDetailsState()); // ✅ resets to initial state
+}
   Future<void> _onStarted(
     _Started event,
     Emitter<ProductDetailsState> emit,
   ) async {
     emit(state.copyWith(isLoading: true, error: null));
-
     final result = await _getProductDetailsUseCase(event.productId);
     result.when(
       onSuccess: (product) => emit(state.copyWith(
         isLoading: false,
         product: product,
+        selectedOptions: const {},  // ✅ reset selections on new product load
+        quantity: 1,                // ✅ reset quantity too
       )),
       onError: (error) => emit(state.copyWith(
         isLoading: false,
@@ -48,11 +52,13 @@ class ProductDetailsBloc
     Emitter<ProductDetailsState> emit,
   ) {
     final updated = Map<String, ProductVariantOptionModel>.from(
-        state.selectedOptions);
+      state.selectedOptions,
+    );
+    // ✅ Toggle: tap same option again to deselect, otherwise select
     if (updated[event.typeName]?.id == event.option.id) {
       updated.remove(event.typeName);
     } else {
-      updated[event.typeName] = event.option;
+      updated[event.typeName] = event.option; // key = typeName → one per type
     }
     emit(state.copyWith(selectedOptions: updated));
   }

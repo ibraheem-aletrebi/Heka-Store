@@ -20,8 +20,12 @@ mixin _$CartEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -31,8 +35,12 @@ mixin _$CartEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -42,8 +50,12 @@ mixin _$CartEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -143,8 +155,12 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -157,8 +173,12 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -171,8 +191,12 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -275,8 +299,12 @@ class _$ReLoadedImpl implements _ReLoaded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -289,8 +317,12 @@ class _$ReLoadedImpl implements _ReLoaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -303,8 +335,12 @@ class _$ReLoadedImpl implements _ReLoaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -373,7 +409,7 @@ abstract class _$$ItemAddedImplCopyWith<$Res> {
           _$ItemAddedImpl value, $Res Function(_$ItemAddedImpl) then) =
       __$$ItemAddedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int productId, int quantity});
+  $Res call({int productId, int quantity, List<int>? selectedVariantIds});
 }
 
 /// @nodoc
@@ -389,6 +425,7 @@ class __$$ItemAddedImplCopyWithImpl<$Res>
   $Res call({
     Object? productId = null,
     Object? quantity = null,
+    Object? selectedVariantIds = freezed,
   }) {
     return _then(_$ItemAddedImpl(
       productId: null == productId
@@ -399,6 +436,10 @@ class __$$ItemAddedImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedVariantIds: freezed == selectedVariantIds
+          ? _value._selectedVariantIds
+          : selectedVariantIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
     ));
   }
 }
@@ -406,16 +447,30 @@ class __$$ItemAddedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ItemAddedImpl implements _ItemAdded {
-  const _$ItemAddedImpl({required this.productId, required this.quantity});
+  const _$ItemAddedImpl(
+      {required this.productId,
+      required this.quantity,
+      final List<int>? selectedVariantIds})
+      : _selectedVariantIds = selectedVariantIds;
 
   @override
   final int productId;
   @override
   final int quantity;
+  final List<int>? _selectedVariantIds;
+  @override
+  List<int>? get selectedVariantIds {
+    final value = _selectedVariantIds;
+    if (value == null) return null;
+    if (_selectedVariantIds is EqualUnmodifiableListView)
+      return _selectedVariantIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CartEvent.itemAdded(productId: $productId, quantity: $quantity)';
+    return 'CartEvent.itemAdded(productId: $productId, quantity: $quantity, selectedVariantIds: $selectedVariantIds)';
   }
 
   @override
@@ -426,11 +481,14 @@ class _$ItemAddedImpl implements _ItemAdded {
             (identical(other.productId, productId) ||
                 other.productId == productId) &&
             (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+                other.quantity == quantity) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedVariantIds, _selectedVariantIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, productId, quantity);
+  int get hashCode => Object.hash(runtimeType, productId, quantity,
+      const DeepCollectionEquality().hash(_selectedVariantIds));
 
   @JsonKey(ignore: true)
   @override
@@ -443,13 +501,17 @@ class _$ItemAddedImpl implements _ItemAdded {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
   }) {
-    return itemAdded(productId, quantity);
+    return itemAdded(productId, quantity, selectedVariantIds);
   }
 
   @override
@@ -457,13 +519,17 @@ class _$ItemAddedImpl implements _ItemAdded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
   }) {
-    return itemAdded?.call(productId, quantity);
+    return itemAdded?.call(productId, quantity, selectedVariantIds);
   }
 
   @override
@@ -471,15 +537,19 @@ class _$ItemAddedImpl implements _ItemAdded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
     required TResult orElse(),
   }) {
     if (itemAdded != null) {
-      return itemAdded(productId, quantity);
+      return itemAdded(productId, quantity, selectedVariantIds);
     }
     return orElse();
   }
@@ -534,10 +604,12 @@ class _$ItemAddedImpl implements _ItemAdded {
 abstract class _ItemAdded implements CartEvent {
   const factory _ItemAdded(
       {required final int productId,
-      required final int quantity}) = _$ItemAddedImpl;
+      required final int quantity,
+      final List<int>? selectedVariantIds}) = _$ItemAddedImpl;
 
   int get productId;
   int get quantity;
+  List<int>? get selectedVariantIds;
   @JsonKey(ignore: true)
   _$$ItemAddedImplCopyWith<_$ItemAddedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -549,7 +621,7 @@ abstract class _$$ItemUpdatedImplCopyWith<$Res> {
           _$ItemUpdatedImpl value, $Res Function(_$ItemUpdatedImpl) then) =
       __$$ItemUpdatedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({int cartItemId, int quantity});
+  $Res call({int cartItemId, int quantity, List<int>? selectedVariantIds});
 }
 
 /// @nodoc
@@ -565,6 +637,7 @@ class __$$ItemUpdatedImplCopyWithImpl<$Res>
   $Res call({
     Object? cartItemId = null,
     Object? quantity = null,
+    Object? selectedVariantIds = freezed,
   }) {
     return _then(_$ItemUpdatedImpl(
       cartItemId: null == cartItemId
@@ -575,6 +648,10 @@ class __$$ItemUpdatedImplCopyWithImpl<$Res>
           ? _value.quantity
           : quantity // ignore: cast_nullable_to_non_nullable
               as int,
+      selectedVariantIds: freezed == selectedVariantIds
+          ? _value._selectedVariantIds
+          : selectedVariantIds // ignore: cast_nullable_to_non_nullable
+              as List<int>?,
     ));
   }
 }
@@ -582,16 +659,30 @@ class __$$ItemUpdatedImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$ItemUpdatedImpl implements _ItemUpdated {
-  const _$ItemUpdatedImpl({required this.cartItemId, required this.quantity});
+  const _$ItemUpdatedImpl(
+      {required this.cartItemId,
+      required this.quantity,
+      final List<int>? selectedVariantIds})
+      : _selectedVariantIds = selectedVariantIds;
 
   @override
   final int cartItemId;
   @override
   final int quantity;
+  final List<int>? _selectedVariantIds;
+  @override
+  List<int>? get selectedVariantIds {
+    final value = _selectedVariantIds;
+    if (value == null) return null;
+    if (_selectedVariantIds is EqualUnmodifiableListView)
+      return _selectedVariantIds;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
 
   @override
   String toString() {
-    return 'CartEvent.itemUpdated(cartItemId: $cartItemId, quantity: $quantity)';
+    return 'CartEvent.itemUpdated(cartItemId: $cartItemId, quantity: $quantity, selectedVariantIds: $selectedVariantIds)';
   }
 
   @override
@@ -602,11 +693,14 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
             (identical(other.cartItemId, cartItemId) ||
                 other.cartItemId == cartItemId) &&
             (identical(other.quantity, quantity) ||
-                other.quantity == quantity));
+                other.quantity == quantity) &&
+            const DeepCollectionEquality()
+                .equals(other._selectedVariantIds, _selectedVariantIds));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, cartItemId, quantity);
+  int get hashCode => Object.hash(runtimeType, cartItemId, quantity,
+      const DeepCollectionEquality().hash(_selectedVariantIds));
 
   @JsonKey(ignore: true)
   @override
@@ -619,13 +713,17 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
   }) {
-    return itemUpdated(cartItemId, quantity);
+    return itemUpdated(cartItemId, quantity, selectedVariantIds);
   }
 
   @override
@@ -633,13 +731,17 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
   }) {
-    return itemUpdated?.call(cartItemId, quantity);
+    return itemUpdated?.call(cartItemId, quantity, selectedVariantIds);
   }
 
   @override
@@ -647,15 +749,19 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
     required TResult orElse(),
   }) {
     if (itemUpdated != null) {
-      return itemUpdated(cartItemId, quantity);
+      return itemUpdated(cartItemId, quantity, selectedVariantIds);
     }
     return orElse();
   }
@@ -710,10 +816,12 @@ class _$ItemUpdatedImpl implements _ItemUpdated {
 abstract class _ItemUpdated implements CartEvent {
   const factory _ItemUpdated(
       {required final int cartItemId,
-      required final int quantity}) = _$ItemUpdatedImpl;
+      required final int quantity,
+      final List<int>? selectedVariantIds}) = _$ItemUpdatedImpl;
 
   int get cartItemId;
   int get quantity;
+  List<int>? get selectedVariantIds;
   @JsonKey(ignore: true)
   _$$ItemUpdatedImplCopyWith<_$ItemUpdatedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -786,8 +894,12 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -800,8 +912,12 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -814,8 +930,12 @@ class _$ItemRemovedImpl implements _ItemRemoved {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -924,8 +1044,12 @@ class _$CountFetchedImpl implements _CountFetched {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -938,8 +1062,12 @@ class _$CountFetchedImpl implements _CountFetched {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -952,8 +1080,12 @@ class _$CountFetchedImpl implements _CountFetched {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -1056,8 +1188,12 @@ class _$ClearedImpl implements _Cleared {
   TResult when<TResult extends Object?>({
     required TResult Function() loaded,
     required TResult Function() reLoaded,
-    required TResult Function(int productId, int quantity) itemAdded,
-    required TResult Function(int cartItemId, int quantity) itemUpdated,
+    required TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)
+        itemAdded,
+    required TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)
+        itemUpdated,
     required TResult Function(int cartItemId) itemRemoved,
     required TResult Function() countFetched,
     required TResult Function() cleared,
@@ -1070,8 +1206,12 @@ class _$ClearedImpl implements _Cleared {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? loaded,
     TResult? Function()? reLoaded,
-    TResult? Function(int productId, int quantity)? itemAdded,
-    TResult? Function(int cartItemId, int quantity)? itemUpdated,
+    TResult? Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult? Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult? Function(int cartItemId)? itemRemoved,
     TResult? Function()? countFetched,
     TResult? Function()? cleared,
@@ -1084,8 +1224,12 @@ class _$ClearedImpl implements _Cleared {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? loaded,
     TResult Function()? reLoaded,
-    TResult Function(int productId, int quantity)? itemAdded,
-    TResult Function(int cartItemId, int quantity)? itemUpdated,
+    TResult Function(
+            int productId, int quantity, List<int>? selectedVariantIds)?
+        itemAdded,
+    TResult Function(
+            int cartItemId, int quantity, List<int>? selectedVariantIds)?
+        itemUpdated,
     TResult Function(int cartItemId)? itemRemoved,
     TResult Function()? countFetched,
     TResult Function()? cleared,
@@ -1154,6 +1298,8 @@ mixin _$CartState {
   CartModel? get cart => throw _privateConstructorUsedError;
   int get count => throw _privateConstructorUsedError;
   Map<int, bool> get loadingItems => throw _privateConstructorUsedError;
+  bool get isAddingToCart => throw _privateConstructorUsedError;
+  bool? get addedToCartSuccess => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1171,6 +1317,8 @@ abstract class $CartStateCopyWith<$Res> {
       CartModel? cart,
       int count,
       Map<int, bool> loadingItems,
+      bool isAddingToCart,
+      bool? addedToCartSuccess,
       ApiErrorModel? error});
 
   $CartModelCopyWith<$Res>? get cart;
@@ -1193,6 +1341,8 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
     Object? cart = freezed,
     Object? count = null,
     Object? loadingItems = null,
+    Object? isAddingToCart = null,
+    Object? addedToCartSuccess = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1212,6 +1362,14 @@ class _$CartStateCopyWithImpl<$Res, $Val extends CartState>
           ? _value.loadingItems
           : loadingItems // ignore: cast_nullable_to_non_nullable
               as Map<int, bool>,
+      isAddingToCart: null == isAddingToCart
+          ? _value.isAddingToCart
+          : isAddingToCart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      addedToCartSuccess: freezed == addedToCartSuccess
+          ? _value.addedToCartSuccess
+          : addedToCartSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -1245,6 +1403,8 @@ abstract class _$$CartStateImplCopyWith<$Res>
       CartModel? cart,
       int count,
       Map<int, bool> loadingItems,
+      bool isAddingToCart,
+      bool? addedToCartSuccess,
       ApiErrorModel? error});
 
   @override
@@ -1266,6 +1426,8 @@ class __$$CartStateImplCopyWithImpl<$Res>
     Object? cart = freezed,
     Object? count = null,
     Object? loadingItems = null,
+    Object? isAddingToCart = null,
+    Object? addedToCartSuccess = freezed,
     Object? error = freezed,
   }) {
     return _then(_$CartStateImpl(
@@ -1285,6 +1447,14 @@ class __$$CartStateImplCopyWithImpl<$Res>
           ? _value._loadingItems
           : loadingItems // ignore: cast_nullable_to_non_nullable
               as Map<int, bool>,
+      isAddingToCart: null == isAddingToCart
+          ? _value.isAddingToCart
+          : isAddingToCart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      addedToCartSuccess: freezed == addedToCartSuccess
+          ? _value.addedToCartSuccess
+          : addedToCartSuccess // ignore: cast_nullable_to_non_nullable
+              as bool?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -1301,6 +1471,8 @@ class _$CartStateImpl extends _CartState {
       this.cart,
       this.count = 0,
       final Map<int, bool> loadingItems = const {},
+      this.isAddingToCart = false,
+      this.addedToCartSuccess,
       this.error})
       : _loadingItems = loadingItems,
         super._();
@@ -1323,11 +1495,16 @@ class _$CartStateImpl extends _CartState {
   }
 
   @override
+  @JsonKey()
+  final bool isAddingToCart;
+  @override
+  final bool? addedToCartSuccess;
+  @override
   final ApiErrorModel? error;
 
   @override
   String toString() {
-    return 'CartState(status: $status, cart: $cart, count: $count, loadingItems: $loadingItems, error: $error)';
+    return 'CartState(status: $status, cart: $cart, count: $count, loadingItems: $loadingItems, isAddingToCart: $isAddingToCart, addedToCartSuccess: $addedToCartSuccess, error: $error)';
   }
 
   @override
@@ -1340,12 +1517,23 @@ class _$CartStateImpl extends _CartState {
             (identical(other.count, count) || other.count == count) &&
             const DeepCollectionEquality()
                 .equals(other._loadingItems, _loadingItems) &&
+            (identical(other.isAddingToCart, isAddingToCart) ||
+                other.isAddingToCart == isAddingToCart) &&
+            (identical(other.addedToCartSuccess, addedToCartSuccess) ||
+                other.addedToCartSuccess == addedToCartSuccess) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, cart, count,
-      const DeepCollectionEquality().hash(_loadingItems), error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      cart,
+      count,
+      const DeepCollectionEquality().hash(_loadingItems),
+      isAddingToCart,
+      addedToCartSuccess,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -1360,6 +1548,8 @@ abstract class _CartState extends CartState {
       final CartModel? cart,
       final int count,
       final Map<int, bool> loadingItems,
+      final bool isAddingToCart,
+      final bool? addedToCartSuccess,
       final ApiErrorModel? error}) = _$CartStateImpl;
   const _CartState._() : super._();
 
@@ -1371,6 +1561,10 @@ abstract class _CartState extends CartState {
   int get count;
   @override
   Map<int, bool> get loadingItems;
+  @override
+  bool get isAddingToCart;
+  @override
+  bool? get addedToCartSuccess;
   @override
   ApiErrorModel? get error;
   @override

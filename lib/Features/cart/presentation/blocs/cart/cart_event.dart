@@ -7,10 +7,12 @@ class CartEvent with _$CartEvent {
   const factory CartEvent.itemAdded({
     required int productId,
     required int quantity,
+    List<int>? selectedVariantIds,
   }) = _ItemAdded;
   const factory CartEvent.itemUpdated({
     required int cartItemId,
     required int quantity,
+    List<int>? selectedVariantIds, // ✅ added
   }) = _ItemUpdated;
   const factory CartEvent.itemRemoved({required int cartItemId}) = _ItemRemoved;
   const factory CartEvent.countFetched() = _CountFetched;

@@ -1,4 +1,12 @@
 import 'package:get_it/get_it.dart';
+import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
+import 'package:heka_store/Features/account/data/repos/account_repo_imp.dart';
+import 'package:heka_store/Features/account/domain/repos/account_repo.dart';
+import 'package:heka_store/Features/account/domain/use_cases/delete_profile_picture_use_case.dart';
+import 'package:heka_store/Features/account/domain/use_cases/edit_profile_use_case.dart';
+import 'package:heka_store/Features/account/domain/use_cases/upload_profile_picture_use_case.dart';
+import 'package:heka_store/Features/account/presentation/blocs/edit_profile/edit_profile_bloc.dart';
+import 'package:heka_store/Features/account/presentation/blocs/profile_image/profile_image_bloc.dart';
 import 'package:heka_store/Features/address/data/data_source/address_local_data_source.dart';
 import 'package:heka_store/Features/address/data/data_source/address_remote_data_source.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
@@ -111,6 +119,7 @@ Future<void> setupInjector() async {
   _initWishlist();
   _initCart();
   _initProductDetails();
+  _initAccount();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -502,3 +511,45 @@ void _initProductDetails() {
     ),
   );
 }
+
+
+void _initAccount() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<AccountRemoteDataSource>(
+    () => AccountRemoteDataSourceImp(apiService: sl<ApiService>()),
+  );
+
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<AccountRepo>(
+    () => AccountRepoImp(
+      remoteDataSource: sl<AccountRemoteDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<EditProfileUseCase>(
+    () => EditProfileUseCase(accountRepo: sl<AccountRepo>()),
+  );
+  sl.registerFactory<DeleteProfilePictureUseCase>(
+    () => DeleteProfilePictureUseCase(accountRepo: sl<AccountRepo>()),
+  );
+  sl.registerFactory<UploadProfilePictureUseCase>(
+    () => UploadProfilePictureUseCase(accountRepo: sl<AccountRepo>()),
+  );
+  // ─── BLoCs ────────────────────────────────────────
+  sl.registerFactory<EditProfileBloc>(
+    () => EditProfileBloc(
+      editProfileUseCase: sl<EditProfileUseCase>(),
+    ),
+  );
+  sl.registerFactory<ProfileImageBloc>(
+    () => ProfileImageBloc(
+      uploadProfilePictureUseCase: sl<UploadProfilePictureUseCase>(),
+      deleteProfilePictureUseCase: sl<DeleteProfilePictureUseCase>(),
+    ),
+  );
+}
+
+
+
