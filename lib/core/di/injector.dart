@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
 import 'package:heka_store/Features/account/data/repos/account_repo_imp.dart';
 import 'package:heka_store/Features/account/domain/repos/account_repo.dart';
@@ -107,6 +109,7 @@ import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
+import 'package:heka_store/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 final sl = GetIt.instance;
@@ -159,7 +162,7 @@ Future<void> _initCore() async {
   // ─── Error Handler ────────────────────────────────
   ApiErrorHandler.instance.init(
     onUnauthorized: () {
-      AppRouter().go(AppRoutes.login);
+      GoRouter.of(navigatorKey.currentContext!).go(AppRoutes.login);
     },
   );
 }
@@ -512,19 +515,15 @@ void _initProductDetails() {
   );
 }
 
-
 void _initAccount() {
   // ─── DataSources ──────────────────────────────────
   sl.registerLazySingleton<AccountRemoteDataSource>(
     () => AccountRemoteDataSourceImp(apiService: sl<ApiService>()),
   );
 
-
   // ─── Repository ───────────────────────────────────
   sl.registerLazySingleton<AccountRepo>(
-    () => AccountRepoImp(
-      remoteDataSource: sl<AccountRemoteDataSource>(),
-    ),
+    () => AccountRepoImp(remoteDataSource: sl<AccountRemoteDataSource>()),
   );
 
   // ─── Use Cases ────────────────────────────────────
@@ -539,9 +538,7 @@ void _initAccount() {
   );
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<EditProfileBloc>(
-    () => EditProfileBloc(
-      editProfileUseCase: sl<EditProfileUseCase>(),
-    ),
+    () => EditProfileBloc(editProfileUseCase: sl<EditProfileUseCase>()),
   );
   sl.registerFactory<ProfileImageBloc>(
     () => ProfileImageBloc(
@@ -550,6 +547,3 @@ void _initAccount() {
     ),
   );
 }
-
-
-

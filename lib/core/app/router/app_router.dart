@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/presentation/views/edit_profile_view.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
@@ -23,10 +24,12 @@ import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/models/user_profile/user_profile.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
+import 'package:heka_store/main.dart';
 
 class AppRouter {
   late final GoRouter router = GoRouter(
     initialLocation: AppRoutes.splash,
+    navigatorKey: navigatorKey,
     routes: [
       // ─── Splash ───────────────────────────────
       GoRoute(path: AppRoutes.splash, builder: (_, _) => const SplashView()),

@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
-import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
 import 'package:heka_store/core/widgets/user_avater.dart';
@@ -14,7 +13,6 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
     final textTheme = TextTheme.of(context);
     return BlocBuilder<UserProfileBloc, UserProfileState>(
       builder: (context, state) {
