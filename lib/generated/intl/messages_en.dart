@@ -20,6 +20,18 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
+  static String m2(amount) => "EGP ${amount}";
+
+  static String m3(amount) => "Saving EGP ${amount}";
+
+  static String m4(amount) => "Add EGP ${amount} more for free shipping!";
+
+  static String m5(count) => "Only ${count} left!";
+
+  static String m6(productName) => "Remove \"${productName}\" from your cart?";
+
+  static String m7(amount) => "You save ${amount}";
+
   static String m0(address) =>
       "Remove \"${address}\"?\nThis action cannot be undone.";
 
@@ -61,12 +73,54 @@ class MessageLookup extends MessageLookupByLibrary {
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
+    "cartBottomBarEgpAmount": m2,
+    "cartBottomBarSaving": m3,
+    "cartBottomBarTotal": MessageLookupByLibrary.simpleMessage("Total"),
+    "cartCheckoutBlockedLabel": MessageLookupByLibrary.simpleMessage(
+      "Checkout unavailable",
+    ),
+    "cartCheckoutLabel": MessageLookupByLibrary.simpleMessage("Checkout"),
     "cartEmptySubtitle": MessageLookupByLibrary.simpleMessage(
       "add items to your cart to get started.",
     ),
     "cartEmptyTitle": MessageLookupByLibrary.simpleMessage(
       "Your shopping cart looks empty",
     ),
+    "cartFreeShippingEarned": MessageLookupByLibrary.simpleMessage(
+      "You\'ve unlocked free shipping! 🎉",
+    ),
+    "cartFreeShippingProgress": m4,
+    "cartItemEditTooltip": MessageLookupByLibrary.simpleMessage(
+      "Edit variants / options",
+    ),
+    "cartItemLoadError": MessageLookupByLibrary.simpleMessage(
+      "Failed to load product details",
+    ),
+    "cartItemOnlyXLeft": m5,
+    "cartItemOutOfStockMessage": MessageLookupByLibrary.simpleMessage(
+      "Out of stock — remove or save for later",
+    ),
+    "cartItemRemove": MessageLookupByLibrary.simpleMessage("Remove"),
+    "cartItemRemoveDialogConfirm": MessageLookupByLibrary.simpleMessage(
+      "Remove",
+    ),
+    "cartItemRemoveDialogContent": m6,
+    "cartItemRemoveDialogKeep": MessageLookupByLibrary.simpleMessage("Keep"),
+    "cartItemRemoveDialogTitle": MessageLookupByLibrary.simpleMessage(
+      "Remove item?",
+    ),
+    "cartItemYouSave": m7,
+    "cartOutOfStockCheckoutBlocked": MessageLookupByLibrary.simpleMessage(
+      "Remove unavailable items to checkout",
+    ),
+    "cartOutOfStockClearAll": MessageLookupByLibrary.simpleMessage("Clear all"),
+    "cartSummaryDiscount": MessageLookupByLibrary.simpleMessage("Discount"),
+    "cartSummaryOutOfStockWarning": MessageLookupByLibrary.simpleMessage(
+      "Some items are out of stock",
+    ),
+    "cartSummaryShipping": MessageLookupByLibrary.simpleMessage("Shipping fee"),
+    "cartSummaryShippingFree": MessageLookupByLibrary.simpleMessage("Free"),
+    "cartSummarySubtotal": MessageLookupByLibrary.simpleMessage("Sub-total"),
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "change": MessageLookupByLibrary.simpleMessage("Change"),
     "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
@@ -83,6 +137,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Delete Address?",
     ),
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("Delivery Address"),
+    "discountedSubTotal": MessageLookupByLibrary.simpleMessage(
+      "Discounted Subtotal",
+    ),
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),

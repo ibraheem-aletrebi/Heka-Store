@@ -358,6 +358,223 @@
     "add_to_cart": "Add to Cart",
     "@add_to_cart": {},
 
+    "cartItemOutOfStockMessage": "Out of stock — remove or save for later",
+  "@cartItemOutOfStockMessage": {
+    "description": "Banner shown on a cart item tile when the product is out of stock"
+  },
+
+  "cartItemOnlyXLeft": "Only {count} left!",
+  "@cartItemOnlyXLeft": {
+    "description": "Low-stock chip label",
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "example": "2"
+      }
+    }
+  },
+
+  "cartItemYouSave": "You save {amount}",
+  "@cartItemYouSave": {
+    "description": "Savings chip label shown when item has a discount",
+    "placeholders": {
+      "amount": {
+        "type": "String",
+        "example": "EGP 50.00"
+      }
+    }
+  },
+
+  "cartItemEditTooltip": "Edit variants / options",
+  "@cartItemEditTooltip": {
+    "description": "Tooltip on the edit (tune) icon button"
+  },
+
+  "cartItemRemove": "Remove",
+  "@cartItemRemove": {
+    "description": "Remove link shown at the bottom of a cart item tile and inside the swipe-to-delete background"
+  },
+
+  "cartItemRemoveDialogTitle": "Remove item?",
+  "@cartItemRemoveDialogTitle": {
+    "description": "Title of the confirmation dialog when removing a cart item"
+  },
+
+  "cartItemRemoveDialogContent": "Remove \"{productName}\" from your cart?",
+  "@cartItemRemoveDialogContent": {
+    "description": "Body of the confirmation dialog when removing a cart item",
+    "placeholders": {
+      "productName": {
+        "type": "String",
+        "example": "Nike Air Max 270"
+      }
+    }
+  },
+
+  "cartItemRemoveDialogKeep": "Keep",
+  "@cartItemRemoveDialogKeep": {
+    "description": "Cancel button in the remove-item confirmation dialog"
+  },
+
+  "cartItemRemoveDialogConfirm": "Remove",
+  "@cartItemRemoveDialogConfirm": {
+    "description": "Confirm button in the remove-item confirmation dialog"
+  },
+
+  "cartItemLoadError": "Failed to load product details",
+  "@cartItemLoadError": {
+    "description": "Snackbar message shown when product details fail to load"
+  },
+
+
+   "@@comment_section_cart_item_tile": "─── CartItemTile ───────────────────────────────────",
+
+  "cartItemOutOfStockMessage": "Out of stock — remove or save for later",
+  "@cartItemOutOfStockMessage": {
+    "description": "Banner shown on a cart item tile when the product is out of stock"
+  },
+
+  "cartItemOnlyXLeft": "Only {count} left!",
+  "@cartItemOnlyXLeft": {
+    "description": "Low-stock chip label",
+    "placeholders": {
+      "count": { "type": "int", "example": "2" }
+    }
+  },
+
+  "cartItemYouSave": "You save {amount}",
+  "@cartItemYouSave": {
+    "description": "Savings chip label shown when item has a discount",
+    "placeholders": {
+      "amount": { "type": "String", "example": "EGP 50.00" }
+    }
+  },
+
+  "cartItemEditTooltip": "Edit variants / options",
+  "@cartItemEditTooltip": {
+    "description": "Tooltip on the edit (tune) icon button"
+  },
+
+  "cartItemRemove": "Remove",
+  "@cartItemRemove": {
+    "description": "Remove link shown at the bottom of a cart item tile and inside the swipe-to-delete background"
+  },
+
+  "cartItemRemoveDialogTitle": "Remove item?",
+  "@cartItemRemoveDialogTitle": {
+    "description": "Title of the confirmation dialog when removing a cart item"
+  },
+
+  "cartItemRemoveDialogContent": "Remove \"{productName}\" from your cart?",
+  "@cartItemRemoveDialogContent": {
+    "description": "Body of the confirmation dialog when removing a cart item",
+    "placeholders": {
+      "productName": { "type": "String", "example": "Nike Air Max 270" }
+    }
+  },
+
+  "cartItemRemoveDialogKeep": "Keep",
+  "@cartItemRemoveDialogKeep": {
+    "description": "Cancel button in the remove-item confirmation dialog"
+  },
+
+  "cartItemRemoveDialogConfirm": "Remove",
+  "@cartItemRemoveDialogConfirm": {
+    "description": "Confirm button in the remove-item confirmation dialog"
+  },
+
+  "cartItemLoadError": "Failed to load product details",
+  "@cartItemLoadError": {
+    "description": "Snackbar message shown when product details fail to load"
+  },
+
+  "@@comment_section_cart_bottom_bar": "─── CartBottomBar ──────────────────────────────────",
+
+  "cartBottomBarTotal": "Total",
+  "@cartBottomBarTotal": {
+    "description": "Label above the total price in the bottom bar and summary panel"
+  },
+
+  "cartBottomBarEgpAmount": "EGP {amount}",
+  "@cartBottomBarEgpAmount": {
+    "description": "Formatted EGP price string",
+    "placeholders": {
+      "amount": { "type": "String", "example": "250.00" }
+    }
+  },
+
+  "cartBottomBarSaving": "Saving EGP {amount}",
+  "@cartBottomBarSaving": {
+    "description": "Savings label shown below the total price in the bottom bar",
+    "placeholders": {
+      "amount": { "type": "String", "example": "30.00" }
+    }
+  },
+
+  "cartSummarySubtotal": "Sub-total",
+  "@cartSummarySubtotal": {
+    "description": "Sub-total label in the order summary panel"
+  },
+
+  "cartSummaryShipping": "Shipping fee",
+  "@cartSummaryShipping": {
+    "description": "Shipping fee label in the order summary panel"
+  },
+
+  "cartSummaryShippingFree": "Free",
+  "@cartSummaryShippingFree": {
+    "description": "Value shown when shipping cost is zero"
+  },
+
+  "cartSummaryDiscount": "Discount",
+  "@cartSummaryDiscount": {
+    "description": "Discount row label in the order summary panel"
+  },
+
+  "cartSummaryOutOfStockWarning": "Some items are out of stock",
+  "@cartSummaryOutOfStockWarning": {
+    "description": "Warning line inside the order summary panel when there are out-of-stock items"
+  },
+
+  "cartFreeShippingProgress": "Add EGP {amount} more for free shipping!",
+  "@cartFreeShippingProgress": {
+    "description": "Free-shipping progress banner text showing how much more the user needs to spend",
+    "placeholders": {
+      "amount": { "type": "String", "example": "120" }
+    }
+  },
+
+  "cartFreeShippingEarned": "You've unlocked free shipping! 🎉",
+  "@cartFreeShippingEarned": {
+    "description": "Banner shown when the user qualifies for free shipping"
+  },
+
+  "cartOutOfStockCheckoutBlocked": "Remove unavailable items to checkout",
+  "@cartOutOfStockCheckoutBlocked": {
+    "description": "Inline warning shown in the bottom bar when out-of-stock items block checkout"
+  },
+
+  "cartOutOfStockClearAll": "Clear all",
+  "@cartOutOfStockClearAll": {
+    "description": "Button inside the out-of-stock warning to remove all unavailable items at once"
+  },
+
+  "cartCheckoutLabel": "Checkout",
+  "@cartCheckoutLabel": {
+    "description": "Primary checkout button label"
+  },
+
+  "cartCheckoutBlockedLabel": "Checkout unavailable",
+  "@cartCheckoutBlockedLabel": {
+    "description": "Checkout button label when checkout is blocked by out-of-stock items"
+  }
+,
+
+  "discountedSubTotal": "Discounted Subtotal",
+  "@discountedSubTotal": {
+    "description": "Subtotal after applying discount"
+  }
+,
 
     "Categories": "Categories",
     "@Categories": {},

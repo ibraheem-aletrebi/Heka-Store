@@ -1574,6 +1574,262 @@ class S {
     return Intl.message('Add to Cart', name: 'add_to_cart', desc: '', args: []);
   }
 
+  /// `Out of stock — remove or save for later`
+  String get cartItemOutOfStockMessage {
+    return Intl.message(
+      'Out of stock — remove or save for later',
+      name: 'cartItemOutOfStockMessage',
+      desc: 'Banner shown on a cart item tile when the product is out of stock',
+      args: [],
+    );
+  }
+
+  /// `Only {count} left!`
+  String cartItemOnlyXLeft(int count) {
+    return Intl.message(
+      'Only $count left!',
+      name: 'cartItemOnlyXLeft',
+      desc: 'Low-stock chip label',
+      args: [count],
+    );
+  }
+
+  /// `You save {amount}`
+  String cartItemYouSave(String amount) {
+    return Intl.message(
+      'You save $amount',
+      name: 'cartItemYouSave',
+      desc: 'Savings chip label shown when item has a discount',
+      args: [amount],
+    );
+  }
+
+  /// `Edit variants / options`
+  String get cartItemEditTooltip {
+    return Intl.message(
+      'Edit variants / options',
+      name: 'cartItemEditTooltip',
+      desc: 'Tooltip on the edit (tune) icon button',
+      args: [],
+    );
+  }
+
+  /// `Remove`
+  String get cartItemRemove {
+    return Intl.message(
+      'Remove',
+      name: 'cartItemRemove',
+      desc:
+          'Remove link shown at the bottom of a cart item tile and inside the swipe-to-delete background',
+      args: [],
+    );
+  }
+
+  /// `Remove item?`
+  String get cartItemRemoveDialogTitle {
+    return Intl.message(
+      'Remove item?',
+      name: 'cartItemRemoveDialogTitle',
+      desc: 'Title of the confirmation dialog when removing a cart item',
+      args: [],
+    );
+  }
+
+  /// `Remove "{productName}" from your cart?`
+  String cartItemRemoveDialogContent(String productName) {
+    return Intl.message(
+      'Remove "$productName" from your cart?',
+      name: 'cartItemRemoveDialogContent',
+      desc: 'Body of the confirmation dialog when removing a cart item',
+      args: [productName],
+    );
+  }
+
+  /// `Keep`
+  String get cartItemRemoveDialogKeep {
+    return Intl.message(
+      'Keep',
+      name: 'cartItemRemoveDialogKeep',
+      desc: 'Cancel button in the remove-item confirmation dialog',
+      args: [],
+    );
+  }
+
+  /// `Remove`
+  String get cartItemRemoveDialogConfirm {
+    return Intl.message(
+      'Remove',
+      name: 'cartItemRemoveDialogConfirm',
+      desc: 'Confirm button in the remove-item confirmation dialog',
+      args: [],
+    );
+  }
+
+  /// `Failed to load product details`
+  String get cartItemLoadError {
+    return Intl.message(
+      'Failed to load product details',
+      name: 'cartItemLoadError',
+      desc: 'Snackbar message shown when product details fail to load',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get cartBottomBarTotal {
+    return Intl.message(
+      'Total',
+      name: 'cartBottomBarTotal',
+      desc: 'Label above the total price in the bottom bar and summary panel',
+      args: [],
+    );
+  }
+
+  /// `EGP {amount}`
+  String cartBottomBarEgpAmount(String amount) {
+    return Intl.message(
+      'EGP $amount',
+      name: 'cartBottomBarEgpAmount',
+      desc: 'Formatted EGP price string',
+      args: [amount],
+    );
+  }
+
+  /// `Saving EGP {amount}`
+  String cartBottomBarSaving(String amount) {
+    return Intl.message(
+      'Saving EGP $amount',
+      name: 'cartBottomBarSaving',
+      desc: 'Savings label shown below the total price in the bottom bar',
+      args: [amount],
+    );
+  }
+
+  /// `Sub-total`
+  String get cartSummarySubtotal {
+    return Intl.message(
+      'Sub-total',
+      name: 'cartSummarySubtotal',
+      desc: 'Sub-total label in the order summary panel',
+      args: [],
+    );
+  }
+
+  /// `Shipping fee`
+  String get cartSummaryShipping {
+    return Intl.message(
+      'Shipping fee',
+      name: 'cartSummaryShipping',
+      desc: 'Shipping fee label in the order summary panel',
+      args: [],
+    );
+  }
+
+  /// `Free`
+  String get cartSummaryShippingFree {
+    return Intl.message(
+      'Free',
+      name: 'cartSummaryShippingFree',
+      desc: 'Value shown when shipping cost is zero',
+      args: [],
+    );
+  }
+
+  /// `Discount`
+  String get cartSummaryDiscount {
+    return Intl.message(
+      'Discount',
+      name: 'cartSummaryDiscount',
+      desc: 'Discount row label in the order summary panel',
+      args: [],
+    );
+  }
+
+  /// `Some items are out of stock`
+  String get cartSummaryOutOfStockWarning {
+    return Intl.message(
+      'Some items are out of stock',
+      name: 'cartSummaryOutOfStockWarning',
+      desc:
+          'Warning line inside the order summary panel when there are out-of-stock items',
+      args: [],
+    );
+  }
+
+  /// `Add EGP {amount} more for free shipping!`
+  String cartFreeShippingProgress(String amount) {
+    return Intl.message(
+      'Add EGP $amount more for free shipping!',
+      name: 'cartFreeShippingProgress',
+      desc:
+          'Free-shipping progress banner text showing how much more the user needs to spend',
+      args: [amount],
+    );
+  }
+
+  /// `You've unlocked free shipping! 🎉`
+  String get cartFreeShippingEarned {
+    return Intl.message(
+      'You\'ve unlocked free shipping! 🎉',
+      name: 'cartFreeShippingEarned',
+      desc: 'Banner shown when the user qualifies for free shipping',
+      args: [],
+    );
+  }
+
+  /// `Remove unavailable items to checkout`
+  String get cartOutOfStockCheckoutBlocked {
+    return Intl.message(
+      'Remove unavailable items to checkout',
+      name: 'cartOutOfStockCheckoutBlocked',
+      desc:
+          'Inline warning shown in the bottom bar when out-of-stock items block checkout',
+      args: [],
+    );
+  }
+
+  /// `Clear all`
+  String get cartOutOfStockClearAll {
+    return Intl.message(
+      'Clear all',
+      name: 'cartOutOfStockClearAll',
+      desc:
+          'Button inside the out-of-stock warning to remove all unavailable items at once',
+      args: [],
+    );
+  }
+
+  /// `Checkout`
+  String get cartCheckoutLabel {
+    return Intl.message(
+      'Checkout',
+      name: 'cartCheckoutLabel',
+      desc: 'Primary checkout button label',
+      args: [],
+    );
+  }
+
+  /// `Checkout unavailable`
+  String get cartCheckoutBlockedLabel {
+    return Intl.message(
+      'Checkout unavailable',
+      name: 'cartCheckoutBlockedLabel',
+      desc:
+          'Checkout button label when checkout is blocked by out-of-stock items',
+      args: [],
+    );
+  }
+
+  /// `Discounted Subtotal`
+  String get discountedSubTotal {
+    return Intl.message(
+      'Discounted Subtotal',
+      name: 'discountedSubTotal',
+      desc: 'Subtotal after applying discount',
+      args: [],
+    );
+  }
+
   /// `Categories`
   String get Categories {
     return Intl.message('Categories', name: 'Categories', desc: '', args: []);

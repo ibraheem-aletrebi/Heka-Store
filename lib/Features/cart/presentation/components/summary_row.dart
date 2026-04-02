@@ -5,8 +5,9 @@ import 'package:heka_store/core/resources/app_text_styles.dart';
 class SummaryRow extends StatelessWidget {
   final String label;
   final String value;
+  final Color? valueColor;
 
-  const SummaryRow({super.key, required this.label, required this.value});
+  const SummaryRow({super.key, required this.label, required this.value, this.valueColor});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class SummaryRow extends StatelessWidget {
         const Spacer(),
         Text(
           value,
-          style: AppTextStyles.semiBold14.copyWith(color: colors.textPrimary),
+          style: AppTextStyles.semiBold14.copyWith(color: valueColor ?? colors.textPrimary),
         ),
       ],
     );
