@@ -68,6 +68,14 @@ import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_pr
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/order/data/data_source/my_orders_remote_data_source.dart';
+import 'package:heka_store/Features/order/data/data_source/order_remote_data_source.dart';
+import 'package:heka_store/Features/order/data/repo/my_orders_repository.dart';
+import 'package:heka_store/Features/order/data/repo/order_repository.dart';
+import 'package:heka_store/Features/order/domain/use_cases/initiate_payment_use_case.dart';
+import 'package:heka_store/Features/order/domain/use_cases/order_use_cases.dart';
+import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
+import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_local_data_source.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_remote_data_source.dart';
 // ─── Product Details imports ──────────────────────────────────────────────────
@@ -123,6 +131,7 @@ Future<void> setupInjector() async {
   _initCart();
   _initProductDetails();
   _initAccount();
+  _initOrder();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -546,4 +555,54 @@ void _initAccount() {
       deleteProfilePictureUseCase: sl<DeleteProfilePictureUseCase>(),
     ),
   );
+}
+
+void _initOrder() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<OrderRemoteDataSource>(
+    // ← abstract مش Impl
+    () => OrderRemoteDataSourceImpl(sl<ApiService>()),
+  );
+    sl.registerLazySingleton<MyOrdersRemoteDataSource>(
+    () => MyOrdersRemoteDataSourceImpl(sl<ApiService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<OrderRepository>(
+    () => OrderRepositoryImpl(sl<OrderRemoteDataSource>()),
+  );
+
+  sl.registerLazySingleton<MyOrdersRepository>(
+    () => MyOrdersRepositoryImpl(sl<MyOrdersRemoteDataSource>()),
+  );
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<CreateOrderUseCase>(
+    () => CreateOrderUseCase(sl<OrderRepository>()),
+  );
+
+  sl.registerFactory<InitiatePaymentUseCase>(
+    () => InitiatePaymentUseCase(sl<OrderRepository>()),
+  );
+  sl.registerFactory<GetMyOrdersUseCase>(
+    () => GetMyOrdersUseCase( sl<MyOrdersRepository>()),
+  );
+  // ─── BLoCs ────────────────────────────────────────
+  sl.registerFactory<OrderBloc>(
+    () => OrderBloc(
+      createOrderUseCase: sl<CreateOrderUseCase>(),
+      initiatePaymentUseCase: sl<InitiatePaymentUseCase>(),
+    ),
+  );
+
+    sl.registerFactory<MyOrdersBloc>(
+    () => MyOrdersBloc(
+      getMyOrdersUseCase: sl<GetMyOrdersUseCase>(),
+    ),
+  );
+
+  
+
+
+
+
 }

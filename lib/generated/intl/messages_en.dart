@@ -20,23 +20,27 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
-  static String m2(amount) => "EGP ${amount}";
+  static String m2(title) => "Remove \"${title}\" from your saved addresses?";
 
-  static String m3(amount) => "Saving EGP ${amount}";
+  static String m3(amount) => "EGP ${amount}";
 
-  static String m4(amount) => "Add EGP ${amount} more for free shipping!";
+  static String m4(amount) => "Saving EGP ${amount}";
 
-  static String m5(count) => "Only ${count} left!";
+  static String m5(amount) => "Add EGP ${amount} more for free shipping!";
 
-  static String m6(productName) => "Remove \"${productName}\" from your cart?";
+  static String m6(count) => "Only ${count} left!";
 
-  static String m7(amount) => "You save ${amount}";
+  static String m7(productName) => "Remove \"${productName}\" from your cart?";
+
+  static String m8(amount) => "You save ${amount}";
 
   static String m0(address) =>
       "Remove \"${address}\"?\nThis action cannot be undone.";
 
   static String m1(count) =>
       "You have ${count} saved items. Sign in to keep them";
+
+  static String m9(count) => "${count} item(s)";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -60,7 +64,44 @@ class MessageLookup extends MessageLookupByLibrary {
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "Added to wishlist",
     ),
+    "addressActionDelete": MessageLookupByLibrary.simpleMessage("Delete"),
+    "addressActionEdit": MessageLookupByLibrary.simpleMessage("Edit"),
+    "addressDefaultBadge": MessageLookupByLibrary.simpleMessage("Default"),
+    "addressDeleteDialogConfirm": MessageLookupByLibrary.simpleMessage(
+      "Delete",
+    ),
+    "addressDeleteDialogContent": m2,
+    "addressDeleteDialogKeep": MessageLookupByLibrary.simpleMessage("Keep"),
+    "addressDeleteDialogTitle": MessageLookupByLibrary.simpleMessage(
+      "Delete address?",
+    ),
+    "addressEmptySubtitle": MessageLookupByLibrary.simpleMessage(
+      "Add an address to get started",
+    ),
+    "addressEmptyTitle": MessageLookupByLibrary.simpleMessage(
+      "No saved addresses",
+    ),
+    "addressGenericError": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again.",
+    ),
+    "addressLoadError": MessageLookupByLibrary.simpleMessage(
+      "Couldn\'t load addresses",
+    ),
     "addressNickName": MessageLookupByLibrary.simpleMessage("Address Nickname"),
+    "addressPickerAddNew": MessageLookupByLibrary.simpleMessage(
+      "Add new address",
+    ),
+    "addressPickerTitle": MessageLookupByLibrary.simpleMessage("Deliver to"),
+    "addressRetry": MessageLookupByLibrary.simpleMessage("Try again"),
+    "addressSearchHint": MessageLookupByLibrary.simpleMessage(
+      "Search addresses...",
+    ),
+    "addressSearchNoResults": MessageLookupByLibrary.simpleMessage(
+      "No addresses found",
+    ),
+    "addressSearchNoResultsHint": MessageLookupByLibrary.simpleMessage(
+      "Try a different search term",
+    ),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
@@ -73,8 +114,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
-    "cartBottomBarEgpAmount": m2,
-    "cartBottomBarSaving": m3,
+    "cartBottomBarEgpAmount": m3,
+    "cartBottomBarSaving": m4,
     "cartBottomBarTotal": MessageLookupByLibrary.simpleMessage("Total"),
     "cartCheckoutBlockedLabel": MessageLookupByLibrary.simpleMessage(
       "Checkout unavailable",
@@ -89,14 +130,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "cartFreeShippingEarned": MessageLookupByLibrary.simpleMessage(
       "You\'ve unlocked free shipping! 🎉",
     ),
-    "cartFreeShippingProgress": m4,
+    "cartFreeShippingProgress": m5,
     "cartItemEditTooltip": MessageLookupByLibrary.simpleMessage(
       "Edit variants / options",
     ),
     "cartItemLoadError": MessageLookupByLibrary.simpleMessage(
       "Failed to load product details",
     ),
-    "cartItemOnlyXLeft": m5,
+    "cartItemOnlyXLeft": m6,
     "cartItemOutOfStockMessage": MessageLookupByLibrary.simpleMessage(
       "Out of stock — remove or save for later",
     ),
@@ -104,12 +145,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "cartItemRemoveDialogConfirm": MessageLookupByLibrary.simpleMessage(
       "Remove",
     ),
-    "cartItemRemoveDialogContent": m6,
+    "cartItemRemoveDialogContent": m7,
     "cartItemRemoveDialogKeep": MessageLookupByLibrary.simpleMessage("Keep"),
     "cartItemRemoveDialogTitle": MessageLookupByLibrary.simpleMessage(
       "Remove item?",
     ),
-    "cartItemYouSave": m7,
+    "cartItemYouSave": m8,
     "cartOutOfStockCheckoutBlocked": MessageLookupByLibrary.simpleMessage(
       "Remove unavailable items to checkout",
     ),
@@ -130,6 +171,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "createAccountToContinue": MessageLookupByLibrary.simpleMessage(
       "Create an account to continue",
     ),
+    "createOrderTitle": MessageLookupByLibrary.simpleMessage("Checkout"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAddressMessage": m0,
@@ -358,6 +400,29 @@ class MessageLookup extends MessageLookupByLibrary {
       "Login to your account",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "myOrdersGenericError": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again.",
+    ),
+    "myOrdersItemCount": m9,
+    "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
+      "Couldn\'t load your orders",
+    ),
+    "myOrdersNoCompleted": MessageLookupByLibrary.simpleMessage(
+      "No completed orders",
+    ),
+    "myOrdersNoCompletedSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Your completed and delivered orders will appear here.",
+    ),
+    "myOrdersNoOngoing": MessageLookupByLibrary.simpleMessage(
+      "No ongoing orders",
+    ),
+    "myOrdersNoOngoingSubtitle": MessageLookupByLibrary.simpleMessage(
+      "You don\'t have any active orders at this time.",
+    ),
+    "myOrdersTabCompleted": MessageLookupByLibrary.simpleMessage("Completed"),
+    "myOrdersTabOngoing": MessageLookupByLibrary.simpleMessage("Ongoing"),
+    "myOrdersTitle": MessageLookupByLibrary.simpleMessage("My Orders"),
+    "myOrdersTrackOrder": MessageLookupByLibrary.simpleMessage("Track Order"),
     "nameInvalid": MessageLookupByLibrary.simpleMessage(
       "Name contains invalid characters",
     ),
@@ -388,6 +453,117 @@ class MessageLookup extends MessageLookupByLibrary {
     "openSettings": MessageLookupByLibrary.simpleMessage("Open Settings"),
     "orLoginWith": MessageLookupByLibrary.simpleMessage("Or login with"),
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("Or register with"),
+    "orderAddressAddNew": MessageLookupByLibrary.simpleMessage(
+      "Add a delivery address",
+    ),
+    "orderAddressChange": MessageLookupByLibrary.simpleMessage("Change"),
+    "orderAddressLoadError": MessageLookupByLibrary.simpleMessage(
+      "Couldn\'t load your addresses",
+    ),
+    "orderCancelledSubtitle": MessageLookupByLibrary.simpleMessage(
+      "No worries — your cart is still saved. You can complete your order whenever you\'re ready.",
+    ),
+    "orderCancelledTip1": MessageLookupByLibrary.simpleMessage(
+      "Your items are still in your cart",
+    ),
+    "orderCancelledTip2": MessageLookupByLibrary.simpleMessage(
+      "Come back anytime to complete your purchase",
+    ),
+    "orderCancelledTitle": MessageLookupByLibrary.simpleMessage(
+      "Payment cancelled",
+    ),
+    "orderCancelledTryAgain": MessageLookupByLibrary.simpleMessage(
+      "Return to checkout",
+    ),
+    "orderConfirmCash": MessageLookupByLibrary.simpleMessage("Confirm order"),
+    "orderFailedErrorLabel": MessageLookupByLibrary.simpleMessage(
+      "Error details",
+    ),
+    "orderFailedRetry": MessageLookupByLibrary.simpleMessage("Try again"),
+    "orderFailedSubtitle": MessageLookupByLibrary.simpleMessage(
+      "We couldn\'t process your payment. Your order is saved — you can try again.",
+    ),
+    "orderFailedTip1": MessageLookupByLibrary.simpleMessage(
+      "Try placing the order again",
+    ),
+    "orderFailedTip2": MessageLookupByLibrary.simpleMessage(
+      "Check your card details or try a different card",
+    ),
+    "orderFailedTip3": MessageLookupByLibrary.simpleMessage(
+      "Contact support if the problem persists",
+    ),
+    "orderFailedTitle": MessageLookupByLibrary.simpleMessage("Payment failed"),
+    "orderFailedWhatNext": MessageLookupByLibrary.simpleMessage(
+      "What you can do",
+    ),
+    "orderFieldFirstName": MessageLookupByLibrary.simpleMessage("First name"),
+    "orderFieldLastName": MessageLookupByLibrary.simpleMessage("Last name"),
+    "orderFieldNotesHint": MessageLookupByLibrary.simpleMessage(
+      "Any special instructions...",
+    ),
+    "orderFieldPhone": MessageLookupByLibrary.simpleMessage("Phone number"),
+    "orderFieldPhoneInvalid": MessageLookupByLibrary.simpleMessage(
+      "Enter a valid phone number",
+    ),
+    "orderFieldRequired": MessageLookupByLibrary.simpleMessage(
+      "This field is required",
+    ),
+    "orderGenericError": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong. Please try again.",
+    ),
+    "orderNoAddressSelected": MessageLookupByLibrary.simpleMessage(
+      "Please select a delivery address",
+    ),
+    "orderOptional": MessageLookupByLibrary.simpleMessage("optional"),
+    "orderPaymentCash": MessageLookupByLibrary.simpleMessage(
+      "Cash on delivery",
+    ),
+    "orderPaymentCashSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Pay when your order arrives",
+    ),
+    "orderPaymentOnline": MessageLookupByLibrary.simpleMessage(
+      "Online payment",
+    ),
+    "orderPaymentOnlineSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Visa, Mastercard via Paymob",
+    ),
+    "orderPlacingOrder": MessageLookupByLibrary.simpleMessage(
+      "Placing your order...",
+    ),
+    "orderProceedToPayment": MessageLookupByLibrary.simpleMessage(
+      "Proceed to payment",
+    ),
+    "orderSectionContact": MessageLookupByLibrary.simpleMessage(
+      "Contact details",
+    ),
+    "orderSectionDeliveryAddress": MessageLookupByLibrary.simpleMessage(
+      "Delivery address",
+    ),
+    "orderSectionNotes": MessageLookupByLibrary.simpleMessage("Order notes"),
+    "orderSectionPayment": MessageLookupByLibrary.simpleMessage(
+      "Payment method",
+    ),
+    "orderSuccessBackToHome": MessageLookupByLibrary.simpleMessage(
+      "Back to home",
+    ),
+    "orderSuccessOrderNumber": MessageLookupByLibrary.simpleMessage(
+      "Order number",
+    ),
+    "orderSuccessPaymentMethod": MessageLookupByLibrary.simpleMessage(
+      "Payment",
+    ),
+    "orderSuccessStatus": MessageLookupByLibrary.simpleMessage("Status"),
+    "orderSuccessSubtitleCod": MessageLookupByLibrary.simpleMessage(
+      "Your order is confirmed. We\'ll contact you before delivery.",
+    ),
+    "orderSuccessSubtitleOnline": MessageLookupByLibrary.simpleMessage(
+      "Payment received. Your order is on its way!",
+    ),
+    "orderSuccessTitle": MessageLookupByLibrary.simpleMessage("Order placed!"),
+    "orderSuccessTotal": MessageLookupByLibrary.simpleMessage("Total"),
+    "orderSuccessTrackOrder": MessageLookupByLibrary.simpleMessage(
+      "Track my order",
+    ),
     "orderSummary": MessageLookupByLibrary.simpleMessage("Order Summary"),
     "other": MessageLookupByLibrary.simpleMessage("Other"),
     "otpInvalid": MessageLookupByLibrary.simpleMessage(
@@ -431,7 +607,38 @@ class MessageLookup extends MessageLookupByLibrary {
     "passwordTooWeak": MessageLookupByLibrary.simpleMessage(
       "Password is too weak, avoid repeating characters",
     ),
+    "paymentCancelDialogConfirm": MessageLookupByLibrary.simpleMessage(
+      "Cancel",
+    ),
+    "paymentCancelDialogContent": MessageLookupByLibrary.simpleMessage(
+      "Your order has been placed. If you cancel now you can complete payment later.",
+    ),
+    "paymentCancelDialogContinue": MessageLookupByLibrary.simpleMessage(
+      "Continue paying",
+    ),
+    "paymentCancelDialogTitle": MessageLookupByLibrary.simpleMessage(
+      "Cancel payment?",
+    ),
     "paymentMethod": MessageLookupByLibrary.simpleMessage("Payment Method"),
+    "paymentWebViewConnecting": MessageLookupByLibrary.simpleMessage(
+      "Connecting to payment...",
+    ),
+    "paymentWebViewLoadError": MessageLookupByLibrary.simpleMessage(
+      "Failed to load payment page",
+    ),
+    "paymentWebViewLoadErrorHint": MessageLookupByLibrary.simpleMessage(
+      "Check your connection and try again",
+    ),
+    "paymentWebViewRetry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "paymentWebViewSecure": MessageLookupByLibrary.simpleMessage(
+      "Secure connection established",
+    ),
+    "paymentWebViewSecureNote": MessageLookupByLibrary.simpleMessage(
+      "Your payment is encrypted and secure",
+    ),
+    "paymentWebViewTitle": MessageLookupByLibrary.simpleMessage(
+      "Secure payment",
+    ),
     "permissionRequired": MessageLookupByLibrary.simpleMessage(
       "Permission Required",
     ),

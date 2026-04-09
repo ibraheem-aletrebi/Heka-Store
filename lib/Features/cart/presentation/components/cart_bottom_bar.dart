@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/cart/data/models/cart_model.dart';
 import 'package:heka_store/Features/cart/presentation/components/summary_row.dart';
+import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
+import 'package:heka_store/Features/order/presentation/views/create_order_screen.dart';
+import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
@@ -223,11 +228,22 @@ class _CartBottomBarState extends State<CartBottomBar>
                         onCheckout: hasOutOfStock
                             ? null
                             : () {
-                                // Navigator.of(context).push(
-                                //   MaterialPageRoute(
-                                //     builder: (_) => CreateOrderScreen(),
-                                //   ),
-                                // );
+                                Navigator.of(context).push(
+                                  MaterialPageRoute(
+                                    builder: (_) => MultiBlocProvider(
+                                      providers: [
+                                        BlocProvider(
+                                          create: (context) => sl<OrderBloc>(),
+                                        ),
+                                        BlocProvider(
+                                          create: (context) =>
+                                              sl<AddressBloc>(),
+                                        ),
+                                      ],
+                                      child: CreateOrderScreen(),
+                                    ),
+                                  ),
+                                );
                               },
                       ),
                     ),

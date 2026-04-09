@@ -154,5 +154,5 @@ class ApiErrorHandler {
       return list.isEmpty ? null : list;
     }
     return null;
-  }
+  }   
 }

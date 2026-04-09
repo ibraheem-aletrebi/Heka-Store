@@ -2010,6 +2010,176 @@ class S {
     );
   }
 
+  /// `Deliver to`
+  String get addressPickerTitle {
+    return Intl.message(
+      'Deliver to',
+      name: 'addressPickerTitle',
+      desc: 'Title of the address picker bottom sheet',
+      args: [],
+    );
+  }
+
+  /// `Search addresses...`
+  String get addressSearchHint {
+    return Intl.message(
+      'Search addresses...',
+      name: 'addressSearchHint',
+      desc: 'Placeholder in the address search field',
+      args: [],
+    );
+  }
+
+  /// `Add new address`
+  String get addressPickerAddNew {
+    return Intl.message(
+      'Add new address',
+      name: 'addressPickerAddNew',
+      desc: 'Button to navigate to add-address screen',
+      args: [],
+    );
+  }
+
+  /// `Default`
+  String get addressDefaultBadge {
+    return Intl.message(
+      'Default',
+      name: 'addressDefaultBadge',
+      desc: 'Badge shown on the default address tile',
+      args: [],
+    );
+  }
+
+  /// `Edit`
+  String get addressActionEdit {
+    return Intl.message(
+      'Edit',
+      name: 'addressActionEdit',
+      desc: 'Edit action on address tile',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get addressActionDelete {
+    return Intl.message(
+      'Delete',
+      name: 'addressActionDelete',
+      desc: 'Delete action on address tile',
+      args: [],
+    );
+  }
+
+  /// `Delete address?`
+  String get addressDeleteDialogTitle {
+    return Intl.message(
+      'Delete address?',
+      name: 'addressDeleteDialogTitle',
+      desc: 'Title of delete-address confirmation dialog',
+      args: [],
+    );
+  }
+
+  /// `Remove "{title}" from your saved addresses?`
+  String addressDeleteDialogContent(String title) {
+    return Intl.message(
+      'Remove "$title" from your saved addresses?',
+      name: 'addressDeleteDialogContent',
+      desc: 'Body of delete-address confirmation dialog',
+      args: [title],
+    );
+  }
+
+  /// `Keep`
+  String get addressDeleteDialogKeep {
+    return Intl.message(
+      'Keep',
+      name: 'addressDeleteDialogKeep',
+      desc: 'Cancel button in delete-address dialog',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get addressDeleteDialogConfirm {
+    return Intl.message(
+      'Delete',
+      name: 'addressDeleteDialogConfirm',
+      desc: 'Confirm button in delete-address dialog',
+      args: [],
+    );
+  }
+
+  /// `No saved addresses`
+  String get addressEmptyTitle {
+    return Intl.message(
+      'No saved addresses',
+      name: 'addressEmptyTitle',
+      desc: 'Empty state title when no addresses exist',
+      args: [],
+    );
+  }
+
+  /// `Add an address to get started`
+  String get addressEmptySubtitle {
+    return Intl.message(
+      'Add an address to get started',
+      name: 'addressEmptySubtitle',
+      desc: 'Empty state subtitle when no addresses exist',
+      args: [],
+    );
+  }
+
+  /// `No addresses found`
+  String get addressSearchNoResults {
+    return Intl.message(
+      'No addresses found',
+      name: 'addressSearchNoResults',
+      desc: 'Empty state title when search returns nothing',
+      args: [],
+    );
+  }
+
+  /// `Try a different search term`
+  String get addressSearchNoResultsHint {
+    return Intl.message(
+      'Try a different search term',
+      name: 'addressSearchNoResultsHint',
+      desc: 'Empty state subtitle when search returns nothing',
+      args: [],
+    );
+  }
+
+  /// `Couldn't load addresses`
+  String get addressLoadError {
+    return Intl.message(
+      'Couldn\'t load addresses',
+      name: 'addressLoadError',
+      desc: 'Error state title when address list fails to load',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get addressRetry {
+    return Intl.message(
+      'Try again',
+      name: 'addressRetry',
+      desc: 'Retry button in error state',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again.`
+  String get addressGenericError {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'addressGenericError',
+      desc: 'Generic error message for address operations',
+      args: [],
+    );
+  }
+
   /// `Sign in to save wishlist`
   String get loginToSave {
     return Intl.message(
@@ -2223,6 +2393,671 @@ class S {
   /// `Invalid CVV`
   String get invalidCvv {
     return Intl.message('Invalid CVV', name: 'invalidCvv', desc: '', args: []);
+  }
+
+  /// `Checkout`
+  String get createOrderTitle {
+    return Intl.message(
+      'Checkout',
+      name: 'createOrderTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivery address`
+  String get orderSectionDeliveryAddress {
+    return Intl.message(
+      'Delivery address',
+      name: 'orderSectionDeliveryAddress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact details`
+  String get orderSectionContact {
+    return Intl.message(
+      'Contact details',
+      name: 'orderSectionContact',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment method`
+  String get orderSectionPayment {
+    return Intl.message(
+      'Payment method',
+      name: 'orderSectionPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order notes`
+  String get orderSectionNotes {
+    return Intl.message(
+      'Order notes',
+      name: 'orderSectionNotes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `optional`
+  String get orderOptional {
+    return Intl.message('optional', name: 'orderOptional', desc: '', args: []);
+  }
+
+  /// `First name`
+  String get orderFieldFirstName {
+    return Intl.message(
+      'First name',
+      name: 'orderFieldFirstName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last name`
+  String get orderFieldLastName {
+    return Intl.message(
+      'Last name',
+      name: 'orderFieldLastName',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Phone number`
+  String get orderFieldPhone {
+    return Intl.message(
+      'Phone number',
+      name: 'orderFieldPhone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Any special instructions...`
+  String get orderFieldNotesHint {
+    return Intl.message(
+      'Any special instructions...',
+      name: 'orderFieldNotesHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This field is required`
+  String get orderFieldRequired {
+    return Intl.message(
+      'This field is required',
+      name: 'orderFieldRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter a valid phone number`
+  String get orderFieldPhoneInvalid {
+    return Intl.message(
+      'Enter a valid phone number',
+      name: 'orderFieldPhoneInvalid',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cash on delivery`
+  String get orderPaymentCash {
+    return Intl.message(
+      'Cash on delivery',
+      name: 'orderPaymentCash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pay when your order arrives`
+  String get orderPaymentCashSubtitle {
+    return Intl.message(
+      'Pay when your order arrives',
+      name: 'orderPaymentCashSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Online payment`
+  String get orderPaymentOnline {
+    return Intl.message(
+      'Online payment',
+      name: 'orderPaymentOnline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Visa, Mastercard via Paymob`
+  String get orderPaymentOnlineSubtitle {
+    return Intl.message(
+      'Visa, Mastercard via Paymob',
+      name: 'orderPaymentOnlineSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Placing your order...`
+  String get orderPlacingOrder {
+    return Intl.message(
+      'Placing your order...',
+      name: 'orderPlacingOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm order`
+  String get orderConfirmCash {
+    return Intl.message(
+      'Confirm order',
+      name: 'orderConfirmCash',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Proceed to payment`
+  String get orderProceedToPayment {
+    return Intl.message(
+      'Proceed to payment',
+      name: 'orderProceedToPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again.`
+  String get orderGenericError {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'orderGenericError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secure payment`
+  String get paymentWebViewTitle {
+    return Intl.message(
+      'Secure payment',
+      name: 'paymentWebViewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load payment page`
+  String get paymentWebViewLoadError {
+    return Intl.message(
+      'Failed to load payment page',
+      name: 'paymentWebViewLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order placed!`
+  String get orderSuccessTitle {
+    return Intl.message(
+      'Order placed!',
+      name: 'orderSuccessTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order is confirmed. We'll contact you before delivery.`
+  String get orderSuccessSubtitleCod {
+    return Intl.message(
+      'Your order is confirmed. We\'ll contact you before delivery.',
+      name: 'orderSuccessSubtitleCod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment received. Your order is on its way!`
+  String get orderSuccessSubtitleOnline {
+    return Intl.message(
+      'Payment received. Your order is on its way!',
+      name: 'orderSuccessSubtitleOnline',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order number`
+  String get orderSuccessOrderNumber {
+    return Intl.message(
+      'Order number',
+      name: 'orderSuccessOrderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get orderSuccessPaymentMethod {
+    return Intl.message(
+      'Payment',
+      name: 'orderSuccessPaymentMethod',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get orderSuccessTotal {
+    return Intl.message('Total', name: 'orderSuccessTotal', desc: '', args: []);
+  }
+
+  /// `Status`
+  String get orderSuccessStatus {
+    return Intl.message(
+      'Status',
+      name: 'orderSuccessStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track my order`
+  String get orderSuccessTrackOrder {
+    return Intl.message(
+      'Track my order',
+      name: 'orderSuccessTrackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Back to home`
+  String get orderSuccessBackToHome {
+    return Intl.message(
+      'Back to home',
+      name: 'orderSuccessBackToHome',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Change`
+  String get orderAddressChange {
+    return Intl.message(
+      'Change',
+      name: 'orderAddressChange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Couldn't load your addresses`
+  String get orderAddressLoadError {
+    return Intl.message(
+      'Couldn\'t load your addresses',
+      name: 'orderAddressLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add a delivery address`
+  String get orderAddressAddNew {
+    return Intl.message(
+      'Add a delivery address',
+      name: 'orderAddressAddNew',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please select a delivery address`
+  String get orderNoAddressSelected {
+    return Intl.message(
+      'Please select a delivery address',
+      name: 'orderNoAddressSelected',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connecting to payment...`
+  String get paymentWebViewConnecting {
+    return Intl.message(
+      'Connecting to payment...',
+      name: 'paymentWebViewConnecting',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Secure connection established`
+  String get paymentWebViewSecure {
+    return Intl.message(
+      'Secure connection established',
+      name: 'paymentWebViewSecure',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your payment is encrypted and secure`
+  String get paymentWebViewSecureNote {
+    return Intl.message(
+      'Your payment is encrypted and secure',
+      name: 'paymentWebViewSecureNote',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get paymentWebViewRetry {
+    return Intl.message(
+      'Retry',
+      name: 'paymentWebViewRetry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your connection and try again`
+  String get paymentWebViewLoadErrorHint {
+    return Intl.message(
+      'Check your connection and try again',
+      name: 'paymentWebViewLoadErrorHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel payment?`
+  String get paymentCancelDialogTitle {
+    return Intl.message(
+      'Cancel payment?',
+      name: 'paymentCancelDialogTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been placed. If you cancel now you can complete payment later.`
+  String get paymentCancelDialogContent {
+    return Intl.message(
+      'Your order has been placed. If you cancel now you can complete payment later.',
+      name: 'paymentCancelDialogContent',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Continue paying`
+  String get paymentCancelDialogContinue {
+    return Intl.message(
+      'Continue paying',
+      name: 'paymentCancelDialogContinue',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancel`
+  String get paymentCancelDialogConfirm {
+    return Intl.message(
+      'Cancel',
+      name: 'paymentCancelDialogConfirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment failed`
+  String get orderFailedTitle {
+    return Intl.message(
+      'Payment failed',
+      name: 'orderFailedTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `We couldn't process your payment. Your order is saved — you can try again.`
+  String get orderFailedSubtitle {
+    return Intl.message(
+      'We couldn\'t process your payment. Your order is saved — you can try again.',
+      name: 'orderFailedSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Error details`
+  String get orderFailedErrorLabel {
+    return Intl.message(
+      'Error details',
+      name: 'orderFailedErrorLabel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `What you can do`
+  String get orderFailedWhatNext {
+    return Intl.message(
+      'What you can do',
+      name: 'orderFailedWhatNext',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try placing the order again`
+  String get orderFailedTip1 {
+    return Intl.message(
+      'Try placing the order again',
+      name: 'orderFailedTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Check your card details or try a different card`
+  String get orderFailedTip2 {
+    return Intl.message(
+      'Check your card details or try a different card',
+      name: 'orderFailedTip2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Contact support if the problem persists`
+  String get orderFailedTip3 {
+    return Intl.message(
+      'Contact support if the problem persists',
+      name: 'orderFailedTip3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try again`
+  String get orderFailedRetry {
+    return Intl.message(
+      'Try again',
+      name: 'orderFailedRetry',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment cancelled`
+  String get orderCancelledTitle {
+    return Intl.message(
+      'Payment cancelled',
+      name: 'orderCancelledTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No worries — your cart is still saved. You can complete your order whenever you're ready.`
+  String get orderCancelledSubtitle {
+    return Intl.message(
+      'No worries — your cart is still saved. You can complete your order whenever you\'re ready.',
+      name: 'orderCancelledSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your items are still in your cart`
+  String get orderCancelledTip1 {
+    return Intl.message(
+      'Your items are still in your cart',
+      name: 'orderCancelledTip1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Come back anytime to complete your purchase`
+  String get orderCancelledTip2 {
+    return Intl.message(
+      'Come back anytime to complete your purchase',
+      name: 'orderCancelledTip2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return to checkout`
+  String get orderCancelledTryAgain {
+    return Intl.message(
+      'Return to checkout',
+      name: 'orderCancelledTryAgain',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Orders`
+  String get myOrdersTitle {
+    return Intl.message('My Orders', name: 'myOrdersTitle', desc: '', args: []);
+  }
+
+  /// `Ongoing`
+  String get myOrdersTabOngoing {
+    return Intl.message(
+      'Ongoing',
+      name: 'myOrdersTabOngoing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get myOrdersTabCompleted {
+    return Intl.message(
+      'Completed',
+      name: 'myOrdersTabCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} item(s)`
+  String myOrdersItemCount(Object count) {
+    return Intl.message(
+      '$count item(s)',
+      name: 'myOrdersItemCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Track Order`
+  String get myOrdersTrackOrder {
+    return Intl.message(
+      'Track Order',
+      name: 'myOrdersTrackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No ongoing orders`
+  String get myOrdersNoOngoing {
+    return Intl.message(
+      'No ongoing orders',
+      name: 'myOrdersNoOngoing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have any active orders at this time.`
+  String get myOrdersNoOngoingSubtitle {
+    return Intl.message(
+      'You don\'t have any active orders at this time.',
+      name: 'myOrdersNoOngoingSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No completed orders`
+  String get myOrdersNoCompleted {
+    return Intl.message(
+      'No completed orders',
+      name: 'myOrdersNoCompleted',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your completed and delivered orders will appear here.`
+  String get myOrdersNoCompletedSubtitle {
+    return Intl.message(
+      'Your completed and delivered orders will appear here.',
+      name: 'myOrdersNoCompletedSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Couldn't load your orders`
+  String get myOrdersLoadError {
+    return Intl.message(
+      'Couldn\'t load your orders',
+      name: 'myOrdersLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong. Please try again.`
+  String get myOrdersGenericError {
+    return Intl.message(
+      'Something went wrong. Please try again.',
+      name: 'myOrdersGenericError',
+      desc: '',
+      args: [],
+    );
   }
 }
 

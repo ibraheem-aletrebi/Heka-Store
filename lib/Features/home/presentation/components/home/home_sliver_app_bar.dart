@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/address/data/models/address_model.dart';
 import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
+import 'package:heka_store/Features/address/presentation/components/address/address_picker_sheet.dart';
 import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/greeting_text.dart';
 import 'package:heka_store/Features/home/presentation/components/home/location_row.dart';
@@ -10,11 +12,26 @@ import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
 import 'package:heka_store/core/widgets/notification_button.dart';
 import 'package:heka_store/core/widgets/user_avater.dart';
 
-class HomeSliverAppBar extends StatelessWidget {
+class HomeSliverAppBar extends StatefulWidget {
   final VoidCallback? onAvatarTap;
-  final VoidCallback? onLocationTap;
 
-  const HomeSliverAppBar({super.key, this.onAvatarTap, this.onLocationTap});
+  const HomeSliverAppBar({super.key, this.onAvatarTap});
+
+  @override
+  State<HomeSliverAppBar> createState() => _HomeSliverAppBarState();
+}
+
+class _HomeSliverAppBarState extends State<HomeSliverAppBar> {
+  AddressModel? _selectedAddress;
+  @override
+  void initState() {
+    super.initState();
+    final addresses = context.read<AddressBloc>().state.addresses;
+    _selectedAddress = addresses.cast<AddressModel?>().firstWhere(
+      (a) => a!.isDefault,
+      orElse: () => addresses.isEmpty ? null : addresses.first,
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +78,7 @@ class HomeSliverAppBar extends StatelessWidget {
                             imageUrl: profile?.profilePictureUrl,
                             name: profile?.firstName,
                             size: AppSizes.w56,
-                            onTap: onAvatarTap,
+                            onTap: widget.onAvatarTap,
                           ),
                           SizedBox(width: AppSizes.w8),
                           Expanded(
@@ -73,8 +90,19 @@ class HomeSliverAppBar extends StatelessWidget {
                                 SizedBox(height: AppSizes.h4),
                                 if (addresses.isNotEmpty)
                                   LocationRow(
-                                    location: defaultAdrees ?? '',
-                                    onTap: onLocationTap,
+                                    location:
+                                        _selectedAddress?.fullAddress ??
+                                        defaultAdrees ??
+                                        '',
+                                    onTap: () async {
+                                      final picked =
+                                          await showAddressPickerSheet(context);
+                                      if (picked != null && mounted) {
+                                        setState(
+                                          () => _selectedAddress = picked,
+                                        );
+                                      }
+                                    },
                                   ),
                               ],
                             ),

@@ -41,6 +41,7 @@ class AppSizes {
   static final double h18 = 18.h;
   static final double h20 = 20.h;
   static final double h24 = 24.h;
+  static final double h28 = 28.h;
   static final double h30 = 30.h;
   static final double h32 = 32.h;
   static final double h34 = 34.h;

@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/presentation/components/account/menu_item.dart';
+import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
+import 'package:heka_store/Features/order/presentation/views/my_orders_screen.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
+import 'package:heka_store/core/di/injector.dart';
 
 class SliverMenu extends StatefulWidget {
   const SliverMenu({super.key});
@@ -16,20 +20,23 @@ class _SliverMenuState extends State<SliverMenu> {
       icon: Icons.shopping_bag_outlined,
       label: 'My Orders',
       onTap: () {
-        // context.push(MyOrdersView());
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BlocProvider(
+              create: (context) => sl<MyOrdersBloc>(),
+              child: const MyOrdersScreen(),
+            ),
+          ),
+        );
       },
     ),
     MenuItem(
       icon: Icons.home_outlined,
       label: 'Address Book',
       onTap: () {
-       context.push(AppRoutes.addresses);
+        context.push(AppRoutes.addresses);
       },
-    ),
-    MenuItem(
-      icon: Icons.credit_card_outlined,
-      label: 'Payment Methods',
-      onTap: () {},
     ),
     MenuItem(
       icon: Icons.notifications_outlined,
