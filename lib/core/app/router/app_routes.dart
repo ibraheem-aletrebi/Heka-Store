@@ -27,6 +27,6 @@ class AppRoutes {
   static const String createOrder = '/create-order';
   static const String paymentWebView = '/payment-webview';
   static const String orderSuccess = '/order-success';
-  
+  static const String brandProfile = '/brand-profile';
 
 }

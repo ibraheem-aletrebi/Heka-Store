@@ -10,6 +10,7 @@ import 'package:heka_store/Features/auth/presentation/views/forgot_password/forg
 import 'package:heka_store/Features/auth/presentation/views/login/login_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/register/register_view.dart';
 import 'package:heka_store/Features/auth/presentation/views/verify_email/verify_email_view.dart';
+import 'package:heka_store/Features/brand_profile/presentation/views/brand_profile_view.dart';
 import 'package:heka_store/Features/home/data/models/category/category.dart';
 import 'package:heka_store/Features/home/presentation/views/categories_view.dart';
 import 'package:heka_store/Features/home/presentation/views/main_layout_view.dart';
@@ -105,6 +106,14 @@ class AppRouter {
         builder: (context, state) {
           final extra = state.extra as int;
           return ProductDetailsView(productId: extra);
+        },
+      ),
+
+       GoRoute(
+        path: AppRoutes.brandProfile,
+        builder: (context, state) {
+          final extra = state.extra as int;
+          return BrandProfileView(brandId: extra);
         },
       ),
     ],

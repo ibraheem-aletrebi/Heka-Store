@@ -36,6 +36,15 @@ import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.da
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
+import 'package:heka_store/Features/brand_profile/data/data_source/brand_local_data_source.dart';
+import 'package:heka_store/Features/brand_profile/data/data_source/brand_remote_data_source.dart';
+import 'package:heka_store/Features/brand_profile/data/models/brand_product_model.dart';
+import 'package:heka_store/Features/brand_profile/data/models/brand_profile_model.dart';
+import 'package:heka_store/Features/brand_profile/data/repos/brand_repo.dart';
+import 'package:heka_store/Features/brand_profile/data/repos/brand_repo_imp.dart';
+import 'package:heka_store/Features/brand_profile/data/use_cases/get_brand_products_use_case.dart';
+import 'package:heka_store/Features/brand_profile/data/use_cases/get_brand_profile_use_case.dart';
+import 'package:heka_store/Features/brand_profile/presentation/blocs/brand_profile/brand_profile_bloc.dart';
 import 'package:heka_store/Features/cart/data/data_source/cart_local_data_source.dart';
 import 'package:heka_store/Features/cart/data/data_source/cart_remote_data_source.dart';
 import 'package:heka_store/Features/cart/data/repos/cart_repository_impl.dart';
@@ -133,6 +142,7 @@ Future<void> setupInjector() async {
   _initProductDetails();
   _initAccount();
   _initOrder();
+  _initBrandProfile();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -149,6 +159,7 @@ Future<void> _initCore() async {
       HiveBoxes.wishlist,
       HiveBoxes.previousViewedProducts,
       HiveBoxes.cart,
+      HiveBoxes.brands,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -200,6 +211,9 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<ProductVariantOptionModel>(
     ProductVariantOptionModelAdapter(),
   );
+
+  Hive.registerAdapter<BrandProfileModel>(BrandProfileModelAdapter());
+  Hive.registerAdapter<BrandProductModel>(BrandProductModelAdapter());
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
@@ -379,10 +393,8 @@ void _initHome() {
     ),
   );
 
-    sl.registerFactory<BrandsBloc>(
-    () => BrandsBloc(
-      getBrandsUseCase: sl<GetBrandsUseCase>(),
-    ),
+  sl.registerFactory<BrandsBloc>(
+    () => BrandsBloc(getBrandsUseCase: sl<GetBrandsUseCase>()),
   );
 }
 
@@ -570,7 +582,7 @@ void _initOrder() {
     // ← abstract مش Impl
     () => OrderRemoteDataSourceImpl(sl<ApiService>()),
   );
-    sl.registerLazySingleton<MyOrdersRemoteDataSource>(
+  sl.registerLazySingleton<MyOrdersRemoteDataSource>(
     () => MyOrdersRemoteDataSourceImpl(sl<ApiService>()),
   );
 
@@ -591,7 +603,7 @@ void _initOrder() {
     () => InitiatePaymentUseCase(sl<OrderRepository>()),
   );
   sl.registerFactory<GetMyOrdersUseCase>(
-    () => GetMyOrdersUseCase( sl<MyOrdersRepository>()),
+    () => GetMyOrdersUseCase(sl<MyOrdersRepository>()),
   );
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<OrderBloc>(
@@ -601,15 +613,43 @@ void _initOrder() {
     ),
   );
 
-    sl.registerFactory<MyOrdersBloc>(
-    () => MyOrdersBloc(
-      getMyOrdersUseCase: sl<GetMyOrdersUseCase>(),
+  sl.registerFactory<MyOrdersBloc>(
+    () => MyOrdersBloc(getMyOrdersUseCase: sl<GetMyOrdersUseCase>()),
+  );
+}
+
+// ─── Brand Profile ────────────────────────────────────────────────────────────
+
+void _initBrandProfile() {
+  // ─── DataSources ──────────────────────────────────
+  sl.registerLazySingleton<BrandRemoteDataSource>(
+    () => BrandRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<BrandLocalDataSource>(
+    () => BrandLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // ─── Repository ───────────────────────────────────
+  sl.registerLazySingleton<BrandRepo>(
+    () => BrandRepoImpl(
+      remoteDataSource: sl<BrandRemoteDataSource>(),
+      localDataSource: sl<BrandLocalDataSource>(),
     ),
   );
 
-  
+  // ─── Use Cases ────────────────────────────────────
+  sl.registerFactory<GetBrandProfileUseCase>(
+    () => GetBrandProfileUseCase(repo: sl<BrandRepo>()),
+  );
+  sl.registerFactory<GetBrandProductsUseCase>(
+    () => GetBrandProductsUseCase(repo: sl<BrandRepo>()),
+  );
 
-
-
-
+  // ─── BLoCs ────────────────────────────────────────
+  sl.registerFactory<BrandProfileBloc>(
+    () => BrandProfileBloc(
+      getBrandProfile: sl<GetBrandProfileUseCase>(),
+      getBrandProducts: sl<GetBrandProductsUseCase>(),
+    ),
+  );
 }

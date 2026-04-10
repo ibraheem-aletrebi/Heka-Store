@@ -654,6 +654,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Items you previously viewed",
     ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "products": MessageLookupByLibrary.simpleMessage("Products"),
     "recommendedForYou": MessageLookupByLibrary.simpleMessage(
       "Recommended for you",
     ),

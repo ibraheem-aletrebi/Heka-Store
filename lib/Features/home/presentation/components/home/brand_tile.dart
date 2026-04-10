@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/rating_widget.dart';
@@ -12,6 +14,9 @@ class BrandTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        context.push(AppRoutes.brandProfile, extra: brand.id);
+      },
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(AppSizes.r8),
       ),

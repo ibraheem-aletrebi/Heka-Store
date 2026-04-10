@@ -22,4 +22,7 @@ class LocalStorageKeys {
 
   static String productDetails(int id) => 'product_details_$id';
   static String similarProducts(int categoryId) => 'similar_products_$categoryId';
+
+  static String brandProfile(int brandId) => 'brand_profile_$brandId';
+  static String brandProducts(int brandId) => 'brand_products_$brandId';
 }
