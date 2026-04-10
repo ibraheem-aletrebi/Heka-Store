@@ -64,6 +64,7 @@ import 'package:heka_store/Features/home/domain/use_cases/get_categories_use_cas
 import 'package:heka_store/Features/home/domain/use_cases/get_featured_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_recommended_products_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_user_profile_use_case.dart';
+import 'package:heka_store/Features/home/presentation/blocs/brands/brands_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
@@ -374,6 +375,12 @@ void _initHome() {
       getBannersUseCase: sl<GetBannersUseCase>(),
       getRecommendedProductsUseCase: sl<GetRecommendedProductsUseCase>(),
       getFeaturedProductsUseCase: sl<GetFeaturedProductsUseCase>(),
+      getBrandsUseCase: sl<GetBrandsUseCase>(),
+    ),
+  );
+
+    sl.registerFactory<BrandsBloc>(
+    () => BrandsBloc(
       getBrandsUseCase: sl<GetBrandsUseCase>(),
     ),
   );

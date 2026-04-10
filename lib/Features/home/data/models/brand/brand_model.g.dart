@@ -18,10 +18,10 @@ class BrandModelAdapter extends TypeAdapter<BrandModel> {
     };
     return BrandModel(
       id: fields[0] as int,
-      nameAr: fields[1] as String,
-      nameEn: fields[2] as String,
+      storeNameAr: fields[1] as String,
+      storeNameEn: fields[2] as String,
       logoUrl: fields[3] as String?,
-      rating: fields[4] as double?,
+      averageRating: fields[4] as double?,
       totalReviews: fields[5] as int?,
     );
   }
@@ -33,13 +33,13 @@ class BrandModelAdapter extends TypeAdapter<BrandModel> {
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
-      ..write(obj.nameAr)
+      ..write(obj.storeNameAr)
       ..writeByte(2)
-      ..write(obj.nameEn)
+      ..write(obj.storeNameEn)
       ..writeByte(3)
       ..write(obj.logoUrl)
       ..writeByte(4)
-      ..write(obj.rating)
+      ..write(obj.averageRating)
       ..writeByte(5)
       ..write(obj.totalReviews);
   }
@@ -62,19 +62,19 @@ class BrandModelAdapter extends TypeAdapter<BrandModel> {
 _$BrandModelImpl _$$BrandModelImplFromJson(Map<String, dynamic> json) =>
     _$BrandModelImpl(
       id: (json['id'] as num).toInt(),
-      nameAr: json['nameAr'] as String,
-      nameEn: json['nameEn'] as String,
+      storeNameAr: json['storeNameAr'] as String,
+      storeNameEn: json['storeName'] as String,
       logoUrl: json['logoUrl'] as String?,
-      rating: (json['rating'] as num?)?.toDouble(),
+      averageRating: (json['averageRating'] as num?)?.toDouble(),
       totalReviews: (json['totalReviews'] as num?)?.toInt(),
     );
 
 Map<String, dynamic> _$$BrandModelImplToJson(_$BrandModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'nameAr': instance.nameAr,
-      'nameEn': instance.nameEn,
+      'storeNameAr': instance.storeNameAr,
+      'storeName': instance.storeNameEn,
       'logoUrl': instance.logoUrl,
-      'rating': instance.rating,
+      'averageRating': instance.averageRating,
       'totalReviews': instance.totalReviews,
     };

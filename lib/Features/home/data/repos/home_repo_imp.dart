@@ -3,6 +3,7 @@ import 'package:heka_store/Features/home/data/data_source/home_remote_data_sourc
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
 import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/category/categories_data.dart';
+import 'package:heka_store/Features/home/data/models/paginated_result.dart';
 import 'package:heka_store/Features/home/data/models/product/products_response_model.dart';
 import 'package:heka_store/Features/home/domain/repos/home_repo.dart';
 import 'package:heka_store/core/models/user_profile/user_profile.dart';
@@ -165,26 +166,45 @@ class HomeRepoImpl implements HomeRepo {
 
   // ─── Brands ───────────────────────────────────────────────────────────────
 
-  @override
-  Future<ApiResult<List<BrandModel>>> getBrands() async {
-    try {
-      final response = await _remoteDataSource.getBrands();
-      await _localDataSource.saveBrands(response);
-      return ApiResult.success(response);
-    } catch (e) {
+ @override
+Future<ApiResult<PaginatedResult<BrandModel>>> getBrands({
+  int pageNumber = 1,
+  int pageSize = 10,
+}) async {
+  try {
+    final result = await _remoteDataSource.getBrands(
+      pageNumber: pageNumber,
+      pageSize: pageSize,
+    );
+    if (pageNumber == 1) {
+      await _localDataSource.saveBrands(result.items);
+    }
+    return ApiResult.success(result);
+  } catch (e) {
+    if (pageNumber == 1) {
       final cached = _localDataSource.getBrands();
-      if (cached.isNotEmpty) return ApiResult.success(cached);
+      if (cached.isNotEmpty) {
+        return ApiResult.success(PaginatedResult<BrandModel>(
+          items:          cached,
+          totalCount:     cached.length,
+          pageNumber:     1,
+          pageSize:       cached.length,
+          totalPages:     1,
+          hasPreviousPage: false,
+          hasNextPage:    false,
+        ));
+      }
+    }
+    return ApiResult.error(e);
+  }
+}
+  @override
+  Future<ApiResult<UserProfile>> getUserProfile() async {
+    try {
+      final response = await _remoteDataSource.getUserProfile();
+      return ApiResult.success(response.data!);
+    } catch (e) {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
-
- @override
-Future<ApiResult<UserProfile>> getUserProfile() async {
-  try {
-    final response = await _remoteDataSource.getUserProfile();
-    return ApiResult.success(response.data!);
-  } catch (e) {
-    return ApiResult.error(ApiErrorHandler.instance.handle(e));
-  }
-}
 }

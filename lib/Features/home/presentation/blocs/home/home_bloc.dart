@@ -17,7 +17,6 @@ part 'home_bloc.freezed.dart';
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
   final GetBannersUseCase _getBannersUseCase;
   final GetFeaturedProductsUseCase _getFeaturedProductsUseCase;
-  final GetBrandsUseCase _getBrandsUseCase;
 
   HomeBloc({
     required GetBannersUseCase getBannersUseCase,
@@ -26,7 +25,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     required GetBrandsUseCase getBrandsUseCase,
   })  : _getBannersUseCase = getBannersUseCase,
         _getFeaturedProductsUseCase = getFeaturedProductsUseCase,
-        _getBrandsUseCase = getBrandsUseCase,
         super(const HomeState()) {
     on<_Started>(_onStarted);
     on<_Refreshed>(_onRefreshed);
@@ -42,13 +40,11 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     emit(state.copyWith(
       isBannersLoading: true,
       isFeaturedLoading: true,
-      isBrandsLoading: true,
     ));
 
     await Future.wait([
       _fetchBanners(emit),
       _fetchFeaturedProducts(emit),
-      _fetchBrands(emit),
     ]);
   }
 
@@ -63,7 +59,6 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     await Future.wait([
       _fetchBanners(emit),
       _fetchFeaturedProducts(emit),
-      _fetchBrands(emit),
     ]);
 
     emit(state.copyWith(isRefreshing: false));
@@ -134,18 +129,5 @@ Future<void> _onFeaturedNextPageFetched(
     );
   }
 
-  Future<void> _fetchBrands(Emitter<HomeState> emit) async {
-    final response = await _getBrandsUseCase();
-    response.when(
-      onSuccess: (brands) => emit(state.copyWith(
-        brands: brands,
-        isBrandsLoading: false,
-        brandsError: null,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isBrandsLoading: false,
-        brandsError: error,
-      )),
-    );
-  }
+ 
 }

@@ -1,62 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/rating_widget.dart';
+import 'package:heka_store/core/widgets/user_avater.dart';
 
 class BrandTile extends StatelessWidget {
-  final Brand brand;
+  final BrandModel brand;
   const BrandTile({super.key, required this.brand});
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
-    final textTheme = Theme.of(context).textTheme;
     return ListTile(
-      leading: Container(
-        width: AppSizes.w45,
-        height: AppSizes.w45,
-        decoration: BoxDecoration(
-          color: colors.primarySoft,
-          borderRadius: BorderRadius.circular(AppSizes.r12),
-        ),
-        child: Center(
-          child: Text(
-            brand.name[0],
-            style: textTheme.displaySmall?.copyWith(color: colors.primary),
-          ),
-        ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(AppSizes.r8),
       ),
-      title: Row(
-        children: [
-          Text(brand.name),
-          if (brand.isVerified) ...[
-            SizedBox(width: AppSizes.w4),
-            Icon(
-              Icons.verified_rounded,
-              size: AppSizes.sp14,
-              color: colors.primary,
-            ),
-          ],
-        ],
+      leading: UserAvatar(
+        imageUrl: brand.logoUrl,
+        size: AppSizes.w60,
+        name: brand.storeNameEn,
+        borderRadius: BorderRadius.circular(AppSizes.r8),
       ),
-      subtitle: RatingWidget(rating: 3.4, reviews: 903800),
+      title: Row(children: [Text(brand.storeNameEn)]),
+      subtitle: RatingWidget(
+        rating: brand.averageRating ?? 0.0,
+        reviews: brand.totalReviews ?? 0,
+      ),
       trailing: Icon(
         Icons.arrow_forward_ios_rounded,
         size: AppSizes.sp12,
-        color: colors.textSecondary,
+        color: context.myColors.textSecondary,
       ),
     );
   }
-}
-
-class Brand {
-  final String name, reviews;
-  final double rating;
-  final bool isVerified;
-  const Brand({
-    required this.name,
-    required this.rating,
-    required this.reviews,
-    required this.isVerified,
-  });
 }

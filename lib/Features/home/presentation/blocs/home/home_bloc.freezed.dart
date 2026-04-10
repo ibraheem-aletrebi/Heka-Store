@@ -423,10 +423,6 @@ mixin _$HomeState {
   bool get hasFeaturedNextPage => throw _privateConstructorUsedError;
   int get featuredCurrentPage => throw _privateConstructorUsedError;
   ApiErrorModel? get featuredError =>
-      throw _privateConstructorUsedError; // ─── Brands ───────────────────────────────────
-  List<BrandModel> get brands => throw _privateConstructorUsedError;
-  bool get isBrandsLoading => throw _privateConstructorUsedError;
-  ApiErrorModel? get brandsError =>
       throw _privateConstructorUsedError; // ─── General ──────────────────────────────────
   bool get isRefreshing => throw _privateConstructorUsedError;
 
@@ -450,9 +446,6 @@ abstract class $HomeStateCopyWith<$Res> {
       bool hasFeaturedNextPage,
       int featuredCurrentPage,
       ApiErrorModel? featuredError,
-      List<BrandModel> brands,
-      bool isBrandsLoading,
-      ApiErrorModel? brandsError,
       bool isRefreshing});
 }
 
@@ -478,9 +471,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? hasFeaturedNextPage = null,
     Object? featuredCurrentPage = null,
     Object? featuredError = freezed,
-    Object? brands = null,
-    Object? isBrandsLoading = null,
-    Object? brandsError = freezed,
     Object? isRefreshing = null,
   }) {
     return _then(_value.copyWith(
@@ -520,18 +510,6 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.featuredError
           : featuredError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      brands: null == brands
-          ? _value.brands
-          : brands // ignore: cast_nullable_to_non_nullable
-              as List<BrandModel>,
-      isBrandsLoading: null == isBrandsLoading
-          ? _value.isBrandsLoading
-          : isBrandsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      brandsError: freezed == brandsError
-          ? _value.brandsError
-          : brandsError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
       isRefreshing: null == isRefreshing
           ? _value.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
@@ -558,9 +536,6 @@ abstract class _$$HomeStateImplCopyWith<$Res>
       bool hasFeaturedNextPage,
       int featuredCurrentPage,
       ApiErrorModel? featuredError,
-      List<BrandModel> brands,
-      bool isBrandsLoading,
-      ApiErrorModel? brandsError,
       bool isRefreshing});
 }
 
@@ -584,9 +559,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
     Object? hasFeaturedNextPage = null,
     Object? featuredCurrentPage = null,
     Object? featuredError = freezed,
-    Object? brands = null,
-    Object? isBrandsLoading = null,
-    Object? brandsError = freezed,
     Object? isRefreshing = null,
   }) {
     return _then(_$HomeStateImpl(
@@ -626,18 +598,6 @@ class __$$HomeStateImplCopyWithImpl<$Res>
           ? _value.featuredError
           : featuredError // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      brands: null == brands
-          ? _value._brands
-          : brands // ignore: cast_nullable_to_non_nullable
-              as List<BrandModel>,
-      isBrandsLoading: null == isBrandsLoading
-          ? _value.isBrandsLoading
-          : isBrandsLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
-      brandsError: freezed == brandsError
-          ? _value.brandsError
-          : brandsError // ignore: cast_nullable_to_non_nullable
-              as ApiErrorModel?,
       isRefreshing: null == isRefreshing
           ? _value.isRefreshing
           : isRefreshing // ignore: cast_nullable_to_non_nullable
@@ -659,13 +619,9 @@ class _$HomeStateImpl extends _HomeState {
       this.hasFeaturedNextPage = false,
       this.featuredCurrentPage = 1,
       this.featuredError,
-      final List<BrandModel> brands = const [],
-      this.isBrandsLoading = false,
-      this.brandsError,
       this.isRefreshing = false})
       : _banners = banners,
         _featuredProducts = featuredProducts,
-        _brands = brands,
         super._();
 
 // ─── Banners ──────────────────────────────────
@@ -710,22 +666,6 @@ class _$HomeStateImpl extends _HomeState {
   final int featuredCurrentPage;
   @override
   final ApiErrorModel? featuredError;
-// ─── Brands ───────────────────────────────────
-  final List<BrandModel> _brands;
-// ─── Brands ───────────────────────────────────
-  @override
-  @JsonKey()
-  List<BrandModel> get brands {
-    if (_brands is EqualUnmodifiableListView) return _brands;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_brands);
-  }
-
-  @override
-  @JsonKey()
-  final bool isBrandsLoading;
-  @override
-  final ApiErrorModel? brandsError;
 // ─── General ──────────────────────────────────
   @override
   @JsonKey()
@@ -733,7 +673,7 @@ class _$HomeStateImpl extends _HomeState {
 
   @override
   String toString() {
-    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, brands: $brands, isBrandsLoading: $isBrandsLoading, brandsError: $brandsError, isRefreshing: $isRefreshing)';
+    return 'HomeState(banners: $banners, isBannersLoading: $isBannersLoading, bannersError: $bannersError, featuredProducts: $featuredProducts, isFeaturedLoading: $isFeaturedLoading, isFeaturedLoadingMore: $isFeaturedLoadingMore, hasFeaturedNextPage: $hasFeaturedNextPage, featuredCurrentPage: $featuredCurrentPage, featuredError: $featuredError, isRefreshing: $isRefreshing)';
   }
 
   @override
@@ -758,11 +698,6 @@ class _$HomeStateImpl extends _HomeState {
                 other.featuredCurrentPage == featuredCurrentPage) &&
             (identical(other.featuredError, featuredError) ||
                 other.featuredError == featuredError) &&
-            const DeepCollectionEquality().equals(other._brands, _brands) &&
-            (identical(other.isBrandsLoading, isBrandsLoading) ||
-                other.isBrandsLoading == isBrandsLoading) &&
-            (identical(other.brandsError, brandsError) ||
-                other.brandsError == brandsError) &&
             (identical(other.isRefreshing, isRefreshing) ||
                 other.isRefreshing == isRefreshing));
   }
@@ -779,9 +714,6 @@ class _$HomeStateImpl extends _HomeState {
       hasFeaturedNextPage,
       featuredCurrentPage,
       featuredError,
-      const DeepCollectionEquality().hash(_brands),
-      isBrandsLoading,
-      brandsError,
       isRefreshing);
 
   @JsonKey(ignore: true)
@@ -802,9 +734,6 @@ abstract class _HomeState extends HomeState {
       final bool hasFeaturedNextPage,
       final int featuredCurrentPage,
       final ApiErrorModel? featuredError,
-      final List<BrandModel> brands,
-      final bool isBrandsLoading,
-      final ApiErrorModel? brandsError,
       final bool isRefreshing}) = _$HomeStateImpl;
   const _HomeState._() : super._();
 
@@ -826,12 +755,6 @@ abstract class _HomeState extends HomeState {
   int get featuredCurrentPage;
   @override
   ApiErrorModel? get featuredError;
-  @override // ─── Brands ───────────────────────────────────
-  List<BrandModel> get brands;
-  @override
-  bool get isBrandsLoading;
-  @override
-  ApiErrorModel? get brandsError;
   @override // ─── General ──────────────────────────────────
   bool get isRefreshing;
   @override

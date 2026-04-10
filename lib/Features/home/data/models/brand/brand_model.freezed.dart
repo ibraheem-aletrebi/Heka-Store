@@ -23,14 +23,19 @@ mixin _$BrandModel {
   @HiveField(0)
   int get id => throw _privateConstructorUsedError;
   @HiveField(1)
-  String get nameAr => throw _privateConstructorUsedError;
+  @JsonKey(name: 'storeNameAr')
+  String get storeNameAr => throw _privateConstructorUsedError;
   @HiveField(2)
-  String get nameEn => throw _privateConstructorUsedError;
+  @JsonKey(name: 'storeName')
+  String get storeNameEn => throw _privateConstructorUsedError;
   @HiveField(3)
+  @JsonKey(name: 'logoUrl')
   String? get logoUrl => throw _privateConstructorUsedError;
   @HiveField(4)
-  double? get rating => throw _privateConstructorUsedError;
+  @JsonKey(name: 'averageRating')
+  double? get averageRating => throw _privateConstructorUsedError;
   @HiveField(5)
+  @JsonKey(name: 'totalReviews')
   int? get totalReviews => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -47,11 +52,11 @@ abstract class $BrandModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@HiveField(0) int id,
-      @HiveField(1) String nameAr,
-      @HiveField(2) String nameEn,
-      @HiveField(3) String? logoUrl,
-      @HiveField(4) double? rating,
-      @HiveField(5) int? totalReviews});
+      @HiveField(1) @JsonKey(name: 'storeNameAr') String storeNameAr,
+      @HiveField(2) @JsonKey(name: 'storeName') String storeNameEn,
+      @HiveField(3) @JsonKey(name: 'logoUrl') String? logoUrl,
+      @HiveField(4) @JsonKey(name: 'averageRating') double? averageRating,
+      @HiveField(5) @JsonKey(name: 'totalReviews') int? totalReviews});
 }
 
 /// @nodoc
@@ -68,10 +73,10 @@ class _$BrandModelCopyWithImpl<$Res, $Val extends BrandModel>
   @override
   $Res call({
     Object? id = null,
-    Object? nameAr = null,
-    Object? nameEn = null,
+    Object? storeNameAr = null,
+    Object? storeNameEn = null,
     Object? logoUrl = freezed,
-    Object? rating = freezed,
+    Object? averageRating = freezed,
     Object? totalReviews = freezed,
   }) {
     return _then(_value.copyWith(
@@ -79,21 +84,21 @@ class _$BrandModelCopyWithImpl<$Res, $Val extends BrandModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
+      storeNameAr: null == storeNameAr
+          ? _value.storeNameAr
+          : storeNameAr // ignore: cast_nullable_to_non_nullable
               as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
+      storeNameEn: null == storeNameEn
+          ? _value.storeNameEn
+          : storeNameEn // ignore: cast_nullable_to_non_nullable
               as String,
       logoUrl: freezed == logoUrl
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
               as double?,
       totalReviews: freezed == totalReviews
           ? _value.totalReviews
@@ -113,11 +118,11 @@ abstract class _$$BrandModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {@HiveField(0) int id,
-      @HiveField(1) String nameAr,
-      @HiveField(2) String nameEn,
-      @HiveField(3) String? logoUrl,
-      @HiveField(4) double? rating,
-      @HiveField(5) int? totalReviews});
+      @HiveField(1) @JsonKey(name: 'storeNameAr') String storeNameAr,
+      @HiveField(2) @JsonKey(name: 'storeName') String storeNameEn,
+      @HiveField(3) @JsonKey(name: 'logoUrl') String? logoUrl,
+      @HiveField(4) @JsonKey(name: 'averageRating') double? averageRating,
+      @HiveField(5) @JsonKey(name: 'totalReviews') int? totalReviews});
 }
 
 /// @nodoc
@@ -132,10 +137,10 @@ class __$$BrandModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? nameAr = null,
-    Object? nameEn = null,
+    Object? storeNameAr = null,
+    Object? storeNameEn = null,
     Object? logoUrl = freezed,
-    Object? rating = freezed,
+    Object? averageRating = freezed,
     Object? totalReviews = freezed,
   }) {
     return _then(_$BrandModelImpl(
@@ -143,21 +148,21 @@ class __$$BrandModelImplCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as int,
-      nameAr: null == nameAr
-          ? _value.nameAr
-          : nameAr // ignore: cast_nullable_to_non_nullable
+      storeNameAr: null == storeNameAr
+          ? _value.storeNameAr
+          : storeNameAr // ignore: cast_nullable_to_non_nullable
               as String,
-      nameEn: null == nameEn
-          ? _value.nameEn
-          : nameEn // ignore: cast_nullable_to_non_nullable
+      storeNameEn: null == storeNameEn
+          ? _value.storeNameEn
+          : storeNameEn // ignore: cast_nullable_to_non_nullable
               as String,
       logoUrl: freezed == logoUrl
           ? _value.logoUrl
           : logoUrl // ignore: cast_nullable_to_non_nullable
               as String?,
-      rating: freezed == rating
-          ? _value.rating
-          : rating // ignore: cast_nullable_to_non_nullable
+      averageRating: freezed == averageRating
+          ? _value.averageRating
+          : averageRating // ignore: cast_nullable_to_non_nullable
               as double?,
       totalReviews: freezed == totalReviews
           ? _value.totalReviews
@@ -172,11 +177,11 @@ class __$$BrandModelImplCopyWithImpl<$Res>
 class _$BrandModelImpl implements _BrandModel {
   const _$BrandModelImpl(
       {@HiveField(0) required this.id,
-      @HiveField(1) required this.nameAr,
-      @HiveField(2) required this.nameEn,
-      @HiveField(3) this.logoUrl,
-      @HiveField(4) this.rating,
-      @HiveField(5) this.totalReviews});
+      @HiveField(1) @JsonKey(name: 'storeNameAr') required this.storeNameAr,
+      @HiveField(2) @JsonKey(name: 'storeName') required this.storeNameEn,
+      @HiveField(3) @JsonKey(name: 'logoUrl') this.logoUrl,
+      @HiveField(4) @JsonKey(name: 'averageRating') this.averageRating,
+      @HiveField(5) @JsonKey(name: 'totalReviews') this.totalReviews});
 
   factory _$BrandModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BrandModelImplFromJson(json);
@@ -186,23 +191,28 @@ class _$BrandModelImpl implements _BrandModel {
   final int id;
   @override
   @HiveField(1)
-  final String nameAr;
+  @JsonKey(name: 'storeNameAr')
+  final String storeNameAr;
   @override
   @HiveField(2)
-  final String nameEn;
+  @JsonKey(name: 'storeName')
+  final String storeNameEn;
   @override
   @HiveField(3)
+  @JsonKey(name: 'logoUrl')
   final String? logoUrl;
   @override
   @HiveField(4)
-  final double? rating;
+  @JsonKey(name: 'averageRating')
+  final double? averageRating;
   @override
   @HiveField(5)
+  @JsonKey(name: 'totalReviews')
   final int? totalReviews;
 
   @override
   String toString() {
-    return 'BrandModel(id: $id, nameAr: $nameAr, nameEn: $nameEn, logoUrl: $logoUrl, rating: $rating, totalReviews: $totalReviews)';
+    return 'BrandModel(id: $id, storeNameAr: $storeNameAr, storeNameEn: $storeNameEn, logoUrl: $logoUrl, averageRating: $averageRating, totalReviews: $totalReviews)';
   }
 
   @override
@@ -211,18 +221,21 @@ class _$BrandModelImpl implements _BrandModel {
         (other.runtimeType == runtimeType &&
             other is _$BrandModelImpl &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.nameAr, nameAr) || other.nameAr == nameAr) &&
-            (identical(other.nameEn, nameEn) || other.nameEn == nameEn) &&
+            (identical(other.storeNameAr, storeNameAr) ||
+                other.storeNameAr == storeNameAr) &&
+            (identical(other.storeNameEn, storeNameEn) ||
+                other.storeNameEn == storeNameEn) &&
             (identical(other.logoUrl, logoUrl) || other.logoUrl == logoUrl) &&
-            (identical(other.rating, rating) || other.rating == rating) &&
+            (identical(other.averageRating, averageRating) ||
+                other.averageRating == averageRating) &&
             (identical(other.totalReviews, totalReviews) ||
                 other.totalReviews == totalReviews));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, nameAr, nameEn, logoUrl, rating, totalReviews);
+  int get hashCode => Object.hash(runtimeType, id, storeNameAr, storeNameEn,
+      logoUrl, averageRating, totalReviews);
 
   @JsonKey(ignore: true)
   @override
@@ -241,11 +254,17 @@ class _$BrandModelImpl implements _BrandModel {
 abstract class _BrandModel implements BrandModel {
   const factory _BrandModel(
       {@HiveField(0) required final int id,
-      @HiveField(1) required final String nameAr,
-      @HiveField(2) required final String nameEn,
-      @HiveField(3) final String? logoUrl,
-      @HiveField(4) final double? rating,
-      @HiveField(5) final int? totalReviews}) = _$BrandModelImpl;
+      @HiveField(1)
+      @JsonKey(name: 'storeNameAr')
+      required final String storeNameAr,
+      @HiveField(2)
+      @JsonKey(name: 'storeName')
+      required final String storeNameEn,
+      @HiveField(3) @JsonKey(name: 'logoUrl') final String? logoUrl,
+      @HiveField(4) @JsonKey(name: 'averageRating') final double? averageRating,
+      @HiveField(5)
+      @JsonKey(name: 'totalReviews')
+      final int? totalReviews}) = _$BrandModelImpl;
 
   factory _BrandModel.fromJson(Map<String, dynamic> json) =
       _$BrandModelImpl.fromJson;
@@ -255,18 +274,23 @@ abstract class _BrandModel implements BrandModel {
   int get id;
   @override
   @HiveField(1)
-  String get nameAr;
+  @JsonKey(name: 'storeNameAr')
+  String get storeNameAr;
   @override
   @HiveField(2)
-  String get nameEn;
+  @JsonKey(name: 'storeName')
+  String get storeNameEn;
   @override
   @HiveField(3)
+  @JsonKey(name: 'logoUrl')
   String? get logoUrl;
   @override
   @HiveField(4)
-  double? get rating;
+  @JsonKey(name: 'averageRating')
+  double? get averageRating;
   @override
   @HiveField(5)
+  @JsonKey(name: 'totalReviews')
   int? get totalReviews;
   @override
   @JsonKey(ignore: true)

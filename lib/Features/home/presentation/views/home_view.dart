@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/brands/brands_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
@@ -34,6 +35,10 @@ class HomeView extends StatelessWidget {
         BlocProvider(
           create: (context) =>
               sl<AddressBloc>()..add(const AddressEvent.loaded()),
+        ),
+         BlocProvider(
+          create: (context) =>
+              sl<BrandsBloc>()..add(const BrandsEvent.loaded()),
         ),
       ],
       child: HomeViewBody(),

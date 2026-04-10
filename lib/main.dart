@@ -8,3 +8,4 @@ Future<void> main() async {
   await setupInjector();
   runApp(const HekaStoreApp());
 }
+                                                            

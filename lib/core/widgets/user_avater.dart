@@ -1,11 +1,9 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
-
 
 class UserAvatar extends StatelessWidget {
   final String? imageUrl;
@@ -13,19 +11,22 @@ class UserAvatar extends StatelessWidget {
   final String? name;
   final double? size;
   final VoidCallback? onTap;
+  final BorderRadius? borderRadius;
 
   const UserAvatar({
     super.key,
     this.imageUrl,
-    this.imageFile,        
+    this.imageFile,
     this.name,
     this.size,
     this.onTap,
+    this.borderRadius,
   });
 
   @override
   Widget build(BuildContext context) {
     final c = context.myColors;
+    final isCircle = borderRadius == null;
 
     return GestureDetector(
       onTap: onTap,
@@ -33,19 +34,26 @@ class UserAvatar extends StatelessWidget {
         width: size ?? AppSizes.w45,
         height: size ?? AppSizes.w45,
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
+          shape: isCircle ? BoxShape.circle : BoxShape.rectangle,
+          borderRadius: isCircle ? null : borderRadius,
           border: Border.all(
-            color: c.primary.withValues(alpha: 0.25),
+            color: borderRadius != null
+                ? c.border
+                : c.primary.withValues(alpha: 0.25),
             width: 2,
           ),
         ),
-        child: ClipOval(child: _buildContent(context)),
+        child: ClipRRect(
+          borderRadius: isCircle
+              ? BorderRadius.circular((size ?? AppSizes.w45) / 2)
+              : borderRadius!,
+          child: _buildContent(context),
+        ),
       ),
     );
   }
 
   Widget _buildContent(BuildContext context) {
-    //   File > URL > Initials > GuestIcon
     if (imageFile != null) {
       return Image.file(
         imageFile!,

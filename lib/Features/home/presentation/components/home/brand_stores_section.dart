@@ -1,109 +1,92 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
+import 'package:heka_store/Features/home/presentation/blocs/brands/brands_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/brand_item.dart';
-import 'package:heka_store/Features/home/presentation/components/home/brand_tile.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
 import 'package:heka_store/core/widgets/section_header.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-class BrandStoresSection extends StatelessWidget {
+class BrandStoresSection extends StatefulWidget {
   const BrandStoresSection({super.key});
-  static const _fallbackBrands = [
-    Brand(name: 'Bata', rating: 4.5, reviews: '4.4k', isVerified: true),
-    Brand(name: 'Adidas', rating: 4.5, reviews: '4.4k', isVerified: true),
-    Brand(name: 'Nike', rating: 4.5, reviews: '4.4k', isVerified: true),
-    Brand(name: 'Zara', rating: 4.3, reviews: '3.2k', isVerified: true),
-    Brand(name: 'H&M', rating: 4.2, reviews: '2.8k', isVerified: false),
-  ];
+
+  @override
+  State<BrandStoresSection> createState() => _BrandStoresSectionState();
+}
+
+class _BrandStoresSectionState extends State<BrandStoresSection> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    final nearEnd =
+        _scrollController.position.pixels >=
+        _scrollController.position.maxScrollExtent - 200;
+
+    if (nearEnd) {
+      context.read<BrandsBloc>().add(const BrandsEvent.nextPage());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<HomeBloc, HomeState>(
-      buildWhen: (p, c) =>
-          p.brands != c.brands || p.isBrandsLoading != c.isBrandsLoading,
+    return BlocBuilder<BrandsBloc, BrandsState>(
       builder: (context, state) {
-        if (state.isBrandsLoading) {
-          return Column(
+        if (state.brands.isEmpty && !state.isLoading) {
+          return const SizedBox.shrink();
+        }
+
+        final brands = state.brands;
+        final columnCount = (brands.length / 3).ceil();
+
+        return CustomSkeletonizer(
+          enable: state.isLoading,
+          child: Column(
+            spacing: AppSizes.h10,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SectionHeader(title: S.of(context).brandStores, onSeeAll: () {}),
-              SizedBox(height: AppSizes.h12),
+
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.35,
                 child: ListView.separated(
+                  controller: _scrollController,
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
-                  itemCount: 2,
-                  separatorBuilder: (_, __) => SizedBox(width: AppSizes.w16),
-                  itemBuilder: (_, __) => CustomSkeletonizer(
-                    enable: true,
-                    child: BrandItem(
-                      brands: const [
-                        Brand(
-                          name: 'Brand',
-                          rating: 4.5,
-                          reviews: '4.4k',
-                          isVerified: true,
-                        ),
-                        Brand(
-                          name: 'Brand',
-                          rating: 4.5,
-                          reviews: '4.4k',
-                          isVerified: true,
-                        ),
-                        Brand(
-                          name: 'Brand',
-                          rating: 4.5,
-                          reviews: '4.4k',
-                          isVerified: true,
-                        ),
-                      ],
-                    ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.w16,
+                    vertical: 0,
                   ),
+                  itemCount: columnCount + (state.isPaginating ? 1 : 0),
+                  separatorBuilder: (_, _) => SizedBox(width: AppSizes.w16),
+                  itemBuilder: (_, i) {
+                    if (i == columnCount) {
+                      final start = i - 1 * 3;
+                      final end = (start + 3).clamp(0, brands.length);
+                      return CustomSkeletonizer(
+                        enable: true,
+                        child: BrandItem(brands: brands.sublist(start, end)),
+                      );
+                    }
+                    final start = i * 3;
+                    final end = (start + 3).clamp(0, brands.length);
+                    return BrandItem(brands: brands.sublist(start, end));
+                  },
                 ),
               ),
             ],
-          );
-        }
-
-        // ─── Data ─────────────────────────────────────
-        final hasApiData = state.brands.isNotEmpty;
-        final brands = hasApiData
-            ? state.brands
-                  .map(
-                    (b) => Brand(
-                      name: b.nameEn,
-                      rating: b.rating ?? 0,
-                      reviews: '${b.totalReviews ?? 0}',
-                      isVerified: true,
-                    ),
-                  )
-                  .toList()
-            : _fallbackBrands;
-
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            SectionHeader(title: S.of(context).brandStores, onSeeAll: () {}),
-            SizedBox(height: AppSizes.h14),
-            SizedBox(
-              height: MediaQuery.sizeOf(context).height * 0.35,
-              child: ListView.separated(
-                physics: const BouncingScrollPhysics(),
-                scrollDirection: Axis.horizontal,
-                padding: EdgeInsets.symmetric(horizontal: AppSizes.w16),
-                itemCount: (brands.length / 3).ceil(),
-                separatorBuilder: (_, __) => SizedBox(width: AppSizes.w16),
-                itemBuilder: (_, i) {
-                  final start = i * 3;
-                  final end = (start + 3).clamp(0, brands.length);
-                  return BrandItem(brands: brands.sublist(start, end));
-                },
-              ),
-            ),
-          ],
+          ),
         );
       },
     );

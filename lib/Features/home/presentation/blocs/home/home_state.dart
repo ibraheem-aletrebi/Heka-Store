@@ -19,11 +19,6 @@ class HomeState with _$HomeState {
     @Default(1) int featuredCurrentPage,
     ApiErrorModel? featuredError,
 
-    // ─── Brands ───────────────────────────────────
-    @Default([]) List<BrandModel> brands,
-    @Default(false) bool isBrandsLoading,
-    ApiErrorModel? brandsError,
-
     // ─── General ──────────────────────────────────
     @Default(false) bool isRefreshing,
   }) = _HomeState;
@@ -32,11 +27,8 @@ class HomeState with _$HomeState {
 
   bool get isInitialLoading =>
       isBannersLoading ||
-      isFeaturedLoading ||
-      isBrandsLoading;
-
+      isFeaturedLoading ;
   bool get hasError =>
       bannersError != null ||
-      featuredError != null ||
-      brandsError != null;
+      featuredError != null;
 }
