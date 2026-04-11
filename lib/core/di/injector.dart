@@ -1,5 +1,4 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
@@ -27,6 +26,7 @@ import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_sourc
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
 import 'package:heka_store/Features/auth/data/repos/auth_repo_imp.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/google_login_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/reset_password_use_case.dart';
@@ -143,11 +143,8 @@ import 'package:hive_flutter/hive_flutter.dart';
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
-  
   await _initCore();
   _initAuth();
   _initAddress();
@@ -281,9 +278,15 @@ void _initAuth() {
     () => ResetPasswordUseCase(repository: sl<AuthRepo>()),
   );
 
+  sl.registerFactory<GoogleLoginUseCase>(
+    () => GoogleLoginUseCase(sl<AuthRepo>()),
+  );
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<LoginBloc>(
-    () => LoginBloc(loginUseCase: sl<LoginUseCase>()),
+    () => LoginBloc(
+      loginUseCase: sl<LoginUseCase>(),
+      googleLoginUseCase: sl<GoogleLoginUseCase>(),
+    ),
   );
   sl.registerFactory<RegisterBloc>(
     () => RegisterBloc(registerUseCase: sl<RegisterUseCase>()),

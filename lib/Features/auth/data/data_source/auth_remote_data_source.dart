@@ -1,10 +1,13 @@
+import 'package:dio/dio.dart';
 import 'package:heka_store/Features/auth/data/models/forgot_password/forgot_password_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/forgot_password/resend_otp_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/forgot_password/reset_password_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/forgot_password/verify_otp_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
+import 'package:heka_store/Features/auth/data/models/oogle_login_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
+import 'package:heka_store/Features/auth/data/models/update_fcm_token_request_model.dart';
 import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
@@ -23,6 +26,8 @@ abstract class AuthRemoteDataSource {
   Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request);
 
 
+Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request);
+Future<void> updateFcmToken(UpdateFcmTokenRequestModel request);
 
 }
 
@@ -74,4 +79,20 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   }
 
 
+
+@override
+Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request) async {
+  final response = await _apiService.post(
+    ApiConstants.googleLogin,
+    data: request.toJson(),
+  );
+  return LoginResponseModel.fromJson(response.data);
+}
+@override
+Future<void> updateFcmToken(UpdateFcmTokenRequestModel request) async {
+  await _apiService.post(
+    ApiConstants.updateFcmToken, // '/api/Account/update-fcm-token'
+    data: request.toJson(),
+  );
+} 
 }

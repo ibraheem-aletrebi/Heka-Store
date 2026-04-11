@@ -37,4 +37,8 @@ abstract class AuthRepo {
   Future<void> logout();
 
 
+
+Future<ApiResult<LoginResponseModel>> googleLogin();
+Future<ApiResult<void>> updateFcmToken(String fcmToken);
+
 }

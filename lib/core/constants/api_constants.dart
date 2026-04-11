@@ -31,8 +31,8 @@ class ApiConstants {
 
   static const String wishlist = '/api/Wishlist';
   static String wishlistItem(int productId) => '/api/Wishlist/$productId';
-  static String vendorProducts(int productId) => '/api/Products/vendor/$productId';
-  
+  static String vendorProducts(int productId) =>
+      '/api/Products/vendor/$productId';
 
   static const String cart = '/api/Cart';
   static const String cartItems = '/api/Cart/items';
@@ -44,6 +44,6 @@ class ApiConstants {
   static String productById(int id) => '/api/Products/$id';
   static const String search = '/api/Products/search';
 
-  static const String googleLogin   = '/Account/google-login';
-  static const String updateFcmToken = '/Account/update-fcm-token';
+  static const String googleLogin = '/api/Account/google-login';
+  static const String updateFcmToken = '/api/Account/update-fcm-token';
 }

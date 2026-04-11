@@ -766,17 +766,21 @@ abstract class _GoogleSignInSubmitted implements LoginEvent {
 
 /// @nodoc
 mixin _$LoginState {
+// ─── Fields ───────────────────────────────────────
   String get email => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
-  bool get rememberMe => throw _privateConstructorUsedError;
+  bool get rememberMe =>
+      throw _privateConstructorUsedError; // ─── Validation Errors ────────────────────────────
   ValidationKey? get emailError => throw _privateConstructorUsedError;
-  ValidationKey? get passwordError => throw _privateConstructorUsedError;
+  ValidationKey? get passwordError =>
+      throw _privateConstructorUsedError; // ─── Status ───────────────────────────────────────
   bool get isLoading => throw _privateConstructorUsedError;
-  bool get isSuccess => throw _privateConstructorUsedError;
-  LoginResponseModel? get loginResponse => throw _privateConstructorUsedError;
-  ApiErrorModel? get error => throw _privateConstructorUsedError;
-  AutovalidateMode get autoValidateMode => throw _privateConstructorUsedError;
   bool get isGoogleLoading => throw _privateConstructorUsedError;
+  bool get isSuccess =>
+      throw _privateConstructorUsedError; // ─── Response ─────────────────────────────────────
+  LoginResponseModel? get loginResponse =>
+      throw _privateConstructorUsedError; // ─── API Error ────────────────────────────────────
+  ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LoginStateCopyWith<LoginState> get copyWith =>
@@ -796,11 +800,10 @@ abstract class $LoginStateCopyWith<$Res> {
       ValidationKey? emailError,
       ValidationKey? passwordError,
       bool isLoading,
+      bool isGoogleLoading,
       bool isSuccess,
       LoginResponseModel? loginResponse,
-      ApiErrorModel? error,
-      AutovalidateMode autoValidateMode,
-      bool isGoogleLoading});
+      ApiErrorModel? error});
 
   $LoginResponseModelCopyWith<$Res>? get loginResponse;
 }
@@ -824,11 +827,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
     Object? emailError = freezed,
     Object? passwordError = freezed,
     Object? isLoading = null,
+    Object? isGoogleLoading = null,
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
-    Object? autoValidateMode = null,
-    Object? isGoogleLoading = null,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -855,6 +857,10 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isGoogleLoading: null == isGoogleLoading
+          ? _value.isGoogleLoading
+          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isSuccess: null == isSuccess
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
@@ -867,14 +873,6 @@ class _$LoginStateCopyWithImpl<$Res, $Val extends LoginState>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      autoValidateMode: null == autoValidateMode
-          ? _value.autoValidateMode
-          : autoValidateMode // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
-      isGoogleLoading: null == isGoogleLoading
-          ? _value.isGoogleLoading
-          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
     ) as $Val);
   }
 
@@ -906,11 +904,10 @@ abstract class _$$LoginStateImplCopyWith<$Res>
       ValidationKey? emailError,
       ValidationKey? passwordError,
       bool isLoading,
+      bool isGoogleLoading,
       bool isSuccess,
       LoginResponseModel? loginResponse,
-      ApiErrorModel? error,
-      AutovalidateMode autoValidateMode,
-      bool isGoogleLoading});
+      ApiErrorModel? error});
 
   @override
   $LoginResponseModelCopyWith<$Res>? get loginResponse;
@@ -933,11 +930,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
     Object? emailError = freezed,
     Object? passwordError = freezed,
     Object? isLoading = null,
+    Object? isGoogleLoading = null,
     Object? isSuccess = null,
     Object? loginResponse = freezed,
     Object? error = freezed,
-    Object? autoValidateMode = null,
-    Object? isGoogleLoading = null,
   }) {
     return _then(_$LoginStateImpl(
       email: null == email
@@ -964,6 +960,10 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isGoogleLoading: null == isGoogleLoading
+          ? _value.isGoogleLoading
+          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
+              as bool,
       isSuccess: null == isSuccess
           ? _value.isSuccess
           : isSuccess // ignore: cast_nullable_to_non_nullable
@@ -976,14 +976,6 @@ class __$$LoginStateImplCopyWithImpl<$Res>
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as ApiErrorModel?,
-      autoValidateMode: null == autoValidateMode
-          ? _value.autoValidateMode
-          : autoValidateMode // ignore: cast_nullable_to_non_nullable
-              as AutovalidateMode,
-      isGoogleLoading: null == isGoogleLoading
-          ? _value.isGoogleLoading
-          : isGoogleLoading // ignore: cast_nullable_to_non_nullable
-              as bool,
     ));
   }
 }
@@ -998,13 +990,13 @@ class _$LoginStateImpl extends _LoginState {
       this.emailError,
       this.passwordError,
       this.isLoading = false,
+      this.isGoogleLoading = false,
       this.isSuccess = false,
       this.loginResponse,
-      this.error,
-      this.autoValidateMode = AutovalidateMode.disabled,
-      this.isGoogleLoading = false})
+      this.error})
       : super._();
 
+// ─── Fields ───────────────────────────────────────
   @override
   @JsonKey()
   final String email;
@@ -1014,30 +1006,31 @@ class _$LoginStateImpl extends _LoginState {
   @override
   @JsonKey()
   final bool rememberMe;
+// ─── Validation Errors ────────────────────────────
   @override
   final ValidationKey? emailError;
   @override
   final ValidationKey? passwordError;
+// ─── Status ───────────────────────────────────────
   @override
   @JsonKey()
   final bool isLoading;
   @override
   @JsonKey()
+  final bool isGoogleLoading;
+  @override
+  @JsonKey()
   final bool isSuccess;
+// ─── Response ─────────────────────────────────────
   @override
   final LoginResponseModel? loginResponse;
+// ─── API Error ────────────────────────────────────
   @override
   final ApiErrorModel? error;
-  @override
-  @JsonKey()
-  final AutovalidateMode autoValidateMode;
-  @override
-  @JsonKey()
-  final bool isGoogleLoading;
 
   @override
   String toString() {
-    return 'LoginState(email: $email, password: $password, rememberMe: $rememberMe, emailError: $emailError, passwordError: $passwordError, isLoading: $isLoading, isSuccess: $isSuccess, loginResponse: $loginResponse, error: $error, autoValidateMode: $autoValidateMode, isGoogleLoading: $isGoogleLoading)';
+    return 'LoginState(email: $email, password: $password, rememberMe: $rememberMe, emailError: $emailError, passwordError: $passwordError, isLoading: $isLoading, isGoogleLoading: $isGoogleLoading, isSuccess: $isSuccess, loginResponse: $loginResponse, error: $error)';
   }
 
   @override
@@ -1056,15 +1049,13 @@ class _$LoginStateImpl extends _LoginState {
                 other.passwordError == passwordError) &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isGoogleLoading, isGoogleLoading) ||
+                other.isGoogleLoading == isGoogleLoading) &&
             (identical(other.isSuccess, isSuccess) ||
                 other.isSuccess == isSuccess) &&
             (identical(other.loginResponse, loginResponse) ||
                 other.loginResponse == loginResponse) &&
-            (identical(other.error, error) || other.error == error) &&
-            (identical(other.autoValidateMode, autoValidateMode) ||
-                other.autoValidateMode == autoValidateMode) &&
-            (identical(other.isGoogleLoading, isGoogleLoading) ||
-                other.isGoogleLoading == isGoogleLoading));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
@@ -1076,11 +1067,10 @@ class _$LoginStateImpl extends _LoginState {
       emailError,
       passwordError,
       isLoading,
+      isGoogleLoading,
       isSuccess,
       loginResponse,
-      error,
-      autoValidateMode,
-      isGoogleLoading);
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -1097,35 +1087,32 @@ abstract class _LoginState extends LoginState {
       final ValidationKey? emailError,
       final ValidationKey? passwordError,
       final bool isLoading,
+      final bool isGoogleLoading,
       final bool isSuccess,
       final LoginResponseModel? loginResponse,
-      final ApiErrorModel? error,
-      final AutovalidateMode autoValidateMode,
-      final bool isGoogleLoading}) = _$LoginStateImpl;
+      final ApiErrorModel? error}) = _$LoginStateImpl;
   const _LoginState._() : super._();
 
-  @override
+  @override // ─── Fields ───────────────────────────────────────
   String get email;
   @override
   String get password;
   @override
   bool get rememberMe;
-  @override
+  @override // ─── Validation Errors ────────────────────────────
   ValidationKey? get emailError;
   @override
   ValidationKey? get passwordError;
-  @override
+  @override // ─── Status ───────────────────────────────────────
   bool get isLoading;
   @override
-  bool get isSuccess;
-  @override
-  LoginResponseModel? get loginResponse;
-  @override
-  ApiErrorModel? get error;
-  @override
-  AutovalidateMode get autoValidateMode;
-  @override
   bool get isGoogleLoading;
+  @override
+  bool get isSuccess;
+  @override // ─── Response ─────────────────────────────────────
+  LoginResponseModel? get loginResponse;
+  @override // ─── API Error ────────────────────────────────────
+  ApiErrorModel? get error;
   @override
   @JsonKey(ignore: true)
   _$$LoginStateImplCopyWith<_$LoginStateImpl> get copyWith =>

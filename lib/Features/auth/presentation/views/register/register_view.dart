@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/components/action_prompt.dart';
 import 'package:heka_store/Features/auth/presentation/components/register/register_view_body_bloc_listener.dart';
@@ -12,8 +13,11 @@ class RegisterView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final translate = S.of(context);
-    return BlocProvider(
-      create: (context) => sl<RegisterBloc>(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => sl<RegisterBloc>()),
+        BlocProvider(create: (context) => sl<LoginBloc>()),
+      ],
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         body: SafeArea(child: RegisterViewBodyBlocListener()),
@@ -28,5 +32,3 @@ class RegisterView extends StatelessWidget {
     );
   }
 }
-
-

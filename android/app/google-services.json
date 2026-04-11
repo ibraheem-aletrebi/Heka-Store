@@ -12,7 +12,12 @@
           "package_name": "com.example.heka_store"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCnaBvOJFQKzA4CegFfBwByNtd0SHk0xVU"
@@ -20,7 +25,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "662441837073-aalgca9muu0u80bdq3u3c29ggk4psuu9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hekaStore"
+              }
+            }
+          ]
         }
       }
     }
