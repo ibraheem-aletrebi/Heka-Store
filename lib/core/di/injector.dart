@@ -1,3 +1,4 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
@@ -78,14 +79,22 @@ import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_pr
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/order/data/data_source/my_orders_local_data_source.dart';
 import 'package:heka_store/Features/order/data/data_source/my_orders_remote_data_source.dart';
+import 'package:heka_store/Features/order/data/data_source/order_details_local_data_source.dart';
+import 'package:heka_store/Features/order/data/data_source/order_details_remote_data_source.dart';
 import 'package:heka_store/Features/order/data/data_source/order_remote_data_source.dart';
+import 'package:heka_store/Features/order/data/models/my_order_model.dart';
+import 'package:heka_store/Features/order/data/models/order_details_model.dart';
 import 'package:heka_store/Features/order/data/repo/my_orders_repository.dart';
+import 'package:heka_store/Features/order/data/repo/order_details_repo.dart';
 import 'package:heka_store/Features/order/data/repo/order_repository.dart';
+import 'package:heka_store/Features/order/domain/use_cases/get_order_details_use_case.dart';
 import 'package:heka_store/Features/order/domain/use_cases/initiate_payment_use_case.dart';
 import 'package:heka_store/Features/order/domain/use_cases/order_use_cases.dart';
 import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
+import 'package:heka_store/Features/order/presentation/blocs/order_details/order_details_bloc.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_local_data_source.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_remote_data_source.dart';
 // ─── Product Details imports ──────────────────────────────────────────────────
@@ -127,12 +136,18 @@ import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
+import 'package:heka_store/firebase_options.dart';
 import 'package:heka_store/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
+
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  
   await _initCore();
   _initAuth();
   _initAddress();
@@ -160,6 +175,7 @@ Future<void> _initCore() async {
       HiveBoxes.previousViewedProducts,
       HiveBoxes.cart,
       HiveBoxes.brands,
+      HiveBoxes.orders,
     ],
     regesterAdapters: _registerAdapters,
   );
@@ -214,6 +230,10 @@ Future<void> _registerAdapters() async {
 
   Hive.registerAdapter<BrandProfileModel>(BrandProfileModelAdapter());
   Hive.registerAdapter<BrandProductModel>(BrandProductModelAdapter());
+  Hive.registerAdapter<MyOrderModel>(MyOrderModelAdapter());
+
+  Hive.registerAdapter<OrderDetailsModel>(OrderDetailsModelAdapter());
+  Hive.registerAdapter<OrderItemModel>(OrderItemModelAdapter());
 }
 
 // ─── Auth ─────────────────────────────────────────────────────────────────────
@@ -586,13 +606,42 @@ void _initOrder() {
     () => MyOrdersRemoteDataSourceImpl(sl<ApiService>()),
   );
 
+  sl.registerLazySingleton<OrderDetailsRemoteDataSource>(
+    () => OrderDetailsRemoteDataSourceImpl(sl<ApiService>()),
+  );
+  sl.registerLazySingleton<OrderDetailsLocalDataSource>(
+    () => OrderDetailsLocalDataSourceImpl(
+      localStorage: sl<LocalStorageService>(),
+    ),
+  );
+  sl.registerLazySingleton<OrderDetailsRepo>(
+    () => OrderDetailsRepoImpl(
+      remote: sl<OrderDetailsRemoteDataSource>(),
+      local: sl<OrderDetailsLocalDataSource>(),
+    ),
+  );
+  sl.registerFactory<GetOrderDetailsUseCase>(
+    () => GetOrderDetailsUseCase(sl<OrderDetailsRepo>()),
+  );
+  sl.registerFactory<OrderDetailsBloc>(
+    () => OrderDetailsBloc(getOrderDetails: sl<GetOrderDetailsUseCase>()),
+  );
+
   // ─── Repository ───────────────────────────────────
   sl.registerLazySingleton<OrderRepository>(
     () => OrderRepositoryImpl(sl<OrderRemoteDataSource>()),
   );
 
+  sl.registerLazySingleton<MyOrdersLocalDataSource>(
+    () => MyOrdersLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+
+  // update MyOrdersRepository registration:
   sl.registerLazySingleton<MyOrdersRepository>(
-    () => MyOrdersRepositoryImpl(sl<MyOrdersRemoteDataSource>()),
+    () => MyOrdersRepositoryImpl(
+      remote: sl<MyOrdersRemoteDataSource>(),
+      local: sl<MyOrdersLocalDataSource>(),
+    ),
   );
   // ─── Use Cases ────────────────────────────────────
   sl.registerFactory<CreateOrderUseCase>(

@@ -20,18 +20,21 @@ mixin _$MyOrdersEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? nextPageFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -39,18 +42,21 @@ mixin _$MyOrdersEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -114,6 +120,7 @@ class _$StartedImpl implements _Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() nextPageFetched,
   }) {
     return started();
   }
@@ -123,6 +130,7 @@ class _$StartedImpl implements _Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? nextPageFetched,
   }) {
     return started?.call();
   }
@@ -132,6 +140,7 @@ class _$StartedImpl implements _Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? nextPageFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -145,6 +154,7 @@ class _$StartedImpl implements _Started {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
   }) {
     return started(this);
   }
@@ -154,6 +164,7 @@ class _$StartedImpl implements _Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) {
     return started?.call(this);
   }
@@ -163,6 +174,7 @@ class _$StartedImpl implements _Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -216,6 +228,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() refreshed,
+    required TResult Function() nextPageFetched,
   }) {
     return refreshed();
   }
@@ -225,6 +238,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? started,
     TResult? Function()? refreshed,
+    TResult? Function()? nextPageFetched,
   }) {
     return refreshed?.call();
   }
@@ -234,6 +248,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? refreshed,
+    TResult Function()? nextPageFetched,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -247,6 +262,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult map<TResult extends Object?>({
     required TResult Function(_Started value) started,
     required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
   }) {
     return refreshed(this);
   }
@@ -256,6 +272,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(_Started value)? started,
     TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
   }) {
     return refreshed?.call(this);
   }
@@ -265,6 +282,7 @@ class _$RefreshedImpl implements _Refreshed {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_Started value)? started,
     TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
     required TResult orElse(),
   }) {
     if (refreshed != null) {
@@ -279,9 +297,121 @@ abstract class _Refreshed implements MyOrdersEvent {
 }
 
 /// @nodoc
+abstract class _$$NextPageFetchedImplCopyWith<$Res> {
+  factory _$$NextPageFetchedImplCopyWith(_$NextPageFetchedImpl value,
+          $Res Function(_$NextPageFetchedImpl) then) =
+      __$$NextPageFetchedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$NextPageFetchedImplCopyWithImpl<$Res>
+    extends _$MyOrdersEventCopyWithImpl<$Res, _$NextPageFetchedImpl>
+    implements _$$NextPageFetchedImplCopyWith<$Res> {
+  __$$NextPageFetchedImplCopyWithImpl(
+      _$NextPageFetchedImpl _value, $Res Function(_$NextPageFetchedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$NextPageFetchedImpl implements _NextPageFetched {
+  const _$NextPageFetchedImpl();
+
+  @override
+  String toString() {
+    return 'MyOrdersEvent.nextPageFetched()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$NextPageFetchedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() refreshed,
+    required TResult Function() nextPageFetched,
+  }) {
+    return nextPageFetched();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? started,
+    TResult? Function()? refreshed,
+    TResult? Function()? nextPageFetched,
+  }) {
+    return nextPageFetched?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? refreshed,
+    TResult Function()? nextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (nextPageFetched != null) {
+      return nextPageFetched();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Started value) started,
+    required TResult Function(_Refreshed value) refreshed,
+    required TResult Function(_NextPageFetched value) nextPageFetched,
+  }) {
+    return nextPageFetched(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Started value)? started,
+    TResult? Function(_Refreshed value)? refreshed,
+    TResult? Function(_NextPageFetched value)? nextPageFetched,
+  }) {
+    return nextPageFetched?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Started value)? started,
+    TResult Function(_Refreshed value)? refreshed,
+    TResult Function(_NextPageFetched value)? nextPageFetched,
+    required TResult orElse(),
+  }) {
+    if (nextPageFetched != null) {
+      return nextPageFetched(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NextPageFetched implements MyOrdersEvent {
+  const factory _NextPageFetched() = _$NextPageFetchedImpl;
+}
+
+/// @nodoc
 mixin _$MyOrdersState {
   bool get isLoading => throw _privateConstructorUsedError;
+  bool get isLoadingMore => throw _privateConstructorUsedError;
+  bool get isRefreshing => throw _privateConstructorUsedError;
   List<MyOrderModel> get orders => throw _privateConstructorUsedError;
+  int get currentPage => throw _privateConstructorUsedError;
+  bool get hasNextPage => throw _privateConstructorUsedError;
   ApiErrorModel? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -295,7 +425,14 @@ abstract class $MyOrdersStateCopyWith<$Res> {
           MyOrdersState value, $Res Function(MyOrdersState) then) =
       _$MyOrdersStateCopyWithImpl<$Res, MyOrdersState>;
   @useResult
-  $Res call({bool isLoading, List<MyOrderModel> orders, ApiErrorModel? error});
+  $Res call(
+      {bool isLoading,
+      bool isLoadingMore,
+      bool isRefreshing,
+      List<MyOrderModel> orders,
+      int currentPage,
+      bool hasNextPage,
+      ApiErrorModel? error});
 }
 
 /// @nodoc
@@ -312,7 +449,11 @@ class _$MyOrdersStateCopyWithImpl<$Res, $Val extends MyOrdersState>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isLoadingMore = null,
+    Object? isRefreshing = null,
     Object? orders = null,
+    Object? currentPage = null,
+    Object? hasNextPage = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -320,10 +461,26 @@ class _$MyOrdersStateCopyWithImpl<$Res, $Val extends MyOrdersState>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRefreshing: null == isRefreshing
+          ? _value.isRefreshing
+          : isRefreshing // ignore: cast_nullable_to_non_nullable
+              as bool,
       orders: null == orders
           ? _value.orders
           : orders // ignore: cast_nullable_to_non_nullable
               as List<MyOrderModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasNextPage: null == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -340,7 +497,14 @@ abstract class _$$MyOrdersStateImplCopyWith<$Res>
       __$$MyOrdersStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isLoading, List<MyOrderModel> orders, ApiErrorModel? error});
+  $Res call(
+      {bool isLoading,
+      bool isLoadingMore,
+      bool isRefreshing,
+      List<MyOrderModel> orders,
+      int currentPage,
+      bool hasNextPage,
+      ApiErrorModel? error});
 }
 
 /// @nodoc
@@ -355,7 +519,11 @@ class __$$MyOrdersStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isLoading = null,
+    Object? isLoadingMore = null,
+    Object? isRefreshing = null,
     Object? orders = null,
+    Object? currentPage = null,
+    Object? hasNextPage = null,
     Object? error = freezed,
   }) {
     return _then(_$MyOrdersStateImpl(
@@ -363,10 +531,26 @@ class __$$MyOrdersStateImplCopyWithImpl<$Res>
           ? _value.isLoading
           : isLoading // ignore: cast_nullable_to_non_nullable
               as bool,
+      isLoadingMore: null == isLoadingMore
+          ? _value.isLoadingMore
+          : isLoadingMore // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isRefreshing: null == isRefreshing
+          ? _value.isRefreshing
+          : isRefreshing // ignore: cast_nullable_to_non_nullable
+              as bool,
       orders: null == orders
           ? _value._orders
           : orders // ignore: cast_nullable_to_non_nullable
               as List<MyOrderModel>,
+      currentPage: null == currentPage
+          ? _value.currentPage
+          : currentPage // ignore: cast_nullable_to_non_nullable
+              as int,
+      hasNextPage: null == hasNextPage
+          ? _value.hasNextPage
+          : hasNextPage // ignore: cast_nullable_to_non_nullable
+              as bool,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -380,7 +564,11 @@ class __$$MyOrdersStateImplCopyWithImpl<$Res>
 class _$MyOrdersStateImpl extends _MyOrdersState {
   const _$MyOrdersStateImpl(
       {this.isLoading = false,
+      this.isLoadingMore = false,
+      this.isRefreshing = false,
       final List<MyOrderModel> orders = const [],
+      this.currentPage = 1,
+      this.hasNextPage = false,
       this.error})
       : _orders = orders,
         super._();
@@ -388,6 +576,12 @@ class _$MyOrdersStateImpl extends _MyOrdersState {
   @override
   @JsonKey()
   final bool isLoading;
+  @override
+  @JsonKey()
+  final bool isLoadingMore;
+  @override
+  @JsonKey()
+  final bool isRefreshing;
   final List<MyOrderModel> _orders;
   @override
   @JsonKey()
@@ -398,11 +592,17 @@ class _$MyOrdersStateImpl extends _MyOrdersState {
   }
 
   @override
+  @JsonKey()
+  final int currentPage;
+  @override
+  @JsonKey()
+  final bool hasNextPage;
+  @override
   final ApiErrorModel? error;
 
   @override
   String toString() {
-    return 'MyOrdersState(isLoading: $isLoading, orders: $orders, error: $error)';
+    return 'MyOrdersState(isLoading: $isLoading, isLoadingMore: $isLoadingMore, isRefreshing: $isRefreshing, orders: $orders, currentPage: $currentPage, hasNextPage: $hasNextPage, error: $error)';
   }
 
   @override
@@ -412,13 +612,28 @@ class _$MyOrdersStateImpl extends _MyOrdersState {
             other is _$MyOrdersStateImpl &&
             (identical(other.isLoading, isLoading) ||
                 other.isLoading == isLoading) &&
+            (identical(other.isLoadingMore, isLoadingMore) ||
+                other.isLoadingMore == isLoadingMore) &&
+            (identical(other.isRefreshing, isRefreshing) ||
+                other.isRefreshing == isRefreshing) &&
             const DeepCollectionEquality().equals(other._orders, _orders) &&
+            (identical(other.currentPage, currentPage) ||
+                other.currentPage == currentPage) &&
+            (identical(other.hasNextPage, hasNextPage) ||
+                other.hasNextPage == hasNextPage) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isLoading,
-      const DeepCollectionEquality().hash(_orders), error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      isLoading,
+      isLoadingMore,
+      isRefreshing,
+      const DeepCollectionEquality().hash(_orders),
+      currentPage,
+      hasNextPage,
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -430,14 +645,26 @@ class _$MyOrdersStateImpl extends _MyOrdersState {
 abstract class _MyOrdersState extends MyOrdersState {
   const factory _MyOrdersState(
       {final bool isLoading,
+      final bool isLoadingMore,
+      final bool isRefreshing,
       final List<MyOrderModel> orders,
+      final int currentPage,
+      final bool hasNextPage,
       final ApiErrorModel? error}) = _$MyOrdersStateImpl;
   const _MyOrdersState._() : super._();
 
   @override
   bool get isLoading;
   @override
+  bool get isLoadingMore;
+  @override
+  bool get isRefreshing;
+  @override
   List<MyOrderModel> get orders;
+  @override
+  int get currentPage;
+  @override
+  bool get hasNextPage;
   @override
   ApiErrorModel? get error;
   @override

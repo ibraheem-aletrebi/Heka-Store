@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import 'package:heka_store/Features/order/data/models/my_order_model.dart';
 import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
+import 'package:heka_store/Features/order/presentation/views/my_orders_details_screen.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -19,6 +19,7 @@ class MyOrdersScreen extends StatefulWidget {
 class _MyOrdersScreenState extends State<MyOrdersScreen>
     with SingleTickerProviderStateMixin {
   late final TabController _tabCtrl;
+  bool _newestFirst = true;
 
   @override
   void initState() {
@@ -31,6 +32,16 @@ class _MyOrdersScreenState extends State<MyOrdersScreen>
   void dispose() {
     _tabCtrl.dispose();
     super.dispose();
+  }
+
+  List<MyOrderModel> _sorted(List<MyOrderModel> orders) {
+    final copy = [...orders];
+    copy.sort((a, b) {
+      final da = DateTime.tryParse(a.orderDate) ?? DateTime(0);
+      final db = DateTime.tryParse(b.orderDate) ?? DateTime(0);
+      return _newestFirst ? db.compareTo(da) : da.compareTo(db);
+    });
+    return copy;
   }
 
   @override
@@ -47,6 +58,22 @@ class _MyOrdersScreenState extends State<MyOrdersScreen>
           s.myOrdersTitle,
           style: AppTextStyles.bold18.copyWith(color: colors.textPrimary),
         ),
+        actions: [
+          IconButton(
+            tooltip: _newestFirst
+                ? s.myOrdersOldestFirst
+                : s.myOrdersNewestFirst,
+            icon: Icon(
+              _newestFirst
+                  ? Icons.arrow_downward_rounded
+                  : Icons.arrow_upward_rounded,
+              size: AppSizes.sp20,
+              color: colors.primary,
+            ),
+            onPressed: () => setState(() => _newestFirst = !_newestFirst),
+          ),
+          SizedBox(width: AppSizes.w4),
+        ],
         bottom: PreferredSize(
           preferredSize: const Size.fromHeight(48),
           child: BlocBuilder<MyOrdersBloc, MyOrdersState>(
@@ -75,16 +102,26 @@ class _MyOrdersScreenState extends State<MyOrdersScreen>
             controller: _tabCtrl,
             children: [
               _OrdersList(
-                orders: state.ongoingOrders,
+                orders: _sorted(state.ongoingOrders),
+                hasNextPage: state.hasNextPage,
+                isLoadingMore: state.isLoadingMore,
                 emptyIcon: Icons.inventory_2_outlined,
                 emptyTitle: s.myOrdersNoOngoing,
                 emptySubtitle: s.myOrdersNoOngoingSubtitle,
+                onLoadMore: () => context.read<MyOrdersBloc>().add(
+                  const MyOrdersEvent.nextPageFetched(),
+                ),
               ),
               _OrdersList(
-                orders: state.completedOrders,
+                orders: _sorted(state.completedOrders),
+                hasNextPage: state.hasNextPage,
+                isLoadingMore: state.isLoadingMore,
                 emptyIcon: Icons.check_circle_outline_rounded,
                 emptyTitle: s.myOrdersNoCompleted,
                 emptySubtitle: s.myOrdersNoCompletedSubtitle,
+                onLoadMore: () => context.read<MyOrdersBloc>().add(
+                  const MyOrdersEvent.nextPageFetched(),
+                ),
               ),
             ],
           );
@@ -94,7 +131,8 @@ class _MyOrdersScreenState extends State<MyOrdersScreen>
   }
 }
 
-// ── Tab bar with counts ───────────────────────────────────────────────────────
+// ── Tab bar ───────────────────────────────────────────────────────────────────
+
 class _OrdersTabBar extends StatelessWidget {
   final TabController controller;
   final int ongoingCount;
@@ -176,27 +214,63 @@ class _CountBadge extends StatelessWidget {
   }
 }
 
-// ── Orders list ───────────────────────────────────────────────────────────────
-class _OrdersList extends StatelessWidget {
+// ── Orders list with pagination ───────────────────────────────────────────────
+
+class _OrdersList extends StatefulWidget {
   final List<MyOrderModel> orders;
+  final bool hasNextPage;
+  final bool isLoadingMore;
   final IconData emptyIcon;
   final String emptyTitle;
   final String emptySubtitle;
+  final VoidCallback onLoadMore;
 
   const _OrdersList({
     required this.orders,
+    required this.hasNextPage,
+    required this.isLoadingMore,
     required this.emptyIcon,
     required this.emptyTitle,
     required this.emptySubtitle,
+    required this.onLoadMore,
   });
 
   @override
+  State<_OrdersList> createState() => _OrdersListState();
+}
+
+class _OrdersListState extends State<_OrdersList> {
+  final _scrollCtrl = ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollCtrl.addListener(_onScroll);
+  }
+
+  @override
+  void dispose() {
+    _scrollCtrl.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (!_scrollCtrl.hasClients) return;
+    final threshold = _scrollCtrl.position.maxScrollExtent - AppSizes.h100;
+    if (_scrollCtrl.offset >= threshold &&
+        widget.hasNextPage &&
+        !widget.isLoadingMore) {
+      widget.onLoadMore();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (orders.isEmpty) {
+    if (widget.orders.isEmpty && !widget.isLoadingMore) {
       return _EmptyState(
-        icon: emptyIcon,
-        title: emptyTitle,
-        subtitle: emptySubtitle,
+        icon: widget.emptyIcon,
+        title: widget.emptyTitle,
+        subtitle: widget.emptySubtitle,
       );
     }
 
@@ -204,21 +278,46 @@ class _OrdersList extends StatelessWidget {
       onRefresh: () async =>
           context.read<MyOrdersBloc>().add(const MyOrdersEvent.refreshed()),
       child: ListView.separated(
+        controller: _scrollCtrl,
         padding: EdgeInsets.fromLTRB(
           AppSizes.w16,
           AppSizes.h16,
           AppSizes.w16,
           AppSizes.h32,
         ),
-        itemCount: orders.length,
+        itemCount: widget.orders.length + (widget.isLoadingMore ? 1 : 0),
         separatorBuilder: (_, __) => SizedBox(height: AppSizes.h10),
-        itemBuilder: (_, i) => _OrderTile(order: orders[i]),
+        itemBuilder: (_, i) {
+          if (i == widget.orders.length) return _LoadMoreIndicator();
+          return _OrderTile(order: widget.orders[i]);
+        },
+      ),
+    );
+  }
+}
+
+class _LoadMoreIndicator extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: AppSizes.h16),
+      child: Center(
+        child: SizedBox(
+          width: 24,
+          height: 24,
+          child: CircularProgressIndicator(
+            strokeWidth: 2.5,
+            color: colors.primary,
+          ),
+        ),
       ),
     );
   }
 }
 
 // ── Order tile ────────────────────────────────────────────────────────────────
+
 class _OrderTile extends StatelessWidget {
   final MyOrderModel order;
   const _OrderTile({required this.order});
@@ -227,96 +326,113 @@ class _OrderTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = S.of(context);
     final colors = context.myColors;
-    final status = _OrderStatus.fromStatusId(order.statusId);
+    final status = _OrderStatus.fromStatusId(order.statusId, context);
 
-    return Container(
-      padding: EdgeInsets.all(AppSizes.w14),
-      decoration: BoxDecoration(
-        color: colors.surface,
-        borderRadius: BorderRadius.circular(AppSizes.r16),
-        border: Border.all(color: colors.border),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // ── Header: order number + date ─────────────────────────────
-          Row(
-            children: [
-              Expanded(
-                child: Text(
-                  order.orderNumber,
-                  style: AppTextStyles.semiBold13.copyWith(
-                    color: colors.textPrimary,
-                    letterSpacing: 0.2,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => OrderDetailsView(orderId: order.id),
+          ),
+        );
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: colors.surface,
+          borderRadius: BorderRadius.circular(AppSizes.r16),
+          border: Border.all(color: colors.border),
+        ),
+        clipBehavior: Clip.hardEdge,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // ── Status accent bar ────────────────────────────────────────
+            Container(height: 3, color: status.accentColor),
+
+            Padding(
+              padding: EdgeInsets.all(AppSizes.w14),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // ── Order number + date ──────────────────────────────
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          order.orderNumber,
+                          style: AppTextStyles.semiBold12.copyWith(
+                            color: colors.textPrimary,
+                            letterSpacing: 0.3,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ),
+                      SizedBox(width: AppSizes.w8),
+                      Text(
+                        _formatDate(order.orderDate),
+                        style: AppTextStyles.regular11.copyWith(
+                          color: colors.textHint,
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ),
-              Text(
-                _formatDate(order.orderDate),
-                style: AppTextStyles.regular11.copyWith(color: colors.textHint),
-              ),
-            ],
-          ),
 
-          SizedBox(height: AppSizes.h10),
-          Divider(color: colors.divider, height: 1),
-          SizedBox(height: AppSizes.h10),
+                  SizedBox(height: AppSizes.h10),
+                  Divider(color: colors.divider, height: 1),
+                  SizedBox(height: AppSizes.h10),
 
-          // ── Middle row: vendor + items + total ──────────────────────
-          Row(
-            children: [
-              // Vendor icon
-              Container(
-                padding: const EdgeInsets.all(7),
-                decoration: BoxDecoration(
-                  color: colors.primary.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(AppSizes.r8),
-                ),
-                child: Icon(
-                  Icons.storefront_outlined,
-                  size: AppSizes.sp16,
-                  color: colors.primary,
-                ),
-              ),
-              SizedBox(width: AppSizes.w10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      order.vendorName,
-                      style: AppTextStyles.semiBold13.copyWith(
-                        color: colors.textPrimary,
+                  // ── Vendor + items + total ───────────────────────────
+                  Row(
+                    children: [
+                      _VendorIcon(colors: colors),
+                      SizedBox(width: AppSizes.w10),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              order.vendorName,
+                              style: AppTextStyles.semiBold13.copyWith(
+                                color: colors.textPrimary,
+                              ),
+                              overflow: TextOverflow.ellipsis,
+                            ),
+                            SizedBox(height: AppSizes.h2),
+                            Text(
+                              s.myOrdersItemCount(order.itemsCount),
+                              style: AppTextStyles.regular11.copyWith(
+                                color: colors.textHint,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Text(
-                      s.myOrdersItemCount(order.itemsCount),
-                      style: AppTextStyles.regular11.copyWith(
-                        color: colors.textHint,
+                      SizedBox(width: AppSizes.w8),
+                      Text(
+                        'EGP ${order.totalAmount.toStringAsFixed(2)}',
+                        style: AppTextStyles.semiBold15.copyWith(
+                          color: colors.textPrimary,
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              // Total
-              Text(
-                'EGP ${order.totalAmount.toStringAsFixed(2)}',
-                style: AppTextStyles.bold14.copyWith(color: colors.textPrimary),
-              ),
-            ],
-          ),
+                    ],
+                  ),
 
-          SizedBox(height: AppSizes.h12),
+                  SizedBox(height: AppSizes.h12),
 
-          // ── Footer: status chip + track button ──────────────────────
-          Row(
-            children: [
-              _StatusChip(status: status),
-              const Spacer(),
-              if (order.isOngoing) _TrackButton(order: order),
-            ],
-          ),
-        ],
+                  // ── Status chip + track button ───────────────────────
+                  Row(
+                    children: [
+                      _StatusChip(status: status),
+                      const Spacer(),
+                      if (order.isOngoing) _TrackButton(order: order),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -345,7 +461,33 @@ class _OrderTile extends StatelessWidget {
   }
 }
 
+// ── Vendor icon ───────────────────────────────────────────────────────────────
+
+class _VendorIcon extends StatelessWidget {
+  final dynamic colors;
+  const _VendorIcon({required this.colors});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    return Container(
+      width: 36,
+      height: 36,
+      decoration: BoxDecoration(
+        color: colors.primary.withValues(alpha: 0.08),
+        borderRadius: BorderRadius.circular(AppSizes.r8),
+      ),
+      child: Icon(
+        Icons.storefront_outlined,
+        size: AppSizes.sp16,
+        color: colors.primary,
+      ),
+    );
+  }
+}
+
 // ── Status chip ───────────────────────────────────────────────────────────────
+
 class _StatusChip extends StatelessWidget {
   final _OrderStatus status;
   const _StatusChip({required this.status});
@@ -384,6 +526,7 @@ class _StatusChip extends StatelessWidget {
 }
 
 // ── Track button ──────────────────────────────────────────────────────────────
+
 class _TrackButton extends StatelessWidget {
   final MyOrderModel order;
   const _TrackButton({required this.order});
@@ -396,9 +539,6 @@ class _TrackButton extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         // TODO: navigate to order tracking screen
-        // Navigator.of(context).push(MaterialPageRoute(
-        //   builder: (_) => OrderTrackingScreen(orderId: order.id),
-        // ));
       },
       child: Container(
         padding: EdgeInsets.symmetric(
@@ -437,6 +577,7 @@ class _TrackButton extends StatelessWidget {
 }
 
 // ── Empty state ───────────────────────────────────────────────────────────────
+
 class _EmptyState extends StatelessWidget {
   final IconData icon;
   final String title;
@@ -491,6 +632,7 @@ class _EmptyState extends StatelessWidget {
 }
 
 // ── Error state ───────────────────────────────────────────────────────────────
+
 class _ErrorState extends StatelessWidget {
   final String message;
   final VoidCallback onRetry;
@@ -536,6 +678,7 @@ class _ErrorState extends StatelessWidget {
 }
 
 // ── Loading skeleton ──────────────────────────────────────────────────────────
+
 class _LoadingSkeleton extends StatefulWidget {
   @override
   State<_LoadingSkeleton> createState() => _LoadingSkeletonState();
@@ -662,70 +805,81 @@ class _ShimmerBox extends StatelessWidget {
 }
 
 // ── Order status config ───────────────────────────────────────────────────────
+
 class _OrderStatus {
   final String label;
   final Color bgColor;
   final Color dotColor;
   final Color textColor;
+  final Color accentColor; // ← new
 
   const _OrderStatus({
     required this.label,
     required this.bgColor,
     required this.dotColor,
     required this.textColor,
+    required this.accentColor,
   });
 
-  static _OrderStatus fromStatusId(int statusId) {
+  static _OrderStatus fromStatusId(int statusId, BuildContext context) {
+    final s = S.of(context);
     switch (statusId) {
       case 0:
       case 1:
         return _OrderStatus(
-          label: 'Pending',
+          label: s.myOrdersStatusPending,
           bgColor: Colors.orange.shade50,
           dotColor: Colors.orange.shade400,
           textColor: Colors.orange.shade700,
+          accentColor: Colors.orange.shade400,
         );
       case 2:
         return _OrderStatus(
-          label: 'Confirmed',
+          label: s.myOrdersStatusConfirmed,
           bgColor: Colors.blue.shade50,
           dotColor: Colors.blue.shade400,
           textColor: Colors.blue.shade700,
+          accentColor: Colors.blue.shade400,
         );
       case 3:
         return _OrderStatus(
-          label: 'Processing',
+          label: s.myOrdersStatusProcessing,
           bgColor: Colors.purple.shade50,
           dotColor: Colors.purple.shade400,
           textColor: Colors.purple.shade700,
+          accentColor: Colors.purple.shade400,
         );
       case 4:
         return _OrderStatus(
-          label: 'In Transit',
+          label: s.myOrdersStatusInTransit,
           bgColor: Colors.indigo.shade50,
           dotColor: Colors.indigo.shade400,
           textColor: Colors.indigo.shade700,
+          accentColor: Colors.indigo.shade400,
         );
       case 5:
         return _OrderStatus(
-          label: 'Delivered',
+          label: s.myOrdersStatusDelivered,
           bgColor: Colors.green.shade50,
           dotColor: Colors.green.shade400,
           textColor: Colors.green.shade700,
+          accentColor: Colors.green.shade400,
         );
       case 6:
         return _OrderStatus(
-          label: 'Cancelled',
+          label: s.myOrdersStatusCancelled,
           bgColor: Colors.red.shade50,
           dotColor: Colors.red.shade300,
           textColor: Colors.red.shade600,
+          accentColor: Colors.red.shade400,
         );
       default:
         return _OrderStatus(
-          label: 'Unknown',
+          label: s.myOrdersStatusUnknown,
           bgColor: Colors.grey.shade100,
           dotColor: Colors.grey.shade400,
           textColor: Colors.grey.shade600,
+          accentColor: Colors.grey.shade300,
         );
     }
   }

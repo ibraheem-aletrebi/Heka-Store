@@ -16,35 +16,73 @@ class MyOrdersBloc extends Bloc<MyOrdersEvent, MyOrdersState> {
         super(const MyOrdersState()) {
     on<_Started>(_onStarted);
     on<_Refreshed>(_onRefreshed);
+    on<_NextPageFetched>(_onNextPageFetched);
   }
 
   Future<void> _onStarted(
     _Started event,
     Emitter<MyOrdersState> emit,
   ) async {
+    if (state.isLoading) return;
     emit(state.copyWith(isLoading: true, error: null));
-    final result = await _getMyOrdersUseCase();
-    result.when(
-      onSuccess: (orders) => emit(state.copyWith(
-        isLoading: false,
-        orders: orders,
-      )),
-      onError: (error) => emit(state.copyWith(
-        isLoading: false,
-        error: error,
-      )),
-    );
+    await _fetchOrders(emit, pageNumber: 1);
   }
 
   Future<void> _onRefreshed(
     _Refreshed event,
     Emitter<MyOrdersState> emit,
   ) async {
-    // Silent refresh — no loading spinner, keeps existing list visible
-    final result = await _getMyOrdersUseCase();
+    emit(state.copyWith(isRefreshing: true, error: null));
+    await _fetchOrders(emit, pageNumber: 1);
+    emit(state.copyWith(isRefreshing: false));
+  }
+
+  Future<void> _onNextPageFetched(
+    _NextPageFetched event,
+    Emitter<MyOrdersState> emit,
+  ) async {
+    if (state.isLoadingMore || !state.hasNextPage) return;
+    emit(state.copyWith(isLoadingMore: true, error: null));
+
+    final nextPage = state.currentPage + 1;
+    final result = await _getMyOrdersUseCase(pageNumber: nextPage);
+
     result.when(
-      onSuccess: (orders) => emit(state.copyWith(orders: orders, error: null)),
-      onError: (error) => emit(state.copyWith(error: error)),
+      onSuccess: (response) {
+        final newOrders = response.items.where(
+          (newItem) => !state.orders.any((e) => e.id == newItem.id),
+        );
+        emit(state.copyWith(
+          isLoadingMore: false,
+          orders: [...state.orders, ...newOrders],
+          currentPage: response.pageNumber,
+          hasNextPage: response.hasNextPage,
+        ));
+      },
+      onError: (error) => emit(state.copyWith(
+        isLoadingMore: false,
+        error: error,
+      )),
+    );
+  }
+
+  Future<void> _fetchOrders(
+    Emitter<MyOrdersState> emit, {
+    required int pageNumber,
+  }) async {
+    final result = await _getMyOrdersUseCase(pageNumber: pageNumber);
+    result.when(
+      onSuccess: (response) => emit(state.copyWith(
+        isLoading: false,
+        orders: response.items,
+        currentPage: response.pageNumber,
+        hasNextPage: response.hasNextPage,
+        error: null,
+      )),
+      onError: (error) => emit(state.copyWith(
+        isLoading: false,
+        error: error,
+      )),
     );
   }
 }

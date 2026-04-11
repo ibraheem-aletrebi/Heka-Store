@@ -3,8 +3,93 @@
 part of 'my_order_model.dart';
 
 // **************************************************************************
+// TypeAdapterGenerator
+// **************************************************************************
+
+class MyOrderModelAdapter extends TypeAdapter<MyOrderModel> {
+  @override
+  final int typeId = 47;
+
+  @override
+  MyOrderModel read(BinaryReader reader) {
+    final numOfFields = reader.readByte();
+    final fields = <int, dynamic>{
+      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
+    };
+    return MyOrderModel(
+      id: fields[0] as int,
+      orderNumber: fields[1] as String,
+      totalAmount: fields[2] as double,
+      status: fields[3] as String,
+      statusId: fields[4] as int,
+      orderDate: fields[5] as String,
+      itemsCount: fields[6] as int,
+      vendorName: fields[7] as String,
+    );
+  }
+
+  @override
+  void write(BinaryWriter writer, MyOrderModel obj) {
+    writer
+      ..writeByte(8)
+      ..writeByte(0)
+      ..write(obj.id)
+      ..writeByte(1)
+      ..write(obj.orderNumber)
+      ..writeByte(2)
+      ..write(obj.totalAmount)
+      ..writeByte(3)
+      ..write(obj.status)
+      ..writeByte(4)
+      ..write(obj.statusId)
+      ..writeByte(5)
+      ..write(obj.orderDate)
+      ..writeByte(6)
+      ..write(obj.itemsCount)
+      ..writeByte(7)
+      ..write(obj.vendorName);
+  }
+
+  @override
+  int get hashCode => typeId.hashCode;
+
+  @override
+  bool operator ==(Object other) =>
+      identical(this, other) ||
+      other is MyOrderModelAdapter &&
+          runtimeType == other.runtimeType &&
+          typeId == other.typeId;
+}
+
+// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
+
+_$MyOrdersResponseModelImpl _$$MyOrdersResponseModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$MyOrdersResponseModelImpl(
+      items: (json['items'] as List<dynamic>)
+          .map((e) => MyOrderModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      totalCount: (json['totalCount'] as num).toInt(),
+      pageNumber: (json['pageNumber'] as num).toInt(),
+      pageSize: (json['pageSize'] as num).toInt(),
+      totalPages: (json['totalPages'] as num).toInt(),
+      hasPreviousPage: json['hasPreviousPage'] as bool,
+      hasNextPage: json['hasNextPage'] as bool,
+    );
+
+Map<String, dynamic> _$$MyOrdersResponseModelImplToJson(
+        _$MyOrdersResponseModelImpl instance) =>
+    <String, dynamic>{
+      'items': instance.items,
+      'totalCount': instance.totalCount,
+      'pageNumber': instance.pageNumber,
+      'pageSize': instance.pageSize,
+      'totalPages': instance.totalPages,
+      'hasPreviousPage': instance.hasPreviousPage,
+      'hasNextPage': instance.hasNextPage,
+    };
 
 _$MyOrderModelImpl _$$MyOrderModelImplFromJson(Map<String, dynamic> json) =>
     _$MyOrderModelImpl(

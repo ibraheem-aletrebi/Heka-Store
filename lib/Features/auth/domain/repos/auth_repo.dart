@@ -35,4 +35,6 @@ abstract class AuthRepo {
   Future<String?> getPendingVerifyEmail();
   Future<bool> isLoggedIn();
   Future<void> logout();
+
+
 }

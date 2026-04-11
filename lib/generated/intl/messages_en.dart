@@ -40,7 +40,8 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m1(count) =>
       "You have ${count} saved items. Sign in to keep them";
 
-  static String m9(count) => "${count} item(s)";
+  static String m9(count) =>
+      "${count} ${Intl.plural(count, one: 'item', other: 'items')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -405,20 +406,39 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "myOrdersItemCount": m9,
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
-      "Couldn\'t load your orders",
+      "Failed to load orders",
     ),
+    "myOrdersNewestFirst": MessageLookupByLibrary.simpleMessage("Newest first"),
     "myOrdersNoCompleted": MessageLookupByLibrary.simpleMessage(
       "No completed orders",
     ),
     "myOrdersNoCompletedSubtitle": MessageLookupByLibrary.simpleMessage(
-      "Your completed and delivered orders will appear here.",
+      "Your completed and cancelled orders will appear here.",
     ),
     "myOrdersNoOngoing": MessageLookupByLibrary.simpleMessage(
       "No ongoing orders",
     ),
     "myOrdersNoOngoingSubtitle": MessageLookupByLibrary.simpleMessage(
-      "You don\'t have any active orders at this time.",
+      "You have no active orders right now. Start shopping!",
     ),
+    "myOrdersOldestFirst": MessageLookupByLibrary.simpleMessage("Oldest first"),
+    "myOrdersStatusCancelled": MessageLookupByLibrary.simpleMessage(
+      "Cancelled",
+    ),
+    "myOrdersStatusConfirmed": MessageLookupByLibrary.simpleMessage(
+      "Confirmed",
+    ),
+    "myOrdersStatusDelivered": MessageLookupByLibrary.simpleMessage(
+      "Delivered",
+    ),
+    "myOrdersStatusInTransit": MessageLookupByLibrary.simpleMessage(
+      "In Transit",
+    ),
+    "myOrdersStatusPending": MessageLookupByLibrary.simpleMessage("Pending"),
+    "myOrdersStatusProcessing": MessageLookupByLibrary.simpleMessage(
+      "Processing",
+    ),
+    "myOrdersStatusUnknown": MessageLookupByLibrary.simpleMessage("Unknown"),
     "myOrdersTabCompleted": MessageLookupByLibrary.simpleMessage("Completed"),
     "myOrdersTabOngoing": MessageLookupByLibrary.simpleMessage("Ongoing"),
     "myOrdersTitle": MessageLookupByLibrary.simpleMessage("My Orders"),
@@ -476,6 +496,23 @@ class MessageLookup extends MessageLookupByLibrary {
       "Return to checkout",
     ),
     "orderConfirmCash": MessageLookupByLibrary.simpleMessage("Confirm order"),
+    "orderDetailsCopied": MessageLookupByLibrary.simpleMessage(
+      "Order number copied",
+    ),
+    "orderDetailsPayment": MessageLookupByLibrary.simpleMessage("Payment"),
+    "orderDetailsPriceSummary": MessageLookupByLibrary.simpleMessage(
+      "Price Summary",
+    ),
+    "orderDetailsProducts": MessageLookupByLibrary.simpleMessage("Products"),
+    "orderDetailsShipping": MessageLookupByLibrary.simpleMessage(
+      "Shipping Information",
+    ),
+    "orderDetailsShippingCost": MessageLookupByLibrary.simpleMessage(
+      "Shipping",
+    ),
+    "orderDetailsSubtotal": MessageLookupByLibrary.simpleMessage("Subtotal"),
+    "orderDetailsTitle": MessageLookupByLibrary.simpleMessage("Order Details"),
+    "orderDetailsTotal": MessageLookupByLibrary.simpleMessage("Total"),
     "orderFailedErrorLabel": MessageLookupByLibrary.simpleMessage(
       "Error details",
     ),

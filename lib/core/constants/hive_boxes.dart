@@ -8,4 +8,5 @@ class HiveBoxes {
   static const String previousViewedProducts = 'previous_viewed_products_box';
   static const String cart = 'cart_box';  
   static const String brands = 'brands_box';
+  static const String orders = 'orders_box';
 }

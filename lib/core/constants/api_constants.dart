@@ -43,4 +43,7 @@ class ApiConstants {
 
   static String productById(int id) => '/api/Products/$id';
   static const String search = '/api/Products/search';
+
+  static const String googleLogin   = '/Account/google-login';
+  static const String updateFcmToken = '/Account/update-fcm-token';
 }

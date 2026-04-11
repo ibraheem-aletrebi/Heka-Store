@@ -2980,26 +2980,6 @@ class S {
     );
   }
 
-  /// `{count} item(s)`
-  String myOrdersItemCount(Object count) {
-    return Intl.message(
-      '$count item(s)',
-      name: 'myOrdersItemCount',
-      desc: '',
-      args: [count],
-    );
-  }
-
-  /// `Track Order`
-  String get myOrdersTrackOrder {
-    return Intl.message(
-      'Track Order',
-      name: 'myOrdersTrackOrder',
-      desc: '',
-      args: [],
-    );
-  }
-
   /// `No ongoing orders`
   String get myOrdersNoOngoing {
     return Intl.message(
@@ -3010,10 +2990,10 @@ class S {
     );
   }
 
-  /// `You don't have any active orders at this time.`
+  /// `You have no active orders right now. Start shopping!`
   String get myOrdersNoOngoingSubtitle {
     return Intl.message(
-      'You don\'t have any active orders at this time.',
+      'You have no active orders right now. Start shopping!',
       name: 'myOrdersNoOngoingSubtitle',
       desc: '',
       args: [],
@@ -3030,21 +3010,11 @@ class S {
     );
   }
 
-  /// `Your completed and delivered orders will appear here.`
+  /// `Your completed and cancelled orders will appear here.`
   String get myOrdersNoCompletedSubtitle {
     return Intl.message(
-      'Your completed and delivered orders will appear here.',
+      'Your completed and cancelled orders will appear here.',
       name: 'myOrdersNoCompletedSubtitle',
-      desc: '',
-      args: [],
-    );
-  }
-
-  /// `Couldn't load your orders`
-  String get myOrdersLoadError {
-    return Intl.message(
-      'Couldn\'t load your orders',
-      name: 'myOrdersLoadError',
       desc: '',
       args: [],
     );
@@ -3055,6 +3025,211 @@ class S {
     return Intl.message(
       'Something went wrong. Please try again.',
       name: 'myOrdersGenericError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Failed to load orders`
+  String get myOrdersLoadError {
+    return Intl.message(
+      'Failed to load orders',
+      name: 'myOrdersLoadError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track Order`
+  String get myOrdersTrackOrder {
+    return Intl.message(
+      'Track Order',
+      name: 'myOrdersTrackOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} {count, plural, one{item} other{items}}`
+  String myOrdersItemCount(int count) {
+    return Intl.message(
+      '$count ${Intl.plural(count, one: 'item', other: 'items')}',
+      name: 'myOrdersItemCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Newest first`
+  String get myOrdersNewestFirst {
+    return Intl.message(
+      'Newest first',
+      name: 'myOrdersNewestFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Oldest first`
+  String get myOrdersOldestFirst {
+    return Intl.message(
+      'Oldest first',
+      name: 'myOrdersOldestFirst',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get myOrdersStatusPending {
+    return Intl.message(
+      'Pending',
+      name: 'myOrdersStatusPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirmed`
+  String get myOrdersStatusConfirmed {
+    return Intl.message(
+      'Confirmed',
+      name: 'myOrdersStatusConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get myOrdersStatusProcessing {
+    return Intl.message(
+      'Processing',
+      name: 'myOrdersStatusProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `In Transit`
+  String get myOrdersStatusInTransit {
+    return Intl.message(
+      'In Transit',
+      name: 'myOrdersStatusInTransit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delivered`
+  String get myOrdersStatusDelivered {
+    return Intl.message(
+      'Delivered',
+      name: 'myOrdersStatusDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled`
+  String get myOrdersStatusCancelled {
+    return Intl.message(
+      'Cancelled',
+      name: 'myOrdersStatusCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unknown`
+  String get myOrdersStatusUnknown {
+    return Intl.message(
+      'Unknown',
+      name: 'myOrdersStatusUnknown',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Details`
+  String get orderDetailsTitle {
+    return Intl.message(
+      'Order Details',
+      name: 'orderDetailsTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Products`
+  String get orderDetailsProducts {
+    return Intl.message(
+      'Products',
+      name: 'orderDetailsProducts',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Price Summary`
+  String get orderDetailsPriceSummary {
+    return Intl.message(
+      'Price Summary',
+      name: 'orderDetailsPriceSummary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipping Information`
+  String get orderDetailsShipping {
+    return Intl.message(
+      'Shipping Information',
+      name: 'orderDetailsShipping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get orderDetailsPayment {
+    return Intl.message(
+      'Payment',
+      name: 'orderDetailsPayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Subtotal`
+  String get orderDetailsSubtotal {
+    return Intl.message(
+      'Subtotal',
+      name: 'orderDetailsSubtotal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipping`
+  String get orderDetailsShippingCost {
+    return Intl.message(
+      'Shipping',
+      name: 'orderDetailsShippingCost',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Total`
+  String get orderDetailsTotal {
+    return Intl.message('Total', name: 'orderDetailsTotal', desc: '', args: []);
+  }
+
+  /// `Order number copied`
+  String get orderDetailsCopied {
+    return Intl.message(
+      'Order number copied',
+      name: 'orderDetailsCopied',
       desc: '',
       args: [],
     );

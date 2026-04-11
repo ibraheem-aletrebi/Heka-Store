@@ -23,7 +23,7 @@ class BrandProfileBody extends StatelessWidget {
               ),
               SliverToBoxAdapter(
                 child: SizedBox(
-                  height: AppSizes.h48,
+                  height: AppSizes.h16,
                 ), // Space for avatar overlap
               ),
               SliverToBoxAdapter(

@@ -4,7 +4,11 @@ part of 'my_orders_bloc.dart';
 class MyOrdersState with _$MyOrdersState {
   const factory MyOrdersState({
     @Default(false) bool isLoading,
+    @Default(false) bool isLoadingMore,
+    @Default(false) bool isRefreshing,
     @Default([]) List<MyOrderModel> orders,
+    @Default(1) int currentPage,
+    @Default(false) bool hasNextPage,
     ApiErrorModel? error,
   }) = _MyOrdersState;
 

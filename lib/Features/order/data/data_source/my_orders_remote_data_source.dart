@@ -1,29 +1,32 @@
 import 'package:heka_store/Features/order/data/models/my_order_model.dart';
-import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class MyOrdersRemoteDataSource {
-  Future<ApiResult<List<MyOrderModel>>> getMyOrders();
+  Future<MyOrdersResponseModel> getMyOrders({
+    int pageNumber = 1,
+    int pageSize = 10,
+  });
 }
 
 class MyOrdersRemoteDataSourceImpl implements MyOrdersRemoteDataSource {
   final ApiService _apiService;
+
   MyOrdersRemoteDataSourceImpl(this._apiService);
 
   @override
-  Future<ApiResult<List<MyOrderModel>>> getMyOrders() async {
-    try {
-      final response = await _apiService.get('/api/Orders/my-orders');
-
-      // Response: { "success": true, "data": [ ...orders... ] }
-      final list = response.data['data'] as List<dynamic>;
-      final orders = list
-          .map((e) => MyOrderModel.fromJson(e as Map<String, dynamic>))
-          .toList();
-
-      return ApiResult.success(orders);
-    } catch (e) {
-      return ApiResult.error(e);
-    }
+  Future<MyOrdersResponseModel> getMyOrders({
+    int pageNumber = 1,
+    int pageSize = 10,
+  }) async {
+    final response = await _apiService.get(
+      '/api/Orders/my-orders',
+      queryParameters: {
+        'pageNumber': pageNumber,
+        'pageSize': pageSize,
+      },
+    );
+    return MyOrdersResponseModel.fromJson(
+      response.data['data'] as Map<String, dynamic>,
+    );
   }
 }

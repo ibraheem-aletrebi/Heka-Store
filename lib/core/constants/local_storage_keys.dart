@@ -25,4 +25,7 @@ class LocalStorageKeys {
 
   static String brandProfile(int brandId) => 'brand_profile_$brandId';
   static String brandProducts(int brandId) => 'brand_products_$brandId';
+
+  static const String myOrders='myOrders';
+  static String orderDetails(int orderId) => 'order_details_$orderId';
 }

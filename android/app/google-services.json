@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "662441837073",
+    "project_id": "heka-bfb34",
+    "storage_bucket": "heka-bfb34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662441837073:android:3a77453328569769d367b0",
+        "android_client_info": {
+          "package_name": "com.example.heka_store"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnaBvOJFQKzA4CegFfBwByNtd0SHk0xVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

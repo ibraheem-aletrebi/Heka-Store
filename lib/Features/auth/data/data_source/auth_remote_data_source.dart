@@ -22,6 +22,8 @@ abstract class AuthRemoteDataSource {
   Future<void> register(RegisterRequestModel request);
   Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request);
 
+
+
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
