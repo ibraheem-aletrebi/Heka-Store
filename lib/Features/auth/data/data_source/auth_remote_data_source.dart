@@ -25,10 +25,8 @@ abstract class AuthRemoteDataSource {
   Future<void> register(RegisterRequestModel request);
   Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request);
 
-
-Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request);
-Future<void> updateFcmToken(UpdateFcmTokenRequestModel request);
-
+  Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request);
+  Future<void> updateFcmToken(UpdateFcmTokenRequestModel request);
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -66,33 +64,40 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   Future<void> resendOtp(ResendOtpRequestModel request) async {
     await _apiService.post(ApiConstants.resendOtp, data: request.toJson());
   }
-  
+
   @override
-  Future<void> register(RegisterRequestModel request)async{
-      await _apiService.post(ApiConstants.register, data: request.toJson());
+  Future<void> register(RegisterRequestModel request) async {
+    await _apiService.post(ApiConstants.register, data: request.toJson());
   }
-  
+
   @override
-  Future<LoginResponseModel> verifyEmailOtp(VerifyOtpRequestModel request) async{
-    final response = await _apiService.post(ApiConstants.verifyEmailOtp, data: request.toJson());
+  Future<LoginResponseModel> verifyEmailOtp(
+    VerifyOtpRequestModel request,
+  ) async {
+    final response = await _apiService.post(
+      ApiConstants.verifyEmailOtp,
+      data: request.toJson(),
+    );
     return LoginResponseModel.fromJson(response.data);
   }
 
+  @override
+  Future<LoginResponseModel> googleLogin(
+    GoogleLoginRequestModel request,
+  ) async {
+    final response = await _apiService.post(
+      ApiConstants.googleLogin,
+      data: request.toJson(),
+      options: Options(extra: {'skipAuthInterceptor': true}),
+    );
+    return LoginResponseModel.fromJson(response.data);
+  }
 
-
-@override
-Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request) async {
-  final response = await _apiService.post(
-    ApiConstants.googleLogin,
-    data: request.toJson(),
-  );
-  return LoginResponseModel.fromJson(response.data);
-}
-@override
-Future<void> updateFcmToken(UpdateFcmTokenRequestModel request) async {
-  await _apiService.post(
-    ApiConstants.updateFcmToken, // '/api/Account/update-fcm-token'
-    data: request.toJson(),
-  );
-} 
+  @override
+  Future<void> updateFcmToken(UpdateFcmTokenRequestModel request) async {
+    await _apiService.post(
+      ApiConstants.updateFcmToken, // '/api/Account/update-fcm-token'
+      data: request.toJson(),
+    );
+  }
 }

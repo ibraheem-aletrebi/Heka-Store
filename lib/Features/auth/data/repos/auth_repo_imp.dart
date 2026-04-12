@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_source.dart';
@@ -153,38 +152,37 @@ class AuthRepoImp implements AuthRepo {
   Future<ApiResult<LoginResponseModel>> googleLogin() async {
     try {
       print('>>> [Google] starting sign in');
-      await GoogleSignIn.instance.initialize(
+
+      final googleSignIn = GoogleSignIn(
+        scopes: ['email', 'profile'],
         serverClientId:
-            '662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com',
+            '983108644765-45ck6udhhdmeq9nckh6fnq9g8helou40.apps.googleusercontent.com',
       );
 
-      final googleUser = await GoogleSignIn.instance.authenticate();
-      final idToken = googleUser.authentication.idToken;
+      final googleUser = await googleSignIn.signIn();
 
-      if (idToken == null)
+      if (googleUser == null) {
+        return ApiResult.error(Exception('Google sign-in cancelled'));
+      }
+
+      final auth = await googleUser.authentication;
+      final idToken = auth.idToken;
+
+      print('>>> [Google] idToken: $idToken');
+
+      if (idToken == null) {
         return ApiResult.error(Exception('Failed to get ID token'));
+      }
 
-      // Sign into Firebase
-      final credential = GoogleAuthProvider.credential(idToken: idToken);
-      final userCredential = await FirebaseAuth.instance.signInWithCredential(
-        credential,
-      );
-
-      // ✅ Get Firebase idToken — NOT Google idToken
-      final firebaseIdToken = await userCredential.user?.getIdToken();
-      print('>>> [Google] firebaseIdToken: $firebaseIdToken');
-
-      if (firebaseIdToken == null)
-        return ApiResult.error(Exception('Failed to get Firebase ID token'));
-
-      // Send Firebase idToken to backend
       await _localDataSource.clearTokens();
       final response = await _remoteDataSource.googleLogin(
-        GoogleLoginRequestModel(idToken: firebaseIdToken), // ← Firebase token
+        GoogleLoginRequestModel(idToken: idToken),
       );
+
       await _localDataSource.saveTokens(response);
       await _localDataSource.saveUser(response);
 
+      print('>>> [Google] login success');
       return ApiResult.success(response);
     } catch (e, stackTrace) {
       print('>>> [Google] ERROR: $e');

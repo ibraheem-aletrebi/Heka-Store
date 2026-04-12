@@ -1,4 +1,3 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
@@ -79,6 +78,11 @@ import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_pr
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
+import 'package:heka_store/Features/notifications/data/datasources/notification_remote_datasource.dart';
+import 'package:heka_store/Features/notifications/data/repositories/notification_repository_impl.dart';
+import 'package:heka_store/Features/notifications/domain/repositories/notification_repository.dart';
+import 'package:heka_store/Features/notifications/domain/usecases/notification_usecases.dart';
+import 'package:heka_store/Features/notifications/presentation/bloc/notification_bloc.dart';
 import 'package:heka_store/Features/order/data/data_source/my_orders_local_data_source.dart';
 import 'package:heka_store/Features/order/data/data_source/my_orders_remote_data_source.dart';
 import 'package:heka_store/Features/order/data/data_source/order_details_local_data_source.dart';
@@ -136,15 +140,13 @@ import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
-import 'package:heka_store/firebase_options.dart';
 import 'package:heka_store/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:http/http.dart' as http;
 
 final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
   await _initCore();
   _initAuth();
   _initAddress();
@@ -155,6 +157,7 @@ Future<void> setupInjector() async {
   _initAccount();
   _initOrder();
   _initBrandProfile();
+  _initNotifications();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -702,6 +705,63 @@ void _initBrandProfile() {
     () => BrandProfileBloc(
       getBrandProfile: sl<GetBrandProfileUseCase>(),
       getBrandProducts: sl<GetBrandProductsUseCase>(),
+    ),
+  );
+}
+
+void _initNotifications() async {
+  // ─── Data Source ───────────────────────────────
+
+  final token = await sl<AuthLocalDataSource>().getAccessToken();
+  sl.registerLazySingleton<NotificationRemoteDataSource>(
+    () => NotificationRemoteDataSourceImpl(
+      client: http.Client(),
+      // لو عندك token من SecureStorage استخدمه هنا
+      authToken: token,
+    ),
+  );
+
+  // ─── Repository ────────────────────────────────
+  sl.registerLazySingleton<NotificationRepository>(
+    () => NotificationRepositoryImpl(
+      remoteDataSource: sl<NotificationRemoteDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ─────────────────────────────────
+  sl.registerFactory<GetNotificationsUseCase>(
+    () => GetNotificationsUseCase(sl<NotificationRepository>()),
+  );
+
+  sl.registerFactory<GetUnreadCountUseCase>(
+    () => GetUnreadCountUseCase(sl<NotificationRepository>()),
+  );
+
+  sl.registerFactory<MarkAsReadUseCase>(
+    () => MarkAsReadUseCase(sl<NotificationRepository>()),
+  );
+
+  sl.registerFactory<MarkAllAsReadUseCase>(
+    () => MarkAllAsReadUseCase(sl<NotificationRepository>()),
+  );
+
+  sl.registerFactory<DeleteNotificationUseCase>(
+    () => DeleteNotificationUseCase(sl<NotificationRepository>()),
+  );
+
+  sl.registerFactory<BulkDeleteNotificationsUseCase>(
+    () => BulkDeleteNotificationsUseCase(sl<NotificationRepository>()),
+  );
+
+  // ─── BLoC ─────────────────────────────────────
+  sl.registerFactory<NotificationBloc>(
+    () => NotificationBloc(
+      getNotificationsUseCase: sl<GetNotificationsUseCase>(),
+      getUnreadCountUseCase: sl<GetUnreadCountUseCase>(),
+      markAsReadUseCase: sl<MarkAsReadUseCase>(),
+      markAllAsReadUseCase: sl<MarkAllAsReadUseCase>(),
+      deleteNotificationUseCase: sl<DeleteNotificationUseCase>(),
+      bulkDeleteUseCase: sl<BulkDeleteNotificationsUseCase>(),
     ),
   );
 }

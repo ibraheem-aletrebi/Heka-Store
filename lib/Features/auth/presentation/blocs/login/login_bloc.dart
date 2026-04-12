@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/auth/data/models/login/login_request_model.dart';
@@ -121,7 +120,6 @@ class LoginBloc extends Bloc<LoginEvent, LoginState> {
       ),
       onError: (error) => emit(
         state.copyWith(
-          email: FirebaseAuth.instance.currentUser?.email ?? state.email,
           isGoogleLoading: false,
           isSuccess: false,
           error: error,
