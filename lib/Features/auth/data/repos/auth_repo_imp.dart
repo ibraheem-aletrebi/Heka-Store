@@ -11,6 +11,8 @@ import 'package:heka_store/Features/auth/data/models/oogle_login_request_model.d
 import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
 import 'package:heka_store/Features/auth/data/models/update_fcm_token_request_model.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
+import 'package:heka_store/core/constants/hive_boxes.dart';
+import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 
 class AuthRepoImp implements AuthRepo {
@@ -39,6 +41,15 @@ class AuthRepoImp implements AuthRepo {
       print('>>> tokens saved');
       await _localDataSource.saveUser(response);
       print('>>> user saved');
+      final fcmToken = await LocalStorageService().getValue(
+        HiveBoxes.data,
+        "fcmToken",
+      );
+      if (fcmToken != null) {
+        await _remoteDataSource.updateFcmToken(
+          UpdateFcmTokenRequestModel(fcmToken: fcmToken),
+        );
+      }
       return ApiResult.success(response);
     } catch (e) {
       print('>>> login error: $e');
@@ -52,6 +63,15 @@ class AuthRepoImp implements AuthRepo {
     try {
       await _remoteDataSource.register(request);
       await _localDataSource.savePendingVerifyEmail(request.email);
+      final fcmToken = await LocalStorageService().getValue(
+        HiveBoxes.data,
+        "fcmToken",
+      );
+      if (fcmToken != null) {
+        await _remoteDataSource.updateFcmToken(
+          UpdateFcmTokenRequestModel(fcmToken: fcmToken),
+        );
+      }
       return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);

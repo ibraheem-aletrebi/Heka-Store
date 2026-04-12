@@ -1,3 +1,4 @@
+
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
@@ -148,6 +149,7 @@ final sl = GetIt.instance;
 
 Future<void> setupInjector() async {
   await _initCore();
+
   _initAuth();
   _initAddress();
   _initHome();
@@ -168,8 +170,8 @@ Future<void> _initCore() async {
   final localStorage = sl<LocalStorageService>();
   await localStorage.init(
     boxNames: [
-      HiveBoxes.app,
       HiveBoxes.data,
+      HiveBoxes.app,
       HiveBoxes.home,
       HiveBoxes.wishlist,
       HiveBoxes.previousViewedProducts,

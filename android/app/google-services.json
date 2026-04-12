@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "662441837073",
+    "project_id": "heka-bfb34",
+    "storage_bucket": "heka-bfb34.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662441837073:android:36307b13e966891ad367b0",
+        "android_client_info": {
+          "package_name": "com.heka_store"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662441837073-0a29hc2cajb1a3fnk8n59j0asbem18ro.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.heka_store",
+            "certificate_hash": "7278f6bc387efd2d1dfc79fb319a0ae6ff24e01b"
+          }
+        },
+        {
+          "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnaBvOJFQKzA4CegFfBwByNtd0SHk0xVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "662441837073-aalgca9muu0u80bdq3u3c29ggk4psuu9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hekaStore"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:662441837073:android:82ce5c2b584b2cf0d367b0",
+        "android_client_info": {
+          "package_name": "com.ibraheem.heka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCnaBvOJFQKzA4CegFfBwByNtd0SHk0xVU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "662441837073-he8s9cno21ijelpq2l8v7207isaga1u8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "662441837073-aalgca9muu0u80bdq3u3c29ggk4psuu9.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.hekaStore"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
