@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/search/presentation/cubits/search_cubit/search_cubit.dart';
+import 'package:heka_store/Features/search/presentation/search_page.dart';
+import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 
@@ -24,8 +28,10 @@ class AppSearchBar extends StatelessWidget {
             transitionDuration: const Duration(milliseconds: 500),
             reverseTransitionDuration: const Duration(milliseconds: 500),
             pageBuilder: (_, __, ___) {
-              //// TODO: add search page
-              return const Placeholder();
+              return BlocProvider(
+                create: (context) => sl<SearchCubit>(),
+                child: SearchPage(),
+              );
             },
             transitionsBuilder: (_, anim, __, child) => FadeTransition(
               opacity: CurvedAnimation(parent: anim, curve: Curves.easeOut),

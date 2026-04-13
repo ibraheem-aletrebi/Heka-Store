@@ -22,33 +22,37 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m2(title) => "Remove \"${title}\" from your saved addresses?";
 
-  static String m3(amount) => "EGP ${amount}";
+  static String m3(count) => "Apply (${count} filters)";
 
-  static String m4(amount) => "Saving EGP ${amount}";
+  static String m4(amount) => "EGP ${amount}";
 
-  static String m5(amount) => "Add EGP ${amount} more for free shipping!";
+  static String m5(amount) => "Saving EGP ${amount}";
 
-  static String m6(count) => "Only ${count} left!";
+  static String m6(amount) => "Add EGP ${amount} more for free shipping!";
 
-  static String m7(productName) => "Remove \"${productName}\" from your cart?";
+  static String m7(count) => "Only ${count} left!";
 
-  static String m8(amount) => "You save ${amount}";
+  static String m8(productName) => "Remove \"${productName}\" from your cart?";
+
+  static String m9(amount) => "You save ${amount}";
 
   static String m0(address) =>
       "Remove \"${address}\"?\nThis action cannot be undone.";
 
-  static String m9(count) =>
+  static String m10(count) =>
       "Delete ${count} notification${Intl.plural(count, one: '', other: 's')}?";
 
   static String m1(count) =>
       "You have ${count} saved items. Sign in to keep them";
 
-  static String m10(count) =>
+  static String m11(count) =>
       "${count} ${Intl.plural(count, one: 'item', other: 'items')}";
 
-  static String m11(count) => "${count} selected";
+  static String m12(count) => "${count} results";
 
-  static String m12(count) => "${count} unread";
+  static String m13(count) => "${count} selected";
+
+  static String m14(count) => "${count} unread";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -120,6 +124,8 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "and": MessageLookupByLibrary.simpleMessage(" and "),
     "apply": MessageLookupByLibrary.simpleMessage("Apply"),
+    "applyFilter": MessageLookupByLibrary.simpleMessage("Apply filter"),
+    "applyFilterCount": m3,
     "backToLogin": MessageLookupByLibrary.simpleMessage("Back to Login"),
     "bestSeller": MessageLookupByLibrary.simpleMessage("Best Seller"),
     "brandStores": MessageLookupByLibrary.simpleMessage("Brand Stores"),
@@ -127,8 +133,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "card": MessageLookupByLibrary.simpleMessage("Card"),
     "cardNumber": MessageLookupByLibrary.simpleMessage("Card number"),
     "cart": MessageLookupByLibrary.simpleMessage("Cart"),
-    "cartBottomBarEgpAmount": m3,
-    "cartBottomBarSaving": m4,
+    "cartBottomBarEgpAmount": m4,
+    "cartBottomBarSaving": m5,
     "cartBottomBarTotal": MessageLookupByLibrary.simpleMessage("Total"),
     "cartCheckoutBlockedLabel": MessageLookupByLibrary.simpleMessage(
       "Checkout unavailable",
@@ -143,14 +149,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "cartFreeShippingEarned": MessageLookupByLibrary.simpleMessage(
       "You\'ve unlocked free shipping! 🎉",
     ),
-    "cartFreeShippingProgress": m5,
+    "cartFreeShippingProgress": m6,
     "cartItemEditTooltip": MessageLookupByLibrary.simpleMessage(
       "Edit variants / options",
     ),
     "cartItemLoadError": MessageLookupByLibrary.simpleMessage(
       "Failed to load product details",
     ),
-    "cartItemOnlyXLeft": m6,
+    "cartItemOnlyXLeft": m7,
     "cartItemOutOfStockMessage": MessageLookupByLibrary.simpleMessage(
       "Out of stock — remove or save for later",
     ),
@@ -158,12 +164,12 @@ class MessageLookup extends MessageLookupByLibrary {
     "cartItemRemoveDialogConfirm": MessageLookupByLibrary.simpleMessage(
       "Remove",
     ),
-    "cartItemRemoveDialogContent": m7,
+    "cartItemRemoveDialogContent": m8,
     "cartItemRemoveDialogKeep": MessageLookupByLibrary.simpleMessage("Keep"),
     "cartItemRemoveDialogTitle": MessageLookupByLibrary.simpleMessage(
       "Remove item?",
     ),
-    "cartItemYouSave": m8,
+    "cartItemYouSave": m9,
     "cartOutOfStockCheckoutBlocked": MessageLookupByLibrary.simpleMessage(
       "Remove unavailable items to checkout",
     ),
@@ -178,6 +184,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "cash": MessageLookupByLibrary.simpleMessage("Cash"),
     "change": MessageLookupByLibrary.simpleMessage("Change"),
     "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
+    "clearAll": MessageLookupByLibrary.simpleMessage("Clear all"),
     "confirmLocation": MessageLookupByLibrary.simpleMessage("Confirm Location"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
     "connectionError": MessageLookupByLibrary.simpleMessage("Connection Error"),
@@ -186,13 +193,14 @@ class MessageLookup extends MessageLookupByLibrary {
       "Create an account to continue",
     ),
     "createOrderTitle": MessageLookupByLibrary.simpleMessage("Checkout"),
+    "currency": MessageLookupByLibrary.simpleMessage("EGP"),
     "defaultAddress": MessageLookupByLibrary.simpleMessage("Default"),
     "delete": MessageLookupByLibrary.simpleMessage("Delete"),
     "deleteAddressMessage": m0,
     "deleteAddressTitle": MessageLookupByLibrary.simpleMessage(
       "Delete Address?",
     ),
-    "deleteNotificationsConfirm": m9,
+    "deleteNotificationsConfirm": m10,
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("Delivery Address"),
     "discountedSubTotal": MessageLookupByLibrary.simpleMessage(
       "Discounted Subtotal",
@@ -236,6 +244,10 @@ class MessageLookup extends MessageLookupByLibrary {
     "enterYourEmailAndPasswordToLogin": MessageLookupByLibrary.simpleMessage(
       "Enter your email and password to log in",
     ),
+    "errorLoadingCategories": MessageLookupByLibrary.simpleMessage(
+      "Failed to load categories",
+    ),
+    "errorTitle": MessageLookupByLibrary.simpleMessage("An error occurred"),
     "error_account_blocked_action": MessageLookupByLibrary.simpleMessage(
       "Contact Support",
     ),
@@ -358,6 +370,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "fieldRequired": MessageLookupByLibrary.simpleMessage(
       "This field is required",
     ),
+    "filterCategory": MessageLookupByLibrary.simpleMessage("Category"),
+    "filterEgyptianMade": MessageLookupByLibrary.simpleMessage("Made in Egypt"),
+    "filterImported": MessageLookupByLibrary.simpleMessage("Imported"),
+    "filterOrigin": MessageLookupByLibrary.simpleMessage("Product origin"),
+    "filterPriceFrom": MessageLookupByLibrary.simpleMessage("From"),
+    "filterPriceRange": MessageLookupByLibrary.simpleMessage("Price range"),
+    "filterPriceTo": MessageLookupByLibrary.simpleMessage("To"),
+    "filterReset": MessageLookupByLibrary.simpleMessage("Reset"),
+    "filterTitle": MessageLookupByLibrary.simpleMessage("Filter results"),
+    "filterTooltip": MessageLookupByLibrary.simpleMessage("Filter results"),
     "firstName": MessageLookupByLibrary.simpleMessage("First name"),
     "fitchingAddress": MessageLookupByLibrary.simpleMessage(
       "Fetching address...",
@@ -421,7 +443,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrdersGenericError": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again.",
     ),
-    "myOrdersItemCount": m10,
+    "myOrdersItemCount": m11,
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
       "Failed to load orders",
     ),
@@ -475,13 +497,20 @@ class MessageLookup extends MessageLookupByLibrary {
     "next": MessageLookupByLibrary.simpleMessage("Next"),
     "nicknameHint": MessageLookupByLibrary.simpleMessage("e.g. Mom\'s house"),
     "noAddressesYet": MessageLookupByLibrary.simpleMessage("No addresses yet"),
+    "noCategoriesAvailable": MessageLookupByLibrary.simpleMessage(
+      "No categories available",
+    ),
     "noLocationSelected": MessageLookupByLibrary.simpleMessage(
       "No location selected yet",
     ),
     "noNotificationsYet": MessageLookupByLibrary.simpleMessage(
       "No notifications yet",
     ),
+    "noResults": MessageLookupByLibrary.simpleMessage("No results found"),
     "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
+    "noResultsSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Try different keywords or\nremove some filters",
+    ),
     "noSubCategories": MessageLookupByLibrary.simpleMessage(
       "No Sub Categories",
     ),
@@ -738,11 +767,14 @@ class MessageLookup extends MessageLookupByLibrary {
     "products": MessageLookupByLibrary.simpleMessage("Products"),
     "readAt": MessageLookupByLibrary.simpleMessage("Read at"),
     "received": MessageLookupByLibrary.simpleMessage("Received"),
+    "recentSearches": MessageLookupByLibrary.simpleMessage("Recent searches"),
     "recommendedForYou": MessageLookupByLibrary.simpleMessage(
       "Recommended for you",
     ),
     "register": MessageLookupByLibrary.simpleMessage("Register"),
     "rememberMe": MessageLookupByLibrary.simpleMessage("Remember me"),
+    "removeFilters": MessageLookupByLibrary.simpleMessage("Remove filters"),
+    "removeItem": MessageLookupByLibrary.simpleMessage("Remove"),
     "removedFromWishlist": MessageLookupByLibrary.simpleMessage(
       "Removed from wishlist",
     ),
@@ -768,6 +800,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "resetPasswordSuccess": MessageLookupByLibrary.simpleMessage(
       "Password reset successfully",
     ),
+    "retry": MessageLookupByLibrary.simpleMessage("Retry"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),
     "savedCards": MessageLookupByLibrary.simpleMessage("Saved Cards"),
     "searchAddressHint": MessageLookupByLibrary.simpleMessage(
@@ -775,6 +808,13 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "searchForLocation": MessageLookupByLibrary.simpleMessage(
       "Search for a place",
+    ),
+    "searchHint": MessageLookupByLibrary.simpleMessage(
+      "Search for a product...",
+    ),
+    "searchResultsCount": m12,
+    "searchTip": MessageLookupByLibrary.simpleMessage(
+      "Tap any previous search to run it again",
     ),
     "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
     "select": MessageLookupByLibrary.simpleMessage("Select"),
@@ -786,7 +826,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Your Location",
     ),
     "select_options": MessageLookupByLibrary.simpleMessage("Select Options"),
-    "selectedCount": m11,
+    "selectedCount": m13,
     "selectionHint": MessageLookupByLibrary.simpleMessage(
       "Long press to select • Swipe left to delete",
     ),
@@ -803,6 +843,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Sign up with Google",
     ),
     "skipForNow": MessageLookupByLibrary.simpleMessage("Skip for now"),
+    "startSearch": MessageLookupByLibrary.simpleMessage("Start searching"),
+    "startSearchSubtitle": MessageLookupByLibrary.simpleMessage(
+      "Type a word above to search\nfor the products you want",
+    ),
     "startShopping": MessageLookupByLibrary.simpleMessage("Start Shopping"),
     "submit": MessageLookupByLibrary.simpleMessage("Submit"),
     "subtotal": MessageLookupByLibrary.simpleMessage("Sub-total"),
@@ -825,7 +869,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Try a different name, street or city.",
     ),
     "unread": MessageLookupByLibrary.simpleMessage("Unread"),
-    "unreadCount": m12,
+    "unreadCount": m14,
     "vat": MessageLookupByLibrary.simpleMessage("VAT (%)"),
     "vendorId": MessageLookupByLibrary.simpleMessage("Vendor ID"),
     "verify": MessageLookupByLibrary.simpleMessage("Verify"),

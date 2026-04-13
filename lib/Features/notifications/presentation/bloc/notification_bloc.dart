@@ -32,6 +32,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     on<SelectAllNotificationsEvent>(_onSelectAll);
     on<ClearSelectionEvent>(_onClearSelection);
     on<LoadUnreadCountEvent>(_onLoadUnreadCount);
+    on<ClearActionMessageEvent>(_onClearActionMessage);
   }
 
   bool _unreadOnly = false;
@@ -41,6 +42,8 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     Emitter<NotificationState> emit,
   ) async {
     _unreadOnly = event.unreadOnly;
+
+    // ✅ Only show full loading screen on fresh load, not filter/refresh
     if (!event.refresh) emit(const NotificationLoading());
 
     final result = await getNotificationsUseCase(
@@ -62,7 +65,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
             totalPages: data.totalPages,
             unreadCount: data.unreadCount,
             hasNextPage: data.hasNextPage,
-            unreadOnly: event.unreadOnly,
+            unreadOnly: event.unreadOnly, // ✅ always reflects current filter
           ));
         }
       },
@@ -74,7 +77,9 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     Emitter<NotificationState> emit,
   ) async {
     final current = state;
-    if (current is! NotificationLoaded || !current.hasNextPage || current.isLoadingMore) return;
+    if (current is! NotificationLoaded ||
+        !current.hasNextPage ||
+        current.isLoadingMore) return;
 
     emit(current.copyWith(isLoadingMore: true));
 
@@ -108,7 +113,18 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     Emitter<NotificationState> emit,
   ) async {
     _unreadOnly = event.unreadOnly;
-    add(LoadNotificationsEvent(unreadOnly: event.unreadOnly));
+
+    // ✅ Update unreadOnly on current state immediately so tab reflects change
+    final current = state;
+    if (current is NotificationLoaded) {
+      emit(current.copyWith(
+        unreadOnly: event.unreadOnly,
+        isLoadingMore: false,
+      ));
+    }
+
+    // ✅ Fetch with new filter using refresh:true to skip NotificationLoading
+    add(LoadNotificationsEvent(unreadOnly: event.unreadOnly, refresh: true));
   }
 
   Future<void> _onMarkAsRead(
@@ -129,7 +145,8 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
           return n;
         }).toList();
 
-        final unreadCount = (current.unreadCount - 1).clamp(0, current.unreadCount);
+        final unreadCount =
+            (current.unreadCount - 1).clamp(0, current.unreadCount);
         final filtered = current.unreadOnly
             ? updated.where((n) => !n.isRead).toList()
             : updated;
@@ -316,5 +333,14 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
         }
       },
     );
+  }
+
+  void _onClearActionMessage(
+    ClearActionMessageEvent event,
+    Emitter<NotificationState> emit,
+  ) {
+    final current = state;
+    if (current is! NotificationLoaded) return;
+    emit(current.copyWith(clearMessage: true));
   }
 }

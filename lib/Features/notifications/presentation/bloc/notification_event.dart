@@ -96,3 +96,8 @@ class ClearSelectionEvent extends NotificationEvent {
 class LoadUnreadCountEvent extends NotificationEvent {
   const LoadUnreadCountEvent();
 }
+
+// ✅ Added: clears actionMessage after snackbar is shown
+class ClearActionMessageEvent extends NotificationEvent {
+  const ClearActionMessageEvent();
+}

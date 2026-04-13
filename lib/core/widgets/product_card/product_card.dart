@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
-import 'package:heka_store/Features/wishlist/presentation/blocs/previous_viewed_products/previous_viewed_products_bloc.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
@@ -28,9 +27,9 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.push(AppRoutes.productDetails, extra: productModel!.id);
-        context.read<PreviousViewedProductsBloc>().add(
-          PreviousViewedProductsEvent.addProduct(product: productModel!),
-        );
+        // context.read<PreviousViewedProductsBloc>().add(
+        //   PreviousViewedProductsEvent.addProduct(product: productModel!),
+        // );
       },
       child: Container(
         clipBehavior: Clip.antiAlias,

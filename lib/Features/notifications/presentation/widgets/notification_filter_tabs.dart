@@ -20,21 +20,13 @@ class NotificationFilterTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-    final isDark =
-        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final isDark = context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
     final s = S.of(context);
 
     return Container(
-      margin: EdgeInsets.fromLTRB(
-        AppSizes.w16,
-        AppSizes.h8,
-        AppSizes.w16,
-        AppSizes.h4,
-      ),
-      padding: EdgeInsets.all(AppSizes.r4),
       decoration: BoxDecoration(
         color: isDark ? colors.surface : colors.background,
-        borderRadius: BorderRadius.circular(AppSizes.r12),
+        border: Border(bottom: BorderSide(color: colors.divider, width: 1)),
       ),
       child: Row(
         children: [
@@ -42,14 +34,12 @@ class NotificationFilterTabs extends StatelessWidget {
             label: s.all,
             isSelected: !unreadOnly,
             onTap: () => onChanged(false),
-            isDark: isDark,
           ),
           _Tab(
             label: s.unread,
             badge: unreadCount > 0 ? unreadCount.toString() : null,
             isSelected: unreadOnly,
             onTap: () => onChanged(true),
-            isDark: isDark,
           ),
         ],
       ),
@@ -62,13 +52,11 @@ class _Tab extends StatelessWidget {
   final bool isSelected;
   final String? badge;
   final VoidCallback onTap;
-  final bool isDark;
 
   const _Tab({
     required this.label,
     required this.isSelected,
     required this.onTap,
-    required this.isDark,
     this.badge,
   });
 
@@ -79,60 +67,79 @@ class _Tab extends StatelessWidget {
     return Expanded(
       child: GestureDetector(
         onTap: onTap,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          padding: EdgeInsets.symmetric(vertical: AppSizes.h10),
-          decoration: BoxDecoration(
-            color: isSelected
-                ? (isDark ? colors.card : colors.surface)
-                : Colors.transparent,
-            borderRadius: BorderRadius.circular(AppSizes.r8),
-            boxShadow: isSelected
-                ? [
-                    BoxShadow(
-                      color: colors.shadow.withOpacity(isDark ? 0.3 : 0.06),
-                      blurRadius: AppSizes.r4,
-                    ),
-                  ]
-                : [],
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                label,
-                style: TextStyle(
-                  fontSize: AppSizes.sp13,
-                  fontWeight:
-                      isSelected ? FontWeight.w700 : FontWeight.w500,
-                  color: isSelected
-                      ? (isDark ? colors.textPrimary : colors.textPrimary)
-                      : colors.textHint,
-                ),
-              ),
-              if (badge != null) ...[
-                SizedBox(width: AppSizes.w6),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.w6,
-                    vertical: AppSizes.h2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colors.error,
-                    borderRadius: BorderRadius.circular(AppSizes.r10),
-                  ),
-                  child: Text(
-                    badge!,
+        behavior: HitTestBehavior.opaque,
+        child: Column(
+          mainAxisSize: MainAxisSize.min, // ✅ prevents unbounded height
+          children: [
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: AppSizes.h12),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  AnimatedDefaultTextStyle(
+                    duration: const Duration(milliseconds: 200),
                     style: TextStyle(
-                      fontSize: AppSizes.sp10,
-                      fontWeight: FontWeight.w700,
-                      color: colors.textOnPrimary,
+                      fontSize: AppSizes.sp14,
+                      fontWeight: isSelected
+                          ? FontWeight.w700
+                          : FontWeight.w500,
+                      color: isSelected ? colors.primary : colors.textHint,
+                    ),
+                    child: Text(label),
+                  ),
+                  if (badge != null) ...[
+                    SizedBox(width: AppSizes.w6),
+                    AnimatedContainer(
+                      duration: const Duration(milliseconds: 200),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSizes.w6,
+                        vertical: AppSizes.h2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: isSelected
+                            ? colors.primary
+                            : colors.textHint.withOpacity(0.3),
+                        borderRadius: BorderRadius.circular(AppSizes.r10),
+                      ),
+                      child: Text(
+                        badge!,
+                        style: TextStyle(
+                          fontSize: AppSizes.sp10,
+                          fontWeight: FontWeight.w700,
+                          color: colors.textOnPrimary,
+                        ),
+                      ),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+
+            // ✅ Use LayoutBuilder to get concrete width, no more infinity issue
+            LayoutBuilder(
+              builder: (context, constraints) {
+                return TweenAnimationBuilder<double>(
+                  tween: Tween(
+                    begin: isSelected ? 0 : constraints.maxWidth,
+                    end: isSelected ? constraints.maxWidth : 0,
+                  ),
+                  duration: const Duration(milliseconds: 200),
+                  curve: Curves.easeInOut,
+                  builder: (context, width, _) => Align(
+                    alignment: Alignment.bottomCenter,
+                    child: Container(
+                      height: 2,
+                      width: width,
+                      decoration: BoxDecoration(
+                        color: colors.primary,
+                        borderRadius: BorderRadius.circular(AppSizes.r4),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            ],
-          ),
+                );
+              },
+            ),
+          ],
         ),
       ),
     );

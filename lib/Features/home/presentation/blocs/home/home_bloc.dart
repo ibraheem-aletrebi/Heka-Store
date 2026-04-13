@@ -2,7 +2,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:heka_store/Features/home/data/models/bannar/banner_model.dart';
-import 'package:heka_store/Features/home/data/models/brand/brand_model.dart';
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_banners_use_case.dart';
 import 'package:heka_store/Features/home/domain/use_cases/get_brands_use_case.dart';

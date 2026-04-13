@@ -3529,6 +3529,241 @@ class S {
       args: [],
     );
   }
+
+  /// `Search for a product...`
+  String get searchHint {
+    return Intl.message(
+      'Search for a product...',
+      name: 'searchHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Filter results`
+  String get filterTooltip {
+    return Intl.message(
+      'Filter results',
+      name: 'filterTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Recent searches`
+  String get recentSearches {
+    return Intl.message(
+      'Recent searches',
+      name: 'recentSearches',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Clear all`
+  String get clearAll {
+    return Intl.message('Clear all', name: 'clearAll', desc: '', args: []);
+  }
+
+  /// `Remove`
+  String get removeItem {
+    return Intl.message('Remove', name: 'removeItem', desc: '', args: []);
+  }
+
+  /// `Tap any previous search to run it again`
+  String get searchTip {
+    return Intl.message(
+      'Tap any previous search to run it again',
+      name: 'searchTip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start searching`
+  String get startSearch {
+    return Intl.message(
+      'Start searching',
+      name: 'startSearch',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Type a word above to search\nfor the products you want`
+  String get startSearchSubtitle {
+    return Intl.message(
+      'Type a word above to search\nfor the products you want',
+      name: 'startSearchSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No results found`
+  String get noResults {
+    return Intl.message(
+      'No results found',
+      name: 'noResults',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try different keywords or\nremove some filters`
+  String get noResultsSubtitle {
+    return Intl.message(
+      'Try different keywords or\nremove some filters',
+      name: 'noResultsSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove filters`
+  String get removeFilters {
+    return Intl.message(
+      'Remove filters',
+      name: 'removeFilters',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `An error occurred`
+  String get errorTitle {
+    return Intl.message(
+      'An error occurred',
+      name: 'errorTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Retry`
+  String get retry {
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
+  }
+
+  /// `{count} results`
+  String searchResultsCount(int count) {
+    return Intl.message(
+      '$count results',
+      name: 'searchResultsCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Filter results`
+  String get filterTitle {
+    return Intl.message(
+      'Filter results',
+      name: 'filterTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reset`
+  String get filterReset {
+    return Intl.message('Reset', name: 'filterReset', desc: '', args: []);
+  }
+
+  /// `Category`
+  String get filterCategory {
+    return Intl.message('Category', name: 'filterCategory', desc: '', args: []);
+  }
+
+  /// `Price range`
+  String get filterPriceRange {
+    return Intl.message(
+      'Price range',
+      name: 'filterPriceRange',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `From`
+  String get filterPriceFrom {
+    return Intl.message('From', name: 'filterPriceFrom', desc: '', args: []);
+  }
+
+  /// `To`
+  String get filterPriceTo {
+    return Intl.message('To', name: 'filterPriceTo', desc: '', args: []);
+  }
+
+  /// `EGP`
+  String get currency {
+    return Intl.message('EGP', name: 'currency', desc: '', args: []);
+  }
+
+  /// `Product origin`
+  String get filterOrigin {
+    return Intl.message(
+      'Product origin',
+      name: 'filterOrigin',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Made in Egypt`
+  String get filterEgyptianMade {
+    return Intl.message(
+      'Made in Egypt',
+      name: 'filterEgyptianMade',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Imported`
+  String get filterImported {
+    return Intl.message('Imported', name: 'filterImported', desc: '', args: []);
+  }
+
+  /// `Apply filter`
+  String get applyFilter {
+    return Intl.message(
+      'Apply filter',
+      name: 'applyFilter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply ({count} filters)`
+  String applyFilterCount(int count) {
+    return Intl.message(
+      'Apply ($count filters)',
+      name: 'applyFilterCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Failed to load categories`
+  String get errorLoadingCategories {
+    return Intl.message(
+      'Failed to load categories',
+      name: 'errorLoadingCategories',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No categories available`
+  String get noCategoriesAvailable {
+    return Intl.message(
+      'No categories available',
+      name: 'noCategoriesAvailable',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

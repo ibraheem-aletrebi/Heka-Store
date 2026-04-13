@@ -114,6 +114,12 @@ import 'package:heka_store/Features/product_details/domain/use_cases/get_product
 import 'package:heka_store/Features/product_details/domain/use_cases/get_similar_product_use_case.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/similar_products/similar_products_bloc.dart';
+import 'package:heka_store/Features/search/data/data_source/search_local_data_source.dart';
+import 'package:heka_store/Features/search/data/data_source/search_remote_data_source.dart';
+import 'package:heka_store/Features/search/data/repo/search_repository_impl.dart';
+import 'package:heka_store/Features/search/domain/repos/search_repository.dart';
+import 'package:heka_store/Features/search/domain/use_cases/search_products_usecase.dart';
+import 'package:heka_store/Features/search/presentation/cubits/search_cubit/search_cubit.dart';
 // ─────────────────────────────────────────────────────────────────────────────
 import 'package:heka_store/Features/wishlist/data/data_source/previous_viewed_products_data_source.dart';
 import 'package:heka_store/Features/wishlist/data/data_source/wishlist_local_data_source.dart';
@@ -158,6 +164,7 @@ Future<void> setupInjector() async {
   _initOrder();
   _initBrandProfile();
   _initNotifications();
+  _initSearch();
 }
 
 // ─── Core ─────────────────────────────────────────────────────────────────────
@@ -757,6 +764,35 @@ void _initNotifications() async {
       markAllAsReadUseCase: sl<MarkAllAsReadUseCase>(),
       deleteNotificationUseCase: sl<DeleteNotificationUseCase>(),
       bulkDeleteUseCase: sl<BulkDeleteNotificationsUseCase>(),
+    ),
+  );
+}
+
+void _initSearch() async {
+  sl.registerLazySingleton<SearchRemoteDataSource>(
+    () => SearchRemoteDataSourceImpl(apiService: sl<ApiService>()),
+  );
+  sl.registerLazySingleton<SearchLocalDataSource>(
+    () => SearchLocalDataSourceImpl(localStorage: sl<LocalStorageService>()),
+  );
+  // ─── Repository ────────────────────────────────
+  sl.registerLazySingleton<SearchRepository>(
+    () => SearchRepositoryImpl(
+      remote: sl<SearchRemoteDataSource>(),
+      local: sl<SearchLocalDataSource>(),
+    ),
+  );
+
+  // ─── Use Cases ─────────────────────────────────
+  sl.registerFactory<SearchProductsUseCase>(
+    () => SearchProductsUseCase(sl<SearchRepository>()),
+  );
+
+  // ─── BLoC ─────────────────────────────────────
+  sl.registerFactory<SearchCubit>(
+    () => SearchCubit(
+      searchProducts: sl<SearchProductsUseCase>(),
+      local: sl<SearchLocalDataSource>(),
     ),
   );
 }

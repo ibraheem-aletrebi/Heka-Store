@@ -7,6 +7,7 @@ import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart'
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/home_view_body.dart';
+import 'package:heka_store/Features/search/presentation/cubits/search_cubit/search_cubit.dart';
 import 'package:heka_store/core/di/injector.dart';
 
 class HomeView extends StatelessWidget {
@@ -39,6 +40,10 @@ class HomeView extends StatelessWidget {
          BlocProvider(
           create: (context) =>
               sl<BrandsBloc>()..add(const BrandsEvent.loaded()),
+        ),
+          BlocProvider(
+          create: (context) =>
+              sl<SearchCubit>(),
         ),
       ],
       child: HomeViewBody(),

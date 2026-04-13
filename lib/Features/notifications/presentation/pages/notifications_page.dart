@@ -38,16 +38,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      context
-          .read<NotificationBloc>()
-          .add(const LoadMoreNotificationsEvent());
+      context.read<NotificationBloc>().add(const LoadMoreNotificationsEvent());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark =
-        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final isDark = context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
 
     return BlocConsumer<NotificationBloc, NotificationState>(
       listenWhen: (_, curr) =>
@@ -55,9 +52,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
       listener: (context, state) {
         if (state is NotificationLoaded && state.actionMessage != null) {
           _showSnackBar(context, state.actionMessage!);
-          context
-              .read<NotificationBloc>()
-              .add(const LoadNotificationsEvent(refresh: true));
+          context.read<NotificationBloc>().add(const ClearActionMessageEvent());
         }
       },
       builder: (context, state) {
@@ -65,7 +60,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
         final isSelectionMode = isLoaded && state.isSelectionMode;
         final selectedCount = isLoaded ? state.selectedIds.length : 0;
         final unreadCount = isLoaded ? state.unreadCount : 0;
-        final unreadOnly = isLoaded ? state.unreadOnly : false;
+
+        // ✅ Preserve unreadOnly across loading and empty states
+        final unreadOnly = state is NotificationLoaded
+            ? state.unreadOnly
+            : state is NotificationEmpty
+            ? state.unreadOnly
+            : false;
 
         return Scaffold(
           appBar: _buildAppBar(
@@ -82,9 +83,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 NotificationFilterTabs(
                   unreadOnly: unreadOnly,
                   unreadCount: unreadCount,
-                  onChanged: (val) => context
-                      .read<NotificationBloc>()
-                      .add(FilterNotificationsEvent(unreadOnly: val)),
+                  onChanged: (val) => context.read<NotificationBloc>().add(
+                    FilterNotificationsEvent(unreadOnly: val),
+                  ),
                 ),
               if (isSelectionMode) _buildSelectionBanner(context, state),
               Expanded(child: _buildBody(context, state, isDark)),
@@ -94,10 +95,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
       },
     );
   }
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // AppBar
-  // ─────────────────────────────────────────────────────────────────────────
 
   PreferredSizeWidget _buildAppBar(
     BuildContext context,
@@ -111,17 +108,12 @@ class _NotificationsPageState extends State<NotificationsPage> {
     final s = S.of(context);
 
     return AppBar(
-      backgroundColor: colors.background,
-      surfaceTintColor: Colors.transparent,
-      elevation: 0,
-      systemOverlayStyle:
-          isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       leading: isSelectionMode
           ? IconButton(
               icon: const Icon(Icons.close_rounded),
-              onPressed: () => context
-                  .read<NotificationBloc>()
-                  .add(const ClearSelectionEvent()),
+              onPressed: () => context.read<NotificationBloc>().add(
+                const ClearSelectionEvent(),
+              ),
             )
           : null,
       title: AnimatedSwitcher(
@@ -149,8 +141,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
                       letterSpacing: -0.8,
                     ),
                   ),
-                  if (isLoaded &&
-                      (state as NotificationLoaded).unreadCount > 0)
+                  if (isLoaded && (state as NotificationLoaded).unreadCount > 0)
                     Text(
                       s.unreadCount(state.unreadCount),
                       style: TextStyle(
@@ -164,18 +155,15 @@ class _NotificationsPageState extends State<NotificationsPage> {
       ),
       actions: [
         if (isSelectionMode) ...[
-          if (selectedCount <
+          if (selectedCount ==
               (isLoaded
                   ? (state as NotificationLoaded).notifications.length
                   : 0))
             TextButton(
-              onPressed: () => context
-                  .read<NotificationBloc>()
-                  .add(const SelectAllNotificationsEvent()),
-              child: Text(
-                s.selectAll,
-                style: TextStyle(color: colors.primary),
+              onPressed: () => context.read<NotificationBloc>().add(
+                const SelectAllNotificationsEvent(),
               ),
+              child: Text(s.selectAll, style: TextStyle(color: colors.primary)),
             ),
           if (selectedCount > 0)
             IconButton(
@@ -186,9 +174,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
         ] else ...[
           if (isLoaded && (state as NotificationLoaded).unreadCount > 0)
             TextButton(
-              onPressed: () => context
-                  .read<NotificationBloc>()
-                  .add(const MarkAllAsReadEvent()),
+              onPressed: () => context.read<NotificationBloc>().add(
+                const MarkAllAsReadEvent(),
+              ),
               child: Text(
                 s.markAllRead,
                 style: TextStyle(
@@ -202,9 +190,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
             icon: const Icon(Icons.checklist_rounded),
             tooltip: s.select,
             onPressed: isLoaded
-                ? () => context
-                    .read<NotificationBloc>()
-                    .add(const ToggleSelectionModeEvent())
+                ? () => context.read<NotificationBloc>().add(
+                    const ToggleSelectionModeEvent(),
+                  )
                 : null,
           ),
         ],
@@ -212,12 +200,7 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // Selection hint banner
-  // ─────────────────────────────────────────────────────────────────────────
-
-  Widget _buildSelectionBanner(
-      BuildContext context, NotificationState state) {
+  Widget _buildSelectionBanner(BuildContext context, NotificationState state) {
     if (state is! NotificationLoaded) return const SizedBox.shrink();
     final colors = context.myColors;
     final s = S.of(context);
@@ -259,12 +242,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // Body
-  // ─────────────────────────────────────────────────────────────────────────
-
   Widget _buildBody(
-      BuildContext context, NotificationState state, bool isDark) {
+    BuildContext context,
+    NotificationState state,
+    bool isDark,
+  ) {
     if (state is NotificationLoading) return const NotificationShimmerLoading();
     if (state is NotificationError) return _buildError(context, state.message);
     if (state is NotificationEmpty) {
@@ -273,9 +255,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
     if (state is NotificationLoaded) {
       return RefreshIndicator(
         onRefresh: () async {
-          context
-              .read<NotificationBloc>()
-              .add(const RefreshNotificationsEvent());
+          context.read<NotificationBloc>().add(
+            const RefreshNotificationsEvent(),
+          );
           await Future.delayed(const Duration(milliseconds: 800));
         },
         color: context.myColors.primary,
@@ -291,10 +273,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
     }
     return const SizedBox.shrink();
   }
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // Error state
-  // ─────────────────────────────────────────────────────────────────────────
 
   Widget _buildError(BuildContext context, String message) {
     final colors = context.myColors;
@@ -332,16 +310,13 @@ class _NotificationsPageState extends State<NotificationsPage> {
             Text(
               message,
               textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: AppSizes.sp13,
-                color: colors.textHint,
-              ),
+              style: TextStyle(fontSize: AppSizes.sp13, color: colors.textHint),
             ),
             SizedBox(height: AppSizes.h24),
             ElevatedButton.icon(
-              onPressed: () => context
-                  .read<NotificationBloc>()
-                  .add(const LoadNotificationsEvent()),
+              onPressed: () => context.read<NotificationBloc>().add(
+                const LoadNotificationsEvent(),
+              ),
               icon: Icon(Icons.refresh_rounded, size: AppSizes.sp18),
               label: Text(s.tryAgain),
               style: ElevatedButton.styleFrom(
@@ -362,16 +337,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
-  // ─────────────────────────────────────────────────────────────────────────
-  // Bulk delete confirmation sheet
-  // ─────────────────────────────────────────────────────────────────────────
-
   void _confirmBulkDelete(BuildContext context, NotificationState state) {
     if (state is! NotificationLoaded) return;
     final ids = state.selectedIds.toList();
     final colors = context.myColors;
-    final isDark =
-        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final isDark = context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
     final s = S.of(context);
 
     showModalBottomSheet(
@@ -388,7 +358,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Handle
             Container(
               width: AppSizes.w40,
               height: AppSizes.h4,
@@ -398,11 +367,9 @@ class _NotificationsPageState extends State<NotificationsPage> {
               ),
             ),
             SizedBox(height: AppSizes.h24),
-
-            // Icon
             Container(
               width: AppSizes.w64,
-              height: AppSizes.h64 ?? AppSizes.w64,
+              height: AppSizes.h64,
               decoration: BoxDecoration(
                 color: colors.error.withOpacity(0.1),
                 shape: BoxShape.circle,
@@ -414,7 +381,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
               ),
             ),
             SizedBox(height: AppSizes.h16),
-
             Text(
               s.deleteNotificationsConfirm(ids.length),
               style: TextStyle(
@@ -426,21 +392,16 @@ class _NotificationsPageState extends State<NotificationsPage> {
             SizedBox(height: AppSizes.h8),
             Text(
               s.actionCannotBeUndone,
-              style: TextStyle(
-                fontSize: AppSizes.sp14,
-                color: colors.textHint,
-              ),
+              style: TextStyle(fontSize: AppSizes.sp14, color: colors.textHint),
             ),
             SizedBox(height: AppSizes.h24),
-
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.pop(context),
                     style: OutlinedButton.styleFrom(
-                      padding:
-                          EdgeInsets.symmetric(vertical: AppSizes.h14),
+                      padding: EdgeInsets.symmetric(vertical: AppSizes.h14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppSizes.r12),
                       ),
@@ -455,15 +416,14 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      context
-                          .read<NotificationBloc>()
-                          .add(BulkDeleteEvent(ids));
+                      context.read<NotificationBloc>().add(
+                        BulkDeleteEvent(ids),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: colors.error,
                       foregroundColor: colors.textOnPrimary,
-                      padding:
-                          EdgeInsets.symmetric(vertical: AppSizes.h14),
+                      padding: EdgeInsets.symmetric(vertical: AppSizes.h14),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(AppSizes.r12),
                       ),
@@ -482,10 +442,6 @@ class _NotificationsPageState extends State<NotificationsPage> {
       ),
     );
   }
-
-  // ─────────────────────────────────────────────────────────────────────────
-  // Snack bar
-  // ─────────────────────────────────────────────────────────────────────────
 
   void _showSnackBar(BuildContext context, String message) {
     final colors = context.myColors;
