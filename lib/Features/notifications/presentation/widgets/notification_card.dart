@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../bloc/notification_bloc.dart';
 import '../bloc/notification_event.dart';
@@ -48,11 +52,12 @@ class _NotificationCardState extends State<NotificationCard>
   @override
   Widget build(BuildContext context) {
     final n = widget.notification;
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
     final typeColor = NotificationTypeHelper.getColor(n.type);
     final typeIcon = NotificationTypeHelper.getIcon(n.type);
     final lightColor = NotificationTypeHelper.getLightColor(n.type);
-    final theme = Theme.of(context);
-    final isDark = theme.brightness == Brightness.dark;
 
     return GestureDetector(
       onTapDown: (_) => _controller.forward(),
@@ -63,7 +68,9 @@ class _NotificationCardState extends State<NotificationCard>
       onTapCancel: () => _controller.reverse(),
       onLongPress: () {
         if (!widget.isSelectionMode) {
-          context.read<NotificationBloc>().add(const ToggleSelectionModeEvent());
+          context
+              .read<NotificationBloc>()
+              .add(const ToggleSelectionModeEvent());
           context
               .read<NotificationBloc>()
               .add(ToggleSelectNotificationEvent(n.id));
@@ -74,26 +81,22 @@ class _NotificationCardState extends State<NotificationCard>
         child: Dismissible(
           key: Key('notification_${n.id}'),
           direction: DismissDirection.endToStart,
-          background: _buildDismissBackground(),
-          onDismissed: (_) {
-            context
-                .read<NotificationBloc>()
-                .add(DeleteNotificationEvent(n.id));
-          },
+          background: _buildDismissBackground(context),
+          onDismissed: (_) =>
+              context.read<NotificationBloc>().add(DeleteNotificationEvent(n.id)),
           child: AnimatedContainer(
             duration: const Duration(milliseconds: 200),
-            margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+            margin: EdgeInsets.symmetric(
+              horizontal: AppSizes.w16,
+              vertical: AppSizes.h4,
+            ),
             decoration: BoxDecoration(
               color: widget.isSelected
                   ? typeColor.withOpacity(0.08)
-                  : n.isRead
-                      ? (isDark
-                          ? const Color(0xFF1E293B)
-                          : Colors.white)
-                      : (isDark
-                          ? const Color(0xFF1E293B)
-                          : Colors.white),
-              borderRadius: BorderRadius.circular(16),
+                  : isDark
+                      ? colors.surface
+                      : colors.surface,
+              borderRadius: BorderRadius.circular(AppSizes.r16),
               border: Border.all(
                 color: widget.isSelected
                     ? typeColor
@@ -104,26 +107,24 @@ class _NotificationCardState extends State<NotificationCard>
               ),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(isDark ? 0.3 : 0.06),
-                  blurRadius: 8,
+                  color: colors.shadow.withOpacity(isDark ? 0.3 : 0.06),
+                  blurRadius: AppSizes.r8,
                   offset: const Offset(0, 2),
                 ),
               ],
             ),
             child: Padding(
-              padding: const EdgeInsets.all(16),
+              padding: EdgeInsets.all(AppSizes.w16),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Selection checkbox or type icon
                   AnimatedSwitcher(
                     duration: const Duration(milliseconds: 200),
                     child: widget.isSelectionMode
-                        ? _buildCheckbox(typeColor)
-                        : _buildTypeIcon(typeIcon, typeColor, lightColor, n),
+                        ? _buildCheckbox(typeColor, colors)
+                        : _buildTypeIcon(typeIcon, typeColor, lightColor),
                   ),
-                  const SizedBox(width: 12),
-                  // Content
+                  SizedBox(width: AppSizes.w12),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -134,61 +135,55 @@ class _NotificationCardState extends State<NotificationCard>
                               child: Text(
                                 n.title,
                                 style: TextStyle(
-                                  fontSize: 14,
+                                  fontSize: AppSizes.sp14,
                                   fontWeight: n.isRead
                                       ? FontWeight.w500
                                       : FontWeight.w700,
-                                  color: isDark
-                                      ? Colors.white
-                                      : const Color(0xFF0F172A),
+                                  color: colors.textPrimary,
                                   letterSpacing: -0.2,
                                 ),
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
                             ),
-                            const SizedBox(width: 8),
+                            SizedBox(width: AppSizes.w8),
                             Text(
                               timeago.format(n.createdAt, allowFromNow: true),
                               style: TextStyle(
-                                fontSize: 11,
-                                color: isDark
-                                    ? Colors.white38
-                                    : const Color(0xFF94A3B8),
+                                fontSize: AppSizes.sp11,
+                                color: colors.textHint,
                                 fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
                         ),
-                        const SizedBox(height: 4),
+                        SizedBox(height: AppSizes.h4),
                         Text(
                           n.message,
                           style: TextStyle(
-                            fontSize: 13,
-                            color: isDark
-                                ? Colors.white60
-                                : const Color(0xFF64748B),
+                            fontSize: AppSizes.sp13,
+                            color: colors.textSecondary,
                             height: 1.4,
                           ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
-                        const SizedBox(height: 8),
+                        SizedBox(height: AppSizes.h8),
                         Row(
                           children: [
-                            _buildTypeChip(n.type, typeColor, lightColor),
+                            _buildTypeChip(n.type, typeColor, lightColor, context),
                             const Spacer(),
                             if (!n.isRead)
                               Container(
-                                width: 8,
-                                height: 8,
+                                width: AppSizes.w8,
+                                height: AppSizes.h8,
                                 decoration: BoxDecoration(
                                   color: typeColor,
                                   shape: BoxShape.circle,
                                   boxShadow: [
                                     BoxShadow(
                                       color: typeColor.withOpacity(0.4),
-                                      blurRadius: 4,
+                                      blurRadius: AppSizes.r4,
                                     ),
                                   ],
                                 ),
@@ -207,54 +202,60 @@ class _NotificationCardState extends State<NotificationCard>
     );
   }
 
-  Widget _buildTypeIcon(
-    IconData icon,
-    Color color,
-    Color lightColor,
-    NotificationEntity n,
-  ) {
+  Widget _buildTypeIcon(IconData icon, Color color, Color lightColor) {
     return Container(
-      width: 44,
-      height: 44,
+      width: AppSizes.w45,
+      height: AppSizes.h48,
       decoration: BoxDecoration(
         color: lightColor,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppSizes.r12),
       ),
-      child: Icon(icon, color: color, size: 22),
+      child: Icon(icon, color: color, size: AppSizes.sp22),
     );
   }
 
-  Widget _buildCheckbox(Color color) {
+  Widget _buildCheckbox(Color color, dynamic colors) {
     return AnimatedContainer(
       duration: const Duration(milliseconds: 200),
-      width: 44,
-      height: 44,
+      width: AppSizes.w45,
+      height: AppSizes.h48,
       decoration: BoxDecoration(
         color: widget.isSelected ? color : Colors.transparent,
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.circular(AppSizes.r12),
         border: Border.all(
-          color: widget.isSelected ? color : const Color(0xFFCBD5E1),
+          color: widget.isSelected ? color : colors.border,
           width: 2,
         ),
       ),
       child: widget.isSelected
-          ? const Icon(Icons.check_rounded, color: Colors.white, size: 22)
+          ? Icon(
+              Icons.check_rounded,
+              color: colors.textOnPrimary,
+              size: AppSizes.sp22,
+            )
           : null,
     );
   }
 
   Widget _buildTypeChip(
-      NotificationType type, Color color, Color lightColor) {
+    NotificationType type,
+    Color color,
+    Color lightColor,
+    BuildContext context,
+  ) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.w8,
+        vertical: AppSizes.h4 - 1,
+      ),
       decoration: BoxDecoration(
         color: lightColor,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(AppSizes.r20),
       ),
       child: Text(
-        NotificationTypeHelper.getLabel(type),
+        NotificationTypeHelper.getLabel(type, context: context),
         style: TextStyle(
-          fontSize: 10,
+          fontSize: AppSizes.sp10,
           fontWeight: FontWeight.w600,
           color: color,
           letterSpacing: 0.3,
@@ -263,25 +264,31 @@ class _NotificationCardState extends State<NotificationCard>
     );
   }
 
-  Widget _buildDismissBackground() {
+  Widget _buildDismissBackground(BuildContext context) {
+    final colors = context.myColors;
+    final s = S.of(context);
+
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+      margin: EdgeInsets.symmetric(
+        horizontal: AppSizes.w16,
+        vertical: AppSizes.h4,
+      ),
       decoration: BoxDecoration(
-        color: const Color(0xFFEF4444),
-        borderRadius: BorderRadius.circular(16),
+        color: colors.error,
+        borderRadius: BorderRadius.circular(AppSizes.r16),
       ),
       alignment: Alignment.centerRight,
-      padding: const EdgeInsets.only(right: 20),
+      padding: EdgeInsets.only(right: AppSizes.w20),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Icon(Icons.delete_rounded, color: Colors.white, size: 24),
-          const SizedBox(height: 4),
+          Icon(Icons.delete_rounded, color: colors.textOnPrimary, size: AppSizes.sp24),
+          SizedBox(height: AppSizes.h4),
           Text(
-            'Delete',
-            style: const TextStyle(
-              color: Colors.white,
-              fontSize: 11,
+            s.delete,
+            style: TextStyle(
+              color: colors.textOnPrimary,
+              fontSize: AppSizes.sp11,
               fontWeight: FontWeight.w600,
             ),
           ),

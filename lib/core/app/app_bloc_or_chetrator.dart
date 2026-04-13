@@ -25,10 +25,7 @@ class AppBlocOrchestrator extends StatelessWidget {
         ),
         BlocProvider(create: (_) => sl<CartBloc>()),
         BlocProvider(create: (_) => sl<WishlistBloc>()),
-        BlocProvider(
-          create: (_) =>
-              sl<NotificationBloc>()..add(const LoadUnreadCountEvent()),
-        ),
+        BlocProvider(create: (_) => sl<NotificationBloc>()),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {

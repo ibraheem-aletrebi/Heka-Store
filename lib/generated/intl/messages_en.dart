@@ -37,11 +37,18 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m0(address) =>
       "Remove \"${address}\"?\nThis action cannot be undone.";
 
+  static String m9(count) =>
+      "Delete ${count} notification${Intl.plural(count, one: '', other: 's')}?";
+
   static String m1(count) =>
       "You have ${count} saved items. Sign in to keep them";
 
-  static String m9(count) =>
+  static String m10(count) =>
       "${count} ${Intl.plural(count, one: 'item', other: 'items')}";
+
+  static String m11(count) => "${count} selected";
+
+  static String m12(count) => "${count} unread";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -50,6 +57,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "Edit": MessageLookupByLibrary.simpleMessage("Edit"),
     "EditProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "account": MessageLookupByLibrary.simpleMessage("Account"),
+    "actionCannotBeUndone": MessageLookupByLibrary.simpleMessage(
+      "This action cannot be undone.",
+    ),
     "addAddress": MessageLookupByLibrary.simpleMessage("Add Address"),
     "addCard": MessageLookupByLibrary.simpleMessage("Add card"),
     "addDebitOrCreditCard": MessageLookupByLibrary.simpleMessage(
@@ -103,6 +113,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "addressSearchNoResultsHint": MessageLookupByLibrary.simpleMessage(
       "Try a different search term",
     ),
+    "all": MessageLookupByLibrary.simpleMessage("All"),
+    "allCaughtUp": MessageLookupByLibrary.simpleMessage("All caught up!"),
     "alreadyHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Already have an account? ",
     ),
@@ -168,6 +180,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "checkout": MessageLookupByLibrary.simpleMessage("Checkout"),
     "confirmLocation": MessageLookupByLibrary.simpleMessage("Confirm Location"),
     "confirmPassword": MessageLookupByLibrary.simpleMessage("Confirm password"),
+    "connectionError": MessageLookupByLibrary.simpleMessage("Connection Error"),
     "createAccount": MessageLookupByLibrary.simpleMessage("Create account"),
     "createAccountToContinue": MessageLookupByLibrary.simpleMessage(
       "Create an account to continue",
@@ -179,6 +192,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteAddressTitle": MessageLookupByLibrary.simpleMessage(
       "Delete Address?",
     ),
+    "deleteNotificationsConfirm": m9,
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("Delivery Address"),
     "discountedSubTotal": MessageLookupByLibrary.simpleMessage(
       "Discounted Subtotal",
@@ -186,6 +200,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "dontHaveAnAccount": MessageLookupByLibrary.simpleMessage(
       "Don\'t have an account? ",
     ),
+    "earlier": MessageLookupByLibrary.simpleMessage("Earlier"),
     "editProfile": MessageLookupByLibrary.simpleMessage("Edit Profile"),
     "email": MessageLookupByLibrary.simpleMessage("Email"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage("Email is invalid"),
@@ -401,10 +416,12 @@ class MessageLookup extends MessageLookupByLibrary {
       "Login to your account",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("Logout"),
+    "markAllRead": MessageLookupByLibrary.simpleMessage("Mark all read"),
+    "markAsRead": MessageLookupByLibrary.simpleMessage("Mark as read"),
     "myOrdersGenericError": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again.",
     ),
-    "myOrdersItemCount": m9,
+    "myOrdersItemCount": m10,
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
       "Failed to load orders",
     ),
@@ -461,9 +478,34 @@ class MessageLookup extends MessageLookupByLibrary {
     "noLocationSelected": MessageLookupByLibrary.simpleMessage(
       "No location selected yet",
     ),
+    "noNotificationsYet": MessageLookupByLibrary.simpleMessage(
+      "No notifications yet",
+    ),
     "noResultsFound": MessageLookupByLibrary.simpleMessage("No results found"),
     "noSubCategories": MessageLookupByLibrary.simpleMessage(
       "No Sub Categories",
+    ),
+    "noUnreadNotifications": MessageLookupByLibrary.simpleMessage(
+      "You have no unread notifications.\nYou\'re all caught up!",
+    ),
+    "notificationTypeAlert": MessageLookupByLibrary.simpleMessage("Alert"),
+    "notificationTypeMessage": MessageLookupByLibrary.simpleMessage("Message"),
+    "notificationTypeOrder": MessageLookupByLibrary.simpleMessage("Order"),
+    "notificationTypePayment": MessageLookupByLibrary.simpleMessage("Payment"),
+    "notificationTypePromotion": MessageLookupByLibrary.simpleMessage(
+      "Promotion",
+    ),
+    "notificationTypeReview": MessageLookupByLibrary.simpleMessage("Review"),
+    "notificationTypeShipping": MessageLookupByLibrary.simpleMessage(
+      "Shipping",
+    ),
+    "notificationTypeSystem": MessageLookupByLibrary.simpleMessage("System"),
+    "notificationTypeUnknown": MessageLookupByLibrary.simpleMessage(
+      "Notification",
+    ),
+    "notifications": MessageLookupByLibrary.simpleMessage("Notifications"),
+    "notificationsWillAppearHere": MessageLookupByLibrary.simpleMessage(
+      "When you get notifications,\nthey\'ll show up here.",
     ),
     "off": MessageLookupByLibrary.simpleMessage("Off"),
     "onboardingBody": MessageLookupByLibrary.simpleMessage(
@@ -548,6 +590,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "orderGenericError": MessageLookupByLibrary.simpleMessage(
       "Something went wrong. Please try again.",
     ),
+    "orderId": MessageLookupByLibrary.simpleMessage("Order ID"),
     "orderNoAddressSelected": MessageLookupByLibrary.simpleMessage(
       "Please select a delivery address",
     ),
@@ -691,7 +734,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Items you previously viewed",
     ),
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
+    "productId": MessageLookupByLibrary.simpleMessage("Product ID"),
     "products": MessageLookupByLibrary.simpleMessage("Products"),
+    "readAt": MessageLookupByLibrary.simpleMessage("Read at"),
+    "received": MessageLookupByLibrary.simpleMessage("Received"),
     "recommendedForYou": MessageLookupByLibrary.simpleMessage(
       "Recommended for you",
     ),
@@ -731,6 +777,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "Search for a place",
     ),
     "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
+    "select": MessageLookupByLibrary.simpleMessage("Select"),
+    "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "selectLocationSubtitle": MessageLookupByLibrary.simpleMessage(
       "Search or tap anywhere on the map",
     ),
@@ -738,6 +786,10 @@ class MessageLookup extends MessageLookupByLibrary {
       "Your Location",
     ),
     "select_options": MessageLookupByLibrary.simpleMessage("Select Options"),
+    "selectedCount": m11,
+    "selectionHint": MessageLookupByLibrary.simpleMessage(
+      "Long press to select • Swipe left to delete",
+    ),
     "setAsDefault": MessageLookupByLibrary.simpleMessage("Set as Default"),
     "setAsDefaultAddress": MessageLookupByLibrary.simpleMessage(
       "Make this as a default address",
@@ -764,11 +816,18 @@ class MessageLookup extends MessageLookupByLibrary {
     "themeToggleError": MessageLookupByLibrary.simpleMessage(
       "Failed to switch theme.",
     ),
+    "thisMonth": MessageLookupByLibrary.simpleMessage("This Month"),
+    "thisWeek": MessageLookupByLibrary.simpleMessage("This Week"),
+    "today": MessageLookupByLibrary.simpleMessage("Today"),
     "total": MessageLookupByLibrary.simpleMessage("Total"),
+    "tryAgain": MessageLookupByLibrary.simpleMessage("Try Again"),
     "tryDifferentSearch": MessageLookupByLibrary.simpleMessage(
       "Try a different name, street or city.",
     ),
+    "unread": MessageLookupByLibrary.simpleMessage("Unread"),
+    "unreadCount": m12,
     "vat": MessageLookupByLibrary.simpleMessage("VAT (%)"),
+    "vendorId": MessageLookupByLibrary.simpleMessage("Vendor ID"),
     "verify": MessageLookupByLibrary.simpleMessage("Verify"),
     "verifyEmailOtpBody": MessageLookupByLibrary.simpleMessage(
       "Enter the code we sent to your email",
@@ -778,5 +837,6 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "viewAll": MessageLookupByLibrary.simpleMessage("View All"),
     "work": MessageLookupByLibrary.simpleMessage("Work"),
+    "yesterday": MessageLookupByLibrary.simpleMessage("Yesterday"),
   };
 }

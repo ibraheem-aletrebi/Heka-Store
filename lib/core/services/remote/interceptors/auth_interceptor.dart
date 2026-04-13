@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:dio/dio.dart';
 import 'package:heka_store/core/services/local/secure_storage_service.dart';
 import 'package:heka_store/core/constants/api_constants.dart';
@@ -6,8 +7,10 @@ class AuthInterceptor extends Interceptor {
   final Dio dio;
   final Future<void> Function()? onLogout;
 
-  bool _isRefreshing = false;
-  final List<PendingRequest> _queue = [];
+  // ✅ Completer replaces the boolean flag + queue pattern.
+  // While non-null, a refresh is in flight — newcomers await its future.
+  // Completed with the new access token on success, with an error on failure.
+  Completer<String>? _refreshCompleter;
 
   AuthInterceptor(this.dio, {this.onLogout});
 
@@ -45,22 +48,33 @@ class AuthInterceptor extends Interceptor {
     DioException error,
     ErrorInterceptorHandler handler,
   ) async {
-    final requestOptions = error.requestOptions;
-
-    if (_isRefreshing) {
-      // ✅ queue the request and wait — will be resolved after refresh
-      _queue.add(PendingRequest(requestOptions, handler));
+    // ✅ A refresh is already running — await the same Completer.
+    // This is the race-condition fix: no second refresh is triggered.
+    // All concurrent 401s suspend here and wake up with the same token.
+    if (_refreshCompleter != null) {
+      try {
+        final token = await _refreshCompleter!.future;
+        final response = await _retryWithToken(error.requestOptions, token);
+        handler.resolve(response);
+      } catch (_) {
+        handler.reject(
+          DioException(
+            requestOptions: error.requestOptions,
+            response: error.response,
+            type: DioExceptionType.badResponse,
+            error: 'Session expired. Please log in again.',
+          ),
+        );
+      }
       return;
     }
 
-    _isRefreshing = true;
+    // ✅ First 401 to arrive — own the refresh.
+    _refreshCompleter = Completer<String>();
 
     try {
       final refreshToken = await SecureStorageService().getRefreshToken();
-
-      if (refreshToken == null) {
-        throw Exception('No refresh token available');
-      }
+      if (refreshToken == null) throw Exception('No refresh token available');
 
       final response = await dio.post(
         ApiConstants.refreshToken,
@@ -72,35 +86,23 @@ class AuthInterceptor extends Interceptor {
       final newAccess = tokenData['accessToken'] as String;
       final newRefresh = tokenData['refreshToken'] as String;
 
-      // ✅ save tokens BEFORE retry so _retry reads the fresh token
       await SecureStorageService().saveTokens(
         access: newAccess,
         refresh: newRefresh,
       );
 
-      // ✅ reset flag BEFORE flush so queued 401s don't re-enter refresh loop
-      _isRefreshing = false;
+      // ✅ Complete with the new token — all waiting 401s wake up now.
+      _refreshCompleter!.complete(newAccess);
 
-      // ✅ retry original request with new token
-      final retryResponse = await _retry(requestOptions);
+      final retryResponse = await _retryWithToken(error.requestOptions, newAccess);
       handler.resolve(retryResponse);
-
-      // ✅ flush queue AFTER original is resolved
-      await _flushQueue();
     } catch (e) {
-      // ✅ always reset flag on failure path too
-      _isRefreshing = false;
+      // ✅ Complete with error — all waiting 401s will reject cleanly.
+      _refreshCompleter!.completeError(e);
 
-      // ✅ reject all queued requests with the same error
-      _rejectQueue(error);
-
-      // ✅ clear tokens — session is invalid
       await SecureStorageService().deleteTokens();
-
-      // ✅ notify app to navigate to login
       await onLogout?.call();
 
-      // ✅ reject the original handler too
       handler.reject(
         DioException(
           requestOptions: error.requestOptions,
@@ -109,13 +111,18 @@ class AuthInterceptor extends Interceptor {
           error: 'Session expired. Please log in again.',
         ),
       );
+    } finally {
+      // ✅ Nulled out in finally — safe whether success or error.
+      // Only cleared after complete/completeError so no new 401 can
+      // slip in and see null before all waiters have been notified.
+      _refreshCompleter = null;
     }
   }
 
-  Future<Response> _retry(RequestOptions requestOptions) async {
-    // ✅ always read fresh token from storage for every retry
-    final token = await SecureStorageService().getAccessToken();
-
+  Future<Response> _retryWithToken(
+    RequestOptions requestOptions,
+    String token,
+  ) {
     return dio.request(
       requestOptions.path,
       data: requestOptions.data,
@@ -124,57 +131,12 @@ class AuthInterceptor extends Interceptor {
         method: requestOptions.method,
         headers: {
           ...requestOptions.headers,
-          if (token != null) 'Authorization': 'Bearer $token',
+          'Authorization': 'Bearer $token',
         },
-        // ✅ preserve original extra so skipAuthInterceptor stays intact
         extra: requestOptions.extra,
         contentType: requestOptions.contentType,
         responseType: requestOptions.responseType,
       ),
     );
   }
-
-  Future<void> _flushQueue() async {
-    // ✅ snapshot and clear before iterating — prevents mutation during loop
-    final pending = List<PendingRequest>.from(_queue);
-    _queue.clear();
-
-    for (final request in pending) {
-      try {
-        final response = await _retry(request.requestOptions);
-        request.handler.resolve(response);
-      } catch (e) {
-        request.handler.reject(
-          DioException(
-            requestOptions: request.requestOptions,
-            error: e,
-            type: DioExceptionType.unknown,
-          ),
-        );
-      }
-    }
-  }
-
-  void _rejectQueue(DioException error) {
-    final pending = List<PendingRequest>.from(_queue);
-    _queue.clear();
-
-    for (final request in pending) {
-      request.handler.reject(
-        DioException(
-          requestOptions: request.requestOptions,
-          response: error.response,
-          type: error.type,
-          error: error.error,
-        ),
-      );
-    }
-  }
-}
-
-class PendingRequest {
-  final RequestOptions requestOptions;
-  final ErrorInterceptorHandler handler;
-
-  const PendingRequest(this.requestOptions, this.handler);
 }

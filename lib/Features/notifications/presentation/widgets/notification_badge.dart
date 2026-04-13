@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
 
 class NotificationBadge extends StatelessWidget {
   final int count;
@@ -12,41 +14,46 @@ class NotificationBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final colors = context.myColors;
+
     return Stack(
       clipBehavior: Clip.none,
       children: [
         child,
         if (count > 0)
           Positioned(
-            right: -4,
-            top: -4,
+            right: -AppSizes.w4,
+            top: -AppSizes.h4,
             child: AnimatedScale(
               scale: 1.0,
               duration: const Duration(milliseconds: 300),
               curve: Curves.elasticOut,
               child: Container(
-                constraints: const BoxConstraints(
-                  minWidth: 18,
-                  minHeight: 18,
+                constraints: BoxConstraints(
+                  minWidth: AppSizes.w18,
+                  minHeight: AppSizes.h18,
                 ),
-                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 1),
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.w4,
+                  vertical: AppSizes.h2,
+                ),
                 decoration: BoxDecoration(
-                  color: const Color(0xFFEF4444),
-                  borderRadius: BorderRadius.circular(10),
+                  color: colors.error,
+                  borderRadius: BorderRadius.circular(AppSizes.r10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFFEF4444).withOpacity(0.4),
-                      blurRadius: 6,
+                      color: colors.error.withOpacity(0.4),
+                      blurRadius: AppSizes.r6,
                       offset: const Offset(0, 2),
                     ),
                   ],
-                  border: Border.all(color: Colors.white, width: 1.5),
+                  border: Border.all(color: colors.surface, width: 1.5),
                 ),
                 child: Text(
                   count > 99 ? '99+' : count.toString(),
-                  style: const TextStyle(
-                    color: Colors.white,
-                    fontSize: 10,
+                  style: TextStyle(
+                    color: colors.textOnPrimary,
+                    fontSize: AppSizes.sp10,
                     fontWeight: FontWeight.w700,
                     height: 1.2,
                   ),

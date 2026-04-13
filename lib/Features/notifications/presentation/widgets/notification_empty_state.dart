@@ -1,4 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class NotificationEmptyState extends StatelessWidget {
   final bool unreadOnly;
@@ -7,52 +12,51 @@ class NotificationEmptyState extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final s = S.of(context);
 
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(40),
+        padding: EdgeInsets.all(AppSizes.w32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 100,
-              height: 100,
+              width: AppSizes.w100,
+              height: AppSizes.h100,
               decoration: BoxDecoration(
-                color: isDark
-                    ? const Color(0xFF1E293B)
-                    : const Color(0xFFF1F5F9),
+                color: isDark ? colors.surface : colors.background,
                 shape: BoxShape.circle,
               ),
               child: Icon(
                 unreadOnly
                     ? Icons.mark_email_read_rounded
                     : Icons.notifications_off_rounded,
-                size: 44,
-                color: isDark
-                    ? Colors.white24
-                    : const Color(0xFFCBD5E1),
+                size: AppSizes.w45,
+                color: isDark ? colors.textHint : colors.border,
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: AppSizes.h24),
             Text(
-              unreadOnly ? 'All caught up!' : 'No notifications yet',
+              unreadOnly ? s.allCaughtUp : s.noNotificationsYet,
               style: TextStyle(
-                fontSize: 20,
+                fontSize: AppSizes.sp20,
                 fontWeight: FontWeight.w700,
-                color: isDark ? Colors.white : const Color(0xFF0F172A),
+                color: colors.textPrimary,
                 letterSpacing: -0.5,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: AppSizes.h8),
             Text(
               unreadOnly
-                  ? 'You have no unread notifications.\nYou\'re all caught up!'
-                  : 'When you get notifications,\nthey\'ll show up here.',
+                  ? s.noUnreadNotifications
+                  : s.notificationsWillAppearHere,
               textAlign: TextAlign.center,
               style: TextStyle(
-                fontSize: 14,
-                color: isDark ? Colors.white38 : const Color(0xFF94A3B8),
+                fontSize: AppSizes.sp14,
+                color: colors.textHint,
                 height: 1.5,
               ),
             ),
@@ -62,6 +66,10 @@ class NotificationEmptyState extends StatelessWidget {
     );
   }
 }
+
+// ─────────────────────────────────────────────────────────────────────────────
+// Shimmer Loading
+// ─────────────────────────────────────────────────────────────────────────────
 
 class NotificationShimmerLoading extends StatefulWidget {
   const NotificationShimmerLoading({super.key});
@@ -98,7 +106,7 @@ class _NotificationShimmerLoadingState
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
-      padding: const EdgeInsets.only(top: 8),
+      padding: EdgeInsets.only(top: AppSizes.h8),
       itemCount: 6,
       itemBuilder: (_, i) => _ShimmerCard(animation: _animation),
     );
@@ -112,20 +120,24 @@ class _ShimmerCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
-    final baseColor =
-        isDark ? const Color(0xFF1E293B) : const Color(0xFFF1F5F9);
-    final highlightColor =
-        isDark ? const Color(0xFF334155) : const Color(0xFFE2E8F0);
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+
+    final baseColor = isDark ? colors.surface : colors.background;
+    final highlightColor = isDark ? colors.card : colors.border;
 
     return AnimatedBuilder(
       animation: animation,
-      builder: (context, child) {
+      builder: (context, _) {
         return Container(
-          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 5),
-          padding: const EdgeInsets.all(16),
+          margin: EdgeInsets.symmetric(
+            horizontal: AppSizes.w16,
+            vertical: AppSizes.h4 + 1,
+          ),
+          padding: EdgeInsets.all(AppSizes.w16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
+            borderRadius: BorderRadius.circular(AppSizes.r16),
             gradient: LinearGradient(
               begin: Alignment.centerLeft,
               end: Alignment.centerRight,
@@ -141,53 +153,25 @@ class _ShimmerCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                width: 44,
-                height: 44,
+                width: AppSizes.w45,
+                height: AppSizes.h48,
                 decoration: BoxDecoration(
                   color: baseColor,
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppSizes.r12),
                 ),
               ),
-              const SizedBox(width: 12),
+              SizedBox(width: AppSizes.w12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Container(
-                      height: 14,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: baseColor,
-                        borderRadius: BorderRadius.circular(7),
-                      ),
-                    ),
-                    const SizedBox(height: 8),
-                    Container(
-                      height: 12,
-                      width: 200,
-                      decoration: BoxDecoration(
-                        color: baseColor,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                    ),
-                    const SizedBox(height: 6),
-                    Container(
-                      height: 12,
-                      width: 140,
-                      decoration: BoxDecoration(
-                        color: baseColor,
-                        borderRadius: BorderRadius.circular(6),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      height: 20,
-                      width: 60,
-                      decoration: BoxDecoration(
-                        color: baseColor,
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
+                    _bar(baseColor, double.infinity, AppSizes.h14),
+                    SizedBox(height: AppSizes.h8),
+                    _bar(baseColor, AppSizes.w150, AppSizes.h12),
+                    SizedBox(height: AppSizes.h6),
+                    _bar(baseColor, AppSizes.w120, AppSizes.h12),
+                    SizedBox(height: AppSizes.h10),
+                    _bar(baseColor, AppSizes.w60, AppSizes.h20),
                   ],
                 ),
               ),
@@ -197,4 +181,13 @@ class _ShimmerCard extends StatelessWidget {
       },
     );
   }
+
+  Widget _bar(Color color, double width, double height) => Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(height / 2),
+        ),
+      );
 }

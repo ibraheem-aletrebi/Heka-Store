@@ -935,6 +935,100 @@
 
 
   "products":"Products",
-  "@products": {}
+  "@products": {},
+
+
+   "notifications": "Notifications",
+  "unreadCount": "{count} unread",
+  "@unreadCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+  "selectedCount": "{count} selected",
+  "@selectedCount": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "all": "All",
+  "@all": {},
+  "unread": "Unread",
+  "@unread": {},
+  "select": "Select",
+  "@select": {},
+  "selectAll": "Select All",
+  "@selectAll": {},
+  "markAllRead": "Mark all read",
+  "@markAllRead": {},
+  "markAsRead": "Mark as read",
+  "@markAsRead": {},
+  "tryAgain": "Try Again",
+  "@tryAgain": {},
+
+  "selectionHint": "Long press to select • Swipe left to delete",
+  "@selectionHint": {},
+  "connectionError": "Connection Error",
+  "@connectionError": {},
+  "actionCannotBeUndone": "This action cannot be undone.",
+  "@actionCannotBeUndone": {},
+
+  "deleteNotificationsConfirm": "Delete {count} notification{count, plural, one{} other{s}}?",
+  "@deleteNotificationsConfirm": {
+    "placeholders": {
+      "count": { "type": "int" }
+    }
+  },
+
+  "allCaughtUp": "All caught up!",
+  "@allCaughtUp": {},
+  "noNotificationsYet": "No notifications yet",
+  "@noNotificationsYet": {},
+  "noUnreadNotifications": "You have no unread notifications.\nYou're all caught up!",
+  "@noUnreadNotifications": {},
+  "notificationsWillAppearHere": "When you get notifications,\nthey'll show up here.",
+  "@notificationsWillAppearHere": {},
+
+  "today": "Today",
+  "@today": {},
+  "yesterday": "Yesterday",
+  "@yesterday": {},
+  "thisWeek": "This Week",
+  "@thisWeek": {},
+  "thisMonth": "This Month",
+  "@thisMonth": {},
+  "earlier": "Earlier",
+  "@earlier": {},
+
+  "orderId": "Order ID",
+  "@orderId": {},
+  "productId": "Product ID",
+  "@productId": {},
+  "vendorId": "Vendor ID",
+  "@vendorId": {},
+  "received": "Received",
+  "@received": {},
+  "readAt": "Read at",
+  "@readAt": {},
+
+  "notificationTypeReview": "Review",
+  "@notificationTypeReview": {},
+  "notificationTypeOrder": "Order",
+  "@notificationTypeOrder": {},
+  "notificationTypePayment": "Payment",
+  "@notificationTypePayment": {},
+  "notificationTypeShipping": "Shipping",
+  "@notificationTypeShipping": {},
+  "notificationTypeSystem": "System",
+  "@notificationTypeSystem": {},
+  "notificationTypePromotion": "Promotion",
+  "@notificationTypePromotion": {},
+  "notificationTypeAlert": "Alert",
+  "@notificationTypeAlert": {},
+  "notificationTypeMessage": "Message",
+  "@notificationTypeMessage": {},
+  "notificationTypeUnknown": "Notification",
+  "@notificationTypeUnknown": {}
 
 }

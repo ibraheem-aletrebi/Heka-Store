@@ -2,10 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 import '../bloc/notification_bloc.dart';
 import '../bloc/notification_event.dart';
 import '../bloc/notification_state.dart';
-import '../widgets/notification_card.dart';
+import '../widgets/grouped_notification_list.dart';
 import '../widgets/notification_filter_tabs.dart';
 import '../widgets/notification_empty_state.dart';
 
@@ -35,23 +38,26 @@ class _NotificationsPageState extends State<NotificationsPage> {
   void _onScroll() {
     if (_scrollController.position.pixels >=
         _scrollController.position.maxScrollExtent - 200) {
-      context.read<NotificationBloc>().add(const LoadMoreNotificationsEvent());
+      context
+          .read<NotificationBloc>()
+          .add(const LoadMoreNotificationsEvent());
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final isDark = context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
 
     return BlocConsumer<NotificationBloc, NotificationState>(
-      listenWhen: (prev, curr) =>
-          curr is NotificationLoaded && (curr).actionMessage != null,
+      listenWhen: (_, curr) =>
+          curr is NotificationLoaded && curr.actionMessage != null,
       listener: (context, state) {
         if (state is NotificationLoaded && state.actionMessage != null) {
           _showSnackBar(context, state.actionMessage!);
-          context.read<NotificationBloc>().add(
-            const LoadNotificationsEvent(refresh: true),
-          );
+          context
+              .read<NotificationBloc>()
+              .add(const LoadNotificationsEvent(refresh: true));
         }
       },
       builder: (context, state) {
@@ -76,11 +82,11 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 NotificationFilterTabs(
                   unreadOnly: unreadOnly,
                   unreadCount: unreadCount,
-                  onChanged: (val) => context.read<NotificationBloc>().add(
-                    FilterNotificationsEvent(unreadOnly: val),
-                  ),
+                  onChanged: (val) => context
+                      .read<NotificationBloc>()
+                      .add(FilterNotificationsEvent(unreadOnly: val)),
                 ),
-              if (isSelectionMode) _buildSelectionActions(context, state),
+              if (isSelectionMode) _buildSelectionBanner(context, state),
               Expanded(child: _buildBody(context, state, isDark)),
             ],
           ),
@@ -88,6 +94,10 @@ class _NotificationsPageState extends State<NotificationsPage> {
       },
     );
   }
+
+  // ─────────────────────────────────────────────────────────────────────────
+  // AppBar
+  // ─────────────────────────────────────────────────────────────────────────
 
   PreferredSizeWidget _buildAppBar(
     BuildContext context,
@@ -97,33 +107,33 @@ class _NotificationsPageState extends State<NotificationsPage> {
     bool isLoaded,
     NotificationState state,
   ) {
+    final colors = context.myColors;
+    final s = S.of(context);
+
     return AppBar(
-      backgroundColor: isDark
-          ? const Color(0xFF0F172A)
-          : const Color(0xFFF8FAFC),
+      backgroundColor: colors.background,
       surfaceTintColor: Colors.transparent,
       elevation: 0,
-      systemOverlayStyle: isDark
-          ? SystemUiOverlayStyle.light
-          : SystemUiOverlayStyle.dark,
+      systemOverlayStyle:
+          isDark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark,
       leading: isSelectionMode
           ? IconButton(
               icon: const Icon(Icons.close_rounded),
-              onPressed: () => context.read<NotificationBloc>().add(
-                const ClearSelectionEvent(),
-              ),
+              onPressed: () => context
+                  .read<NotificationBloc>()
+                  .add(const ClearSelectionEvent()),
             )
           : null,
       title: AnimatedSwitcher(
         duration: const Duration(milliseconds: 200),
         child: isSelectionMode
             ? Text(
-                '$selectedCount selected',
+                s.selectedCount(selectedCount),
                 key: const ValueKey('selection'),
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: AppSizes.sp18,
                   fontWeight: FontWeight.w700,
-                  color: isDark ? Colors.white : const Color(0xFF0F172A),
+                  color: colors.textPrimary,
                 ),
               )
             : Column(
@@ -131,23 +141,22 @@ class _NotificationsPageState extends State<NotificationsPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Notifications',
+                    s.notifications,
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: AppSizes.sp24,
                       fontWeight: FontWeight.w800,
-                      color: isDark ? Colors.white : const Color(0xFF0F172A),
+                      color: colors.textPrimary,
                       letterSpacing: -0.8,
                     ),
                   ),
-                  if (isLoaded && (state as NotificationLoaded).unreadCount > 0)
+                  if (isLoaded &&
+                      (state as NotificationLoaded).unreadCount > 0)
                     Text(
-                      '${state.unreadCount} unread',
+                      s.unreadCount(state.unreadCount),
                       style: TextStyle(
-                        fontSize: 12,
+                        fontSize: AppSizes.sp12,
                         fontWeight: FontWeight.w500,
-                        color: isDark
-                            ? Colors.white38
-                            : const Color(0xFF94A3B8),
+                        color: colors.textHint,
                       ),
                     ),
                 ],
@@ -160,39 +169,42 @@ class _NotificationsPageState extends State<NotificationsPage> {
                   ? (state as NotificationLoaded).notifications.length
                   : 0))
             TextButton(
-              onPressed: () => context.read<NotificationBloc>().add(
-                const SelectAllNotificationsEvent(),
+              onPressed: () => context
+                  .read<NotificationBloc>()
+                  .add(const SelectAllNotificationsEvent()),
+              child: Text(
+                s.selectAll,
+                style: TextStyle(color: colors.primary),
               ),
-              child: const Text('Select All'),
             ),
           if (selectedCount > 0)
             IconButton(
               icon: const Icon(Icons.delete_rounded),
-              color: const Color(0xFFEF4444),
+              color: colors.error,
               onPressed: () => _confirmBulkDelete(context, state),
             ),
         ] else ...[
           if (isLoaded && (state as NotificationLoaded).unreadCount > 0)
             TextButton(
-              onPressed: () => context.read<NotificationBloc>().add(
-                const MarkAllAsReadEvent(),
-              ),
-              child: const Text(
-                'Mark all read',
+              onPressed: () => context
+                  .read<NotificationBloc>()
+                  .add(const MarkAllAsReadEvent()),
+              child: Text(
+                s.markAllRead,
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: AppSizes.sp13,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xFF6366F1),
+                  color: colors.primary,
                 ),
               ),
             ),
           IconButton(
             icon: const Icon(Icons.checklist_rounded),
-            tooltip: 'Select',
+            tooltip: s.select,
             onPressed: isLoaded
-                ? () => context.read<NotificationBloc>().add(
-                    const ToggleSelectionModeEvent(),
-                  )
+                ? () => context
+                    .read<NotificationBloc>()
+                    .add(const ToggleSelectionModeEvent())
                 : null,
           ),
         ],
@@ -200,30 +212,45 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
-  Widget _buildSelectionActions(BuildContext context, NotificationState state) {
+  // ─────────────────────────────────────────────────────────────────────────
+  // Selection hint banner
+  // ─────────────────────────────────────────────────────────────────────────
+
+  Widget _buildSelectionBanner(
+      BuildContext context, NotificationState state) {
     if (state is! NotificationLoaded) return const SizedBox.shrink();
+    final colors = context.myColors;
+    final s = S.of(context);
 
     return Container(
-      margin: const EdgeInsets.fromLTRB(16, 8, 16, 4),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: EdgeInsets.fromLTRB(
+        AppSizes.w16,
+        AppSizes.h8,
+        AppSizes.w16,
+        AppSizes.h4,
+      ),
+      padding: EdgeInsets.symmetric(
+        horizontal: AppSizes.w16,
+        vertical: AppSizes.h10,
+      ),
       decoration: BoxDecoration(
-        color: const Color(0xFF6366F1).withOpacity(0.08),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: const Color(0xFF6366F1).withOpacity(0.2)),
+        color: colors.primary.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(AppSizes.r12),
+        border: Border.all(color: colors.primary.withOpacity(0.2)),
       ),
       child: Row(
         children: [
           Icon(
             Icons.info_outline_rounded,
-            size: 16,
-            color: const Color(0xFF6366F1),
+            size: AppSizes.sp16,
+            color: colors.primary,
           ),
-          const SizedBox(width: 8),
+          SizedBox(width: AppSizes.w8),
           Text(
-            'Long press items to select • Swipe left to delete',
+            s.selectionHint,
             style: TextStyle(
-              fontSize: 12,
-              color: const Color(0xFF6366F1),
+              fontSize: AppSizes.sp12,
+              color: colors.primary,
               fontWeight: FontWeight.w500,
             ),
           ),
@@ -232,120 +259,100 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // Body
+  // ─────────────────────────────────────────────────────────────────────────
+
   Widget _buildBody(
-    BuildContext context,
-    NotificationState state,
-    bool isDark,
-  ) {
-    if (state is NotificationLoading) {
-      return const NotificationShimmerLoading();
-    }
-
-    if (state is NotificationError) {
-      return _buildError(context, state.message);
-    }
-
+      BuildContext context, NotificationState state, bool isDark) {
+    if (state is NotificationLoading) return const NotificationShimmerLoading();
+    if (state is NotificationError) return _buildError(context, state.message);
     if (state is NotificationEmpty) {
       return NotificationEmptyState(unreadOnly: state.unreadOnly);
     }
-
     if (state is NotificationLoaded) {
       return RefreshIndicator(
         onRefresh: () async {
-          context.read<NotificationBloc>().add(
-            const RefreshNotificationsEvent(),
-          );
+          context
+              .read<NotificationBloc>()
+              .add(const RefreshNotificationsEvent());
           await Future.delayed(const Duration(milliseconds: 800));
         },
-        color: const Color(0xFF6366F1),
-        child: ListView.builder(
-          controller: _scrollController,
-          padding: const EdgeInsets.only(top: 8, bottom: 24),
-          itemCount: state.notifications.length + (state.isLoadingMore ? 1 : 0),
-          itemBuilder: (context, index) {
-            if (index == state.notifications.length) {
-              return const Padding(
-                padding: EdgeInsets.all(16),
-                child: Center(
-                  child: SizedBox(
-                    width: 24,
-                    height: 24,
-                    child: CircularProgressIndicator(
-                      strokeWidth: 2,
-                      color: Color(0xFF6366F1),
-                    ),
-                  ),
-                ),
-              );
-            }
-
-            final notification = state.notifications[index];
-            final isSelected = state.selectedIds.contains(notification.id);
-
-            return NotificationCard(
-              notification: notification,
-              isSelectionMode: state.isSelectionMode,
-              isSelected: isSelected,
-            );
-          },
+        color: context.myColors.primary,
+        child: GroupedNotificationList(
+          notifications: state.notifications,
+          isSelectionMode: state.isSelectionMode,
+          selectedIds: state.selectedIds,
+          isLoadingMore: state.isLoadingMore,
+          hasNextPage: state.hasNextPage,
+          scrollController: _scrollController,
         ),
       );
     }
-
     return const SizedBox.shrink();
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // Error state
+  // ─────────────────────────────────────────────────────────────────────────
+
   Widget _buildError(BuildContext context, String message) {
+    final colors = context.myColors;
+    final s = S.of(context);
+
     return Center(
       child: Padding(
-        padding: const EdgeInsets.all(32),
+        padding: EdgeInsets.all(AppSizes.w32),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
-              width: 80,
-              height: 80,
+              width: AppSizes.w80,
+              height: AppSizes.h80,
               decoration: BoxDecoration(
-                color: const Color(0xFFEF4444).withOpacity(0.1),
+                color: colors.error.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.wifi_off_rounded,
-                size: 36,
-                color: Color(0xFFEF4444),
+                size: AppSizes.sp36,
+                color: colors.error,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
-              'Connection Error',
+            SizedBox(height: AppSizes.h20),
+            Text(
+              s.connectionError,
               style: TextStyle(
-                fontSize: 18,
+                fontSize: AppSizes.sp18,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF0F172A),
+                color: colors.textPrimary,
               ),
             ),
-            const SizedBox(height: 8),
+            SizedBox(height: AppSizes.h8),
             Text(
               message,
               textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 13, color: Color(0xFF94A3B8)),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: () => context.read<NotificationBloc>().add(
-                const LoadNotificationsEvent(),
+              style: TextStyle(
+                fontSize: AppSizes.sp13,
+                color: colors.textHint,
               ),
-              icon: const Icon(Icons.refresh_rounded, size: 18),
-              label: const Text('Try Again'),
+            ),
+            SizedBox(height: AppSizes.h24),
+            ElevatedButton.icon(
+              onPressed: () => context
+                  .read<NotificationBloc>()
+                  .add(const LoadNotificationsEvent()),
+              icon: Icon(Icons.refresh_rounded, size: AppSizes.sp18),
+              label: Text(s.tryAgain),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF6366F1),
-                foregroundColor: Colors.white,
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 24,
-                  vertical: 12,
+                backgroundColor: colors.primary,
+                foregroundColor: colors.textOnPrimary,
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.w24,
+                  vertical: AppSizes.h12,
                 ),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(12),
+                  borderRadius: BorderRadius.circular(AppSizes.r12),
                 ),
               ),
             ),
@@ -355,91 +362,115 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // Bulk delete confirmation sheet
+  // ─────────────────────────────────────────────────────────────────────────
+
   void _confirmBulkDelete(BuildContext context, NotificationState state) {
     if (state is! NotificationLoaded) return;
     final ids = state.selectedIds.toList();
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final s = S.of(context);
 
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
       builder: (_) => Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).brightness == Brightness.dark
-              ? const Color(0xFF1E293B)
-              : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+          color: isDark ? colors.surface : colors.surface,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppSizes.r24),
+          ),
         ),
-        padding: const EdgeInsets.all(24),
+        padding: EdgeInsets.all(AppSizes.w24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Handle
             Container(
-              width: 40,
-              height: 4,
+              width: AppSizes.w40,
+              height: AppSizes.h4,
               decoration: BoxDecoration(
-                color: const Color(0xFFCBD5E1),
-                borderRadius: BorderRadius.circular(2),
+                color: colors.divider,
+                borderRadius: BorderRadius.circular(AppSizes.r4 / 2),
               ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: AppSizes.h24),
+
+            // Icon
             Container(
-              width: 64,
-              height: 64,
+              width: AppSizes.w64,
+              height: AppSizes.h64 ?? AppSizes.w64,
               decoration: BoxDecoration(
-                color: const Color(0xFFEF4444).withOpacity(0.1),
+                color: colors.error.withOpacity(0.1),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.delete_forever_rounded,
-                color: Color(0xFFEF4444),
-                size: 32,
+                color: colors.error,
+                size: AppSizes.sp32,
               ),
             ),
-            const SizedBox(height: 16),
+            SizedBox(height: AppSizes.h16),
+
             Text(
-              'Delete ${ids.length} notification${ids.length > 1 ? 's' : ''}?',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.w700),
+              s.deleteNotificationsConfirm(ids.length),
+              style: TextStyle(
+                fontSize: AppSizes.sp18,
+                fontWeight: FontWeight.w700,
+                color: colors.textPrimary,
+              ),
             ),
-            const SizedBox(height: 8),
-            const Text(
-              'This action cannot be undone.',
-              style: TextStyle(fontSize: 14, color: Color(0xFF94A3B8)),
+            SizedBox(height: AppSizes.h8),
+            Text(
+              s.actionCannotBeUndone,
+              style: TextStyle(
+                fontSize: AppSizes.sp14,
+                color: colors.textHint,
+              ),
             ),
-            const SizedBox(height: 24),
+            SizedBox(height: AppSizes.h24),
+
             Row(
               children: [
                 Expanded(
                   child: OutlinedButton(
                     onPressed: () => Navigator.pop(context),
                     style: OutlinedButton.styleFrom(
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      padding:
+                          EdgeInsets.symmetric(vertical: AppSizes.h14),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(AppSizes.r12),
                       ),
+                      side: BorderSide(color: colors.border),
+                      foregroundColor: colors.textPrimary,
                     ),
-                    child: const Text('Cancel'),
+                    child: Text(s.cancel),
                   ),
                 ),
-                const SizedBox(width: 12),
+                SizedBox(width: AppSizes.w12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context);
-                      context.read<NotificationBloc>().add(
-                        BulkDeleteEvent(ids),
-                      );
+                      context
+                          .read<NotificationBloc>()
+                          .add(BulkDeleteEvent(ids));
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFEF4444),
-                      foregroundColor: Colors.white,
-                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      backgroundColor: colors.error,
+                      foregroundColor: colors.textOnPrimary,
+                      padding:
+                          EdgeInsets.symmetric(vertical: AppSizes.h14),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12),
+                        borderRadius: BorderRadius.circular(AppSizes.r12),
                       ),
                     ),
-                    child: const Text(
-                      'Delete',
-                      style: TextStyle(fontWeight: FontWeight.w700),
+                    child: Text(
+                      s.delete,
+                      style: const TextStyle(fontWeight: FontWeight.w700),
                     ),
                   ),
                 ),
@@ -452,24 +483,32 @@ class _NotificationsPageState extends State<NotificationsPage> {
     );
   }
 
+  // ─────────────────────────────────────────────────────────────────────────
+  // Snack bar
+  // ─────────────────────────────────────────────────────────────────────────
+
   void _showSnackBar(BuildContext context, String message) {
+    final colors = context.myColors;
+
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Row(
           children: [
-            const Icon(
+            Icon(
               Icons.check_circle_rounded,
-              color: Colors.white,
-              size: 18,
+              color: colors.textOnPrimary,
+              size: AppSizes.sp18,
             ),
-            const SizedBox(width: 8),
+            SizedBox(width: AppSizes.w8),
             Text(message),
           ],
         ),
-        backgroundColor: const Color(0xFF10B981),
+        backgroundColor: colors.success,
         behavior: SnackBarBehavior.floating,
-        margin: const EdgeInsets.all(16),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        margin: EdgeInsets.all(AppSizes.w16),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.r12),
+        ),
         duration: const Duration(seconds: 2),
       ),
     );

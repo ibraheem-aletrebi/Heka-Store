@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../bloc/notification_bloc.dart';
 import '../bloc/notification_event.dart';
@@ -24,72 +28,68 @@ class GroupedNotificationList extends StatelessWidget {
     required this.scrollController,
   });
 
-  Map<String, List<NotificationEntity>> _groupByDate() {
+  Map<String, List<NotificationEntity>> _groupByDate(S s) {
     final Map<String, List<NotificationEntity>> grouped = {};
     final now = DateTime.now();
 
     for (final n in notifications) {
-      final String key;
       final diff = now.difference(n.createdAt);
+      final String key;
 
       if (diff.inDays == 0) {
-        key = 'Today';
+        key = s.today;
       } else if (diff.inDays == 1) {
-        key = 'Yesterday';
+        key = s.yesterday;
       } else if (diff.inDays < 7) {
-        key = 'This Week';
+        key = s.thisWeek;
       } else if (diff.inDays < 30) {
-        key = 'This Month';
+        key = s.thisMonth;
       } else {
-        key = 'Earlier';
+        key = s.earlier;
       }
 
       grouped.putIfAbsent(key, () => []).add(n);
     }
-
     return grouped;
   }
 
   @override
   Widget build(BuildContext context) {
-    final grouped = _groupByDate();
-    final sectionOrder = ['Today', 'Yesterday', 'This Week', 'This Month', 'Earlier'];
+    final colors = context.myColors;
+    final s = S.of(context);
+    final grouped = _groupByDate(s);
+
+    final sectionOrder = [s.today, s.yesterday, s.thisWeek, s.thisMonth, s.earlier];
     final sections = sectionOrder.where((k) => grouped.containsKey(k)).toList();
 
     return ListView.builder(
       controller: scrollController,
-      padding: const EdgeInsets.only(top: 8, bottom: 24),
+      padding: EdgeInsets.only(top: AppSizes.h8, bottom: AppSizes.h24),
       itemCount: _totalItems(sections, grouped) + (isLoadingMore ? 1 : 0),
       itemBuilder: (context, index) {
-        if (isLoadingMore &&
-            index == _totalItems(sections, grouped)) {
-          return const Padding(
-            padding: EdgeInsets.all(16),
+        // Loading indicator at the bottom
+        if (isLoadingMore && index == _totalItems(sections, grouped)) {
+          return Padding(
+            padding: EdgeInsets.all(AppSizes.w16),
             child: Center(
               child: SizedBox(
-                width: 24,
-                height: 24,
+                width: AppSizes.w24,
+                height: AppSizes.h24,
                 child: CircularProgressIndicator(
                   strokeWidth: 2,
-                  color: Color(0xFF6366F1),
+                  color: colors.primary,
                 ),
               ),
             ),
           );
         }
 
-        // Resolve which item this index maps to
         int counter = 0;
         for (final section in sections) {
-          // Section header
-          if (index == counter) {
-            return _SectionHeader(label: section);
-          }
+          if (index == counter) return _SectionHeader(label: section);
           counter++;
 
-          // Items in this section
-          final items = grouped[section]!;
-          for (final item in items) {
+          for (final item in grouped[section]!) {
             if (index == counter) {
               return GestureDetector(
                 onTap: isSelectionMode
@@ -112,7 +112,6 @@ class GroupedNotificationList extends StatelessWidget {
             counter++;
           }
         }
-
         return const SizedBox.shrink();
       },
     );
@@ -124,7 +123,7 @@ class GroupedNotificationList extends StatelessWidget {
   ) {
     int total = 0;
     for (final s in sections) {
-      total += 1 + (grouped[s]?.length ?? 0); // header + items
+      total += 1 + (grouped[s]?.length ?? 0);
     }
     return total;
   }
@@ -132,30 +131,38 @@ class GroupedNotificationList extends StatelessWidget {
 
 class _SectionHeader extends StatelessWidget {
   final String label;
-
   const _SectionHeader({required this.label});
 
   @override
   Widget build(BuildContext context) {
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
 
     return Padding(
-      padding: const EdgeInsets.fromLTRB(20, 16, 20, 6),
+      padding: EdgeInsets.fromLTRB(
+        AppSizes.w20,
+        AppSizes.h16,
+        AppSizes.w20,
+        AppSizes.h6,
+      ),
       child: Row(
         children: [
           Text(
             label,
             style: TextStyle(
-              fontSize: 12,
+              fontSize: AppSizes.sp12,
               fontWeight: FontWeight.w700,
-              color: isDark ? Colors.white38 : const Color(0xFF94A3B8),
+              color: isDark ? colors.textHint : colors.textHint,
               letterSpacing: 0.8,
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: AppSizes.w10),
           Expanded(
             child: Divider(
-              color: isDark ? Colors.white12 : const Color(0xFFE2E8F0),
+              color: isDark
+                  ? colors.divider.withOpacity(0.3)
+                  : colors.divider,
               height: 1,
             ),
           ),

@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
+import 'package:heka_store/core/services/remote/api_service.dart';
 import '../models/notification_model.dart';
 
 abstract class NotificationRemoteDataSource {
@@ -8,35 +7,18 @@ abstract class NotificationRemoteDataSource {
     int pageNumber = 1,
     int pageSize = 20,
   });
-
   Future<int> getUnreadCount();
-
   Future<bool> markAsRead(int notificationId);
-
   Future<bool> markAllAsRead();
-
   Future<bool> deleteNotification(int notificationId);
-
   Future<bool> bulkDeleteNotifications(List<int> ids);
 }
 
 class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
-  final http.Client client;
-  final String baseUrl;
-  // Pass your auth token here if needed
-  final String? authToken;
+  final ApiService _apiService;
 
-  NotificationRemoteDataSourceImpl({
-    required this.client,
-    this.baseUrl = 'https://heka.runasp.net/api',
-    this.authToken,
-  });
-
-  Map<String, String> get _headers => {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-        if (authToken != null) 'Authorization': 'Bearer $authToken',
-      };
+  NotificationRemoteDataSourceImpl({required ApiService apiService})
+    : _apiService = apiService;
 
   @override
   Future<NotificationListModel> getNotifications({
@@ -44,85 +26,70 @@ class NotificationRemoteDataSourceImpl implements NotificationRemoteDataSource {
     int pageNumber = 1,
     int pageSize = 20,
   }) async {
-    final uri = Uri.parse('$baseUrl/Notifications').replace(
+    final response = await _apiService.get(
+      '/api/Notifications',
       queryParameters: {
-        'unreadOnly': unreadOnly.toString(),
-        'pageNumber': pageNumber.toString(),
-        'pageSize': pageSize.toString(),
+        'unreadOnly': unreadOnly,
+        'pageNumber': pageNumber,
+        'pageSize': pageSize,
       },
     );
 
-    final response = await client.get(uri, headers: _headers);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      if (json['success'] == true) {
-        return NotificationListModel.fromJson(json);
-      }
-      throw Exception(json['message'] ?? 'Failed to fetch notifications');
+    final data = response.data as Map<String, dynamic>;
+    if (data['success'] == true) {
+      return NotificationListModel.fromJson(data);
     }
-    throw Exception('Server error: ${response.statusCode}');
+    throw Exception(data['message'] ?? 'Failed to fetch notifications');
   }
 
   @override
   Future<int> getUnreadCount() async {
-    final uri = Uri.parse('$baseUrl/Notifications/unread/count');
-    final response = await client.get(uri, headers: _headers);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      if (json['success'] == true) {
-        final data = json['data'] as Map<String, dynamic>? ?? {};
-        return data['unreadCount'] as int? ?? 0;
-      }
-      throw Exception(json['message'] ?? 'Failed to fetch unread count');
+    final response = await _apiService.get('/api/Notifications/unread/count');
+
+    final data = response.data as Map<String, dynamic>;
+    if (data['success'] == true) {
+      final body = data['data'] as Map<String, dynamic>? ?? {};
+      return body['unreadCount'] as int? ?? 0;
     }
-    throw Exception('Server error: ${response.statusCode}');
+    throw Exception(data['message'] ?? 'Failed to fetch unread count');
   }
 
   @override
   Future<bool> markAsRead(int notificationId) async {
-    final uri = Uri.parse('$baseUrl/Notifications/$notificationId/read');
-    final response = await client.put(uri, headers: _headers);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      return json['success'] == true;
-    }
-    throw Exception('Server error: ${response.statusCode}');
+    final response = await _apiService.put(
+      '/api/Notifications/$notificationId/read',
+    );
+
+    final data = response.data as Map<String, dynamic>;
+    return data['success'] == true;
   }
 
   @override
   Future<bool> markAllAsRead() async {
-    final uri = Uri.parse('$baseUrl/Notifications/read-all');
-    final response = await client.put(uri, headers: _headers);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      return json['success'] == true;
-    }
-    throw Exception('Server error: ${response.statusCode}');
+    final response = await _apiService.patch('/api/Notifications/read-all');
+
+    final data = response.data as Map<String, dynamic>;
+    return data['success'] == true;
   }
 
   @override
   Future<bool> deleteNotification(int notificationId) async {
-    final uri = Uri.parse('$baseUrl/Notifications/$notificationId');
-    final response = await client.delete(uri, headers: _headers);
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      return json['success'] == true;
-    }
-    throw Exception('Server error: ${response.statusCode}');
+    final response = await _apiService.delete(
+      '/api/Notifications/$notificationId',
+    );
+
+    final data = response.data as Map<String, dynamic>;
+    return data['success'] == true;
   }
 
   @override
   Future<bool> bulkDeleteNotifications(List<int> ids) async {
-    final uri = Uri.parse('$baseUrl/Notifications/bulk');
-    final response = await client.delete(
-      uri,
-      headers: _headers,
-      body: jsonEncode({'ids': ids}),
+    final response = await _apiService.delete(
+      '/api/Notifications/bulk',
+      data: {'ids': ids},
     );
-    if (response.statusCode == 200) {
-      final json = jsonDecode(response.body) as Map<String, dynamic>;
-      return json['success'] == true;
-    }
-    throw Exception('Server error: ${response.statusCode}');
+
+    final data = response.data as Map<String, dynamic>;
+    return data['success'] == true;
   }
 }

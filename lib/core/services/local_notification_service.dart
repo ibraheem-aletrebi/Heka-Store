@@ -1,3 +1,5 @@
+// local_notification_service.dart
+
 import 'dart:convert';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -21,14 +23,18 @@ class LocalNotificationService {
     const settings = InitializationSettings(android: androidSettings);
 
     await _plugin.initialize(
-      onDidReceiveBackgroundNotificationResponse: _onNotificationTap,
       settings: settings,
+      onDidReceiveNotificationResponse: _onNotificationTap, // ✅ foreground tap
+      onDidReceiveBackgroundNotificationResponse:
+          _onNotificationTap, // background tap
     );
+
     const channel = AndroidNotificationChannel(
       _channelId,
       _channelName,
       importance: Importance.high,
     );
+
     await _plugin
         .resolvePlatformSpecificImplementation<
           AndroidFlutterLocalNotificationsPlugin
@@ -36,17 +42,19 @@ class LocalNotificationService {
         ?.createNotificationChannel(channel);
   }
 
+  @pragma('vm:entry-point')
   static void _onNotificationTap(NotificationResponse response) {
+    // TODO: parse response.payload and handle navigation
   }
 
   static Future<void> show(RemoteMessage message) async {
     final data = message.data;
-
     final title =
         message.notification?.title ?? data['title'] ?? 'Notification';
     final body = message.notification?.body ?? data['body'] ?? '';
-    final imageUrl = data['image'];
+    final imageUrl = data['image'] as String?;
     final style = await _buildImageStyle(imageUrl);
+
     final androidDetails = AndroidNotificationDetails(
       _channelId,
       _channelName,
@@ -57,8 +65,11 @@ class LocalNotificationService {
       styleInformation: style,
     );
 
+    // ✅ Safe 32-bit id: take only the lower 20 bits (~1M range, avoids overflow)
+    final id = DateTime.now().millisecondsSinceEpoch & 0xFFFFF;
+
     await _plugin.show(
-      id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
+      id: id,
       title: title,
       body: body,
       notificationDetails: NotificationDetails(android: androidDetails),
@@ -68,18 +79,15 @@ class LocalNotificationService {
 
   static Future<StyleInformation?> _buildImageStyle(String? imageUrl) async {
     if (imageUrl == null || imageUrl.isEmpty) return null;
-
     try {
       final response = await http.get(Uri.parse(imageUrl));
-
       if (response.statusCode != 200) return null;
-
       return BigPictureStyleInformation(
         ByteArrayAndroidBitmap.fromBase64String(
           base64Encode(response.bodyBytes),
         ),
       );
-    } catch (e) {
+    } catch (_) {
       return null;
     }
   }

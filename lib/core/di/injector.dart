@@ -1,4 +1,3 @@
-
 import 'package:get_it/get_it.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/data/data_source/account_remote_data_source.dart';
@@ -143,7 +142,6 @@ import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
 import 'package:heka_store/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:http/http.dart' as http;
 
 final sl = GetIt.instance;
 
@@ -714,13 +712,8 @@ void _initBrandProfile() {
 void _initNotifications() async {
   // ─── Data Source ───────────────────────────────
 
-  final token = await sl<AuthLocalDataSource>().getAccessToken();
   sl.registerLazySingleton<NotificationRemoteDataSource>(
-    () => NotificationRemoteDataSourceImpl(
-      client: http.Client(),
-      // لو عندك token من SecureStorage استخدمه هنا
-      authToken: token,
-    ),
+    () => NotificationRemoteDataSourceImpl(apiService: sl<ApiService>()),
   );
 
   // ─── Repository ────────────────────────────────

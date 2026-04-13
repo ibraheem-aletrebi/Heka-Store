@@ -1,14 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/notifications/presentation/bloc/notification_bloc.dart';
+import 'package:heka_store/Features/notifications/presentation/bloc/notification_event.dart';
 import 'package:heka_store/Features/notifications/presentation/bloc/notification_state.dart';
 import 'package:heka_store/Features/notifications/presentation/pages/notifications_page.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_icon_button.dart';
 
-class NotificationButton extends StatelessWidget {
+class NotificationButton extends StatefulWidget {
   const NotificationButton({super.key});
+
+  @override
+  State<NotificationButton> createState() => _NotificationButtonState();
+}
+
+class _NotificationButtonState extends State<NotificationButton> {
+  @override
+  void initState() {
+    super.initState();
+    // جيب الـ unread count لما الـ widget يظهر
+    context.read<NotificationBloc>().add(const LoadUnreadCountEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,11 +35,20 @@ class NotificationButton extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => NotificationsPage()),
-                );
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider.value(
+                      value: context.read<NotificationBloc>(),
+                      child: const NotificationsPage(),
+                    ),
+                  ),
+                ).then((_) {
+                  // لما يرجع من صفحة الـ notifications، حدّث الـ count
+                  if(context.mounted) {
+                    context.read<NotificationBloc>().add(const LoadUnreadCountEvent());
+                  }
+                });
               },
             ),
-
             if (state is NotificationLoaded && state.unreadCount > 0)
               Positioned(
                 top: AppSizes.w8,

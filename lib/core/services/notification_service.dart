@@ -1,16 +1,29 @@
+// notification_service.dart
+
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
 import 'package:heka_store/core/services/local_notification_service.dart';
 
+// ✅ Must be a top-level function — Firebase background isolate requirement
+@pragma('vm:entry-point')
+Future<void> onBackgroundMessage(RemoteMessage message) async {
+  // ✅ No WidgetsFlutterBinding here — not needed and wrong in isolates
+  await LocalNotificationService.show(message);
+}
+
 class NotificationService {
   NotificationService._();
+
   static final FirebaseMessaging _messaging = FirebaseMessaging.instance;
+
   static Future<void> init() async {
     await _requestPermission();
-    await _logToken();
-    FirebaseMessaging.onBackgroundMessage(_onBackgroundMessage);
+    await _saveToken();
+    // ✅ Init local notifications ONCE here, not per-message
+    await LocalNotificationService.init();
+    FirebaseMessaging.onBackgroundMessage(onBackgroundMessage);
     _listenToForegroundMessages();
     _listenToNotificationClick();
   }
@@ -19,30 +32,25 @@ class NotificationService {
     await _messaging.requestPermission();
   }
 
-  static Future<void> _logToken() async {
+  static Future<void> _saveToken() async {
     final token = await _messaging.getToken();
-    LocalStorageService().setValue<String>(
+    await LocalStorageService().setValue<String>(
       HiveBoxes.data,
-      "fcmToken",
+      'fcmToken',
       token ?? '',
     );
-    print('FCM Token: $token');
+    debugPrint('FCM Token: $token'); // ✅ debugPrint instead of print
   }
 
   static void _listenToForegroundMessages() {
-    FirebaseMessaging.onMessage.listen((message) {
-      LocalNotificationService.show(message);
+    FirebaseMessaging.onMessage.listen((message) async {
+      await LocalNotificationService.show(message); // ✅ No init() here
     });
   }
 
-  @pragma('vm:entry-point')
-  static Future<void> _onBackgroundMessage(RemoteMessage message) async {
-    WidgetsFlutterBinding.ensureInitialized();
-    await LocalNotificationService.init();
-    await LocalNotificationService.show(message);
-  }
-
   static void _listenToNotificationClick() {
-    FirebaseMessaging.onMessageOpenedApp.listen((message) {});
+    FirebaseMessaging.onMessageOpenedApp.listen((message) {
+      // TODO: handle navigation based on message.data
+    });
   }
 }

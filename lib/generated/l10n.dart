@@ -3239,6 +3239,296 @@ class S {
   String get products {
     return Intl.message('Products', name: 'products', desc: '', args: []);
   }
+
+  /// `Notifications`
+  String get notifications {
+    return Intl.message(
+      'Notifications',
+      name: 'notifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `{count} unread`
+  String unreadCount(int count) {
+    return Intl.message(
+      '$count unread',
+      name: 'unreadCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} selected`
+  String selectedCount(int count) {
+    return Intl.message(
+      '$count selected',
+      name: 'selectedCount',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `All`
+  String get all {
+    return Intl.message('All', name: 'all', desc: '', args: []);
+  }
+
+  /// `Unread`
+  String get unread {
+    return Intl.message('Unread', name: 'unread', desc: '', args: []);
+  }
+
+  /// `Select`
+  String get select {
+    return Intl.message('Select', name: 'select', desc: '', args: []);
+  }
+
+  /// `Select All`
+  String get selectAll {
+    return Intl.message('Select All', name: 'selectAll', desc: '', args: []);
+  }
+
+  /// `Mark all read`
+  String get markAllRead {
+    return Intl.message(
+      'Mark all read',
+      name: 'markAllRead',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Mark as read`
+  String get markAsRead {
+    return Intl.message('Mark as read', name: 'markAsRead', desc: '', args: []);
+  }
+
+  /// `Try Again`
+  String get tryAgain {
+    return Intl.message('Try Again', name: 'tryAgain', desc: '', args: []);
+  }
+
+  /// `Long press to select • Swipe left to delete`
+  String get selectionHint {
+    return Intl.message(
+      'Long press to select • Swipe left to delete',
+      name: 'selectionHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Connection Error`
+  String get connectionError {
+    return Intl.message(
+      'Connection Error',
+      name: 'connectionError',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This action cannot be undone.`
+  String get actionCannotBeUndone {
+    return Intl.message(
+      'This action cannot be undone.',
+      name: 'actionCannotBeUndone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Delete {count} notification{count, plural, one{} other{s}}?`
+  String deleteNotificationsConfirm(int count) {
+    return Intl.message(
+      'Delete $count notification${Intl.plural(count, one: '', other: 's')}?',
+      name: 'deleteNotificationsConfirm',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `All caught up!`
+  String get allCaughtUp {
+    return Intl.message(
+      'All caught up!',
+      name: 'allCaughtUp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No notifications yet`
+  String get noNotificationsYet {
+    return Intl.message(
+      'No notifications yet',
+      name: 'noNotificationsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have no unread notifications.\nYou're all caught up!`
+  String get noUnreadNotifications {
+    return Intl.message(
+      'You have no unread notifications.\nYou\'re all caught up!',
+      name: 'noUnreadNotifications',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `When you get notifications,\nthey'll show up here.`
+  String get notificationsWillAppearHere {
+    return Intl.message(
+      'When you get notifications,\nthey\'ll show up here.',
+      name: 'notificationsWillAppearHere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Today`
+  String get today {
+    return Intl.message('Today', name: 'today', desc: '', args: []);
+  }
+
+  /// `Yesterday`
+  String get yesterday {
+    return Intl.message('Yesterday', name: 'yesterday', desc: '', args: []);
+  }
+
+  /// `This Week`
+  String get thisWeek {
+    return Intl.message('This Week', name: 'thisWeek', desc: '', args: []);
+  }
+
+  /// `This Month`
+  String get thisMonth {
+    return Intl.message('This Month', name: 'thisMonth', desc: '', args: []);
+  }
+
+  /// `Earlier`
+  String get earlier {
+    return Intl.message('Earlier', name: 'earlier', desc: '', args: []);
+  }
+
+  /// `Order ID`
+  String get orderId {
+    return Intl.message('Order ID', name: 'orderId', desc: '', args: []);
+  }
+
+  /// `Product ID`
+  String get productId {
+    return Intl.message('Product ID', name: 'productId', desc: '', args: []);
+  }
+
+  /// `Vendor ID`
+  String get vendorId {
+    return Intl.message('Vendor ID', name: 'vendorId', desc: '', args: []);
+  }
+
+  /// `Received`
+  String get received {
+    return Intl.message('Received', name: 'received', desc: '', args: []);
+  }
+
+  /// `Read at`
+  String get readAt {
+    return Intl.message('Read at', name: 'readAt', desc: '', args: []);
+  }
+
+  /// `Review`
+  String get notificationTypeReview {
+    return Intl.message(
+      'Review',
+      name: 'notificationTypeReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order`
+  String get notificationTypeOrder {
+    return Intl.message(
+      'Order',
+      name: 'notificationTypeOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Payment`
+  String get notificationTypePayment {
+    return Intl.message(
+      'Payment',
+      name: 'notificationTypePayment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipping`
+  String get notificationTypeShipping {
+    return Intl.message(
+      'Shipping',
+      name: 'notificationTypeShipping',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `System`
+  String get notificationTypeSystem {
+    return Intl.message(
+      'System',
+      name: 'notificationTypeSystem',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Promotion`
+  String get notificationTypePromotion {
+    return Intl.message(
+      'Promotion',
+      name: 'notificationTypePromotion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Alert`
+  String get notificationTypeAlert {
+    return Intl.message(
+      'Alert',
+      name: 'notificationTypeAlert',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Message`
+  String get notificationTypeMessage {
+    return Intl.message(
+      'Message',
+      name: 'notificationTypeMessage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Notification`
+  String get notificationTypeUnknown {
+    return Intl.message(
+      'Notification',
+      name: 'notificationTypeUnknown',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

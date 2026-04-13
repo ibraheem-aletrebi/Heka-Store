@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
+import 'package:heka_store/core/extensions/color_extension.dart';
+import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 import '../../domain/entities/notification_entity.dart';
 import '../bloc/notification_bloc.dart';
 import '../bloc/notification_event.dart';
@@ -26,7 +30,10 @@ class NotificationDetailSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final n = notification;
-    final isDark = Theme.of(context).brightness == Brightness.dark;
+    final colors = context.myColors;
+    final isDark =
+        context.watch<ThemeBloc>().state.themeMode == ThemeMode.dark;
+    final s = S.of(context);
     final typeColor = NotificationTypeHelper.getColor(n.type);
     final typeIcon = NotificationTypeHelper.getIcon(n.type);
     final lightColor = NotificationTypeHelper.getLightColor(n.type);
@@ -37,73 +44,78 @@ class NotificationDetailSheet extends StatelessWidget {
       maxChildSize: 0.85,
       builder: (_, controller) => Container(
         decoration: BoxDecoration(
-          color: isDark ? const Color(0xFF1E293B) : Colors.white,
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+          color: isDark ? colors.surface : colors.surface,
+          borderRadius: BorderRadius.vertical(
+            top: Radius.circular(AppSizes.r24 + 4),
+          ),
         ),
         child: ListView(
           controller: controller,
           padding: EdgeInsets.only(
-            bottom: MediaQuery.of(context).padding.bottom + 16,
+            bottom: MediaQuery.of(context).padding.bottom + AppSizes.h16,
           ),
           children: [
-            // Handle
+            // ── Handle ────────────────────────────────────────────
             Center(
               child: Container(
-                margin: const EdgeInsets.only(top: 12, bottom: 20),
-                width: 40,
-                height: 4,
+                margin: EdgeInsets.only(
+                  top: AppSizes.h12,
+                  bottom: AppSizes.h20,
+                ),
+                width: AppSizes.w40,
+                height: AppSizes.h4,
                 decoration: BoxDecoration(
                   color: isDark
-                      ? Colors.white12
-                      : const Color(0xFFCBD5E1),
-                  borderRadius: BorderRadius.circular(2),
+                      ? colors.divider.withOpacity(0.3)
+                      : colors.divider,
+                  borderRadius: BorderRadius.circular(AppSizes.r4 / 2),
                 ),
               ),
             ),
 
-            // Icon + Type
+            // ── Icon + type row ───────────────────────────────────
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
               child: Row(
                 children: [
                   Container(
-                    width: 56,
-                    height: 56,
+                    width: AppSizes.w56,
+                    height: AppSizes.h56,
                     decoration: BoxDecoration(
                       color: lightColor,
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(AppSizes.r16),
                     ),
-                    child: Icon(typeIcon, color: typeColor, size: 28),
+                    child: Icon(typeIcon, color: typeColor, size: AppSizes.sp28),
                   ),
-                  const SizedBox(width: 16),
+                  SizedBox(width: AppSizes.w16),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 4),
+                        padding: EdgeInsets.symmetric(
+                          horizontal: AppSizes.w10,
+                          vertical: AppSizes.h4,
+                        ),
                         decoration: BoxDecoration(
                           color: lightColor,
-                          borderRadius: BorderRadius.circular(20),
+                          borderRadius: BorderRadius.circular(AppSizes.r20),
                         ),
                         child: Text(
-                          NotificationTypeHelper.getLabel(n.type),
+                          NotificationTypeHelper.getLabel(n.type, context: context),
                           style: TextStyle(
-                            fontSize: 11,
+                            fontSize: AppSizes.sp11,
                             fontWeight: FontWeight.w700,
                             color: typeColor,
                             letterSpacing: 0.5,
                           ),
                         ),
                       ),
-                      const SizedBox(height: 4),
+                      SizedBox(height: AppSizes.h4),
                       Text(
                         timeago.format(n.createdAt, allowFromNow: true),
                         style: TextStyle(
-                          fontSize: 12,
-                          color: isDark
-                              ? Colors.white38
-                              : const Color(0xFF94A3B8),
+                          fontSize: AppSizes.sp12,
+                          color: colors.textHint,
                         ),
                       ),
                     ],
@@ -111,21 +123,22 @@ class NotificationDetailSheet extends StatelessWidget {
                   const Spacer(),
                   if (!n.isRead)
                     Container(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 10, vertical: 4),
-                      decoration: BoxDecoration(
-                        color: const Color(0xFFEF4444).withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: const Color(0xFFEF4444).withOpacity(0.3),
-                        ),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSizes.w10,
+                        vertical: AppSizes.h4,
                       ),
-                      child: const Text(
-                        'Unread',
+                      decoration: BoxDecoration(
+                        color: colors.error.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(AppSizes.r20),
+                        border: Border.all(
+                            color: colors.error.withOpacity(0.3)),
+                      ),
+                      child: Text(
+                        s.unread,
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: AppSizes.sp11,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFFEF4444),
+                          color: colors.error,
                         ),
                       ),
                     ),
@@ -133,55 +146,54 @@ class NotificationDetailSheet extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 20),
-
-            // Divider
+            SizedBox(height: AppSizes.h20),
             Divider(
-              color: isDark ? Colors.white12 : const Color(0xFFF1F5F9),
+              color: isDark
+                  ? colors.divider.withOpacity(0.2)
+                  : colors.background,
               height: 1,
             ),
+            SizedBox(height: AppSizes.h20),
 
-            const SizedBox(height: 20),
-
-            // Title
+            // ── Title ─────────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
               child: Text(
                 n.title,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: AppSizes.sp20,
                   fontWeight: FontWeight.w800,
-                  color: isDark ? Colors.white : const Color(0xFF0F172A),
+                  color: colors.textPrimary,
                   letterSpacing: -0.5,
                   height: 1.3,
                 ),
               ),
             ),
 
-            const SizedBox(height: 12),
+            SizedBox(height: AppSizes.h12),
 
-            // Message
+            // ── Message ───────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
               child: Text(
                 n.message,
                 style: TextStyle(
-                  fontSize: 15,
-                  color: isDark ? Colors.white60 : const Color(0xFF475569),
+                  fontSize: AppSizes.sp15,
+                  color: colors.textSecondary,
                   height: 1.6,
                 ),
               ),
             ),
 
-            // Meta info
+            // ── Meta info ─────────────────────────────────────────
             if (n.orderId != null || n.productId != null || n.vendorId != null)
-              ..._buildMetaInfo(context, n, isDark),
+              ..._buildMetaInfo(context, n, isDark, colors, s),
 
-            const SizedBox(height: 24),
+            SizedBox(height: AppSizes.h24),
 
-            // Actions
+            // ── Actions ───────────────────────────────────────────
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24),
+              padding: EdgeInsets.symmetric(horizontal: AppSizes.w24),
               child: Row(
                 children: [
                   if (!n.isRead) ...[
@@ -193,19 +205,22 @@ class NotificationDetailSheet extends StatelessWidget {
                               .add(MarkAsReadEvent(n.id));
                           Navigator.pop(context);
                         },
-                        icon: const Icon(Icons.mark_email_read_rounded, size: 18),
-                        label: const Text('Mark as read'),
+                        icon: Icon(
+                          Icons.mark_email_read_rounded,
+                          size: AppSizes.sp18,
+                        ),
+                        label: Text(s.markAsRead),
                         style: OutlinedButton.styleFrom(
                           foregroundColor: typeColor,
                           side: BorderSide(color: typeColor.withOpacity(0.4)),
-                          padding: const EdgeInsets.symmetric(vertical: 14),
+                          padding: EdgeInsets.symmetric(vertical: AppSizes.h14),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
+                            borderRadius: BorderRadius.circular(AppSizes.r12),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(width: 12),
+                    SizedBox(width: AppSizes.w12),
                   ],
                   Expanded(
                     child: ElevatedButton.icon(
@@ -215,14 +230,14 @@ class NotificationDetailSheet extends StatelessWidget {
                             .add(DeleteNotificationEvent(n.id));
                         Navigator.pop(context);
                       },
-                      icon: const Icon(Icons.delete_rounded, size: 18),
-                      label: const Text('Delete'),
+                      icon: Icon(Icons.delete_rounded, size: AppSizes.sp18),
+                      label: Text(s.delete),
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: const Color(0xFFEF4444),
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(vertical: 14),
+                        backgroundColor: colors.error,
+                        foregroundColor: colors.textOnPrimary,
+                        padding: EdgeInsets.symmetric(vertical: AppSizes.h14),
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(AppSizes.r12),
                         ),
                         elevation: 0,
                       ),
@@ -241,21 +256,19 @@ class NotificationDetailSheet extends StatelessWidget {
     BuildContext context,
     NotificationEntity n,
     bool isDark,
+    dynamic colors,
+    S s,
   ) {
     return [
-      const SizedBox(height: 20),
+      SizedBox(height: AppSizes.h20),
       Container(
-        margin: const EdgeInsets.symmetric(horizontal: 24),
-        padding: const EdgeInsets.all(16),
+        margin: EdgeInsets.symmetric(horizontal: AppSizes.w24),
+        padding: EdgeInsets.all(AppSizes.w16),
         decoration: BoxDecoration(
-          color: isDark
-              ? const Color(0xFF0F172A)
-              : const Color(0xFFF8FAFC),
-          borderRadius: BorderRadius.circular(12),
+          color: isDark ? colors.background : colors.background,
+          borderRadius: BorderRadius.circular(AppSizes.r12),
           border: Border.all(
-            color: isDark
-                ? Colors.white12
-                : const Color(0xFFE2E8F0),
+            color: isDark ? colors.divider.withOpacity(0.3) : colors.divider,
           ),
         ),
         child: Column(
@@ -263,43 +276,43 @@ class NotificationDetailSheet extends StatelessWidget {
             if (n.orderId != null)
               _MetaRow(
                 icon: Icons.receipt_long_rounded,
-                label: 'Order ID',
+                label: s.orderId,
                 value: '#${n.orderId}',
-                isDark: isDark,
+                colors: colors,
               ),
             if (n.productId != null) ...[
-              if (n.orderId != null) const SizedBox(height: 8),
+              if (n.orderId != null) SizedBox(height: AppSizes.h8),
               _MetaRow(
                 icon: Icons.inventory_2_rounded,
-                label: 'Product ID',
+                label: s.productId,
                 value: '#${n.productId}',
-                isDark: isDark,
+                colors: colors,
               ),
             ],
             if (n.vendorId != null) ...[
               if (n.orderId != null || n.productId != null)
-                const SizedBox(height: 8),
+                SizedBox(height: AppSizes.h8),
               _MetaRow(
                 icon: Icons.store_rounded,
-                label: 'Vendor ID',
+                label: s.vendorId,
                 value: '#${n.vendorId}',
-                isDark: isDark,
+                colors: colors,
               ),
             ],
-            const SizedBox(height: 8),
+            SizedBox(height: AppSizes.h8),
             _MetaRow(
               icon: Icons.calendar_today_rounded,
-              label: 'Received',
+              label: s.received,
               value: _formatDate(n.createdAt),
-              isDark: isDark,
+              colors: colors,
             ),
             if (n.readAt != null) ...[
-              const SizedBox(height: 8),
+              SizedBox(height: AppSizes.h8),
               _MetaRow(
                 icon: Icons.done_all_rounded,
-                label: 'Read at',
+                label: s.readAt,
                 value: _formatDate(n.readAt!),
-                isDark: isDark,
+                colors: colors,
               ),
             ],
           ],
@@ -309,13 +322,13 @@ class NotificationDetailSheet extends StatelessWidget {
   }
 
   String _formatDate(DateTime dt) {
-    final months = [
-      'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
-      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+    const months = [
+      'Jan','Feb','Mar','Apr','May','Jun',
+      'Jul','Aug','Sep','Oct','Nov','Dec',
     ];
-    final hour = dt.hour.toString().padLeft(2, '0');
-    final min = dt.minute.toString().padLeft(2, '0');
-    return '${months[dt.month - 1]} ${dt.day}, ${dt.year} at $hour:$min';
+    final h = dt.hour.toString().padLeft(2, '0');
+    final m = dt.minute.toString().padLeft(2, '0');
+    return '${months[dt.month - 1]} ${dt.day}, ${dt.year} at $h:$m';
   }
 }
 
@@ -323,39 +336,35 @@ class _MetaRow extends StatelessWidget {
   final IconData icon;
   final String label;
   final String value;
-  final bool isDark;
+  final dynamic colors;
 
   const _MetaRow({
     required this.icon,
     required this.label,
     required this.value,
-    required this.isDark,
+    required this.colors,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Icon(
-          icon,
-          size: 15,
-          color: isDark ? Colors.white38 : const Color(0xFF94A3B8),
-        ),
-        const SizedBox(width: 8),
+        Icon(icon, size: AppSizes.sp15, color: colors.textHint),
+        SizedBox(width: AppSizes.w8),
         Text(
           label,
           style: TextStyle(
-            fontSize: 12,
-            color: isDark ? Colors.white38 : const Color(0xFF94A3B8),
+            fontSize: AppSizes.sp12,
+            color: colors.textHint,
           ),
         ),
         const Spacer(),
         Text(
           value,
           style: TextStyle(
-            fontSize: 13,
+            fontSize: AppSizes.sp13,
             fontWeight: FontWeight.w600,
-            color: isDark ? Colors.white70 : const Color(0xFF334155),
+            color: colors.textPrimary,
           ),
         ),
       ],
