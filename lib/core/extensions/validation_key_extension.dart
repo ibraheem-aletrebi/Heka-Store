@@ -37,6 +37,8 @@ extension ValidationKeyTranslation on ValidationKey {
       ValidationKey.phoneInvalid => s.phoneInvalid,
 
       ValidationKey.fieldRequired => s.fieldRequired,
+
+      ValidationKey.accountDeleted => s.accountDeletedSuccessfully,
     };
   }
 }

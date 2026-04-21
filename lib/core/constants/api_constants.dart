@@ -46,4 +46,10 @@ class ApiConstants {
 
   static const String googleLogin = '/api/Account/google-login';
   static const String updateFcmToken = '/api/Account/update-fcm-token';
+
+  static const String deleteAccount = '/api/Account/delete-account';
+  static const String logout = '/api/Account/revoke-token';
+
+  static String orderTracking(String orderNumber) =>
+      '/api/Orders/$orderNumber/track';
 }

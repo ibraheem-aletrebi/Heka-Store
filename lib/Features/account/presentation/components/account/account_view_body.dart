@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:heka_store/Features/account/presentation/components/account/account_view_app_bar.dart';
-import 'package:heka_store/Features/account/presentation/components/account/logout_button.dart';
 import 'package:heka_store/Features/account/presentation/components/account/profile_header.dart';
 import 'package:heka_store/Features/account/presentation/components/account/sliver_menu.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
@@ -16,8 +15,7 @@ class AccountViewBody extends StatelessWidget {
         SliverToBoxAdapter(child: ProfileHeader()),
         SliverToBoxAdapter(child: Divider(thickness: AppSizes.h8)),
         SliverMenu(),
-        SliverToBoxAdapter(child: Divider(thickness: AppSizes.h8)),
-        SliverToBoxAdapter(child: LogoutButton()),
+        SliverToBoxAdapter(child: SizedBox(height: AppSizes.h100)),
       ],
     );
   }

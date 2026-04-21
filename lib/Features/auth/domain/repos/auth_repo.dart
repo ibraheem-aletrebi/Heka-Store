@@ -6,6 +6,7 @@ import 'package:heka_store/Features/auth/data/models/login/login_request_model.d
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/data/models/register/register_request_model.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
+import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class AuthRepo {
   // ─── Login ────────────────────────────────────────
@@ -34,11 +35,12 @@ abstract class AuthRepo {
   // ─── Session ──────────────────────────────────────
   Future<String?> getPendingVerifyEmail();
   Future<bool> isLoggedIn();
-  Future<void> logout();
+  Future<ApiResult<void>> logout();
 
 
 
 Future<ApiResult<LoginResponseModel>> googleLogin();
 Future<ApiResult<void>> updateFcmToken(String fcmToken);
 
+Future<ApiResult<void>> deleteAccount({required String password});
 }

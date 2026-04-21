@@ -1,3 +1,4 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/account/presentation/views/edit_profile_view.dart';
 import 'package:heka_store/Features/address/data/models/address_model.dart';
@@ -15,6 +16,9 @@ import 'package:heka_store/Features/home/presentation/views/categories_view.dart
 import 'package:heka_store/Features/home/presentation/views/main_layout_view.dart';
 import 'package:heka_store/Features/home/presentation/views/sub_category_view.dart';
 import 'package:heka_store/Features/onboarding/presentation/view/onboarding_view.dart';
+import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
+import 'package:heka_store/Features/order/presentation/views/my_orders_screen.dart';
+import 'package:heka_store/Features/order/presentation/views/order_tracking_screen.dart';
 import 'package:heka_store/Features/product_details/presentation/views/product_details_view.dart';
 import 'package:heka_store/Features/splash/presentation/views/splash_view.dart';
 import 'package:heka_store/Features/wishlist/presentation/view/previous_viewed_products_view.dart';
@@ -108,11 +112,29 @@ class AppRouter {
         },
       ),
 
-       GoRoute(
+      GoRoute(
         path: AppRoutes.brandProfile,
         builder: (context, state) {
           final extra = state.extra as int;
           return BrandProfileView(brandId: extra);
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.myOrders,
+        builder: (context, state) {
+          return BlocProvider(
+            create: (context) => sl<MyOrdersBloc>(),
+            child: MyOrdersScreen(),
+          );
+        },
+      ),
+
+      GoRoute(
+        path: AppRoutes.trackOrder,
+        builder: (context, state) {
+          final extra = state.extra as String;
+          return OrderTrackingScreen(initialOrderNumber: extra);
         },
       ),
     ],

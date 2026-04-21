@@ -3110,11 +3110,11 @@ class S {
     );
   }
 
-  /// `In Transit`
-  String get myOrdersStatusInTransit {
+  /// `Shipped`
+  String get myOrdersStatusShipped {
     return Intl.message(
-      'In Transit',
-      name: 'myOrdersStatusInTransit',
+      'Shipped',
+      name: 'myOrdersStatusShipped',
       desc: '',
       args: [],
     );
@@ -3135,6 +3135,16 @@ class S {
     return Intl.message(
       'Cancelled',
       name: 'myOrdersStatusCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Returned`
+  String get myOrdersStatusReturned {
+    return Intl.message(
+      'Returned',
+      name: 'myOrdersStatusReturned',
       desc: '',
       args: [],
     );
@@ -3760,6 +3770,566 @@ class S {
     return Intl.message(
       'No categories available',
       name: 'noCategoriesAvailable',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Account deleted successfully`
+  String get accountDeletedSuccessfully {
+    return Intl.message(
+      'Account deleted successfully',
+      name: 'accountDeletedSuccessfully',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Orders`
+  String get menuMyOrders {
+    return Intl.message(
+      'My Orders',
+      name: 'menuMyOrders',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Address Book`
+  String get menuAddressBook {
+    return Intl.message(
+      'Address Book',
+      name: 'menuAddressBook',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Notifications`
+  String get menuNotifications {
+    return Intl.message(
+      'Notifications',
+      name: 'menuNotifications',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Change Language`
+  String get menuChangeLanguage {
+    return Intl.message(
+      'Change Language',
+      name: 'menuChangeLanguage',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get menuTheme {
+    return Intl.message(
+      'Theme',
+      name: 'menuTheme',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `FAQs`
+  String get menuFaqs {
+    return Intl.message(
+      'FAQs',
+      name: 'menuFaqs',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Help Center`
+  String get menuHelpCenter {
+    return Intl.message(
+      'Help Center',
+      name: 'menuHelpCenter',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get menuDeleteAccount {
+    return Intl.message(
+      'Delete Account',
+      name: 'menuDeleteAccount',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get menuLogOut {
+    return Intl.message(
+      'Log Out',
+      name: 'menuLogOut',
+      desc: 'Account menu item',
+      args: [],
+    );
+  }
+
+  /// `Choose Language`
+  String get chooseLanguage {
+    return Intl.message(
+      'Choose Language',
+      name: 'chooseLanguage',
+      desc: 'Bottom sheet title',
+      args: [],
+    );
+  }
+
+  /// `English`
+  String get languageEnglish {
+    return Intl.message(
+      'English',
+      name: 'languageEnglish',
+      desc: 'English option label',
+      args: [],
+    );
+  }
+
+  /// `العربية`
+  String get languageArabic {
+    return Intl.message(
+      'العربية',
+      name: 'languageArabic',
+      desc: 'Arabic option label',
+      args: [],
+    );
+  }
+
+  /// `Choose Theme`
+  String get chooseTheme {
+    return Intl.message(
+      'Choose Theme',
+      name: 'chooseTheme',
+      desc: 'Bottom sheet title',
+      args: [],
+    );
+  }
+
+  /// `Light`
+  String get themeLight {
+    return Intl.message(
+      'Light',
+      name: 'themeLight',
+      desc: 'Light theme option',
+      args: [],
+    );
+  }
+
+  /// `Dark`
+  String get themeDark {
+    return Intl.message(
+      'Dark',
+      name: 'themeDark',
+      desc: 'Dark theme option',
+      args: [],
+    );
+  }
+
+  /// `System Default`
+  String get themeSystemDefault {
+    return Intl.message(
+      'System Default',
+      name: 'themeSystemDefault',
+      desc: 'System theme option',
+      args: [],
+    );
+  }
+
+  /// `Delete Account`
+  String get deleteAccountTitle {
+    return Intl.message(
+      'Delete Account',
+      name: 'deleteAccountTitle',
+      desc: 'Dialog title',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to permanently delete your account? This action cannot be undone and all your data will be lost.`
+  String get deleteAccountMessage {
+    return Intl.message(
+      'Are you sure you want to permanently delete your account? This action cannot be undone and all your data will be lost.',
+      name: 'deleteAccountMessage',
+      desc: 'Warning message in delete account dialog',
+      args: [],
+    );
+  }
+
+  /// `Confirm Your Identity`
+  String get deleteAccountConfirmPasswordTitle {
+    return Intl.message(
+      'Confirm Your Identity',
+      name: 'deleteAccountConfirmPasswordTitle',
+      desc: 'Password confirmation dialog title',
+      args: [],
+    );
+  }
+
+  /// `Enter your password to confirm account deletion.`
+  String get deleteAccountConfirmPasswordSubtitle {
+    return Intl.message(
+      'Enter your password to confirm account deletion.',
+      name: 'deleteAccountConfirmPasswordSubtitle',
+      desc: 'Password confirmation dialog subtitle',
+      args: [],
+    );
+  }
+
+  /// `Delete`
+  String get deleteAccountConfirm {
+    return Intl.message(
+      'Delete',
+      name: 'deleteAccountConfirm',
+      desc: 'Confirm delete button',
+      args: [],
+    );
+  }
+
+  /// `Account deletion requested...`
+  String get deleteAccountRequested {
+    return Intl.message(
+      'Account deletion requested...',
+      name: 'deleteAccountRequested',
+      desc: 'Snackbar after delete triggered',
+      args: [],
+    );
+  }
+
+  /// `Continue`
+  String get continueLabel {
+    return Intl.message(
+      'Continue',
+      name: 'continueLabel',
+      desc: 'Continue button label',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logOutTitle {
+    return Intl.message(
+      'Log Out',
+      name: 'logOutTitle',
+      desc: 'Logout dialog title',
+      args: [],
+    );
+  }
+
+  /// `Are you sure you want to log out?`
+  String get logOutMessage {
+    return Intl.message(
+      'Are you sure you want to log out?',
+      name: 'logOutMessage',
+      desc: 'Logout confirmation message',
+      args: [],
+    );
+  }
+
+  /// `Log Out`
+  String get logOutConfirm {
+    return Intl.message(
+      'Log Out',
+      name: 'logOutConfirm',
+      desc: 'Logout confirm button',
+      args: [],
+    );
+  }
+
+  /// `Track Order`
+  String get trackOrder {
+    return Intl.message('Track Order', name: 'trackOrder', desc: '', args: []);
+  }
+
+  /// `Refresh`
+  String get refresh {
+    return Intl.message('Refresh', name: 'refresh', desc: '', args: []);
+  }
+
+  /// `Enter order number…`
+  String get enterOrderNumber {
+    return Intl.message(
+      'Enter order number…',
+      name: 'enterOrderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Track`
+  String get track {
+    return Intl.message('Track', name: 'track', desc: '', args: []);
+  }
+
+  /// `Track Your Order`
+  String get trackYourOrder {
+    return Intl.message(
+      'Track Your Order',
+      name: 'trackYourOrder',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter an order number above to follow your delivery in real time`
+  String get enterOrderNumberToTrack {
+    return Intl.message(
+      'Enter an order number above to follow your delivery in real time',
+      name: 'enterOrderNumberToTrack',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Number`
+  String get orderNumber {
+    return Intl.message(
+      'Order Number',
+      name: 'orderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rider location`
+  String get riderLocation {
+    return Intl.message(
+      'Rider location',
+      name: 'riderLocation',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Not available yet`
+  String get notAvailableYet {
+    return Intl.message(
+      'Not available yet',
+      name: 'notAvailableYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Order Progress`
+  String get orderProgress {
+    return Intl.message(
+      'Order Progress',
+      name: 'orderProgress',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Vendor`
+  String get vendor {
+    return Intl.message('Vendor', name: 'vendor', desc: '', args: []);
+  }
+
+  /// `Rider`
+  String get rider {
+    return Intl.message('Rider', name: 'rider', desc: '', args: []);
+  }
+
+  /// `Order number copied`
+  String get orderNumberCopied {
+    return Intl.message(
+      'Order number copied',
+      name: 'orderNumberCopied',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy order number`
+  String get copyOrderNumber {
+    return Intl.message(
+      'Copy order number',
+      name: 'copyOrderNumber',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Status`
+  String get currentStatus {
+    return Intl.message(
+      'Current Status',
+      name: 'currentStatus',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fetching order details…`
+  String get fetchingOrderDetails {
+    return Intl.message(
+      'Fetching order details…',
+      name: 'fetchingOrderDetails',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pending`
+  String get statusPending {
+    return Intl.message('Pending', name: 'statusPending', desc: '', args: []);
+  }
+
+  /// `Confirmed`
+  String get statusConfirmed {
+    return Intl.message(
+      'Confirmed',
+      name: 'statusConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Processing`
+  String get statusProcessing {
+    return Intl.message(
+      'Processing',
+      name: 'statusProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Shipped`
+  String get statusShipped {
+    return Intl.message('Shipped', name: 'statusShipped', desc: '', args: []);
+  }
+
+  /// `Delivered`
+  String get statusDelivered {
+    return Intl.message(
+      'Delivered',
+      name: 'statusDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cancelled`
+  String get statusCancelled {
+    return Intl.message(
+      'Cancelled',
+      name: 'statusCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Returned`
+  String get statusReturned {
+    return Intl.message('Returned', name: 'statusReturned', desc: '', args: []);
+  }
+
+  /// `Unknown`
+  String get statusUnknown {
+    return Intl.message('Unknown', name: 'statusUnknown', desc: '', args: []);
+  }
+
+  /// `Your order has been placed and is awaiting confirmation`
+  String get statusDescPending {
+    return Intl.message(
+      'Your order has been placed and is awaiting confirmation',
+      name: 'statusDescPending',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been confirmed and will be prepared shortly`
+  String get statusDescConfirmed {
+    return Intl.message(
+      'Your order has been confirmed and will be prepared shortly',
+      name: 'statusDescConfirmed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `The vendor is preparing your order`
+  String get statusDescProcessing {
+    return Intl.message(
+      'The vendor is preparing your order',
+      name: 'statusDescProcessing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order is on the way to you`
+  String get statusDescShipped {
+    return Intl.message(
+      'Your order is on the way to you',
+      name: 'statusDescShipped',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been delivered successfully`
+  String get statusDescDelivered {
+    return Intl.message(
+      'Your order has been delivered successfully',
+      name: 'statusDescDelivered',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been cancelled`
+  String get statusDescCancelled {
+    return Intl.message(
+      'Your order has been cancelled',
+      name: 'statusDescCancelled',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been returned successfully`
+  String get statusDescReturned {
+    return Intl.message(
+      'Your order has been returned successfully',
+      name: 'statusDescReturned',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Completed`
+  String get stepCompleted {
+    return Intl.message('Completed', name: 'stepCompleted', desc: '', args: []);
+  }
+
+  /// `In Transit`
+  String get myOrdersStatusInTransit {
+    return Intl.message(
+      'In Transit',
+      name: 'myOrdersStatusInTransit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your order has been shipped and is currently in transit`
+  String get statusDescInTransit {
+    return Intl.message(
+      'Your order has been shipped and is currently in transit',
+      name: 'statusDescInTransit',
       desc: '',
       args: [],
     );

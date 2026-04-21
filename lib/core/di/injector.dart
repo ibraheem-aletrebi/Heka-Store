@@ -25,16 +25,20 @@ import 'package:heka_store/Features/auth/data/data_source/auth_remote_data_sourc
 import 'package:heka_store/Features/auth/data/models/login/user_model.dart';
 import 'package:heka_store/Features/auth/data/repos/auth_repo_imp.dart';
 import 'package:heka_store/Features/auth/domain/repos/auth_repo.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/delete_account_and_logout/delete_account_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/google_login_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/login/login_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/forgot_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/reset_password_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/forgot_password/verify_reset_otp_use_case.dart';
+import 'package:heka_store/Features/auth/domain/use_cases/logout_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/register/register_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/register/verify_email_otp_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/delete_account/delete_account_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/login/login_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/forgot_password/forgot_password_bloc.dart';
+import 'package:heka_store/Features/auth/presentation/blocs/logout/logout_bloc.dart';
 import 'package:heka_store/Features/auth/presentation/blocs/register/register_bloc.dart';
 import 'package:heka_store/Features/brand_profile/data/data_source/brand_local_data_source.dart';
 import 'package:heka_store/Features/brand_profile/data/data_source/brand_remote_data_source.dart';
@@ -99,6 +103,7 @@ import 'package:heka_store/Features/order/domain/use_cases/order_use_cases.dart'
 import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order_details/order_details_bloc.dart';
+import 'package:heka_store/Features/order/presentation/blocs/order_tracking/order_tracking_cubit.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_local_data_source.dart';
 import 'package:heka_store/Features/product_details/data/data_source/product_remote_data_source.dart';
 // ─── Product Details imports ──────────────────────────────────────────────────
@@ -146,6 +151,7 @@ import 'package:heka_store/core/services/nominatim/nominatim_service.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 import 'package:heka_store/core/services/remote/dio_client.dart';
 import 'package:heka_store/core/services/remote/error/api_error_handler.dart';
+import 'package:heka_store/core/services/remote/interceptors/language_interceptor.dart';
 import 'package:heka_store/main.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
@@ -195,12 +201,18 @@ Future<void> _initCore() async {
 
   // ─── App BLoCs ────────────────────────────────────
   sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
-  sl.registerFactory<LanguageBloc>(
-    () => LanguageBloc(localStorage: localStorage),
-  );
+sl.registerFactory<LanguageBloc>(
+  () => LanguageBloc(
+    localStorage: localStorage,
+    languageInterceptor: sl<LanguageInterceptor>(), // ← add
+  ),
+);
 
   // ─── Network ──────────────────────────────────────
   DioClient().init();
+  sl.registerLazySingleton<LanguageInterceptor>(
+    () => DioClient().languageInterceptor,
+  );
   sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
 
   // ─── Error Handler ────────────────────────────────
@@ -291,6 +303,15 @@ void _initAuth() {
   sl.registerFactory<GoogleLoginUseCase>(
     () => GoogleLoginUseCase(sl<AuthRepo>()),
   );
+
+  sl.registerFactory<DeleteAccountUseCase>(
+    () => DeleteAccountUseCase( sl<AuthRepo>()),
+  );
+
+  sl.registerFactory<LogoutUseCase>(
+    () => LogoutUseCase( sl<AuthRepo>()),
+  );
+
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<LoginBloc>(
     () => LoginBloc(
@@ -309,6 +330,14 @@ void _initAuth() {
       resetPasswordUseCase: sl<ResetPasswordUseCase>(),
     ),
   );
+  sl.registerFactory<DeleteAccountBloc>(
+    () => DeleteAccountBloc(deleteAccountUseCase: sl<DeleteAccountUseCase>()),
+  );
+  sl.registerFactory<LogoutBloc>(
+    () => LogoutBloc(logoutUseCase: sl<LogoutUseCase>()),
+  );
+
+
 }
 
 // ─── Address ──────────────────────────────────────────────────────────────────
@@ -677,6 +706,9 @@ void _initOrder() {
 
   sl.registerFactory<MyOrdersBloc>(
     () => MyOrdersBloc(getMyOrdersUseCase: sl<GetMyOrdersUseCase>()),
+  );
+    sl.registerFactory<OrderTrackingCubit>(
+    () => OrderTrackingCubit(repo: sl<OrderRepository>()),
   );
 }
 

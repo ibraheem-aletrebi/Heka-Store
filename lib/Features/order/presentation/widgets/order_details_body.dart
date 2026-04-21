@@ -3,10 +3,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/order/data/models/order_details_model.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order_details/order_details_bloc.dart';
-import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
-import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/generated/l10n.dart';
 
@@ -16,17 +14,12 @@ class OrderDetailsBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
-    final colors = context.myColors;
 
     return Scaffold(
-      backgroundColor: colors.background,
+      // uses scaffoldBackgroundColor from AppTheme automatically
       appBar: AppBar(
-        backgroundColor: colors.surface,
-        elevation: 0,
-        title: Text(
-          s.orderDetailsTitle,
-          style: AppTextStyles.bold18.copyWith(color: colors.textPrimary),
-        ),
+        // uses appBarTheme from AppTheme automatically
+        title: Text(s.orderDetailsTitle),
       ),
       body: BlocBuilder<OrderDetailsBloc, OrderDetailsState>(
         builder: (context, state) {
@@ -52,11 +45,8 @@ class OrderDetailsBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // ── Status banner ──────────────────────────────────────
                 _StatusBanner(status: status, order: order),
                 SizedBox(height: AppSizes.h16),
-
-                // ── Products ───────────────────────────────────────────
                 _SectionCard(
                   title: s.orderDetailsProducts,
                   child: Column(
@@ -66,27 +56,20 @@ class OrderDetailsBody extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: AppSizes.h12),
-
-                // ── Price breakdown ────────────────────────────────────
                 _SectionCard(
                   title: s.orderDetailsPriceSummary,
                   child: _PriceSummary(order: order),
                 ),
                 SizedBox(height: AppSizes.h12),
-
-                // ── Shipping info ──────────────────────────────────────
                 _SectionCard(
                   title: s.orderDetailsShipping,
                   child: _ShippingInfo(order: order),
                 ),
                 SizedBox(height: AppSizes.h12),
-
-                // ── Payment info ───────────────────────────────────────
                 _SectionCard(
                   title: s.orderDetailsPayment,
                   child: _PaymentInfo(order: order),
                 ),
-
                 SizedBox(height: AppSizes.h32),
               ],
             ),
@@ -107,26 +90,30 @@ class _StatusBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final colors = context.myColors;
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: colors.surface,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(AppSizes.r16),
-        border: Border.all(color: colors.border),
+        border: Border.all(color: theme.colorScheme.outline),
       ),
       clipBehavior: Clip.hardEdge,
       child: Column(
         children: [
-          Container(height: 4, color: status.accentColor),
+          // accent stripe
+          Container(height: AppSizes.h4, color: status.accentColor),
           Padding(
             padding: EdgeInsets.all(AppSizes.w14),
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                // status icon
                 Container(
-                  width: 44,
-                  height: 44,
+                  width: AppSizes.w44,
+                  height: AppSizes.w44,
                   decoration: BoxDecoration(
                     color: status.bgColor,
                     borderRadius: BorderRadius.circular(AppSizes.r12),
@@ -138,13 +125,15 @@ class _StatusBanner extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: AppSizes.w12),
+
+                // label + order number
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         status.label,
-                        style: AppTextStyles.semiBold15.copyWith(
+                        style: theme.textTheme.titleMedium?.copyWith(
                           color: status.textColor,
                         ),
                       ),
@@ -162,12 +151,16 @@ class _StatusBanner extends StatelessWidget {
                           );
                         },
                         child: Row(
+                          mainAxisSize: MainAxisSize.min,
                           children: [
-                            Text(
-                              order.orderNumber,
-                              style: AppTextStyles.regular11.copyWith(
-                                color: colors.textHint,
-                                letterSpacing: 0.3,
+                            Flexible(
+                              child: Text(
+                                order.orderNumber,
+                                style: theme.textTheme.labelSmall?.copyWith(
+                                  color: colors.textHint,
+                                  letterSpacing: 0.3,
+                                ),
+                                overflow: TextOverflow.ellipsis,
                               ),
                             ),
                             SizedBox(width: AppSizes.w4),
@@ -182,11 +175,17 @@ class _StatusBanner extends StatelessWidget {
                     ],
                   ),
                 ),
+
+                SizedBox(width: AppSizes.w8),
+
+                // date — never wraps
                 Text(
                   _formatDate(order.orderDate),
-                  style: AppTextStyles.regular11.copyWith(
+                  style: theme.textTheme.labelSmall?.copyWith(
                     color: colors.textHint,
                   ),
+                  softWrap: false,
+                  overflow: TextOverflow.ellipsis,
                 ),
               ],
             ),
@@ -200,18 +199,8 @@ class _StatusBanner extends StatelessWidget {
     try {
       final dt = DateTime.parse(iso);
       const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
       ];
       return '${months[dt.month - 1]} ${dt.day}, ${dt.year}';
     } catch (_) {
@@ -230,25 +219,26 @@ class _SectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
+    final theme = Theme.of(context);
 
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
-        color: colors.surface,
+        color: theme.colorScheme.surface,
         borderRadius: BorderRadius.circular(AppSizes.r16),
-        border: Border.all(color: colors.border),
+        border: Border.all(color: theme.colorScheme.outline),
       ),
       padding: EdgeInsets.all(AppSizes.w14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
-            title,
-            style: AppTextStyles.semiBold13.copyWith(color: colors.textPrimary),
-          ),
+          Text(title, style: theme.textTheme.labelLarge),
           SizedBox(height: AppSizes.h12),
-          Divider(color: colors.divider, height: 1),
+          Divider(
+            color: theme.dividerColor,
+            height: 1,
+            thickness: theme.dividerTheme.thickness,
+          ),
           SizedBox(height: AppSizes.h12),
           child,
         ],
@@ -265,13 +255,15 @@ class _ProductRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final colors = context.myColors;
 
     return Padding(
       padding: EdgeInsets.only(bottom: AppSizes.h10),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Product image
+          // product image — fixed, never shrinks
           ClipRRect(
             borderRadius: BorderRadius.circular(AppSizes.r8),
             child: SizedBox(
@@ -285,19 +277,17 @@ class _ProductRow extends StatelessWidget {
           ),
           SizedBox(width: AppSizes.w10),
 
-          // Name + variant
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   item.productNameEn,
-                  style: AppTextStyles.semiBold13.copyWith(
-                    color: colors.textPrimary,
-                  ),
+                  style: theme.textTheme.titleSmall,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
+
                 if (item.variantValue != null &&
                     item.variantValue!.isNotEmpty) ...[
                   SizedBox(height: AppSizes.h4),
@@ -306,35 +296,38 @@ class _ProductRow extends StatelessWidget {
                       if (item.variantColorHex != null &&
                           item.variantColorHex!.isNotEmpty)
                         Container(
-                          width: 10,
-                          height: 10,
+                          width: AppSizes.w10,
+                          height: AppSizes.w10,
                           margin: EdgeInsets.only(right: AppSizes.w4),
                           decoration: BoxDecoration(
                             color: _hexColor(item.variantColorHex!),
                             shape: BoxShape.circle,
                             border: Border.all(
-                              color: colors.border,
+                              color: theme.colorScheme.outline,
                               width: 0.5,
                             ),
                           ),
                         ),
-                      Text(
-                        '${item.variantTypeName}: ${item.variantValue}',
-                        style: AppTextStyles.regular11.copyWith(
-                          color: colors.textHint,
+                      // variant text truncates instead of overflowing
+                      Flexible(
+                        child: Text(
+                          '${item.variantTypeName}: ${item.variantValue}',
+                          style: theme.textTheme.bodySmall,
+                          overflow: TextOverflow.ellipsis,
                         ),
                       ),
                     ],
                   ),
                 ],
+
                 SizedBox(height: AppSizes.h6),
                 Row(
                   children: [
-                    // Qty badge
+                    // qty badge
                     Container(
                       padding: EdgeInsets.symmetric(
                         horizontal: AppSizes.w6,
-                        vertical: 2,
+                        vertical: AppSizes.h2,
                       ),
                       decoration: BoxDecoration(
                         color: colors.primarySoft,
@@ -342,17 +335,21 @@ class _ProductRow extends StatelessWidget {
                       ),
                       child: Text(
                         'x${item.quantity}',
-                        style: AppTextStyles.semiBold11.copyWith(
+                        style: theme.textTheme.labelSmall?.copyWith(
                           color: colors.primary,
+                          fontWeight: FontWeight.w600,
                         ),
                       ),
                     ),
                     const Spacer(),
+                    // price never wraps
                     Text(
                       'EGP ${item.totalPrice.toStringAsFixed(2)}',
-                      style: AppTextStyles.semiBold13.copyWith(
-                        color: colors.textPrimary,
+                      style: theme.textTheme.titleSmall?.copyWith(
+                        color: theme.colorScheme.onSurface,
                       ),
+                      softWrap: false,
+                      overflow: TextOverflow.ellipsis,
                     ),
                   ],
                 ),
@@ -383,36 +380,33 @@ class _PriceSummary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
-    final colors = context.myColors;
+    final theme = Theme.of(context);
 
     return Column(
       children: [
-        _PriceRow(
-          label: s.orderDetailsSubtotal,
-          value: 'EGP ${order.subTotal.toStringAsFixed(2)}',
-          colors: colors,
-        ),
+        _PriceRow(label: s.orderDetailsSubtotal,
+            value: 'EGP ${order.subTotal.toStringAsFixed(2)}'),
         SizedBox(height: AppSizes.h8),
-        _PriceRow(
-          label: s.orderDetailsShippingCost,
-          value: 'EGP ${order.shippingCost.toStringAsFixed(2)}',
-          colors: colors,
-        ),
+        _PriceRow(label: s.orderDetailsShippingCost,
+            value: 'EGP ${order.shippingCost.toStringAsFixed(2)}'),
         SizedBox(height: AppSizes.h10),
-        Divider(color: colors.divider, height: 1),
+        Divider(
+          color: theme.dividerColor,
+          height: 1,
+          thickness: theme.dividerTheme.thickness,
+        ),
         SizedBox(height: AppSizes.h10),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              s.orderDetailsTotal,
-              style: AppTextStyles.semiBold14.copyWith(
-                color: colors.textPrimary,
-              ),
-            ),
+            Text(s.orderDetailsTotal, style: theme.textTheme.titleMedium),
             Text(
               'EGP ${order.totalAmount.toStringAsFixed(2)}',
-              style: AppTextStyles.bold16.copyWith(color: colors.primary),
+              style: theme.textTheme.titleLarge?.copyWith(
+                color: theme.colorScheme.primary,
+              ),
+              softWrap: false,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
@@ -421,29 +415,32 @@ class _PriceSummary extends StatelessWidget {
   }
 }
 
+// dead `colors` param removed; label is Flexible so it truncates on small screens
 class _PriceRow extends StatelessWidget {
-  final String label, value;
-  final dynamic colors;
+  final String label;
+  final String value;
 
-  const _PriceRow({
-    required this.label,
-    required this.value,
-    required this.colors,
-  });
+  const _PriceRow({required this.label, required this.value});
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
+    final theme = Theme.of(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(
-          label,
-          style: AppTextStyles.regular13.copyWith(color: colors.textHint),
+        Flexible(
+          child: Text(
+            label,
+            style: theme.textTheme.bodyMedium,
+            overflow: TextOverflow.ellipsis,
+          ),
         ),
+        SizedBox(width: AppSizes.w8),
         Text(
           value,
-          style: AppTextStyles.semiBold13.copyWith(color: colors.textPrimary),
+          style: theme.textTheme.labelLarge,
+          softWrap: false,
+          overflow: TextOverflow.ellipsis,
         ),
       ],
     );
@@ -458,34 +455,20 @@ class _ShippingInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
-
     return Column(
       children: [
         _InfoRow(
           icon: Icons.person_outline_rounded,
           value: '${order.shippingFirstName} ${order.shippingLastName}',
-          colors: colors,
         ),
         SizedBox(height: AppSizes.h10),
-        _InfoRow(
-          icon: Icons.phone_outlined,
-          value: order.shippingPhone,
-          colors: colors,
-        ),
+        _InfoRow(icon: Icons.phone_outlined, value: order.shippingPhone),
         SizedBox(height: AppSizes.h10),
         _InfoRow(
-          icon: Icons.location_on_outlined,
-          value: order.shippingAddress,
-          colors: colors,
-        ),
+            icon: Icons.location_on_outlined, value: order.shippingAddress),
         if (order.notes != null && order.notes!.isNotEmpty) ...[
           SizedBox(height: AppSizes.h10),
-          _InfoRow(
-            icon: Icons.sticky_note_2_outlined,
-            value: order.notes!,
-            colors: colors,
-          ),
+          _InfoRow(icon: Icons.sticky_note_2_outlined, value: order.notes!),
         ],
       ],
     );
@@ -500,38 +483,35 @@ class _PaymentInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final s = S.of(context);
-    final colors = context.myColors;
+    final theme = Theme.of(context);
+    final isPaid = order.paymentStatus == 'Paid';
 
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Expanded(
-          // ← add this
           child: _InfoRow(
             icon: Icons.payment_outlined,
             value: order.paymentMethod,
-            colors: colors,
           ),
-        ), // ← close Expanded
-        SizedBox(width: AppSizes.w8), // optional breathing room
+        ),
+        SizedBox(width: AppSizes.w8),
         Container(
           padding: EdgeInsets.symmetric(
             horizontal: AppSizes.w10,
             vertical: AppSizes.h4,
           ),
           decoration: BoxDecoration(
-            color: order.paymentStatus == 'Paid'
-                ? Colors.green.shade50
-                : Colors.orange.shade50,
+            color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
             borderRadius: BorderRadius.circular(AppSizes.r20),
           ),
           child: Text(
             order.paymentStatus,
-            style: AppTextStyles.semiBold11.copyWith(
-              color: order.paymentStatus == 'Paid'
-                  ? Colors.green.shade700
-                  : Colors.orange.shade700,
+            style: theme.textTheme.labelSmall?.copyWith(
+              color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+              fontWeight: FontWeight.w600,
             ),
+            softWrap: false,
           ),
         ),
       ],
@@ -539,30 +519,27 @@ class _PaymentInfo extends StatelessWidget {
   }
 }
 
+// dead `colors` param removed; icon aligns to first text baseline
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String value;
-  final dynamic colors;
 
-  const _InfoRow({
-    required this.icon,
-    required this.value,
-    required this.colors,
-  });
+  const _InfoRow({required this.icon, required this.value});
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     final colors = context.myColors;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Icon(icon, size: AppSizes.sp16, color: colors.primary),
+        Padding(
+          padding: EdgeInsets.only(top: AppSizes.h2),
+          child: Icon(icon, size: AppSizes.sp16, color: colors.primary),
+        ),
         SizedBox(width: AppSizes.w8),
         Expanded(
-          child: Text(
-            value,
-            style: AppTextStyles.regular13.copyWith(color: colors.textPrimary),
-          ),
+          child: Text(value, style: theme.textTheme.bodyMedium),
         ),
       ],
     );
@@ -579,32 +556,36 @@ class _ErrorState extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
-    final colors = context.myColors;
+    final theme = Theme.of(context);
+
     return Center(
       child: Padding(
         padding: EdgeInsets.all(AppSizes.w32),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(Icons.wifi_off_rounded, size: 56, color: colors.textHint),
+            Icon(
+              Icons.wifi_off_rounded,
+              size: AppSizes.sp36,
+              color: theme.colorScheme.outline,
+            ),
             SizedBox(height: AppSizes.h16),
             Text(
               s.myOrdersLoadError,
-              style: AppTextStyles.semiBold16.copyWith(
-                color: colors.textPrimary,
-              ),
+              style: theme.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: AppSizes.h8),
             Text(
               message,
-              style: AppTextStyles.regular13.copyWith(color: colors.textHint),
+              style: theme.textTheme.bodyMedium,
               textAlign: TextAlign.center,
             ),
             SizedBox(height: AppSizes.h24),
+            // FilledButton picks up filledButtonTheme from AppTheme automatically
             FilledButton.icon(
               onPressed: onRetry,
-              icon: const Icon(Icons.refresh_rounded, size: 18),
+              icon: Icon(Icons.refresh_rounded, size: AppSizes.sp18),
               label: Text(s.addressRetry),
             ),
           ],
@@ -621,7 +602,7 @@ class _LoadingSkeleton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
+    final theme = Theme.of(context);
     return SingleChildScrollView(
       padding: EdgeInsets.all(AppSizes.w16),
       child: Column(
@@ -629,11 +610,11 @@ class _LoadingSkeleton extends StatelessWidget {
           4,
           (_) => Container(
             margin: EdgeInsets.only(bottom: AppSizes.h12),
-            height: 120,
+            height: AppSizes.h120,
             decoration: BoxDecoration(
-              color: colors.surface,
+              color: theme.colorScheme.surface,
               borderRadius: BorderRadius.circular(AppSizes.r16),
-              border: Border.all(color: colors.border),
+              border: Border.all(color: theme.colorScheme.outline),
             ),
           ),
         ),
@@ -642,7 +623,7 @@ class _LoadingSkeleton extends StatelessWidget {
   }
 }
 
-// ── Order status config (reused from my orders) ───────────────────────────────
+// ── Order status config ───────────────────────────────────────────────────────
 
 class _OrderStatus {
   final String label;

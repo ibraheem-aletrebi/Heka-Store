@@ -1,12 +1,16 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/order/data/models/my_order_model.dart';
 import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
 import 'package:heka_store/Features/order/presentation/views/my_orders_details_screen.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class MyOrdersScreen extends StatefulWidget {
@@ -425,7 +429,9 @@ class _OrderTile extends StatelessWidget {
                     children: [
                       _StatusChip(status: status),
                       const Spacer(),
-                      if (order.isOngoing) _TrackButton(order: order),
+                      // FIX: Wrapped _TrackButton in IntrinsicWidth
+                      if (order.isOngoing)
+                        IntrinsicWidth(child: _TrackButton(order: order)),
                     ],
                   ),
                 ],
@@ -534,44 +540,13 @@ class _TrackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
-    final colors = context.myColors;
 
-    return GestureDetector(
-      onTap: () {
-        // TODO: navigate to order tracking screen
+    return CustomButton(
+      text: s.myOrdersTrackOrder,
+      onPressed: () {
+        context.push(AppRoutes.trackOrder, extra: order.orderNumber);
       },
-      child: Container(
-        padding: EdgeInsets.symmetric(
-          horizontal: AppSizes.w12,
-          vertical: AppSizes.h6,
-        ),
-        decoration: BoxDecoration(
-          color: colors.primary,
-          borderRadius: BorderRadius.circular(AppSizes.r8),
-          boxShadow: [
-            BoxShadow(
-              color: colors.primary.withValues(alpha: 0.3),
-              blurRadius: 6,
-              offset: const Offset(0, 2),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(
-              Icons.local_shipping_outlined,
-              size: AppSizes.sp13,
-              color: Colors.white,
-            ),
-            SizedBox(width: AppSizes.w4),
-            Text(
-              s.myOrdersTrackOrder,
-              style: AppTextStyles.semiBold11.copyWith(color: Colors.white),
-            ),
-          ],
-        ),
-      ),
+      icon: Icon(Icons.track_changes_outlined),
     );
   }
 }

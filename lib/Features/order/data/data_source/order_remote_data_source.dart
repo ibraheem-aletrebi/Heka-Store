@@ -1,13 +1,17 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 import 'package:heka_store/Features/order/data/models/create_order_request_model.dart';
 import 'package:heka_store/Features/order/data/models/initiate_payment_response_model.dart';
 import 'package:heka_store/Features/order/data/models/order_model.dart';
+import 'package:heka_store/Features/order/data/models/order_tracking.dart';
+import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
 
 abstract class OrderRemoteDataSource {
   Future<ApiResult<OrderModel>> createOrder(CreateOrderRequestModel request);
   Future<ApiResult<InitiatePaymentResponseModel>> initiatePayment(int orderId);
+  Future<ApiResult<OrderTracking>> trackOrder(String orderNumber);
 }
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
@@ -74,6 +78,19 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
       );
       return ApiResult.success(
           InitiatePaymentResponseModel.fromJson(response.data));
+    } catch (e) {
+      return ApiResult.error(e);
+    }
+  }
+
+    Future<ApiResult<OrderTracking>> trackOrder(String orderNumber) async {
+ try {
+      final response = await _apiService.get(
+        ApiConstants.orderTracking(orderNumber),
+        queryParameters: {'clientType': 'mobile'},
+      );
+      return ApiResult.success(
+          OrderTracking.fromJson(response.data['data'] as Map<String, dynamic>));
     } catch (e) {
       return ApiResult.error(e);
     }

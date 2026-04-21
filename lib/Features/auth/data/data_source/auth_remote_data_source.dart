@@ -27,6 +27,9 @@ abstract class AuthRemoteDataSource {
 
   Future<LoginResponseModel> googleLogin(GoogleLoginRequestModel request);
   Future<void> updateFcmToken(UpdateFcmTokenRequestModel request);
+
+  Future<void> deleteAccount({required String password});
+  Future<void> logout();
 }
 
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
@@ -96,8 +99,21 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<void> updateFcmToken(UpdateFcmTokenRequestModel request) async {
     await _apiService.post(
-      ApiConstants.updateFcmToken, // '/api/Account/update-fcm-token'
+      ApiConstants.updateFcmToken, 
       data: request.toJson(),
     );
+  }
+  
+  @override
+  Future<void> deleteAccount({required String password}) {
+    return _apiService.delete(
+      ApiConstants.deleteAccount,
+      data: {'password': password},
+    );
+  }
+  
+  @override
+  Future<void> logout() {
+    return _apiService.post(ApiConstants.logout);
   }
 }

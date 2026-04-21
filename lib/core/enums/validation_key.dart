@@ -30,6 +30,8 @@ emailRequired,
   phoneRequired,
   phoneInvalid,
 
-  fieldRequired;
+  fieldRequired,
+
+  accountDeleted;
 
 }

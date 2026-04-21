@@ -36,11 +36,8 @@ class AuthRepoImp implements AuthRepo {
       final response = await _remoteDataSource.login(
         loginRequestModel: loginRequestModel,
       );
-      print('>>> login response: $response');
       await _localDataSource.saveTokens(response);
-      print('>>> tokens saved');
       await _localDataSource.saveUser(response);
-      print('>>> user saved');
       final fcmToken = await LocalStorageService().getValue(
         HiveBoxes.data,
         "fcmToken",
@@ -52,10 +49,10 @@ class AuthRepoImp implements AuthRepo {
       }
       return ApiResult.success(response);
     } catch (e) {
-      print('>>> login error: $e');
       return ApiResult.error(e);
     }
   }
+
   // ─── Register ─────────────────────────────────────────────────────────────
 
   @override
@@ -164,15 +161,46 @@ class AuthRepoImp implements AuthRepo {
   }
 
   @override
-  Future<void> logout() async {
-    await _localDataSource.clearAll();
+  Future<ApiResult<void>> logout() async {
+    // FIX: Always call the API *before* clearing local storage.
+    // The remote logout (revoke-token) reads the refresh token from local
+    // storage — clearing first caused "No refresh token available".
+    //
+    // We also always clear local data regardless of whether the API call
+    // succeeds, so the user is never stuck in a logged-in state locally.
+    try {
+      await _remoteDataSource.logout();
+    } catch (_) {
+      // API call failed (expired token, network error, etc.) — that's fine.
+      // We still want the user logged out locally, so we swallow the error
+      // and fall through to clearAll() below.
+    } finally {
+      await _localDataSource.clearAll();
+    }
+    return ApiResult.success(null);
   }
+
+  // ─── Delete Account ───────────────────────────────────────────────────────
+
+  @override
+  Future<ApiResult<void>> deleteAccount({required String password}) async {
+    // Same pattern: call API first, then clear local storage.
+    // If the API succeeds but clearAll() throws, the account is still deleted
+    // on the server — the user can log in again and it will re-clear.
+    try {
+      await _remoteDataSource.deleteAccount(password: password);
+      await _localDataSource.clearAll();
+      return ApiResult.success(null);
+    } catch (e) {
+      return ApiResult.error(e);
+    }
+  }
+
+  // ─── Google Login ─────────────────────────────────────────────────────────
 
   @override
   Future<ApiResult<LoginResponseModel>> googleLogin() async {
     try {
-      print('>>> [Google] starting sign in');
-
       final googleSignIn = GoogleSignIn(
         scopes: ['email', 'profile'],
         serverClientId:
@@ -180,16 +208,12 @@ class AuthRepoImp implements AuthRepo {
       );
 
       final googleUser = await googleSignIn.signIn();
-
       if (googleUser == null) {
         return ApiResult.error(Exception('Google sign-in cancelled'));
       }
 
       final auth = await googleUser.authentication;
       final idToken = auth.idToken;
-
-      print('>>> [Google] idToken: $idToken');
-
       if (idToken == null) {
         return ApiResult.error(Exception('Failed to get ID token'));
       }
@@ -198,18 +222,17 @@ class AuthRepoImp implements AuthRepo {
       final response = await _remoteDataSource.googleLogin(
         GoogleLoginRequestModel(idToken: idToken),
       );
-
       await _localDataSource.saveTokens(response);
       await _localDataSource.saveUser(response);
 
-      print('>>> [Google] login success');
       return ApiResult.success(response);
     } catch (e, stackTrace) {
-      print('>>> [Google] ERROR: $e');
-      print('>>> [Google] STACKTRACE: $stackTrace');
+      print('>>> [Google] ERROR: $e\n$stackTrace');
       return ApiResult.error(e);
     }
   }
+
+  // ─── Update FCM Token ─────────────────────────────────────────────────────
 
   @override
   Future<ApiResult<void>> updateFcmToken(String fcmToken) async {

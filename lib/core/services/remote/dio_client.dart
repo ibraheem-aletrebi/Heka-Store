@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/interceptors/auth_interceptor.dart';
+import 'package:heka_store/core/services/remote/interceptors/language_interceptor.dart';
 import 'package:heka_store/core/services/remote/interceptors/logger_interceptor.dart';
 
 class DioClient {
@@ -9,6 +10,8 @@ class DioClient {
   factory DioClient() => _instance;
 
   late final Dio dio;
+  // expose it so the bloc can call updateLanguage()
+  final languageInterceptor = LanguageInterceptor(); 
 
   final String _baseUrl = ApiConstants.baseUrl;
 
@@ -25,7 +28,10 @@ class DioClient {
         },
       ),
     );
-
-    dio.interceptors.addAll([AuthInterceptor(dio), LoggerInterceptor()]);
+    dio.interceptors.addAll([
+      AuthInterceptor(dio),
+      languageInterceptor, 
+      LoggerInterceptor(),
+    ]);
   }
 }

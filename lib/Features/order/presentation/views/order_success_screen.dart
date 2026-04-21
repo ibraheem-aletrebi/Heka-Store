@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:heka_store/Features/order/data/models/order_model.dart';
-import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
+import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
@@ -136,7 +136,10 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen>
                         height: 52,
                         child: FilledButton.icon(
                           onPressed: () {
-                            // TODO: navigate to order tracking screen
+                            context.push(
+                              AppRoutes.trackOrder,
+                              extra: widget.order.orderNumber,
+                            );
                           },
                           icon: const Icon(
                             Icons.local_shipping_outlined,
