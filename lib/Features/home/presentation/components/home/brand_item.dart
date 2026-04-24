@@ -10,7 +10,7 @@ class BrandItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: MediaQuery.sizeOf(context).width - AppSizes.w24,
+      width: MediaQuery.sizeOf(context).width * 0.85,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         spacing: AppSizes.h8,

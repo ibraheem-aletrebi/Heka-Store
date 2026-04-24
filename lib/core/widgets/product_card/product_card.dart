@@ -26,7 +26,7 @@ class ProductCard extends StatelessWidget {
 
     return GestureDetector(
       onTap: () {
-        context.push(AppRoutes.productDetails, extra: productModel!.id);
+        context.push(AppRoutes.productDetails, extra: productModel!.code);
         // context.read<PreviousViewedProductsBloc>().add(
         //   PreviousViewedProductsEvent.addProduct(product: productModel!),
         // );
@@ -47,7 +47,7 @@ class ProductCard extends StatelessWidget {
                   height: context.height * 0.13,
                   width: double.infinity,
                   url:
-                      // productModel?.primaryImageUrl ??
+                      productModel?.primaryImageUrl ??
                       'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
                 ),
 

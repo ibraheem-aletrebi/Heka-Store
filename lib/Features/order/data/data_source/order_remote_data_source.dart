@@ -4,6 +4,7 @@ import 'package:heka_store/Features/order/data/models/create_order_request_model
 import 'package:heka_store/Features/order/data/models/initiate_payment_response_model.dart';
 import 'package:heka_store/Features/order/data/models/order_model.dart';
 import 'package:heka_store/Features/order/data/models/order_tracking.dart';
+import 'package:heka_store/Features/order/data/models/review_request_model.dart';
 import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 import 'package:heka_store/core/services/remote/api_service.dart';
@@ -12,6 +13,7 @@ abstract class OrderRemoteDataSource {
   Future<ApiResult<OrderModel>> createOrder(CreateOrderRequestModel request);
   Future<ApiResult<InitiatePaymentResponseModel>> initiatePayment(int orderId);
   Future<ApiResult<OrderTracking>> trackOrder(String orderNumber);
+  Future<ApiResult<void>> submitReview({required ReviewRequestModel review});
 }
 
 class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
@@ -21,7 +23,8 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
   @override
   Future<ApiResult<OrderModel>> createOrder(
-      CreateOrderRequestModel request) async {
+    CreateOrderRequestModel request,
+  ) async {
     try {
       // Build body manually so field names and enum values are 100% guaranteed
       // to match what the API expects regardless of json_serializable config.
@@ -70,27 +73,42 @@ class OrderRemoteDataSourceImpl implements OrderRemoteDataSource {
 
   @override
   Future<ApiResult<InitiatePaymentResponseModel>> initiatePayment(
-      int orderId) async {
+    int orderId,
+  ) async {
     try {
       final response = await _apiService.post(
         '/api/orders/$orderId/initiate-payment',
         queryParameters: {'clientType': 'mobile'},
       );
       return ApiResult.success(
-          InitiatePaymentResponseModel.fromJson(response.data));
+        InitiatePaymentResponseModel.fromJson(response.data),
+      );
     } catch (e) {
       return ApiResult.error(e);
     }
   }
 
-    Future<ApiResult<OrderTracking>> trackOrder(String orderNumber) async {
- try {
+  Future<ApiResult<OrderTracking>> trackOrder(String orderNumber) async {
+    try {
       final response = await _apiService.get(
         ApiConstants.orderTracking(orderNumber),
         queryParameters: {'clientType': 'mobile'},
       );
       return ApiResult.success(
-          OrderTracking.fromJson(response.data['data'] as Map<String, dynamic>));
+        OrderTracking.fromJson(response.data['data'] as Map<String, dynamic>),
+      );
+    } catch (e) {
+      return ApiResult.error(e);
+    }
+  }
+
+  @override
+  Future<ApiResult<void>> submitReview({
+    required ReviewRequestModel review,
+  }) async {
+    try {
+      await _apiService.post(ApiConstants.submitReview, data: review.toJson());
+      return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
     }

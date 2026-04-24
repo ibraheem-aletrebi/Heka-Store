@@ -21,12 +21,13 @@ class LocalStorageKeys {
   static const String productsYouMayLike = 'productsYouMayLike';
 
   static String productDetails(int id) => 'product_details_$id';
-  static String similarProducts(int categoryId) => 'similar_products_$categoryId';
+  static String similarProducts(int categoryId) =>
+      'similar_products_$categoryId';
 
   static String brandProfile(int brandId) => 'brand_profile_$brandId';
   static String brandProducts(int brandId) => 'brand_products_$brandId';
 
-  static const String myOrders='myOrders';
+  static const String myOrders = 'myOrders';
   static String orderDetails(int orderId) => 'order_details_$orderId';
 
   static const String searchHistory = 'search_history';

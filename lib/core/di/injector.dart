@@ -100,6 +100,7 @@ import 'package:heka_store/Features/order/data/repo/order_repository.dart';
 import 'package:heka_store/Features/order/domain/use_cases/get_order_details_use_case.dart';
 import 'package:heka_store/Features/order/domain/use_cases/initiate_payment_use_case.dart';
 import 'package:heka_store/Features/order/domain/use_cases/order_use_cases.dart';
+import 'package:heka_store/Features/order/presentation/blocs/add_review/add_review_cubit.dart';
 import 'package:heka_store/Features/order/presentation/blocs/my_orders/my_orders_bloc.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order/order_bloc.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order_details/order_details_bloc.dart';
@@ -201,12 +202,12 @@ Future<void> _initCore() async {
 
   // ─── App BLoCs ────────────────────────────────────
   sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
-sl.registerFactory<LanguageBloc>(
-  () => LanguageBloc(
-    localStorage: localStorage,
-    languageInterceptor: sl<LanguageInterceptor>(), // ← add
-  ),
-);
+  sl.registerFactory<LanguageBloc>(
+    () => LanguageBloc(
+      localStorage: localStorage,
+      languageInterceptor: sl<LanguageInterceptor>(), // ← add
+    ),
+  );
 
   // ─── Network ──────────────────────────────────────
   DioClient().init();
@@ -305,12 +306,10 @@ void _initAuth() {
   );
 
   sl.registerFactory<DeleteAccountUseCase>(
-    () => DeleteAccountUseCase( sl<AuthRepo>()),
+    () => DeleteAccountUseCase(sl<AuthRepo>()),
   );
 
-  sl.registerFactory<LogoutUseCase>(
-    () => LogoutUseCase( sl<AuthRepo>()),
-  );
+  sl.registerFactory<LogoutUseCase>(() => LogoutUseCase(sl<AuthRepo>()));
 
   // ─── BLoCs ────────────────────────────────────────
   sl.registerFactory<LoginBloc>(
@@ -336,8 +335,6 @@ void _initAuth() {
   sl.registerFactory<LogoutBloc>(
     () => LogoutBloc(logoutUseCase: sl<LogoutUseCase>()),
   );
-
-
 }
 
 // ─── Address ──────────────────────────────────────────────────────────────────
@@ -707,8 +704,12 @@ void _initOrder() {
   sl.registerFactory<MyOrdersBloc>(
     () => MyOrdersBloc(getMyOrdersUseCase: sl<GetMyOrdersUseCase>()),
   );
-    sl.registerFactory<OrderTrackingCubit>(
+  sl.registerFactory<OrderTrackingCubit>(
     () => OrderTrackingCubit(repo: sl<OrderRepository>()),
+  );
+
+  sl.registerFactory<AddReviewCubit>(
+    () => AddReviewCubit(sl<OrderRepository>()),
   );
 }
 

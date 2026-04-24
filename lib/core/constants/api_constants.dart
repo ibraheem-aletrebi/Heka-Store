@@ -52,4 +52,6 @@ class ApiConstants {
 
   static String orderTracking(String orderNumber) =>
       '/api/Orders/$orderNumber/track';
+
+  static const String submitReview = '/api/Reviews';
 }

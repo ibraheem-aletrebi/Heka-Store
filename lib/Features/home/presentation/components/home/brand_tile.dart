@@ -26,7 +26,7 @@ class BrandTile extends StatelessWidget {
         name: brand.storeNameEn,
         borderRadius: BorderRadius.circular(AppSizes.r8),
       ),
-      title: Row(children: [Text(brand.storeNameEn)]),
+      title: Text(brand.storeNameEn, overflow: TextOverflow.ellipsis),
       subtitle: RatingWidget(
         rating: brand.averageRating ?? 0.0,
         reviews: brand.totalReviews ?? 0,

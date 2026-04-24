@@ -498,6 +498,9 @@ class MessageLookup extends MessageLookupByLibrary {
       "Something went wrong. Please try again.",
     ),
     "myOrdersItemCount": m11,
+    "myOrdersLeaveReview": MessageLookupByLibrary.simpleMessage(
+      "Leave a Review",
+    ),
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
       "Failed to load orders",
     ),
@@ -515,6 +518,32 @@ class MessageLookup extends MessageLookupByLibrary {
       "You have no active orders right now. Start shopping!",
     ),
     "myOrdersOldestFirst": MessageLookupByLibrary.simpleMessage("Oldest first"),
+    "myOrdersRating1": MessageLookupByLibrary.simpleMessage("Poor"),
+    "myOrdersRating2": MessageLookupByLibrary.simpleMessage("Fair"),
+    "myOrdersRating3": MessageLookupByLibrary.simpleMessage("Good"),
+    "myOrdersRating4": MessageLookupByLibrary.simpleMessage("Very Good"),
+    "myOrdersRating5": MessageLookupByLibrary.simpleMessage("Excellent!"),
+    "myOrdersRatingNone": MessageLookupByLibrary.simpleMessage(
+      "Tap a star to rate",
+    ),
+    "myOrdersRatingRequired": MessageLookupByLibrary.simpleMessage(
+      "Please provide a rating",
+    ),
+    "myOrdersReviewHint": MessageLookupByLibrary.simpleMessage(
+      "Share your experience with this order...",
+    ),
+    "myOrdersReviewSubmit": MessageLookupByLibrary.simpleMessage(
+      "Submit Review",
+    ),
+    "myOrdersReviewSuccess": MessageLookupByLibrary.simpleMessage(
+      "Review submitted. Thank you!",
+    ),
+    "myOrdersReviewTitle": MessageLookupByLibrary.simpleMessage(
+      "Rate Your Order",
+    ),
+    "myOrdersReviewTooShort": MessageLookupByLibrary.simpleMessage(
+      "Review must be at least 10 characters long",
+    ),
     "myOrdersStatusCancelled": MessageLookupByLibrary.simpleMessage(
       "Cancelled",
     ),
@@ -866,6 +895,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Password reset successfully",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("Retry"),
+    "reviews": MessageLookupByLibrary.simpleMessage("Reviews"),
     "rider": MessageLookupByLibrary.simpleMessage("Rider"),
     "riderLocation": MessageLookupByLibrary.simpleMessage("Rider location"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("Save Changes"),

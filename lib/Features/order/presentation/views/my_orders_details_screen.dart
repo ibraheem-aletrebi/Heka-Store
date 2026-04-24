@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:heka_store/Features/order/presentation/blocs/add_review/add_review_cubit.dart';
 import 'package:heka_store/Features/order/presentation/blocs/order_details/order_details_bloc.dart';
 import 'package:heka_store/Features/order/presentation/widgets/order_details_body.dart';
 import 'package:heka_store/core/di/injector.dart';
@@ -10,10 +11,17 @@ class OrderDetailsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (_) =>
-          sl<OrderDetailsBloc>()
-            ..add(OrderDetailsEvent.loaded(orderId: orderId)),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) =>
+              sl<OrderDetailsBloc>()
+                ..add(OrderDetailsEvent.loaded(orderId: orderId)),
+        ),
+        BlocProvider(
+          create: (context) => sl<AddReviewCubit>(),
+        ),
+      ],
       child: const OrderDetailsBody(),
     );
   }

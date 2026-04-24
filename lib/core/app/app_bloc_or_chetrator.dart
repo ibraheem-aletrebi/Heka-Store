@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/cart/presentation/blocs/cart/cart_bloc.dart';
 import 'package:heka_store/Features/notifications/presentation/bloc/notification_bloc.dart';
+import 'package:heka_store/Features/notifications/presentation/bloc/notification_event.dart';
 import 'package:heka_store/Features/wishlist/presentation/blocs/wishlist/wishlist_bloc.dart';
 import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/blocs/theme/theme_bloc.dart';
@@ -24,7 +25,10 @@ class AppBlocOrchestrator extends StatelessWidget {
         ),
         BlocProvider(create: (_) => sl<CartBloc>()),
         BlocProvider(create: (_) => sl<WishlistBloc>()),
-        BlocProvider(create: (_) => sl<NotificationBloc>()),
+        BlocProvider(
+          create: (_) =>
+              sl<NotificationBloc>()..add(const LoadNotificationsEvent()),
+        ),
       ],
       child: BlocBuilder<ThemeBloc, ThemeState>(
         builder: (context, themeState) {

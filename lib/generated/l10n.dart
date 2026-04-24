@@ -4334,6 +4334,126 @@ class S {
       args: [],
     );
   }
+
+  /// `Leave a Review`
+  String get myOrdersLeaveReview {
+    return Intl.message(
+      'Leave a Review',
+      name: 'myOrdersLeaveReview',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate Your Order`
+  String get myOrdersReviewTitle {
+    return Intl.message(
+      'Rate Your Order',
+      name: 'myOrdersReviewTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Share your experience with this order...`
+  String get myOrdersReviewHint {
+    return Intl.message(
+      'Share your experience with this order...',
+      name: 'myOrdersReviewHint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit Review`
+  String get myOrdersReviewSubmit {
+    return Intl.message(
+      'Submit Review',
+      name: 'myOrdersReviewSubmit',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review submitted. Thank you!`
+  String get myOrdersReviewSuccess {
+    return Intl.message(
+      'Review submitted. Thank you!',
+      name: 'myOrdersReviewSuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Tap a star to rate`
+  String get myOrdersRatingNone {
+    return Intl.message(
+      'Tap a star to rate',
+      name: 'myOrdersRatingNone',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Poor`
+  String get myOrdersRating1 {
+    return Intl.message('Poor', name: 'myOrdersRating1', desc: '', args: []);
+  }
+
+  /// `Fair`
+  String get myOrdersRating2 {
+    return Intl.message('Fair', name: 'myOrdersRating2', desc: '', args: []);
+  }
+
+  /// `Good`
+  String get myOrdersRating3 {
+    return Intl.message('Good', name: 'myOrdersRating3', desc: '', args: []);
+  }
+
+  /// `Very Good`
+  String get myOrdersRating4 {
+    return Intl.message(
+      'Very Good',
+      name: 'myOrdersRating4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Excellent!`
+  String get myOrdersRating5 {
+    return Intl.message(
+      'Excellent!',
+      name: 'myOrdersRating5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Review must be at least 10 characters long`
+  String get myOrdersReviewTooShort {
+    return Intl.message(
+      'Review must be at least 10 characters long',
+      name: 'myOrdersReviewTooShort',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please provide a rating`
+  String get myOrdersRatingRequired {
+    return Intl.message(
+      'Please provide a rating',
+      name: 'myOrdersRatingRequired',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Reviews`
+  String get reviews {
+    return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

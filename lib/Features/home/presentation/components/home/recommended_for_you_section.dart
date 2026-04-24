@@ -20,7 +20,7 @@ class RecommendedForYouSection extends StatelessWidget {
     return Column(
       spacing: AppSizes.h12,
       children: [
-        SectionHeader(title: S.of(context).recommendedForYou, onSeeAll: () {}),
+        SectionHeader(title: S.of(context).recommendedForYou),
         BlocBuilder<RecommendedForYouBloc, RecommendedForYouState>(
           buildWhen: (p, c) =>
               p.recommendedProducts != c.recommendedProducts ||

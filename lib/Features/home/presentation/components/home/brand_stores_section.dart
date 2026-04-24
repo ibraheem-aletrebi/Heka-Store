@@ -56,7 +56,7 @@ class _BrandStoresSectionState extends State<BrandStoresSection> {
             spacing: AppSizes.h10,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SectionHeader(title: S.of(context).brandStores, onSeeAll: () {}),
+              SectionHeader(title: S.of(context).brandStores),
 
               SizedBox(
                 height: MediaQuery.sizeOf(context).height * 0.35,

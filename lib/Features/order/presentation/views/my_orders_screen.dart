@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
@@ -424,12 +423,11 @@ class _OrderTile extends StatelessWidget {
 
                   SizedBox(height: AppSizes.h12),
 
-                  // ── Status chip + track button ───────────────────────
+                  // ── Status chip + action button ──────────────────────
                   Row(
                     children: [
                       _StatusChip(status: status),
                       const Spacer(),
-                      // FIX: Wrapped _TrackButton in IntrinsicWidth
                       if (order.isOngoing)
                         IntrinsicWidth(child: _TrackButton(order: order)),
                     ],
@@ -447,18 +445,8 @@ class _OrderTile extends StatelessWidget {
     try {
       final dt = DateTime.parse(iso);
       const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
+        'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
       ];
       return '${months[dt.month - 1]} ${dt.day}, ${dt.year}';
     } catch (_) {
@@ -546,7 +534,7 @@ class _TrackButton extends StatelessWidget {
       onPressed: () {
         context.push(AppRoutes.trackOrder, extra: order.orderNumber);
       },
-      icon: Icon(Icons.track_changes_outlined),
+      icon: const Icon(Icons.track_changes_outlined),
     );
   }
 }
@@ -786,7 +774,7 @@ class _OrderStatus {
   final Color bgColor;
   final Color dotColor;
   final Color textColor;
-  final Color accentColor; // ← new
+  final Color accentColor;
 
   const _OrderStatus({
     required this.label,

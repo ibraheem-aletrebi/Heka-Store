@@ -18,7 +18,7 @@ class FeaturedSection extends StatelessWidget {
     return Column(
       spacing: AppSizes.h12,
       children: [
-        SectionHeader(title: S.of(context).featuredBrands, onSeeAll: () {}),
+        SectionHeader(title: S.of(context).featuredBrands),
         BlocBuilder<HomeBloc, HomeState>(
           buildWhen: (p, c) =>
               p.featuredProducts != c.featuredProducts ||

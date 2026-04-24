@@ -18,7 +18,7 @@ class ProductsYouMayLikeSection extends StatelessWidget {
     return Column(
       spacing: AppSizes.h12,
       children: [
-        SectionHeader(title: S.of(context).itemsYouMayLike, onSeeAll: () {}),
+        SectionHeader(title: S.of(context).itemsYouMayLike),
         BlocBuilder<MayLikeBloc, MayLikeState>(
           buildWhen: (p, c) =>
               p.products != c.products ||

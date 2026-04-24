@@ -498,6 +498,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "حدث خطأ ما. يرجى المحاولة مجددًا.",
     ),
     "myOrdersItemCount": m11,
+    "myOrdersLeaveReview": MessageLookupByLibrary.simpleMessage("اكتب تقييم"),
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
       "فشل تحميل الطلبات",
     ),
@@ -515,6 +516,30 @@ class MessageLookup extends MessageLookupByLibrary {
       "ليس لديك طلبات نشطة الآن. ابدأ التسوق!",
     ),
     "myOrdersOldestFirst": MessageLookupByLibrary.simpleMessage("الأقدم أولًا"),
+    "myOrdersRating1": MessageLookupByLibrary.simpleMessage("سيء"),
+    "myOrdersRating2": MessageLookupByLibrary.simpleMessage("مقبول"),
+    "myOrdersRating3": MessageLookupByLibrary.simpleMessage("جيد"),
+    "myOrdersRating4": MessageLookupByLibrary.simpleMessage("جيد جداً"),
+    "myOrdersRating5": MessageLookupByLibrary.simpleMessage("ممتاز!"),
+    "myOrdersRatingNone": MessageLookupByLibrary.simpleMessage(
+      "اضغط على نجمة للتقييم",
+    ),
+    "myOrdersRatingRequired": MessageLookupByLibrary.simpleMessage(
+      "يجب تقييم الطلب",
+    ),
+    "myOrdersReviewHint": MessageLookupByLibrary.simpleMessage(
+      "شاركنا تجربتك مع هذا الطلب...",
+    ),
+    "myOrdersReviewSubmit": MessageLookupByLibrary.simpleMessage(
+      "إرسال التقييم",
+    ),
+    "myOrdersReviewSuccess": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال التقييم. شكراً لك!",
+    ),
+    "myOrdersReviewTitle": MessageLookupByLibrary.simpleMessage("قيّم طلبك"),
+    "myOrdersReviewTooShort": MessageLookupByLibrary.simpleMessage(
+      "يجب أن يكون التقييم على الأقل 10 أحرف",
+    ),
     "myOrdersStatusCancelled": MessageLookupByLibrary.simpleMessage("ملغى"),
     "myOrdersStatusConfirmed": MessageLookupByLibrary.simpleMessage("مؤكد"),
     "myOrdersStatusDelivered": MessageLookupByLibrary.simpleMessage(
@@ -843,6 +868,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إعادة تعيين كلمة المرور بنجاح",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
+    "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
     "rider": MessageLookupByLibrary.simpleMessage("المندوب"),
     "riderLocation": MessageLookupByLibrary.simpleMessage("موقع المندوب"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
