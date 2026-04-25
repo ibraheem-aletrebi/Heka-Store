@@ -23,7 +23,7 @@ class ProductDetailsModel with _$ProductDetailsModel {
     @HiveField(10) required int stockQuantity,
     @HiveField(11) required String sku,
     @HiveField(12) required bool isEgyptianMade,
-    @HiveField(13) required String madeInCity,
+  @HiveField(13) String? madeInCity,
     @HiveField(14) required String madeInGovernorate,
     @HiveField(15) required bool isFeatured,
     @HiveField(16) required bool isActive,

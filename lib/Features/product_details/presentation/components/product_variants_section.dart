@@ -6,6 +6,7 @@ import 'package:heka_store/Features/product_details/presentation/blocs/product_d
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductVariantsSection extends StatelessWidget {
   final ProductDetailsModel product;
@@ -62,6 +63,7 @@ class _VariantRow extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     final colors = context.myColors;
 
     return Column(
@@ -86,7 +88,9 @@ class _VariantRow extends StatelessWidget {
               if (selectedOption!.priceAdjustment > 0) ...[
                 SizedBox(width: AppSizes.w4),
                 Text(
-                  '+EGP ${selectedOption!.priceAdjustment.toStringAsFixed(0)}',
+                  s.price_adjustment_egp(
+                    selectedOption!.priceAdjustment.toStringAsFixed(0),
+                  ),
                   style: AppTextStyles.regular12.copyWith(
                     color: colors.primary,
                   ),
@@ -108,7 +112,6 @@ class _VariantRow extends StatelessWidget {
                 option: option,
                 isSelected: isSelected,
                 isOutOfStock: isOutOfStock,
-                // لو out of stock → onTap = null (مش قابل للضغط)
                 onTap: isOutOfStock ? null : () => onSelect(option),
               );
             }
@@ -154,7 +157,6 @@ class _ColorChip extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Opacity(
-        // out of stock → opacity منخفضة جداً توضح إنه مش متاح
         opacity: isOutOfStock ? 0.35 : 1.0,
         child: AnimatedContainer(
           duration: const Duration(milliseconds: 180),
@@ -171,7 +173,6 @@ class _ColorChip extends StatelessWidget {
           child: isSelected
               ? const Icon(Icons.check_rounded, size: 16, color: Colors.white)
               : isOutOfStock
-                  // ✕ علامة واضحة إن الكولور ده out of stock
                   ? Icon(
                       Icons.close_rounded,
                       size: 14,
@@ -227,7 +228,6 @@ class _TextChip extends StatelessWidget {
                       ? colors.textHint
                       : colors.textSecondary,
               fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
-              // strikethrough على الـ text لو out of stock
               decoration: isOutOfStock
                   ? TextDecoration.lineThrough
                   : TextDecoration.none,

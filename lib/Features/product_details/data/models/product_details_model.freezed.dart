@@ -47,7 +47,7 @@ mixin _$ProductDetailsModel {
   @HiveField(12)
   bool get isEgyptianMade => throw _privateConstructorUsedError;
   @HiveField(13)
-  String get madeInCity => throw _privateConstructorUsedError;
+  String? get madeInCity => throw _privateConstructorUsedError;
   @HiveField(14)
   String get madeInGovernorate => throw _privateConstructorUsedError;
   @HiveField(15)
@@ -109,7 +109,7 @@ abstract class $ProductDetailsModelCopyWith<$Res> {
       @HiveField(10) int stockQuantity,
       @HiveField(11) String sku,
       @HiveField(12) bool isEgyptianMade,
-      @HiveField(13) String madeInCity,
+      @HiveField(13) String? madeInCity,
       @HiveField(14) String madeInGovernorate,
       @HiveField(15) bool isFeatured,
       @HiveField(16) bool isActive,
@@ -155,7 +155,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
     Object? stockQuantity = null,
     Object? sku = null,
     Object? isEgyptianMade = null,
-    Object? madeInCity = null,
+    Object? madeInCity = freezed,
     Object? madeInGovernorate = null,
     Object? isFeatured = null,
     Object? isActive = null,
@@ -227,10 +227,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
           ? _value.isEgyptianMade
           : isEgyptianMade // ignore: cast_nullable_to_non_nullable
               as bool,
-      madeInCity: null == madeInCity
+      madeInCity: freezed == madeInCity
           ? _value.madeInCity
           : madeInCity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       madeInGovernorate: null == madeInGovernorate
           ? _value.madeInGovernorate
           : madeInGovernorate // ignore: cast_nullable_to_non_nullable
@@ -325,7 +325,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       @HiveField(10) int stockQuantity,
       @HiveField(11) String sku,
       @HiveField(12) bool isEgyptianMade,
-      @HiveField(13) String madeInCity,
+      @HiveField(13) String? madeInCity,
       @HiveField(14) String madeInGovernorate,
       @HiveField(15) bool isFeatured,
       @HiveField(16) bool isActive,
@@ -369,7 +369,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? stockQuantity = null,
     Object? sku = null,
     Object? isEgyptianMade = null,
-    Object? madeInCity = null,
+    Object? madeInCity = freezed,
     Object? madeInGovernorate = null,
     Object? isFeatured = null,
     Object? isActive = null,
@@ -441,10 +441,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.isEgyptianMade
           : isEgyptianMade // ignore: cast_nullable_to_non_nullable
               as bool,
-      madeInCity: null == madeInCity
+      madeInCity: freezed == madeInCity
           ? _value.madeInCity
           : madeInCity // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       madeInGovernorate: null == madeInGovernorate
           ? _value.madeInGovernorate
           : madeInGovernorate // ignore: cast_nullable_to_non_nullable
@@ -534,7 +534,7 @@ class _$ProductModelImpl extends _ProductModel {
       @HiveField(10) required this.stockQuantity,
       @HiveField(11) required this.sku,
       @HiveField(12) required this.isEgyptianMade,
-      @HiveField(13) required this.madeInCity,
+      @HiveField(13) this.madeInCity,
       @HiveField(14) required this.madeInGovernorate,
       @HiveField(15) required this.isFeatured,
       @HiveField(16) required this.isActive,
@@ -600,7 +600,7 @@ class _$ProductModelImpl extends _ProductModel {
   final bool isEgyptianMade;
   @override
   @HiveField(13)
-  final String madeInCity;
+  final String? madeInCity;
   @override
   @HiveField(14)
   final String madeInGovernorate;
@@ -795,7 +795,7 @@ abstract class _ProductModel extends ProductDetailsModel {
           @HiveField(10) required final int stockQuantity,
           @HiveField(11) required final String sku,
           @HiveField(12) required final bool isEgyptianMade,
-          @HiveField(13) required final String madeInCity,
+          @HiveField(13) final String? madeInCity,
           @HiveField(14) required final String madeInGovernorate,
           @HiveField(15) required final bool isFeatured,
           @HiveField(16) required final bool isActive,
@@ -860,7 +860,7 @@ abstract class _ProductModel extends ProductDetailsModel {
   bool get isEgyptianMade;
   @override
   @HiveField(13)
-  String get madeInCity;
+  String? get madeInCity;
   @override
   @HiveField(14)
   String get madeInGovernorate;

@@ -6,6 +6,7 @@ import 'package:heka_store/core/extensions/media_query_extensions.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/product_card/product_card.dart';
 import 'package:heka_store/core/widgets/section_header.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductSimilarSection extends StatelessWidget {
   const ProductSimilarSection({super.key, required this.product});
@@ -15,6 +16,8 @@ class ProductSimilarSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<SimilarProductsBloc, SimilarProductsState>(
       builder: (context, state) {
+        final s = S.of(context);
+
         if (state.isLoading) {
           return Center(child: CupertinoActivityIndicator());
         }
@@ -22,7 +25,7 @@ class ProductSimilarSection extends StatelessWidget {
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SectionHeader(title: 'Similar Products', onSeeAll: () => {}),
+            SectionHeader(title: s.similar_products, onSeeAll: () => {}),
             SizedBox(
               height: context.height * 0.3,
               child: ListView.separated(

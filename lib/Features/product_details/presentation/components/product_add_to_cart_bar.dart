@@ -58,17 +58,9 @@ class ProductAddToCartBar extends StatelessWidget {
           final stockQty = product.stockQuantity;
           final inStock = product.inStock;
 
-          // ── حالات الـ stock ──────────────────────────
-          // isLowStock = في stock بس أقل من أو يساوي 5
           final isLowStock = inStock && stockQty <= 5;
-
-          // canProceed = المنتج موجود + كل الـ variants متاختارة
           final canProceed = inStock && productState.allVariantsSelected;
 
-          // ── نص الزرار بيتغير حسب الحالة ─────────────
-          // حالة 1: out of stock كلياً
-          // حالة 2: في stock بس لسه محددتش الـ variants
-          // حالة 3: جاهز يتضاف للكارت
           final buttonLabel = !inStock
               ? s.out_of_stock
               : !productState.allVariantsSelected
@@ -91,7 +83,7 @@ class ProductAddToCartBar extends StatelessWidget {
                       ),
                       SizedBox(width: AppSizes.w4),
                       Text(
-                        'Only $stockQty items left in stock!',
+                        s.only_x_left_in_stock(stockQty),
                         style: AppTextStyles.regular12.copyWith(
                           color: const Color(0xFFB45309),
                         ),
@@ -111,14 +103,12 @@ class ProductAddToCartBar extends StatelessWidget {
                     ),
                     child: QuantityControl(
                       quantity: productState.quantity,
-                      // زرار + disabled لو وصلنا لأقصى كمية في الـ stock
                       onIncrease: inStock &&
                               productState.quantity < stockQty
                           ? () => context.read<ProductDetailsBloc>().add(
                                 const ProductDetailsEvent.quantityIncremented(),
                               )
                           : null,
-                      // زرار - disabled لو الكمية 1
                       onDecrease: productState.quantity > 1
                           ? () => context.read<ProductDetailsBloc>().add(
                                 const ProductDetailsEvent.quantityDecremented(),

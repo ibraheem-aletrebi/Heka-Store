@@ -3,6 +3,7 @@ import 'package:heka_store/Features/product_details/data/models/product_details_
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductVendorSection extends StatelessWidget {
   final ProductDetailsModel product;
@@ -16,6 +17,7 @@ class ProductVendorSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     final colors = context.myColors;
     final vendorName =
         langCode == 'ar' ? product.vendorNameAr : product.vendorName;
@@ -31,8 +33,11 @@ class ProductVendorSection extends StatelessWidget {
               color: colors.primarySoft,
               borderRadius: BorderRadius.circular(AppSizes.r12),
             ),
-            child: Icon(Icons.store_rounded,
-                color: colors.primary, size: AppSizes.sp22),
+            child: Icon(
+              Icons.store_rounded,
+              color: colors.primary,
+              size: AppSizes.sp22,
+            ),
           ),
           SizedBox(width: AppSizes.w12),
           Expanded(
@@ -40,7 +45,7 @@ class ProductVendorSection extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Sold by',
+                  s.sold_by,
                   style: AppTextStyles.regular12.copyWith(
                     color: colors.textHint,
                   ),
@@ -55,8 +60,11 @@ class ProductVendorSection extends StatelessWidget {
               ],
             ),
           ),
-          Icon(Icons.chevron_right_rounded,
-              color: colors.textHint, size: AppSizes.sp22),
+          Icon(
+            Icons.chevron_right_rounded,
+            color: colors.textHint,
+            size: AppSizes.sp22,
+          ),
         ],
       ),
     );

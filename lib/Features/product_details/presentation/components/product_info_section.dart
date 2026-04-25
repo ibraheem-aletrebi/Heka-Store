@@ -4,6 +4,7 @@ import 'package:heka_store/Features/product_details/presentation/blocs/product_d
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductInfoSection extends StatelessWidget {
   final ProductDetailsModel product;
@@ -19,6 +20,7 @@ class ProductInfoSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
     final colors = context.myColors;
     final textTheme = Theme.of(context).textTheme;
 
@@ -53,7 +55,7 @@ class ProductInfoSection extends StatelessWidget {
               ),
               const Spacer(),
 
-              // ── Stock Badge (3 حالات) ─────────────────
+              // ── Stock Badge (3 states) ────────────────
               Builder(
                 builder: (_) {
                   final qty = product.stockQuantity;
@@ -61,10 +63,10 @@ class ProductInfoSection extends StatelessWidget {
                   final isLow = inStock && qty <= 5;
 
                   final label = !inStock
-                      ? 'Out of Stock'
+                      ? s.out_of_stock_label
                       : isLow
-                      ? 'Only $qty left!'
-                      : 'In Stock';
+                      ? s.only_x_left_label(qty)
+                      : s.in_stock;
 
                   final bg = !inStock
                       ? colors.error.withValues(alpha: 0.12)
@@ -126,12 +128,12 @@ class ProductInfoSection extends StatelessWidget {
               ),
               SizedBox(width: AppSizes.w4),
               Text(
-                '(${product.totalReviews} reviews)',
+                s.reviews_count(product.totalReviews),
                 style: AppTextStyles.regular13.copyWith(color: colors.textHint),
               ),
               const Spacer(),
               Text(
-                '${product.viewCount} views',
+                s.views_count(product.viewCount),
                 style: AppTextStyles.regular12.copyWith(color: colors.textHint),
               ),
             ],
@@ -147,7 +149,7 @@ class ProductInfoSection extends StatelessWidget {
               AnimatedSwitcher(
                 duration: const Duration(milliseconds: 200),
                 child: Text(
-                  'EGP ${displayPrice.toStringAsFixed(2)}',
+                  s.price_egp(displayPrice.toStringAsFixed(2)),
                   key: ValueKey(displayPrice),
                   style: textTheme.headlineMedium?.copyWith(
                     color: colors.primary,
@@ -156,7 +158,7 @@ class ProductInfoSection extends StatelessWidget {
               ),
               if (product.hasDiscount) ...[
                 Text(
-                  'EGP ${product.price.toStringAsFixed(2)}',
+                  s.price_egp(product.price.toStringAsFixed(2)),
                   style: AppTextStyles.regular14.copyWith(
                     color: colors.textHint,
                     decoration: TextDecoration.lineThrough,
@@ -190,7 +192,9 @@ class ProductInfoSection extends StatelessWidget {
                     borderRadius: BorderRadius.circular(AppSizes.r8),
                   ),
                   child: Text(
-                    '+${state.totalVariantAdjustment.toStringAsFixed(0)} variants',
+                    s.variant_price_adjustment(
+                      state.totalVariantAdjustment.toStringAsFixed(0),
+                    ),
                     style: AppTextStyles.semiBold12.copyWith(
                       color: colors.success,
                     ),
@@ -204,7 +208,7 @@ class ProductInfoSection extends StatelessWidget {
 
           // ─── Description ─────────────────────────────
           Text(
-            'Description',
+            s.description,
             style: AppTextStyles.semiBold14.copyWith(color: colors.textPrimary),
           ),
           SizedBox(height: AppSizes.h8),
@@ -215,42 +219,45 @@ class ProductInfoSection extends StatelessWidget {
               height: 1.6,
             ),
           ),
-
-          // ─── Made in ─────────────────────────────────
-          SizedBox(height: AppSizes.h16),
-          Row(
-            children: [
-              Icon(
-                Icons.location_on_outlined,
-                size: AppSizes.sp16,
-                color: colors.textHint,
-              ),
-              SizedBox(width: AppSizes.w4),
-              Text(
-                'Made in ${product.madeInCity}',
-                style: AppTextStyles.regular13.copyWith(color: colors.textHint),
-              ),
-              if (product.isEgyptianMade) ...[
-                SizedBox(width: AppSizes.w8),
-                Container(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: AppSizes.w8,
-                    vertical: AppSizes.h2,
-                  ),
-                  decoration: BoxDecoration(
-                    color: colors.primary.withValues(alpha: 0.1),
-                    borderRadius: BorderRadius.circular(AppSizes.r8),
-                  ),
-                  child: Text(
-                    '🇪🇬 Egyptian Made',
-                    style: AppTextStyles.regular12.copyWith(
-                      color: colors.primary,
-                    ),
+          if (product.madeInCity != null) ...[
+            // ─── Made in ─────────────────────────────────
+            SizedBox(height: AppSizes.h16),
+            Row(
+              children: [
+                Icon(
+                  Icons.location_on_outlined,
+                  size: AppSizes.sp16,
+                  color: colors.textHint,
+                ),
+                SizedBox(width: AppSizes.w4),
+                Text(
+                  s.made_in(product.madeInCity!),
+                  style: AppTextStyles.regular13.copyWith(
+                    color: colors.textHint,
                   ),
                 ),
+                if (product.isEgyptianMade) ...[
+                  SizedBox(width: AppSizes.w8),
+                  Container(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: AppSizes.w8,
+                      vertical: AppSizes.h2,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colors.primary.withValues(alpha: 0.1),
+                      borderRadius: BorderRadius.circular(AppSizes.r8),
+                    ),
+                    child: Text(
+                      s.egyptian_made,
+                      style: AppTextStyles.regular12.copyWith(
+                        color: colors.primary,
+                      ),
+                    ),
+                  ),
+                ],
               ],
-            ],
-          ),
+            ),
+          ],
         ],
       ),
     );

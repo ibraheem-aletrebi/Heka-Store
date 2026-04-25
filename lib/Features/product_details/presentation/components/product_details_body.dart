@@ -14,6 +14,7 @@ import 'package:heka_store/core/blocs/language/language_bloc.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class ProductDetailsBody extends StatelessWidget {
   const ProductDetailsBody({super.key});
@@ -31,6 +32,8 @@ class ProductDetailsBody extends StatelessWidget {
         );
       },
       builder: (context, state) {
+        final s = S.of(context);
+
         if (state.isLoading) {
           return const Scaffold(
             body: Center(child: CupertinoActivityIndicator()),
@@ -55,7 +58,7 @@ class ProductDetailsBody extends StatelessWidget {
                 const SizedBox(height: 16),
                 CustomButton.outlined(
                   onPressed: () => context.pop(),
-                  text: 'Go back',
+                  text: s.go_back,
                 ),
               ],
             ),
@@ -107,7 +110,7 @@ class ProductDetailsBody extends StatelessWidget {
                       ProductInfoSection(
                         product: product,
                         langCode: langCode,
-                        state: state, // ✅ added
+                        state: state,
                       ),
                       _divider(context),
                       if (product.variants.isNotEmpty) ...[
@@ -130,7 +133,7 @@ class ProductDetailsBody extends StatelessWidget {
               left: 0,
               right: 0,
               bottom: 0,
-              child: ProductAddToCartBar(product: product, ),
+              child: ProductAddToCartBar(product: product),
             ),
           ],
         );

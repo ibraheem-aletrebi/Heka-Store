@@ -4454,6 +4454,136 @@ class S {
   String get reviews {
     return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
   }
+
+  /// `Only {count} items left in stock!`
+  String only_x_left_in_stock(int count) {
+    return Intl.message(
+      'Only $count items left in stock!',
+      name: 'only_x_left_in_stock',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `Out of Stock`
+  String get out_of_stock_label {
+    return Intl.message(
+      'Out of Stock',
+      name: 'out_of_stock_label',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Only {count} left!`
+  String only_x_left_label(int count) {
+    return Intl.message(
+      'Only $count left!',
+      name: 'only_x_left_label',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `In Stock`
+  String get in_stock {
+    return Intl.message('In Stock', name: 'in_stock', desc: '', args: []);
+  }
+
+  /// `Description`
+  String get description {
+    return Intl.message('Description', name: 'description', desc: '', args: []);
+  }
+
+  /// `Made in {city}`
+  String made_in(String city) {
+    return Intl.message(
+      'Made in $city',
+      name: 'made_in',
+      desc: '',
+      args: [city],
+    );
+  }
+
+  /// `🇪🇬 Egyptian Made`
+  String get egyptian_made {
+    return Intl.message(
+      '🇪🇬 Egyptian Made',
+      name: 'egyptian_made',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `+{amount} variants`
+  String variant_price_adjustment(String amount) {
+    return Intl.message(
+      '+$amount variants',
+      name: 'variant_price_adjustment',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `({count} reviews)`
+  String reviews_count(int count) {
+    return Intl.message(
+      '($count reviews)',
+      name: 'reviews_count',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `{count} views`
+  String views_count(int count) {
+    return Intl.message(
+      '$count views',
+      name: 'views_count',
+      desc: '',
+      args: [count],
+    );
+  }
+
+  /// `EGP {amount}`
+  String price_egp(String amount) {
+    return Intl.message(
+      'EGP $amount',
+      name: 'price_egp',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `+EGP {amount}`
+  String price_adjustment_egp(String amount) {
+    return Intl.message(
+      '+EGP $amount',
+      name: 'price_adjustment_egp',
+      desc: '',
+      args: [amount],
+    );
+  }
+
+  /// `Go back`
+  String get go_back {
+    return Intl.message('Go back', name: 'go_back', desc: '', args: []);
+  }
+
+  /// `Similar Products`
+  String get similar_products {
+    return Intl.message(
+      'Similar Products',
+      name: 'similar_products',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sold by`
+  String get sold_by {
+    return Intl.message('Sold by', name: 'sold_by', desc: '', args: []);
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -1201,5 +1201,52 @@
 "myOrdersRatingRequired":"Please provide a rating",
 "@myOrdersRatingRequired":{},
 "reviews":"Reviews",
-"@reviews": {}
+"@reviews": {},
+ "only_x_left_in_stock": "Only {count} items left in stock!",
+  "@only_x_left_in_stock": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "out_of_stock_label": "Out of Stock",
+  "@out_of_stock_label": {},
+  "only_x_left_label": "Only {count} left!",
+  "@only_x_left_label": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "in_stock": "In Stock",
+  "@in_stock": {},
+  "description": "Description",
+  "@description": {},
+  "made_in": "Made in {city}",
+  "@made_in": {
+    "placeholders": { "city": { "type": "String" } }
+  },
+  "egyptian_made": "🇪🇬 Egyptian Made",
+  "@egyptian_made": {},
+  "variant_price_adjustment": "+{amount} variants",
+  "@variant_price_adjustment": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "reviews_count": "({count} reviews)",
+  "@reviews_count": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "views_count": "{count} views",
+  "@views_count": {
+    "placeholders": { "count": { "type": "int" } }
+  },
+  "price_egp": "EGP {amount}",
+  "@price_egp": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "price_adjustment_egp": "+EGP {amount}",
+  "@price_adjustment_egp": {
+    "placeholders": { "amount": { "type": "String" } }
+  },
+  "go_back": "Go back",
+  "@go_back": {},
+  "similar_products": "Similar Products",
+  "@similar_products": {},
+  "sold_by": "Sold by",
+  "@sold_by": {}
+
 }

@@ -45,14 +45,30 @@ class MessageLookup extends MessageLookupByLibrary {
   static String m10(count) =>
       "لديك ${count} عنصر محفوظ. سجّل دخولك للاحتفاظ بها";
 
-  static String m11(count) =>
+  static String m11(city) => "صنع في ${city}";
+
+  static String m12(count) =>
       "${count} ${Intl.plural(count, one: 'منتج', two: 'منتجان', few: 'منتجات', other: 'منتج')}";
 
-  static String m12(count) => "${count} نتيجة";
+  static String m13(count) => "تبقى ${count} قطع فقط في المخزون!";
 
-  static String m13(count) => "تم تحديد ${count}";
+  static String m14(count) => "تبقى ${count} فقط!";
 
-  static String m14(count) => "${count} غير مقروء";
+  static String m15(amount) => "+ج.م ${amount}";
+
+  static String m16(amount) => "ج.م ${amount}";
+
+  static String m17(count) => "(${count} تقييم)";
+
+  static String m18(count) => "${count} نتيجة";
+
+  static String m19(count) => "تم تحديد ${count}";
+
+  static String m20(count) => "${count} غير مقروء";
+
+  static String m21(amount) => "+${amount} خيارات";
+
+  static String m22(count) => "${count} مشاهدة";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -233,6 +249,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "deleteAddressTitle": MessageLookupByLibrary.simpleMessage("حذف العنوان؟"),
     "deleteNotificationsConfirm": m9,
     "deliveryAddress": MessageLookupByLibrary.simpleMessage("عنوان التوصيل"),
+    "description": MessageLookupByLibrary.simpleMessage("الوصف"),
     "discountedSubTotal": MessageLookupByLibrary.simpleMessage(
       "المجموع بعد الخصم",
     ),
@@ -241,6 +258,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "earlier": MessageLookupByLibrary.simpleMessage("سابقًا"),
     "editProfile": MessageLookupByLibrary.simpleMessage("تعديل الملف الشخصي"),
+    "egyptian_made": MessageLookupByLibrary.simpleMessage("🇪🇬 صناعة مصرية"),
     "email": MessageLookupByLibrary.simpleMessage("البريد الإلكتروني"),
     "emailInvalid": MessageLookupByLibrary.simpleMessage(
       "البريد الإلكتروني غير صالح",
@@ -427,6 +445,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "forgotPassword": MessageLookupByLibrary.simpleMessage("نسيت كلمة المرور؟"),
     "freeShipping": MessageLookupByLibrary.simpleMessage("شحن مجاني"),
     "getStartedNow": MessageLookupByLibrary.simpleMessage("ابدأ الآن"),
+    "go_back": MessageLookupByLibrary.simpleMessage("رجوع"),
     "goodAfternoon": MessageLookupByLibrary.simpleMessage("مساء الخير"),
     "goodEvening": MessageLookupByLibrary.simpleMessage("مساء النور"),
     "goodMorning": MessageLookupByLibrary.simpleMessage("صباح الخير"),
@@ -439,6 +458,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
     "home": MessageLookupByLibrary.simpleMessage("المنزل"),
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("أوافق على "),
+    "in_stock": MessageLookupByLibrary.simpleMessage("متوفر"),
     "invalidCardNumber": MessageLookupByLibrary.simpleMessage(
       "رقم البطاقة غير صالح",
     ),
@@ -483,6 +503,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تسجيل الدخول إلى حسابك",
     ),
     "logout": MessageLookupByLibrary.simpleMessage("تسجيل الخروج"),
+    "made_in": m11,
     "markAllRead": MessageLookupByLibrary.simpleMessage("تعليم الكل كمقروء"),
     "markAsRead": MessageLookupByLibrary.simpleMessage("تعليم كمقروء"),
     "menuAddressBook": MessageLookupByLibrary.simpleMessage("دفتر العناوين"),
@@ -497,7 +518,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrdersGenericError": MessageLookupByLibrary.simpleMessage(
       "حدث خطأ ما. يرجى المحاولة مجددًا.",
     ),
-    "myOrdersItemCount": m11,
+    "myOrdersItemCount": m12,
     "myOrdersLeaveReview": MessageLookupByLibrary.simpleMessage("اكتب تقييم"),
     "myOrdersLoadError": MessageLookupByLibrary.simpleMessage(
       "فشل تحميل الطلبات",
@@ -616,6 +637,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "onboardingTitle": MessageLookupByLibrary.simpleMessage(
       "مرحبًا بك في هيكا",
     ),
+    "only_x_left_in_stock": m13,
+    "only_x_left_label": m14,
     "openSettings": MessageLookupByLibrary.simpleMessage("فتح الإعدادات"),
     "orLoginWith": MessageLookupByLibrary.simpleMessage("أو سجّل الدخول بـ"),
     "orRegisterWith": MessageLookupByLibrary.simpleMessage("أو سجّل بـ"),
@@ -762,6 +785,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "otpTooShort": MessageLookupByLibrary.simpleMessage("رمز التحقق غير مكتمل"),
     "out_of_stock": MessageLookupByLibrary.simpleMessage("نفد المخزون"),
+    "out_of_stock_label": MessageLookupByLibrary.simpleMessage(
+      "نفد من المخزون",
+    ),
     "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
     "passwordMismatch": MessageLookupByLibrary.simpleMessage(
       "كلمتا المرور غير متطابقتين",
@@ -828,6 +854,8 @@ class MessageLookup extends MessageLookupByLibrary {
     "previouslyViewedItem": MessageLookupByLibrary.simpleMessage(
       "منتجات شاهدتها مسبقًا",
     ),
+    "price_adjustment_egp": m15,
+    "price_egp": m16,
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "productId": MessageLookupByLibrary.simpleMessage("رقم المنتج"),
     "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
@@ -869,6 +897,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
     "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
+    "reviews_count": m17,
     "rider": MessageLookupByLibrary.simpleMessage("المندوب"),
     "riderLocation": MessageLookupByLibrary.simpleMessage("موقع المندوب"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
@@ -878,7 +907,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "searchForLocation": MessageLookupByLibrary.simpleMessage("ابحث عن مكان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("ابحث عن منتج..."),
-    "searchResultsCount": m12,
+    "searchResultsCount": m18,
     "searchTip": MessageLookupByLibrary.simpleMessage(
       "اضغط على أي بحث سابق لتشغيله مجددًا",
     ),
@@ -890,7 +919,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage("موقعك"),
     "select_options": MessageLookupByLibrary.simpleMessage("اختر الخيارات"),
-    "selectedCount": m13,
+    "selectedCount": m19,
     "selectionHint": MessageLookupByLibrary.simpleMessage(
       "اضغط مطولًا للتحديد • اسحب يسارًا للحذف",
     ),
@@ -906,7 +935,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "signupWithGoogle": MessageLookupByLibrary.simpleMessage(
       "التسجيل بـ Google",
     ),
+    "similar_products": MessageLookupByLibrary.simpleMessage("منتجات مشابهة"),
     "skipForNow": MessageLookupByLibrary.simpleMessage("تخطي الآن"),
+    "sold_by": MessageLookupByLibrary.simpleMessage("يُباع بواسطة"),
     "startSearch": MessageLookupByLibrary.simpleMessage("ابدأ البحث"),
     "startSearchSubtitle": MessageLookupByLibrary.simpleMessage(
       "اكتب كلمة في الأعلى للبحث\nعن المنتجات التي تريدها",
@@ -969,7 +1000,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "جرب اسمًا أو شارعًا أو مدينة مختلفة.",
     ),
     "unread": MessageLookupByLibrary.simpleMessage("غير مقروء"),
-    "unreadCount": m14,
+    "unreadCount": m20,
+    "variant_price_adjustment": m21,
     "vat": MessageLookupByLibrary.simpleMessage("ضريبة القيمة المضافة (%)"),
     "vendor": MessageLookupByLibrary.simpleMessage("البائع"),
     "vendorId": MessageLookupByLibrary.simpleMessage("رقم البائع"),
@@ -981,6 +1013,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من بريدك الإلكتروني",
     ),
     "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
+    "views_count": m22,
     "work": MessageLookupByLibrary.simpleMessage("العمل"),
     "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
   };
