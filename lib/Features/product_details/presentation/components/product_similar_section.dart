@@ -24,8 +24,9 @@ class ProductSimilarSection extends StatelessWidget {
         if (!state.hasProducts) return const SizedBox.shrink();
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
+          spacing: 8,
           children: [
-            SectionHeader(title: s.similar_products, onSeeAll: () => {}),
+            SectionHeader(title: s.similar_products),
             SizedBox(
               height: context.height * 0.3,
               child: ListView.separated(

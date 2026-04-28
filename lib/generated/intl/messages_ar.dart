@@ -616,6 +616,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "noUnreadNotifications": MessageLookupByLibrary.simpleMessage(
       "ليس لديك إشعارات غير مقروءة.\nأنت على اطلاع بكل شيء!",
     ),
+    "no_reviews_yet": MessageLookupByLibrary.simpleMessage(
+      "لا يوجد تقييمات بعد",
+    ),
     "notAvailableYet": MessageLookupByLibrary.simpleMessage("غير متاح بعد"),
     "notificationTypeAlert": MessageLookupByLibrary.simpleMessage("تنبيه"),
     "notificationTypeMessage": MessageLookupByLibrary.simpleMessage("رسالة"),
@@ -912,6 +915,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "اضغط على أي بحث سابق لتشغيله مجددًا",
     ),
     "securityCode": MessageLookupByLibrary.simpleMessage("رمز الأمان"),
+    "see_all": MessageLookupByLibrary.simpleMessage("اظهار الكل"),
     "select": MessageLookupByLibrary.simpleMessage("تحديد"),
     "selectAll": MessageLookupByLibrary.simpleMessage("تحديد الكل"),
     "selectLocationSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -938,6 +942,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "similar_products": MessageLookupByLibrary.simpleMessage("منتجات مشابهة"),
     "skipForNow": MessageLookupByLibrary.simpleMessage("تخطي الآن"),
     "sold_by": MessageLookupByLibrary.simpleMessage("يُباع بواسطة"),
+    "something_went_wrong": MessageLookupByLibrary.simpleMessage("حدث خطأ ما"),
     "startSearch": MessageLookupByLibrary.simpleMessage("ابدأ البحث"),
     "startSearchSubtitle": MessageLookupByLibrary.simpleMessage(
       "اكتب كلمة في الأعلى للبحث\nعن المنتجات التي تريدها",

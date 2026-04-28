@@ -1148,5 +1148,13 @@
   "similar_products": "منتجات مشابهة",
   "@similar_products": {},
   "sold_by": "يُباع بواسطة",
-  "@sold_by": {}
+  "@sold_by": {},
+
+  "see_all": "اظهار الكل",
+"@see_all": {},
+"no_reviews_yet": "لا يوجد تقييمات بعد",
+"@no_reviews_yet": {},
+"something_went_wrong": "حدث خطأ ما",
+"@something_went_wrong": {}
+
 }

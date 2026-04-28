@@ -4584,6 +4584,31 @@ class S {
   String get sold_by {
     return Intl.message('Sold by', name: 'sold_by', desc: '', args: []);
   }
+
+  /// `See all`
+  String get see_all {
+    return Intl.message('See all', name: 'see_all', desc: '', args: []);
+  }
+
+  /// `No reviews yet`
+  String get no_reviews_yet {
+    return Intl.message(
+      'No reviews yet',
+      name: 'no_reviews_yet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Something went wrong`
+  String get something_went_wrong {
+    return Intl.message(
+      'Something went wrong',
+      name: 'something_went_wrong',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

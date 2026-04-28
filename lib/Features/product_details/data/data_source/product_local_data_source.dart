@@ -1,5 +1,6 @@
 import 'package:heka_store/Features/home/data/models/product/product_model.dart';
 import 'package:heka_store/Features/product_details/data/models/product_details_model.dart';
+import 'package:heka_store/Features/product_details/data/models/review_model.dart';
 import 'package:heka_store/core/constants/hive_boxes.dart';
 import 'package:heka_store/core/constants/local_storage_keys.dart';
 import 'package:heka_store/core/services/local/local_storage_service.dart';
@@ -12,6 +13,10 @@ abstract class ProductLocalDataSource {
   Future<void> saveSimilarProducts(int categoryId, List<ProductModel> products);
   List<ProductModel> getSimilarProducts(int categoryId);
   Future<void> clearSimilarProducts(int categoryId);
+
+  Future<void> saveProductReviews(int productId, List<ReviewModel> reviews);
+  List<ReviewModel> getProductReviews(int productId);
+  Future<void> clearProductReviews(int productId);
 }
 
 class ProductLocalDataSourceImpl implements ProductLocalDataSource {
@@ -20,6 +25,7 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
   const ProductLocalDataSourceImpl({required LocalStorageService localStorage})
       : _localStorage = localStorage;
 
+  // ── Product Details ────────────────────────────────────────────────────────
 
   @override
   Future<void> saveProductDetails(ProductDetailsModel product) async {
@@ -46,6 +52,7 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
     );
   }
 
+  // ── Similar Products ───────────────────────────────────────────────────────
 
   @override
   Future<void> saveSimilarProducts(
@@ -74,6 +81,38 @@ class ProductLocalDataSourceImpl implements ProductLocalDataSource {
     await _localStorage.remove(
       HiveBoxes.data,
       LocalStorageKeys.similarProducts(categoryId),
+    );
+  }
+
+  // ── Product Reviews ────────────────────────────────────────────────────────
+
+  @override
+  Future<void> saveProductReviews(
+    int productId,
+    List<ReviewModel> reviews,
+  ) async {
+    await _localStorage.setValue<List>(
+      HiveBoxes.data,
+      LocalStorageKeys.productReviews(productId),
+      reviews,
+    );
+  }
+
+  @override
+  List<ReviewModel> getProductReviews(int productId) {
+    final data = _localStorage.getValue<List>(
+      HiveBoxes.data,
+      LocalStorageKeys.productReviews(productId),
+    );
+    if (data == null) return [];
+    return data.cast<ReviewModel>();
+  }
+
+  @override
+  Future<void> clearProductReviews(int productId) async {
+    await _localStorage.remove(
+      HiveBoxes.data,
+      LocalStorageKeys.productReviews(productId),
     );
   }
 }

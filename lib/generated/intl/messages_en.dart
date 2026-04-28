@@ -623,6 +623,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "noUnreadNotifications": MessageLookupByLibrary.simpleMessage(
       "You have no unread notifications.\nYou\'re all caught up!",
     ),
+    "no_reviews_yet": MessageLookupByLibrary.simpleMessage("No reviews yet"),
     "notAvailableYet": MessageLookupByLibrary.simpleMessage(
       "Not available yet",
     ),
@@ -941,6 +942,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "Tap any previous search to run it again",
     ),
     "securityCode": MessageLookupByLibrary.simpleMessage("Security Code"),
+    "see_all": MessageLookupByLibrary.simpleMessage("See all"),
     "select": MessageLookupByLibrary.simpleMessage("Select"),
     "selectAll": MessageLookupByLibrary.simpleMessage("Select All"),
     "selectLocationSubtitle": MessageLookupByLibrary.simpleMessage(
@@ -971,6 +973,9 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "skipForNow": MessageLookupByLibrary.simpleMessage("Skip for now"),
     "sold_by": MessageLookupByLibrary.simpleMessage("Sold by"),
+    "something_went_wrong": MessageLookupByLibrary.simpleMessage(
+      "Something went wrong",
+    ),
     "startSearch": MessageLookupByLibrary.simpleMessage("Start searching"),
     "startSearchSubtitle": MessageLookupByLibrary.simpleMessage(
       "Type a word above to search\nfor the products you want",

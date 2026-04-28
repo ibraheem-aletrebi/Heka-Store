@@ -113,12 +113,14 @@ import 'package:heka_store/Features/product_details/data/models/product_details_
 import 'package:heka_store/Features/product_details/data/models/product_image_model.dart';
 import 'package:heka_store/Features/product_details/data/models/product_variant_model.dart';
 import 'package:heka_store/Features/product_details/data/models/product_variant_option_model.dart';
+import 'package:heka_store/Features/product_details/data/models/review_model.dart';
 import 'package:heka_store/Features/product_details/data/repos/product_repo_imp.dart';
 import 'package:heka_store/Features/product_details/domain/repos/product_repo.dart';
 
 import 'package:heka_store/Features/product_details/domain/use_cases/get_product_details_use_case.dart';
 import 'package:heka_store/Features/product_details/domain/use_cases/get_similar_product_use_case.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/product_details/product_details_bloc.dart';
+import 'package:heka_store/Features/product_details/presentation/blocs/reviews/reviews_bloc.dart';
 import 'package:heka_store/Features/product_details/presentation/blocs/similar_products/similar_products_bloc.dart';
 import 'package:heka_store/Features/search/data/data_source/search_local_data_source.dart';
 import 'package:heka_store/Features/search/data/data_source/search_remote_data_source.dart';
@@ -232,6 +234,7 @@ Future<void> _registerAdapters() async {
   Hive.registerAdapter<BannerModel>(BannerModelAdapter());
   Hive.registerAdapter<ProductModel>(ProductModelAdapter());
   Hive.registerAdapter<BrandModel>(BrandModelAdapter());
+  Hive.registerAdapter<ReviewModel>(ReviewModelAdapter());
 
   // ─── Wishlist Hive Adapters ───────────────────────
   Hive.registerAdapter<WishlistItemModel>(WishlistItemModelAdapter());
@@ -600,6 +603,8 @@ void _initProductDetails() {
       getSimilarProductsUseCase: sl<GetSimilarProductsUseCase>(),
     ),
   );
+
+  sl.registerFactory(() => ReviewsBloc(reviewsRepo: sl()));
 }
 
 void _initAccount() {

@@ -151,9 +151,7 @@ class ProductInfoSection extends StatelessWidget {
                 child: Text(
                   s.price_egp(displayPrice.toStringAsFixed(2)),
                   key: ValueKey(displayPrice),
-                  style: textTheme.headlineMedium?.copyWith(
-                    color: colors.primary,
-                  ),
+                  style: textTheme.titleLarge?.copyWith(color: colors.primary),
                 ),
               ),
               if (product.hasDiscount) ...[
@@ -195,9 +193,8 @@ class ProductInfoSection extends StatelessWidget {
                     s.variant_price_adjustment(
                       state.totalVariantAdjustment.toStringAsFixed(0),
                     ),
-                    style: AppTextStyles.semiBold12.copyWith(
-                      color: colors.success,
-                    ),
+                    style: textTheme.bodySmall,
+                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

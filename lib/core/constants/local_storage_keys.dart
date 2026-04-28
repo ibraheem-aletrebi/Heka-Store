@@ -31,4 +31,6 @@ class LocalStorageKeys {
   static String orderDetails(int orderId) => 'order_details_$orderId';
 
   static const String searchHistory = 'search_history';
+
+  static String productReviews(int productId) => 'product_reviews_$productId';
 }

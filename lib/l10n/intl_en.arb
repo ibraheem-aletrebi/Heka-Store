@@ -1247,6 +1247,15 @@
   "similar_products": "Similar Products",
   "@similar_products": {},
   "sold_by": "Sold by",
-  "@sold_by": {}
+  "@sold_by": {},
+"see_all": "See all",
+"@see_all": {},
+"no_reviews_yet": "No reviews yet",
+"@no_reviews_yet": {},
+"something_went_wrong": "Something went wrong",
+"@something_went_wrong": {}
+
+ 
+
 
 }

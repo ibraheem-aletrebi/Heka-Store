@@ -7,6 +7,7 @@ import 'package:heka_store/Features/product_details/presentation/blocs/similar_p
 import 'package:heka_store/Features/product_details/presentation/components/product_add_to_cart_bar.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_image_gallery.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_info_section.dart';
+import 'package:heka_store/Features/product_details/presentation/components/product_reviews_section.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_similar_section.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_variants_section.dart';
 import 'package:heka_store/Features/product_details/presentation/components/product_vendor_section.dart';
@@ -122,6 +123,9 @@ class ProductDetailsBody extends StatelessWidget {
                         langCode: langCode,
                       ),
                       _divider(context),
+                      ProductReviewsSection(productId: product.id),
+                      _divider(context),
+                      const SizedBox(height: 16),
                       ProductSimilarSection(product: product),
                       SizedBox(height: AppSizes.h80 + AppSizes.h24),
                     ],
