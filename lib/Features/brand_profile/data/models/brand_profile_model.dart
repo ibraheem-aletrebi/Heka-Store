@@ -9,7 +9,9 @@ part 'brand_profile_model.g.dart';
 class BrandProfileModel with _$BrandProfileModel {
   const factory BrandProfileModel({
     @HiveField(0) required int id,
+    // ignore: invalid_annotation_target
     @HiveField(1) @JsonKey(name: 'storeName')   required String storeNameEn,
+    // ignore: invalid_annotation_target
     @HiveField(2) @JsonKey(name: 'storeNameAr') required String storeNameAr,
     @HiveField(3) String? description,
     @HiveField(4) String? logoUrl,

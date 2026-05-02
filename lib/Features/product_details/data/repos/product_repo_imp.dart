@@ -5,7 +5,6 @@ import 'package:heka_store/Features/product_details/data/data_source/product_rem
 import 'package:heka_store/Features/product_details/data/models/product_details_model.dart';
 import 'package:heka_store/Features/product_details/data/models/review_model.dart';
 import 'package:heka_store/Features/product_details/domain/repos/product_repo.dart';
-import 'package:heka_store/core/constants/api_constants.dart';
 import 'package:heka_store/core/services/remote/api_result.dart';
 
 class ProductRepoImpl implements ProductRepo {

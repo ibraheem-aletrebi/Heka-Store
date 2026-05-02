@@ -5,6 +5,7 @@ import 'package:heka_store/Features/brand_profile/presentation/components/brand_
 import 'package:heka_store/Features/brand_profile/presentation/components/brand_info_section.dart';
 import 'package:heka_store/Features/brand_profile/presentation/components/brand_products_section.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/core/widgets/custom_skeletonizer.dart';
 
 class BrandProfileBody extends StatelessWidget {
   const BrandProfileBody({super.key});
@@ -13,8 +14,9 @@ class BrandProfileBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<BrandProfileBloc, BrandProfileState>(
       builder: (context, state) {
-        return Scaffold(
-          body: CustomScrollView(
+        return CustomSkeletonizer(
+          enable: state.isLoading,
+          child: CustomScrollView(
             slivers: [
               BrandBanner(
                 bannerUrl: state.brand?.bannerImageUrl,

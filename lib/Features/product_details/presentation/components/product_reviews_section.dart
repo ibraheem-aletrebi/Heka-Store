@@ -34,31 +34,12 @@ class ProductReviewsSection extends StatelessWidget {
               Row(
                 children: [
                   Text(
-                    s.reviews,
+                    s.reviews(state.totalCount ?? 0),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  if (state.totalCount != null) ...[
-                    const SizedBox(width: 6),
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 8,
-                        vertical: 2,
-                      ),
-                      decoration: BoxDecoration(
-                        color: context.myColors.primary.withOpacity(0.12),
-                        borderRadius: BorderRadius.circular(AppSizes.r12),
-                      ),
-                      child: Text(
-                        '${state.totalCount}',
-                        style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                          color: context.myColors.primary,
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                  ],
+
                   const Spacer(),
                   // "See all" — only when there are more than 5 reviews
                   if ((state.totalCount ?? 0) > 5)

@@ -33,27 +33,54 @@ class Price extends StatelessWidget {
     final locale = context.read<LanguageBloc>().state.languageCode;
 
     final cycleItems = <Widget>[
-      Row(
-        children: [
-          if (_hasDiscount) ...[
-            SizedBox(width: AppSizes.w4),
-            Text(
+      LayoutBuilder(
+        builder: (context, constraints) {
+          final isNarrow = constraints.maxWidth < 120;
+
+          if (_hasDiscount) {
+            final discounted = Text(
               formatEGP(amount: _discountedPrice, locale: locale),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
               style: AppTextStyles.semiBold14.copyWith(color: colors.primary),
-            ),
-          ],
-          Text(
+            );
+            final original = Text(
+              formatEGP(amount: price, locale: locale),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: AppTextStyles.regular12.copyWith(
+                color: colors.textSecondary,
+                decoration: TextDecoration.lineThrough,
+              ),
+            );
+
+            return isNarrow
+                ? Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      discounted,
+                      SizedBox(height: AppSizes.h2),
+                      original,
+                    ],
+                  )
+                : Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      discounted,
+                      SizedBox(width: AppSizes.w4),
+                      Flexible(child: original),
+                    ],
+                  );
+          }
+
+          return Text(
             formatEGP(amount: price, locale: locale),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: _hasDiscount
-                ? AppTextStyles.regular12.copyWith(
-                    color: colors.textSecondary,
-                    decoration: TextDecoration.lineThrough,
-                  )
-                : AppTextStyles.semiBold14.copyWith(color: colors.primary),
-          ),
-        ],
+            style: AppTextStyles.semiBold14.copyWith(color: colors.primary),
+          );
+        },
       ),
       if (hasFreeShipping) const FreeShippingBadge(),
     ];
@@ -63,27 +90,34 @@ class Price extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (_hasDiscount) ...[
-          Container(
-            padding: EdgeInsets.symmetric(
-              horizontal: AppSizes.w8,
-              vertical: AppSizes.h2,
-            ),
-            decoration: BoxDecoration(
-              color: colors.primary.withValues(alpha: 0.05),
-              borderRadius: BorderRadius.circular(AppSizes.r8),
-            ),
-            child: Text(
-              '${(locale == 'ar') ? convertToArabicNumber(discountPercent!) : discountPercent} % ${S.of(context).off}',
-              style: AppTextStyles.regular10.copyWith(
-                color: colors.primary,
-                height: 1.5,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: double.infinity),
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: AlignmentDirectional.centerStart,
+              child: Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: AppSizes.w8,
+                  vertical: AppSizes.h2,
+                ),
+                decoration: BoxDecoration(
+                  color: colors.primary.withValues(alpha: 0.05),
+                  borderRadius: BorderRadius.circular(AppSizes.r8),
+                ),
+                child: Text(
+                  '${(locale == 'ar') ? convertToArabicNumber(discountPercent!) : discountPercent}% ${S.of(context).off}',
+                  style: AppTextStyles.regular10.copyWith(
+                    color: colors.primary,
+                    height: 1.5,
+                  ),
+                ),
               ),
             ),
           ),
           SizedBox(height: AppSizes.h4),
         ],
         CyclingSwitcher(
-          height: AppSizes.h32,
+          height: _hasDiscount ? AppSizes.h40 : AppSizes.h32,
           cycleDuration: cycleDuration,
           children: cycleItems,
         ),

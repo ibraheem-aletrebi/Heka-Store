@@ -17,8 +17,8 @@ class HomeRepoImpl implements HomeRepo {
   const HomeRepoImpl({
     required HomeRemoteDataSource remoteDataSource,
     required HomeLocalDataSource localDataSource,
-  }) : _remoteDataSource = remoteDataSource,
-       _localDataSource = localDataSource;
+  })  : _remoteDataSource = remoteDataSource,
+        _localDataSource = localDataSource;
 
   // ─── Banners ──────────────────────────────────────────────────────────────
 
@@ -36,6 +36,7 @@ class HomeRepoImpl implements HomeRepo {
   }
 
   // ─── Categories ───────────────────────────────────────────────────────────
+
   @override
   Future<ApiResult<CategoriesData>> getCategories({
     int pageNumber = 1,
@@ -58,6 +59,28 @@ class HomeRepoImpl implements HomeRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
+
+  // ─── Category Products ────────────────────────────────────────────────────
+
+  @override
+  Future<ApiResult<ProductsResponseModel>> getCategoryProducts({
+    required String categoryCode,
+    int pageNumber = 1,
+    int pageSize = 10,
+  }) async {
+    try {
+      final response = await _remoteDataSource.getCategoryProducts(
+        categoryCode: categoryCode,
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+      );
+      return ApiResult.success(response);
+    } catch (e) {
+      return ApiResult.error(ApiErrorHandler.instance.handle(e));
+    }
+  }
+
+  // ─── Recommended Products ─────────────────────────────────────────────────
 
   @override
   Future<ApiResult<ProductsResponseModel>> getRecommendedProducts({
@@ -111,6 +134,8 @@ class HomeRepoImpl implements HomeRepo {
       return ApiResult.error(ApiErrorHandler.instance.handle(e));
     }
   }
+
+  // ─── Featured Products ────────────────────────────────────────────────────
 
   @override
   Future<ApiResult<ProductsResponseModel>> getFeaturedProducts({
@@ -166,38 +191,41 @@ class HomeRepoImpl implements HomeRepo {
 
   // ─── Brands ───────────────────────────────────────────────────────────────
 
- @override
-Future<ApiResult<PaginatedResult<BrandModel>>> getBrands({
-  int pageNumber = 1,
-  int pageSize = 10,
-}) async {
-  try {
-    final result = await _remoteDataSource.getBrands(
-      pageNumber: pageNumber,
-      pageSize: pageSize,
-    );
-    if (pageNumber == 1) {
-      await _localDataSource.saveBrands(result.items);
-    }
-    return ApiResult.success(result);
-  } catch (e) {
-    if (pageNumber == 1) {
-      final cached = _localDataSource.getBrands();
-      if (cached.isNotEmpty) {
-        return ApiResult.success(PaginatedResult<BrandModel>(
-          items:          cached,
-          totalCount:     cached.length,
-          pageNumber:     1,
-          pageSize:       cached.length,
-          totalPages:     1,
-          hasPreviousPage: false,
-          hasNextPage:    false,
-        ));
+  @override
+  Future<ApiResult<PaginatedResult<BrandModel>>> getBrands({
+    int pageNumber = 1,
+    int pageSize = 10,
+  }) async {
+    try {
+      final result = await _remoteDataSource.getBrands(
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+      );
+      if (pageNumber == 1) {
+        await _localDataSource.saveBrands(result.items);
       }
+      return ApiResult.success(result);
+    } catch (e) {
+      if (pageNumber == 1) {
+        final cached = _localDataSource.getBrands();
+        if (cached.isNotEmpty) {
+          return ApiResult.success(PaginatedResult<BrandModel>(
+            items: cached,
+            totalCount: cached.length,
+            pageNumber: 1,
+            pageSize: cached.length,
+            totalPages: 1,
+            hasPreviousPage: false,
+            hasNextPage: false,
+          ));
+        }
+      }
+      return ApiResult.error(e);
     }
-    return ApiResult.error(e);
   }
-}
+
+  // ─── User Profile ─────────────────────────────────────────────────────────
+
   @override
   Future<ApiResult<UserProfile>> getUserProfile() async {
     try {

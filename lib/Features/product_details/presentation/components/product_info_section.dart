@@ -128,12 +128,12 @@ class ProductInfoSection extends StatelessWidget {
               ),
               SizedBox(width: AppSizes.w4),
               Text(
-                s.reviews_count(product.totalReviews),
+                s.reviews(product.totalReviews),
                 style: AppTextStyles.regular13.copyWith(color: colors.textHint),
               ),
               const Spacer(),
               Text(
-                s.views_count(product.viewCount),
+                s.reviews(product.viewCount),
                 style: AppTextStyles.regular12.copyWith(color: colors.textHint),
               ),
             ],

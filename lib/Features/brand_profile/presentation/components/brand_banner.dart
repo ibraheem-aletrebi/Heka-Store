@@ -13,7 +13,9 @@ class BrandBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
+    final screenWidth = MediaQuery.sizeOf(context).width;
+    final colors = context.myColors;
+    final isDark = Theme.of(context).brightness == Brightness.dark;
 
     // Responsive sizes
     final bannerHeight = screenWidth * 0.55;
@@ -22,28 +24,37 @@ class BrandBanner extends StatelessWidget {
     return SliverAppBar(
       expandedHeight: bannerHeight,
       floating: true,
-      backgroundColor: Colors.white,
+      snap: true, // required alongside floating when using expandedHeight
+      pinned: false,
       elevation: 0,
+      scrolledUnderElevation: 0,
+      backgroundColor: colors.background, // theme-aware fallback
+      foregroundColor: Colors.white, // back-arrow always white over banner
+      shadowColor: colors.shadow,
+      // Keep back button visible over any banner image
+      iconTheme: const IconThemeData(color: Colors.white),
       automaticallyImplyLeading: true,
-
       flexibleSpace: LayoutBuilder(
         builder: (context, constraints) {
           return Stack(
             clipBehavior: Clip.none,
             children: [
+              // ── Banner image / fallback ──────────────────────────────
               Positioned.fill(
                 child: bannerUrl != null
                     ? CachedImage(url: bannerUrl!, fit: BoxFit.cover)
-                    : Container(color: context.myColors.primary),
+                    : ColoredBox(
+                        color: colors.primarySoft,
+                      ), // use theme soft instead of primary
               ),
 
-              /// 🔹 Gradient Overlay (UI أحلى)
+              // ── Gradient overlay — stronger in dark mode ─────────────
               Positioned.fill(
-                child: Container(
+                child: DecoratedBox(
                   decoration: BoxDecoration(
                     gradient: LinearGradient(
                       colors: [
-                        Colors.black.withOpacity(0.3),
+                        Colors.black.withOpacity(isDark ? 0.5 : 0.3),
                         Colors.transparent,
                       ],
                       begin: Alignment.topCenter,
@@ -53,15 +64,15 @@ class BrandBanner extends StatelessWidget {
                 ),
               ),
 
-              /// 🔹 Avatar + Name
+              // ── Avatar + store name ──────────────────────────────────
               PositionedDirectional(
-                bottom: -avatarRadius, 
-                start: 16,
-                child:UserAvatar(
+                bottom: -avatarRadius,
+                start: AppSizes.w16,
+                child: UserAvatar(
                   imageUrl: logoUrl,
                   size: AppSizes.w100,
                   name: storeName,
-                )
+                ),
               ),
             ],
           );

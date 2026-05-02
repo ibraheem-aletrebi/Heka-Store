@@ -16,6 +16,8 @@ import 'package:heka_store/core/widgets/custom_cached_network_image.dart';
 import 'package:heka_store/core/widgets/custom_text_form_field.dart';
 import 'package:heka_store/generated/l10n.dart';
 
+// ── Body ──────────────────────────────────────────────────────────────────────
+
 class OrderDetailsBody extends StatelessWidget {
   const OrderDetailsBody({super.key});
 
@@ -39,7 +41,7 @@ class OrderDetailsBody extends StatelessWidget {
           }
 
           final order = state.order!;
-          final status = _OrderStatus.fromStatusId(order.statusId, context);
+          final isArabic = Localizations.localeOf(context).languageCode == 'ar';
           final isDelivered =
               order.statusId == 5 || order.status == 'Delivered';
 
@@ -51,15 +53,16 @@ class OrderDetailsBody extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                _StatusBanner(status: status, order: order),
-                SizedBox(height: AppSizes.h16),
                 _SectionCard(
                   title: s.orderDetailsProducts,
                   child: Column(
                     children: order.items
                         .map(
-                          (item) =>
-                              _ProductRow(item: item, isCompleted: isDelivered),
+                          (item) => _ProductRow(
+                            item: item,
+                            isCompleted: isDelivered,
+                            isArabic: isArabic,
+                          ),
                         )
                         .toList(),
                   ),
@@ -89,150 +92,16 @@ class OrderDetailsBody extends StatelessWidget {
   }
 }
 
-// ── Status banner ─────────────────────────────────────────────────────────────
-
-class _StatusBanner extends StatelessWidget {
-  final _OrderStatus status;
-  final OrderDetailsModel order;
-
-  const _StatusBanner({required this.status, required this.order});
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final colors = context.myColors;
-
-    return Container(
-      width: double.infinity,
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.circular(AppSizes.r16),
-        border: Border.all(color: theme.colorScheme.outline),
-      ),
-      clipBehavior: Clip.hardEdge,
-      child: Column(
-        children: [
-          Container(height: AppSizes.h4, color: status.accentColor),
-          Padding(
-            padding: EdgeInsets.all(AppSizes.w14),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: AppSizes.w44,
-                  height: AppSizes.w44,
-                  decoration: BoxDecoration(
-                    color: status.bgColor,
-                    borderRadius: BorderRadius.circular(AppSizes.r12),
-                  ),
-                  child: Icon(
-                    status.icon,
-                    color: status.dotColor,
-                    size: AppSizes.sp20,
-                  ),
-                ),
-                SizedBox(width: AppSizes.w12),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        status.label,
-                        style: theme.textTheme.titleMedium?.copyWith(
-                          color: status.textColor,
-                        ),
-                      ),
-                      SizedBox(height: AppSizes.h2),
-                      GestureDetector(
-                        onTap: () {
-                          Clipboard.setData(
-                            ClipboardData(text: order.orderNumber),
-                          );
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
-                              content: Text(S.of(context).orderDetailsCopied),
-                              duration: const Duration(seconds: 2),
-                            ),
-                          );
-                        },
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Flexible(
-                              child: Text(
-                                order.orderNumber,
-                                style: theme.textTheme.labelSmall?.copyWith(
-                                  color: colors.textHint,
-                                  letterSpacing: 0.3,
-                                ),
-                                overflow: TextOverflow.ellipsis,
-                              ),
-                            ),
-                            SizedBox(width: AppSizes.w4),
-                            Icon(
-                              Icons.copy_rounded,
-                              size: AppSizes.sp11,
-                              color: colors.textHint,
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                SizedBox(width: AppSizes.w8),
-                Text(
-                  _formatDate(order.orderDate),
-                  style: theme.textTheme.labelSmall?.copyWith(
-                    color: colors.textHint,
-                  ),
-                  softWrap: false,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _formatDate(String iso) {
-    try {
-      final dt = DateTime.parse(iso);
-      const months = [
-        'Jan',
-        'Feb',
-        'Mar',
-        'Apr',
-        'May',
-        'Jun',
-        'Jul',
-        'Aug',
-        'Sep',
-        'Oct',
-        'Nov',
-        'Dec',
-      ];
-      return '${months[dt.month - 1]} ${dt.day}, ${dt.year}';
-    } catch (_) {
-      return iso;
-    }
-  }
-}
-
 // ── Section card ──────────────────────────────────────────────────────────────
 
 class _SectionCard extends StatelessWidget {
   final String title;
   final Widget child;
-
   const _SectionCard({required this.title, required this.child});
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-
     return Container(
       width: double.infinity,
       decoration: BoxDecoration(
@@ -264,12 +133,19 @@ class _SectionCard extends StatelessWidget {
 class _ProductRow extends StatelessWidget {
   final OrderItemModel item;
   final bool isCompleted;
-  const _ProductRow({required this.item, required this.isCompleted});
+  final bool isArabic;
+
+  const _ProductRow({
+    required this.item,
+    required this.isCompleted,
+    required this.isArabic,
+  });
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final colors = context.myColors;
+    final productName = isArabic ? item.productNameAr : item.productNameEn;
 
     return Padding(
       padding: EdgeInsets.only(bottom: AppSizes.h10),
@@ -279,7 +155,6 @@ class _ProductRow extends StatelessWidget {
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              // ── Product image ──────────────────────────────────────────
               ClipRRect(
                 borderRadius: BorderRadius.circular(AppSizes.r8),
                 child: SizedBox(
@@ -287,23 +162,21 @@ class _ProductRow extends StatelessWidget {
                   height: AppSizes.w64,
                   child: CachedImage(
                     url: item.productImage,
-                    fallback: Container(color: colors.primarySoft),
+                    fallback: ColoredBox(color: colors.primarySoft),
                   ),
                 ),
               ),
               SizedBox(width: AppSizes.w10),
-
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      item.productNameEn,
+                      productName,
                       style: theme.textTheme.titleSmall,
                       maxLines: 2,
                       overflow: TextOverflow.ellipsis,
                     ),
-
                     if (item.variantValue != null &&
                         item.variantValue!.isNotEmpty) ...[
                       SizedBox(height: AppSizes.h4),
@@ -334,7 +207,6 @@ class _ProductRow extends StatelessWidget {
                         ],
                       ),
                     ],
-
                     SizedBox(height: AppSizes.h6),
                     Row(
                       children: [
@@ -372,23 +244,19 @@ class _ProductRow extends StatelessWidget {
             ],
           ),
 
-          // ── Review button (delivered orders only) ──────────────────────
+          // ── Review button — wrapped in its own BlocProvider ────────────
           if (isCompleted) ...[
             SizedBox(height: AppSizes.h10),
             BlocProvider(
               create: (_) => sl<AddReviewCubit>(),
-              child: Builder(
-                builder: (ctx) => _ReviewButton(
-                  productId: item.productId,
-                  productName: item.productNameEn,
-                  productImage: item.productImage,
-                  parentContext: context,
-                ),
+              child: _ReviewButtonStateful(
+                productId: item.productId,
+                productName: productName,
+                productImage: item.productImage,
               ),
             ),
           ],
 
-          // ── Divider between items ──────────────────────────────────────
           SizedBox(height: AppSizes.h6),
           Divider(color: theme.dividerColor.withValues(alpha: 0.5), height: 1),
         ],
@@ -406,26 +274,118 @@ class _ProductRow extends StatelessWidget {
   }
 }
 
-// ── Review button ─────────────────────────────────────────────────────────────
+// ── Review button (stateful — tracks submitted state) ─────────────────────────
 
-class _ReviewButton extends StatelessWidget {
+class _ReviewButtonStateful extends StatefulWidget {
   final int productId;
   final String productName;
   final String productImage;
-  final BuildContext parentContext; // carries the Scaffold's ScaffoldMessenger
 
-  const _ReviewButton({
+  const _ReviewButtonStateful({
     required this.productId,
     required this.productName,
     required this.productImage,
-    required this.parentContext,
   });
+
+  @override
+  State<_ReviewButtonStateful> createState() => _ReviewButtonStatefulState();
+}
+
+class _ReviewButtonStatefulState extends State<_ReviewButtonStateful> {
+  bool _reviewed = false;
+
+  void _onSuccess() {
+    if (mounted) setState(() => _reviewed = true);
+    _showResultSnackbar(
+      context: context,
+      message: S.of(context).myOrdersReviewSuccess,
+      isSuccess: true,
+    );
+  }
+
+  void _onError(String message) {
+    _showResultSnackbar(context: context, message: message, isSuccess: false);
+  }
+
+  void _showResultSnackbar({
+    required BuildContext context,
+    required String message,
+    required bool isSuccess,
+  }) {
+    final colors = context.myColors;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Row(
+          children: [
+            Icon(
+              isSuccess
+                  ? Icons.check_circle_rounded
+                  : Icons.error_outline_rounded,
+              color: colors.textOnPrimary,
+              size: AppSizes.sp20,
+            ),
+            SizedBox(width: AppSizes.w8),
+            Expanded(
+              child: Text(
+                message,
+                style: AppTextStyles.semiBold13.copyWith(
+                  color: colors.textOnPrimary,
+                ),
+              ),
+            ),
+          ],
+        ),
+        backgroundColor: isSuccess ? colors.success : colors.error,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(AppSizes.r12),
+        ),
+        margin: EdgeInsets.all(AppSizes.w16),
+        duration: const Duration(seconds: 3),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
     final colors = context.myColors;
+    final theme = Theme.of(context);
 
+    // ── Already reviewed ───────────────────────────────────────────────
+    if (_reviewed) {
+      return Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(
+          vertical: AppSizes.h10,
+          horizontal: AppSizes.w12,
+        ),
+        decoration: BoxDecoration(
+          color: colors.success.withValues(alpha: 0.08),
+          borderRadius: BorderRadius.circular(AppSizes.r10),
+          border: Border.all(color: colors.success.withValues(alpha: 0.25)),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.check_circle_rounded,
+              size: AppSizes.sp16,
+              color: colors.success,
+            ),
+            SizedBox(width: AppSizes.w6),
+            Text(
+              s.myOrdersReviewSubmitted,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: colors.success,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
+
+    // ── Leave review button ────────────────────────────────────────────
     return SizedBox(
       width: double.infinity,
       child: OutlinedButton.icon(
@@ -450,80 +410,27 @@ class _ReviewButton extends StatelessWidget {
   }
 
   void _showReviewSheet(BuildContext context) {
+    // Reuse the same cubit already provided by _ProductRow's BlocProvider
+    final cubit = context.read<AddReviewCubit>();
+
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
-      builder: (_) => BlocProvider(
-        create: (_) => sl<AddReviewCubit>(),
+      useSafeArea: true,
+      builder: (sheetCtx) => BlocProvider.value(
+        value: cubit,
         child: _ReviewBottomSheet(
-          productId: productId,
-          productName: productName,
-          productImage: productImage,
+          productId: widget.productId,
+          productName: widget.productName,
+          productImage: widget.productImage,
           onSuccess: () {
-            // Close the sheet
-            Navigator.of(context).pop();
-            // Show snackbar on the parent Scaffold
-            ScaffoldMessenger.of(parentContext).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    const Icon(
-                      Icons.check_circle_rounded,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    SizedBox(width: AppSizes.w8),
-                    Expanded(
-                      child: Text(
-                        S.of(parentContext).myOrdersReviewSuccess,
-                        style: AppTextStyles.semiBold13.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.green.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSizes.r12),
-                ),
-                margin: EdgeInsets.all(AppSizes.w16),
-                duration: const Duration(seconds: 3),
-              ),
-            );
+            Navigator.of(sheetCtx).pop();
+            _onSuccess();
           },
-          onError: (message) {
-            ScaffoldMessenger.of(parentContext).showSnackBar(
-              SnackBar(
-                content: Row(
-                  children: [
-                    const Icon(
-                      Icons.error_outline_rounded,
-                      color: Colors.white,
-                      size: 20,
-                    ),
-                    SizedBox(width: AppSizes.w8),
-                    Expanded(
-                      child: Text(
-                        message,
-                        style: AppTextStyles.semiBold13.copyWith(
-                          color: Colors.white,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                backgroundColor: Colors.red.shade600,
-                behavior: SnackBarBehavior.floating,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(AppSizes.r12),
-                ),
-                margin: EdgeInsets.all(AppSizes.w16),
-                duration: const Duration(seconds: 3),
-              ),
-            );
+          onError: (msg) {
+            Navigator.of(sheetCtx).pop();
+            _onError(msg);
           },
         ),
       ),
@@ -566,16 +473,17 @@ class _ReviewBottomSheetState extends State<_ReviewBottomSheet> {
 
   void _submit(BuildContext context) {
     setState(() => _submitted = true);
+    if (_rating == 0) return;
     final isFormValid = _formKey.currentState?.validate() ?? false;
-    if (_rating == 0 || !isFormValid) return;
-
-    context.read<AddReviewCubit>().submitReview(
-      review: ReviewRequestModel(
-        productId: widget.productId,
-        rating: _rating,
-        comment: _commentCtrl.text.trim(),
-      ),
-    );
+    if (isFormValid) {
+      context.read<AddReviewCubit>().submitReview(
+        review: ReviewRequestModel(
+          productId: widget.productId,
+          rating: _rating,
+          comment: _commentCtrl.text.trim(),
+        ),
+      );
+    }
   }
 
   @override
@@ -583,13 +491,12 @@ class _ReviewBottomSheetState extends State<_ReviewBottomSheet> {
     final s = S.of(context);
     final colors = context.myColors;
     final theme = Theme.of(context);
-    final bottomPadding = MediaQuery.of(context).viewInsets.bottom;
+    final bottomPadding = MediaQuery.viewInsetsOf(context).bottom;
 
     return BlocListener<AddReviewCubit, AddReviewState>(
       listener: (context, state) {
-        if (state.isSuccess) {
-          widget.onSuccess();
-        } else if (state.isFailure) {
+        if (state.isSuccess) widget.onSuccess();
+        if (state.isFailure) {
           widget.onError(state.errorMessage ?? s.myOrdersGenericError);
         }
       },
@@ -599,173 +506,188 @@ class _ReviewBottomSheetState extends State<_ReviewBottomSheet> {
             ? AutovalidateMode.onUserInteraction
             : AutovalidateMode.disabled,
         child: Container(
-          padding: EdgeInsets.fromLTRB(
-            AppSizes.w20,
-            AppSizes.h16,
-            AppSizes.w20,
-            AppSizes.h20 + bottomPadding,
-          ),
           decoration: BoxDecoration(
             color: colors.surface,
             borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
           ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              // ── Handle ────────────────────────────────────────────────
-              Container(
-                width: 40,
-                height: 4,
-                decoration: BoxDecoration(
-                  color: colors.border,
-                  borderRadius: BorderRadius.circular(2),
-                ),
-              ),
-              SizedBox(height: AppSizes.h20),
-
-              // ── Product preview ────────────────────────────────────────
-              Row(
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(AppSizes.r8),
-                    child: SizedBox(
-                      width: AppSizes.w48,
-                      height: AppSizes.w48,
-                      child: CachedImage(
-                        url: widget.productImage,
-                        fallback: Container(color: colors.primarySoft),
-                      ),
+          // ── Keyboard-safe scroll ───────────────────────────────────────
+          child: SingleChildScrollView(
+            padding: EdgeInsets.fromLTRB(
+              AppSizes.w20,
+              AppSizes.h16,
+              AppSizes.w20,
+              AppSizes.h24 + bottomPadding,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                // Handle
+                Center(
+                  child: Container(
+                    width: 40,
+                    height: 4,
+                    decoration: BoxDecoration(
+                      color: colors.border,
+                      borderRadius: BorderRadius.circular(2),
                     ),
                   ),
-                  SizedBox(width: AppSizes.w12),
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          s.myOrdersReviewTitle,
-                          style: AppTextStyles.bold18.copyWith(
-                            color: colors.textPrimary,
-                          ),
-                        ),
-                        SizedBox(height: AppSizes.h2),
-                        Text(
-                          widget.productName,
-                          style: AppTextStyles.regular13.copyWith(
-                            color: colors.textHint,
-                          ),
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(height: AppSizes.h24),
-
-              // ── Star rating ────────────────────────────────────────────
-              Container(
-                width: double.infinity,
-                padding: EdgeInsets.symmetric(vertical: AppSizes.h16),
-                decoration: BoxDecoration(
-                  color: colors.primary.withValues(alpha: 0.04),
-                  borderRadius: BorderRadius.circular(AppSizes.r12),
-                  border: Border.all(
-                    color: colors.primary.withValues(alpha: 0.1),
-                  ),
                 ),
-                child: Column(
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: List.generate(5, (i) {
-                        final filled = i < _rating;
-                        return GestureDetector(
-                          onTap: () => setState(() => _rating = i + 1),
-                          child: AnimatedContainer(
-                            duration: const Duration(milliseconds: 150),
-                            padding: EdgeInsets.symmetric(
-                              horizontal: AppSizes.w6,
-                            ),
-                            child: Icon(
-                              filled
-                                  ? Icons.star_rounded
-                                  : Icons.star_outline_rounded,
-                              size: 40,
-                              color: filled
-                                  ? Colors.amber.shade400
-                                  : colors.textHint.withValues(alpha: 0.4),
-                            ),
-                          ),
-                        );
-                      }),
-                    ),
-                    SizedBox(height: AppSizes.h8),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: Text(
-                        _ratingLabel(s),
-                        key: ValueKey(_rating),
-                        style: AppTextStyles.semiBold13.copyWith(
-                          color: _rating > 0
-                              ? Colors.amber.shade700
-                              : colors.textHint,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(height: AppSizes.h16),
+                SizedBox(height: AppSizes.h20),
 
-              // ── Comment field ──────────────────────────────────────────
-              CustomTextFormField(
-                controller: _commentCtrl,
-                maxLines: 4,
-                maxLength: 500,
-                hint: s.myOrdersReviewHint,
-                validator: (value) {
-                  if (value != null && value.trim().length < 10) {
-                    return s.myOrdersReviewTooShort;
-                  }
-                  return FieldValidator.required(
-                    value ?? '',
-                  )?.translate(context);
-                },
-              ),
-
-              // ── Rating required hint ───────────────────────────────────
-              if (_submitted && _rating == 0) ...[
-                SizedBox(height: AppSizes.h6),
+                // ── Product preview ──────────────────────────────────────
                 Row(
                   children: [
-                    Icon(
-                      Icons.info_outline_rounded,
-                      size: 13,
-                      color: theme.colorScheme.error,
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(AppSizes.r10),
+                      child: SizedBox(
+                        width: AppSizes.w50,
+                        height: AppSizes.w50,
+                        child: CachedImage(
+                          url: widget.productImage,
+                          fallback: ColoredBox(color: colors.primarySoft),
+                        ),
+                      ),
                     ),
-                    SizedBox(width: AppSizes.w4),
-                    Text(
-                      s.myOrdersRatingRequired,
-                      style: AppTextStyles.regular11.copyWith(
-                        color: theme.colorScheme.error,
+                    SizedBox(width: AppSizes.w12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            s.myOrdersReviewTitle,
+                            style: AppTextStyles.bold18.copyWith(
+                              color: colors.textPrimary,
+                            ),
+                          ),
+                          SizedBox(height: AppSizes.h2),
+                          Text(
+                            widget.productName,
+                            style: AppTextStyles.regular13.copyWith(
+                              color: colors.textHint,
+                            ),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ],
-              SizedBox(height: AppSizes.h20),
+                SizedBox(height: AppSizes.h24),
 
-              // ── Submit button ──────────────────────────────────────────
-              BlocBuilder<AddReviewCubit, AddReviewState>(
-                builder: (context, state) => CustomButton(
-                  isLoading: state.isLoading,
-                  text: s.myOrdersReviewSubmit,
-                  onPressed: state.isLoading ? null : () => _submit(context),
+                // ── Star rating ──────────────────────────────────────────
+                Container(
+                  width: double.infinity,
+                  padding: EdgeInsets.symmetric(vertical: AppSizes.h20),
+                  decoration: BoxDecoration(
+                    color: colors.primary.withValues(alpha: 0.04),
+                    borderRadius: BorderRadius.circular(AppSizes.r16),
+                    border: Border.all(
+                      color: (_submitted && _rating == 0)
+                          ? theme.colorScheme.error
+                          : colors.primary.withValues(alpha: 0.1),
+                      width: (_submitted && _rating == 0) ? 1.5 : 1,
+                    ),
+                  ),
+                  child: Column(
+                    children: [
+                      // Stars
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: List.generate(5, (i) {
+                          final filled = i < _rating;
+                          return _StarButton(
+                            filled: filled,
+                            onTap: () {
+                              HapticFeedback.lightImpact();
+                              setState(() => _rating = i + 1);
+                            },
+                          );
+                        }),
+                      ),
+                      SizedBox(height: AppSizes.h10),
+
+                      // Rating label
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        transitionBuilder: (child, anim) => FadeTransition(
+                          opacity: anim,
+                          child: SlideTransition(
+                            position: Tween<Offset>(
+                              begin: const Offset(0, 0.3),
+                              end: Offset.zero,
+                            ).animate(anim),
+                            child: child,
+                          ),
+                        ),
+                        child: Text(
+                          _ratingLabel(s),
+                          key: ValueKey(_rating),
+                          style: AppTextStyles.semiBold13.copyWith(
+                            color: _rating > 0
+                                ? Colors.amber.shade700
+                                : colors.textHint,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+
+                // Rating error hint
+                AnimatedSize(
+                  duration: const Duration(milliseconds: 200),
+                  child: (_submitted && _rating == 0)
+                      ? Padding(
+                          padding: EdgeInsets.only(top: AppSizes.h6),
+                          child: Row(
+                            children: [
+                              Icon(
+                                Icons.info_outline_rounded,
+                                size: 13,
+                                color: theme.colorScheme.error,
+                              ),
+                              SizedBox(width: AppSizes.w4),
+                              Text(
+                                s.myOrdersRatingRequired,
+                                style: AppTextStyles.regular11.copyWith(
+                                  color: theme.colorScheme.error,
+                                ),
+                              ),
+                            ],
+                          ),
+                        )
+                      : const SizedBox.shrink(),
+                ),
+                SizedBox(height: AppSizes.h16),
+
+                // ── Comment field ────────────────────────────────────────
+                CustomTextFormField(
+                  controller: _commentCtrl,
+                  maxLines: 4,
+                  maxLength: 500,
+                  hint: s.myOrdersReviewHint,
+                  validator: (value) {
+                    if (value != null && value.trim().length < 10) {
+                      return s.myOrdersReviewTooShort;
+                    }
+                    return FieldValidator.required(
+                      value ?? '',
+                    )?.translate(context);
+                  },
+                ),
+                SizedBox(height: AppSizes.h20),
+
+                // ── Submit button ────────────────────────────────────────
+                BlocBuilder<AddReviewCubit, AddReviewState>(
+                  builder: (context, state) => CustomButton(
+                    isLoading: state.isLoading,
+                    text: s.myOrdersReviewSubmit,
+                    onPressed: state.isLoading ? null : () => _submit(context),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -787,6 +709,80 @@ class _ReviewBottomSheetState extends State<_ReviewBottomSheet> {
       default:
         return s.myOrdersRatingNone;
     }
+  }
+}
+
+// ── Star button with scale animation ─────────────────────────────────────────
+
+class _StarButton extends StatefulWidget {
+  final bool filled;
+  final VoidCallback onTap;
+
+  const _StarButton({required this.filled, required this.onTap});
+
+  @override
+  State<_StarButton> createState() => _StarButtonState();
+}
+
+class _StarButtonState extends State<_StarButton>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _ctrl;
+  late final Animation<double> _scale;
+
+  @override
+  void initState() {
+    super.initState();
+    _ctrl = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 120),
+      lowerBound: 0.75,
+      upperBound: 1.0,
+      value: 1.0,
+    );
+    _scale = _ctrl;
+  }
+
+  @override
+  void dispose() {
+    _ctrl.dispose();
+    super.dispose();
+  }
+
+  Future<void> _onTap() async {
+    await _ctrl.reverse();
+    await _ctrl.forward();
+    widget.onTap();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+
+    return GestureDetector(
+      onTap: _onTap,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: AppSizes.w4),
+        child: ScaleTransition(
+          scale: _scale,
+          child: AnimatedSwitcher(
+            duration: const Duration(milliseconds: 180),
+            switchInCurve: Curves.easeOut,
+            transitionBuilder: (child, anim) => ScaleTransition(
+              scale: anim,
+              child: FadeTransition(opacity: anim, child: child),
+            ),
+            child: Icon(
+              widget.filled ? Icons.star_rounded : Icons.star_outline_rounded,
+              key: ValueKey(widget.filled),
+              size: 40,
+              color: widget.filled
+                  ? Colors.amber.shade400
+                  : colors.textHint.withValues(alpha: 0.35),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 
@@ -841,7 +837,6 @@ class _PriceSummary extends StatelessWidget {
 class _PriceRow extends StatelessWidget {
   final String label;
   final String value;
-
   const _PriceRow({required this.label, required this.value});
 
   @override
@@ -908,6 +903,7 @@ class _PaymentInfo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
+    final colors = context.myColors;
     final isPaid = order.paymentStatus == 'Paid';
 
     return Row(
@@ -926,13 +922,15 @@ class _PaymentInfo extends StatelessWidget {
             vertical: AppSizes.h4,
           ),
           decoration: BoxDecoration(
-            color: isPaid ? Colors.green.shade50 : Colors.orange.shade50,
+            color: isPaid
+                ? colors.success.withValues(alpha: 0.1)
+                : colors.warning.withValues(alpha: 0.1),
             borderRadius: BorderRadius.circular(AppSizes.r20),
           ),
           child: Text(
             order.paymentStatus,
             style: theme.textTheme.labelSmall?.copyWith(
-              color: isPaid ? Colors.green.shade700 : Colors.orange.shade700,
+              color: isPaid ? colors.success : colors.warning,
               fontWeight: FontWeight.w600,
             ),
             softWrap: false,
@@ -943,10 +941,11 @@ class _PaymentInfo extends StatelessWidget {
   }
 }
 
+// ── Info row ──────────────────────────────────────────────────────────────────
+
 class _InfoRow extends StatelessWidget {
   final IconData icon;
   final String value;
-
   const _InfoRow({required this.icon, required this.value});
 
   @override
@@ -978,7 +977,6 @@ class _ErrorState extends StatelessWidget {
   Widget build(BuildContext context) {
     final s = S.of(context);
     final theme = Theme.of(context);
-
     return Center(
       child: Padding(
         padding: EdgeInsets.all(AppSizes.w32),
@@ -1040,95 +1038,5 @@ class _LoadingSkeleton extends StatelessWidget {
         ),
       ),
     );
-  }
-}
-
-// ── Order status config ───────────────────────────────────────────────────────
-
-class _OrderStatus {
-  final String label;
-  final Color bgColor;
-  final Color dotColor;
-  final Color textColor;
-  final Color accentColor;
-  final IconData icon;
-
-  const _OrderStatus({
-    required this.label,
-    required this.bgColor,
-    required this.dotColor,
-    required this.textColor,
-    required this.accentColor,
-    required this.icon,
-  });
-
-  static _OrderStatus fromStatusId(int statusId, BuildContext context) {
-    final s = S.of(context);
-    switch (statusId) {
-      case 0:
-      case 1:
-        return _OrderStatus(
-          label: s.myOrdersStatusPending,
-          bgColor: Colors.orange.shade50,
-          dotColor: Colors.orange.shade400,
-          textColor: Colors.orange.shade700,
-          accentColor: Colors.orange.shade400,
-          icon: Icons.access_time_rounded,
-        );
-      case 2:
-        return _OrderStatus(
-          label: s.myOrdersStatusConfirmed,
-          bgColor: Colors.blue.shade50,
-          dotColor: Colors.blue.shade400,
-          textColor: Colors.blue.shade700,
-          accentColor: Colors.blue.shade400,
-          icon: Icons.check_circle_outline_rounded,
-        );
-      case 3:
-        return _OrderStatus(
-          label: s.myOrdersStatusProcessing,
-          bgColor: Colors.purple.shade50,
-          dotColor: Colors.purple.shade400,
-          textColor: Colors.purple.shade700,
-          accentColor: Colors.purple.shade400,
-          icon: Icons.settings_outlined,
-        );
-      case 4:
-        return _OrderStatus(
-          label: s.myOrdersStatusInTransit,
-          bgColor: Colors.indigo.shade50,
-          dotColor: Colors.indigo.shade400,
-          textColor: Colors.indigo.shade700,
-          accentColor: Colors.indigo.shade400,
-          icon: Icons.local_shipping_outlined,
-        );
-      case 5:
-        return _OrderStatus(
-          label: s.myOrdersStatusDelivered,
-          bgColor: Colors.green.shade50,
-          dotColor: Colors.green.shade400,
-          textColor: Colors.green.shade700,
-          accentColor: Colors.green.shade400,
-          icon: Icons.inventory_2_outlined,
-        );
-      case 6:
-        return _OrderStatus(
-          label: s.myOrdersStatusCancelled,
-          bgColor: Colors.red.shade50,
-          dotColor: Colors.red.shade300,
-          textColor: Colors.red.shade600,
-          accentColor: Colors.red.shade400,
-          icon: Icons.cancel_outlined,
-        );
-      default:
-        return _OrderStatus(
-          label: s.myOrdersStatusUnknown,
-          bgColor: Colors.grey.shade100,
-          dotColor: Colors.grey.shade400,
-          textColor: Colors.grey.shade600,
-          accentColor: Colors.grey.shade300,
-          icon: Icons.help_outline_rounded,
-        );
-    }
   }
 }

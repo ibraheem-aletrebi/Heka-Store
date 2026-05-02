@@ -18,7 +18,7 @@ class AddReviewCubit extends Cubit<AddReviewState> {
         emit(
           state.copyWith(
             status: AddReviewStatus.failure,
-            errorMessage: e.toString(),
+            errorMessage: e.serverMessage,
           ),
         );
       },

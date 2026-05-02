@@ -30,6 +30,7 @@ class OrderModel with _$OrderModel {
     required List<OrderItemModel> items,
     // Not in JSON — attached by the data source from data['payment']
     // when the order is an online payment order.
+    // ignore: invalid_annotation_target
     @JsonKey(includeFromJson: false, includeToJson: false)
     String? paymentUrl,
   }) = _OrderModel;

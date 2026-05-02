@@ -85,7 +85,7 @@ class _ReviewsViewState extends State<ReviewsView> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    s.reviews,
+                    s.reviews(state.totalCount ?? 0),
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                           fontWeight: FontWeight.w600,
                         ),

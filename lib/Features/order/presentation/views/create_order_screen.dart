@@ -478,7 +478,6 @@ class _AddressErrorCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
     final s = S.of(context);
 
     return Container(

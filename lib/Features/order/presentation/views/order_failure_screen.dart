@@ -4,8 +4,6 @@ import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
 import 'package:heka_store/generated/l10n.dart';
 
-/// Shown when order creation fails OR when payment is cancelled/failed.
-/// Pass [isCancelled] = true for payment-cancelled case (softer messaging).
 class OrderFailureScreen extends StatefulWidget {
   final String? errorMessage;
   final bool isCancelled;
@@ -191,7 +189,6 @@ class _ErrorDetailCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final colors = context.myColors;
     final s = S.of(context);
 
     return Container(
@@ -304,7 +301,6 @@ class _ActionButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final s = S.of(context);
-    final colors = context.myColors;
 
     return Column(
       children: [

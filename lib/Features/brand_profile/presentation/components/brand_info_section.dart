@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:heka_store/Features/brand_profile/data/models/brand_profile_model.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
+import 'package:heka_store/generated/l10n.dart';
 
 class BrandInfoSection extends StatelessWidget {
   final BrandProfileModel? brand;
@@ -11,41 +12,71 @@ class BrandInfoSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final colors = context.myColors;
     final textTheme = Theme.of(context).textTheme;
+    final s = S.of(context);
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+
     if (brand == null) return const SizedBox.shrink();
+
+    final storeName = isArabic ? brand!.storeNameAr : brand!.storeNameEn;
+    final storeSubtitle = isArabic ? brand!.storeNameEn : brand!.storeNameAr;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        // ── Store name + verified badge ──────────────────────────────────
         Row(
           children: [
-            Text(brand!.storeNameEn, style: textTheme.titleLarge),
+            Flexible(
+              child: Text(
+                storeName,
+                style: textTheme.titleLarge,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+            ),
             SizedBox(width: AppSizes.w4),
-            Icon(Icons.verified_rounded, size: AppSizes.sp16, color: colors.primary),
+            Icon(
+              Icons.verified_rounded,
+              size: AppSizes.sp16,
+              color: colors.primary,
+            ),
           ],
         ),
         SizedBox(height: AppSizes.h4),
-        Text(brand!.storeNameAr, style: textTheme.bodySmall?.copyWith(color: colors.textSecondary)),
+
+        // ── Subtitle (opposite locale name) ─────────────────────────────
+        Text(
+          storeSubtitle,
+          style: textTheme.bodySmall?.copyWith(color: colors.textSecondary),
+        ),
+
+        // ── Description ──────────────────────────────────────────────────
         if (brand!.description != null) ...[
           SizedBox(height: AppSizes.h8),
-          Text(brand!.description!, style: textTheme.bodyMedium?.copyWith(color: colors.textSecondary)),
+          Text(
+            brand!.description!,
+            style: textTheme.bodyMedium?.copyWith(color: colors.textSecondary),
+          ),
         ],
         SizedBox(height: AppSizes.h12),
+
+        // ── Stat cards ───────────────────────────────────────────────────
         Row(
           children: [
             _StatCard(
               value: brand!.averageRating?.toStringAsFixed(1) ?? '—',
-              label: 'Rating',
+              label: s.rating,
             ),
             SizedBox(width: AppSizes.w8),
             _StatCard(
               value: '${brand!.totalReviews ?? 0}',
-              label: 'Reviews',
+              label: s.reviews(brand!.totalReviews ?? 0),
             ),
             if (brand!.joinedDate != null) ...[
               SizedBox(width: AppSizes.w8),
               _StatCard(
                 value: _formatDate(brand!.joinedDate!),
-                label: 'Joined',
+                label: s.joined,
               ),
             ],
           ],
@@ -55,7 +86,20 @@ class BrandInfoSection extends StatelessWidget {
   }
 
   String _formatDate(DateTime date) {
-    const months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const months = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec',
+    ];
     return '${months[date.month - 1]} ${date.year}';
   }
 }
@@ -67,18 +111,31 @@ class _StatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
+    final textTheme = Theme.of(context).textTheme;
+
     return Expanded(
       child: Container(
-        padding: EdgeInsets.symmetric(vertical: AppSizes.h10, horizontal: AppSizes.w8),
+        padding: EdgeInsets.symmetric(
+          vertical: AppSizes.h10,
+          horizontal: AppSizes.w8,
+        ),
         decoration: BoxDecoration(
           color: colors.primarySoft,
           borderRadius: BorderRadius.circular(AppSizes.r10),
         ),
         child: Column(
           children: [
-            Text(value, style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500, color: colors.textPrimary)),
-            SizedBox(height: 2),
-            Text(label, style: TextStyle(fontSize: 11, color: colors.textSecondary)),
+            Text(
+              value,
+              style: textTheme.titleSmall?.copyWith(color: colors.textPrimary),
+            ),
+            SizedBox(height: AppSizes.h2),
+            Text(
+              label,
+              style: textTheme.labelSmall?.copyWith(
+                color: colors.textSecondary,
+              ),
+            ),
           ],
         ),
       ),

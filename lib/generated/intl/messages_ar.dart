@@ -54,21 +54,21 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m14(count) => "تبقى ${count} فقط!";
 
-  static String m15(amount) => "+ج.م ${amount}";
+  static String m15(amount) => "${amount} ج.م";
 
-  static String m16(amount) => "ج.م ${amount}";
+  static String m16(amount) => "+ج.م ${amount}";
 
-  static String m17(count) => "(${count} تقييم)";
+  static String m17(amount) => "ج.م ${amount}";
 
-  static String m18(count) => "${count} نتيجة";
+  static String m18(count) => "${count} تقييم";
 
-  static String m19(count) => "تم تحديد ${count}";
+  static String m19(count) => "${count} نتيجة";
 
-  static String m20(count) => "${count} غير مقروء";
+  static String m20(count) => "تم تحديد ${count}";
 
-  static String m21(amount) => "+${amount} خيارات";
+  static String m21(count) => "${count} غير مقروء";
 
-  static String m22(count) => "${count} مشاهدة";
+  static String m22(amount) => "+${amount} خيارات";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -418,6 +418,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "فشل الحصول على الموقع. يرجى المحاولة مجددًا.",
     ),
     "favourites": MessageLookupByLibrary.simpleMessage("المفضلة"),
+    "featured": MessageLookupByLibrary.simpleMessage("مميز"),
     "featuredBrands": MessageLookupByLibrary.simpleMessage(
       "علامات تجارية مميزة",
     ),
@@ -458,6 +459,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hello": MessageLookupByLibrary.simpleMessage("مرحبًا"),
     "home": MessageLookupByLibrary.simpleMessage("المنزل"),
     "iAgreeTo": MessageLookupByLibrary.simpleMessage("أوافق على "),
+    "inStock": MessageLookupByLibrary.simpleMessage("متاح"),
     "in_stock": MessageLookupByLibrary.simpleMessage("متوفر"),
     "invalidCardNumber": MessageLookupByLibrary.simpleMessage(
       "رقم البطاقة غير صالح",
@@ -467,6 +469,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تاريخ الانتهاء غير صالح",
     ),
     "itemsYouMayLike": MessageLookupByLibrary.simpleMessage("منتجات قد تعجبك"),
+    "joined": MessageLookupByLibrary.simpleMessage("انضم في"),
     "lang": MessageLookupByLibrary.simpleMessage("العربية"),
     "languageArabic": MessageLookupByLibrary.simpleMessage("العربية"),
     "languageChangeError": MessageLookupByLibrary.simpleMessage(
@@ -554,6 +557,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "myOrdersReviewSubmit": MessageLookupByLibrary.simpleMessage(
       "إرسال التقييم",
     ),
+    "myOrdersReviewSubmitted": MessageLookupByLibrary.simpleMessage(
+      "تم إرسال تقييمك — شكراً!",
+    ),
     "myOrdersReviewSuccess": MessageLookupByLibrary.simpleMessage(
       "تم إرسال التقييم. شكراً لك!",
     ),
@@ -605,11 +611,16 @@ class MessageLookup extends MessageLookupByLibrary {
     "noNotificationsYet": MessageLookupByLibrary.simpleMessage(
       "لا توجد إشعارات بعد",
     ),
+    "noProductsYet": MessageLookupByLibrary.simpleMessage("لا توجد منتجات بعد"),
+    "noProductsYetSubtitle": MessageLookupByLibrary.simpleMessage(
+      "هذه الماركة لم تضف أي منتجات بعد.\nتحقق مرة أخرى قريبًا!",
+    ),
     "noResults": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
     "noResultsFound": MessageLookupByLibrary.simpleMessage("لا توجد نتائج"),
     "noResultsSubtitle": MessageLookupByLibrary.simpleMessage(
       "جرّب كلمات مختلفة أو\nأزل بعض الفلاتر",
     ),
+    "noReviews": MessageLookupByLibrary.simpleMessage("لا توجد تقييمات بعد"),
     "noSubCategories": MessageLookupByLibrary.simpleMessage(
       "لا توجد فئات فرعية",
     ),
@@ -787,6 +798,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إعادة إرسال الرمز بنجاح",
     ),
     "otpTooShort": MessageLookupByLibrary.simpleMessage("رمز التحقق غير مكتمل"),
+    "outOfStock": MessageLookupByLibrary.simpleMessage("نفذت الكمية"),
     "out_of_stock": MessageLookupByLibrary.simpleMessage("نفد المخزون"),
     "out_of_stock_label": MessageLookupByLibrary.simpleMessage(
       "نفد من المخزون",
@@ -857,11 +869,13 @@ class MessageLookup extends MessageLookupByLibrary {
     "previouslyViewedItem": MessageLookupByLibrary.simpleMessage(
       "منتجات شاهدتها مسبقًا",
     ),
-    "price_adjustment_egp": m15,
-    "price_egp": m16,
+    "priceEgp": m15,
+    "price_adjustment_egp": m16,
+    "price_egp": m17,
     "privacyPolicy": MessageLookupByLibrary.simpleMessage("سياسة الخصوصية"),
     "productId": MessageLookupByLibrary.simpleMessage("رقم المنتج"),
     "products": MessageLookupByLibrary.simpleMessage("المنتجات"),
+    "rating": MessageLookupByLibrary.simpleMessage("التقييم"),
     "readAt": MessageLookupByLibrary.simpleMessage("قُرئ في"),
     "received": MessageLookupByLibrary.simpleMessage("تم الاستلام"),
     "recentSearches": MessageLookupByLibrary.simpleMessage(
@@ -899,8 +913,7 @@ class MessageLookup extends MessageLookupByLibrary {
       "تم إعادة تعيين كلمة المرور بنجاح",
     ),
     "retry": MessageLookupByLibrary.simpleMessage("إعادة المحاولة"),
-    "reviews": MessageLookupByLibrary.simpleMessage("التقييمات"),
-    "reviews_count": m17,
+    "reviews": m18,
     "rider": MessageLookupByLibrary.simpleMessage("المندوب"),
     "riderLocation": MessageLookupByLibrary.simpleMessage("موقع المندوب"),
     "saveChanges": MessageLookupByLibrary.simpleMessage("حفظ التغييرات"),
@@ -910,7 +923,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "searchForLocation": MessageLookupByLibrary.simpleMessage("ابحث عن مكان"),
     "searchHint": MessageLookupByLibrary.simpleMessage("ابحث عن منتج..."),
-    "searchResultsCount": m18,
+    "searchResultsCount": m19,
     "searchTip": MessageLookupByLibrary.simpleMessage(
       "اضغط على أي بحث سابق لتشغيله مجددًا",
     ),
@@ -923,7 +936,7 @@ class MessageLookup extends MessageLookupByLibrary {
     ),
     "selectLocationTitle": MessageLookupByLibrary.simpleMessage("موقعك"),
     "select_options": MessageLookupByLibrary.simpleMessage("اختر الخيارات"),
-    "selectedCount": m19,
+    "selectedCount": m20,
     "selectionHint": MessageLookupByLibrary.simpleMessage(
       "اضغط مطولًا للتحديد • اسحب يسارًا للحذف",
     ),
@@ -1005,8 +1018,8 @@ class MessageLookup extends MessageLookupByLibrary {
       "جرب اسمًا أو شارعًا أو مدينة مختلفة.",
     ),
     "unread": MessageLookupByLibrary.simpleMessage("غير مقروء"),
-    "unreadCount": m20,
-    "variant_price_adjustment": m21,
+    "unreadCount": m21,
+    "variant_price_adjustment": m22,
     "vat": MessageLookupByLibrary.simpleMessage("ضريبة القيمة المضافة (%)"),
     "vendor": MessageLookupByLibrary.simpleMessage("البائع"),
     "vendorId": MessageLookupByLibrary.simpleMessage("رقم البائع"),
@@ -1018,7 +1031,6 @@ class MessageLookup extends MessageLookupByLibrary {
       "تحقق من بريدك الإلكتروني",
     ),
     "viewAll": MessageLookupByLibrary.simpleMessage("عرض الكل"),
-    "views_count": m22,
     "work": MessageLookupByLibrary.simpleMessage("العمل"),
     "yesterday": MessageLookupByLibrary.simpleMessage("أمس"),
   };

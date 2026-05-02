@@ -81,7 +81,6 @@ class _PaymentWebViewScreenState extends State<PaymentWebViewScreen>
 
   @override
   Widget build(BuildContext context) {
-    final s = S.of(context);
     final colors = context.myColors;
 
     return PopScope(

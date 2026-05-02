@@ -8,18 +8,28 @@ import 'package:heka_store/core/services/remote/api_result.dart';
 
 abstract class HomeRepo {
   Future<ApiResult<List<BannerModel>>> getBanners();
-  Future<ApiResult<CategoriesData>> getCategories({   // ← paginated
+
+  Future<ApiResult<CategoriesData>> getCategories({
     int pageNumber = 1,
     int pageSize = 20,
   });
+
+  Future<ApiResult<ProductsResponseModel>> getCategoryProducts({
+    required String categoryCode,
+    int pageNumber = 1,
+    int pageSize = 10,
+  });
+
   Future<ApiResult<ProductsResponseModel>> getRecommendedProducts({
     int pageNumber = 1,
     int pageSize = 10,
   });
+
   Future<ApiResult<ProductsResponseModel>> getFeaturedProducts({
     int pageNumber = 1,
     int pageSize = 10,
   });
+
   Future<ApiResult<PaginatedResult<BrandModel>>> getBrands({
     int pageNumber = 1,
     int pageSize = 10,

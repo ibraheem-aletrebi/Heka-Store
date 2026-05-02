@@ -20,29 +20,118 @@ class BrandProductsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final s = S.of(context);
+    final colors = context.myColors;
+    final textTheme = Theme.of(context).textTheme;
+    final isArabic = Localizations.localeOf(context).languageCode == 'ar';
+
     return Column(
       children: [
-        SectionHeader(title: S.of(context).products, onSeeAll: () {}),
+        SectionHeader(title: s.products),
         SizedBox(height: AppSizes.h12),
-        ...products.map((p) => _BrandProductTile(product: p)),
+
+        // ── Loading ──────────────────────────────────────────────────────
+        if (isLoading)
+          const Padding(
+            padding: EdgeInsets.symmetric(vertical: 32),
+            child: Center(child: CircularProgressIndicator()),
+          )
+        // ── Empty state ──────────────────────────────────────────────────
+        else if (products.isEmpty)
+          _EmptyProducts(colors: colors, textTheme: textTheme, s: s)
+        // ── Product list ─────────────────────────────────────────────────
+        else
+          ...products.map(
+            (p) => _BrandProductTile(product: p, isArabic: isArabic),
+          ),
       ],
     );
   }
 }
 
-class _BrandProductTile extends StatelessWidget {
-  final BrandProductModel product;
-  const _BrandProductTile({required this.product});
+// ── Empty state widget ───────────────────────────────────────────────────────
+class _EmptyProducts extends StatelessWidget {
+  final dynamic colors;
+  final TextTheme textTheme;
+  final S s;
+
+  const _EmptyProducts({
+    required this.colors,
+    required this.textTheme,
+    required this.s,
+  });
 
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
     final textTheme = Theme.of(context).textTheme;
 
+    return Container(
+      width: double.infinity,
+      margin: EdgeInsets.symmetric(vertical: AppSizes.h8),
+      padding: EdgeInsets.symmetric(
+        vertical: AppSizes.h32,
+        horizontal: AppSizes.w24,
+      ),
+      decoration: BoxDecoration(
+        color: colors.surface,
+        borderRadius: BorderRadius.circular(AppSizes.r16),
+        border: Border.all(color: colors.border),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          // Icon container
+          Container(
+            width: AppSizes.w64,
+            height: AppSizes.w64,
+            decoration: BoxDecoration(
+              color: colors.primarySoft,
+              shape: BoxShape.circle,
+            ),
+            child: Icon(
+              Icons.inventory_2_outlined,
+              size: AppSizes.sp28,
+              color: colors.primary,
+            ),
+          ),
+          SizedBox(height: AppSizes.h16),
+          Text(
+            S.of(context).noProductsYet,
+            style: textTheme.titleSmall?.copyWith(color: colors.textPrimary),
+          ),
+          SizedBox(height: AppSizes.h6),
+          Text(
+            S.of(context).noProductsYetSubtitle,
+            style: textTheme.bodySmall?.copyWith(color: colors.textHint),
+            textAlign: TextAlign.center,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+// ── Product tile ─────────────────────────────────────────────────────────────
+class _BrandProductTile extends StatelessWidget {
+  final BrandProductModel product;
+  final bool isArabic;
+
+  const _BrandProductTile({required this.product, required this.isArabic});
+
+  @override
+  Widget build(BuildContext context) {
+    final colors = context.myColors;
+    final textTheme = Theme.of(context).textTheme;
+    final s = S.of(context);
+
+    final productName = isArabic ? product.nameAr : product.nameEn;
+    final categoryName = isArabic
+        ? (product.categoryNameAr ?? '')
+        : (product.categoryNameEn ?? '');
+
     return GestureDetector(
-      onTap: () {
-        context.push(AppRoutes.productDetails, extra: product.id);
-      },
+      onTap: () => context.push(AppRoutes.productDetails, extra: product.id),
       child: Container(
         margin: EdgeInsets.only(bottom: AppSizes.h10),
         decoration: BoxDecoration(
@@ -55,6 +144,8 @@ class _BrandProductTile extends StatelessWidget {
             horizontal: AppSizes.w10,
             vertical: AppSizes.h6,
           ),
+
+          // ── Thumbnail ──────────────────────────────────────────────────
           leading: ClipRRect(
             borderRadius: BorderRadius.circular(AppSizes.r8),
             child: SizedBox(
@@ -62,52 +153,63 @@ class _BrandProductTile extends StatelessWidget {
               height: AppSizes.w64,
               child: CachedImage(
                 url: product.primaryImageUrl,
-                fallback: Container(color: colors.primarySoft),
+                fallback: ColoredBox(color: colors.primarySoft),
               ),
             ),
           ),
+
+          // ── Name + featured badge ──────────────────────────────────────
           title: Row(
             children: [
               Expanded(
                 child: Text(
-                  product.nameEn,
+                  productName,
                   style: textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w500,
                   ),
                   overflow: TextOverflow.ellipsis,
                 ),
               ),
-              if (product.isFeatured)
+              if (product.isFeatured) ...[
+                SizedBox(width: AppSizes.w4),
                 Container(
-                  margin: EdgeInsets.only(left: AppSizes.w4),
-                  padding: EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: AppSizes.w6,
+                    vertical: AppSizes.h2,
+                  ),
                   decoration: BoxDecoration(
                     color: colors.primarySoft,
-                    borderRadius: BorderRadius.circular(4),
+                    borderRadius: BorderRadius.circular(AppSizes.r4),
                   ),
                   child: Text(
-                    'Featured',
-                    style: TextStyle(fontSize: 10, color: colors.primary),
+                    s.featured,
+                    style: textTheme.labelSmall?.copyWith(
+                      color: colors.primary,
+                    ),
                   ),
                 ),
+              ],
             ],
           ),
+
+          // ── Category + price + stock ───────────────────────────────────
           subtitle: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                product.categoryNameEn ?? '',
+                categoryName,
                 style: textTheme.bodySmall?.copyWith(
                   color: colors.textSecondary,
                 ),
               ),
               SizedBox(height: AppSizes.h4),
+
+              // Price row
               Row(
                 children: [
                   Text(
                     'EGP ${product.finalPrice.toStringAsFixed(0)}',
-                    style: TextStyle(
-                      fontSize: 14,
+                    style: textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.w500,
                       color: colors.primary,
                     ),
@@ -116,27 +218,27 @@ class _BrandProductTile extends StatelessWidget {
                     SizedBox(width: AppSizes.w6),
                     Text(
                       'EGP ${product.price.toStringAsFixed(0)}',
-                      style: TextStyle(
-                        fontSize: 11,
+                      style: textTheme.bodySmall?.copyWith(
                         color: colors.textSecondary,
                         decoration: TextDecoration.lineThrough,
                       ),
                     ),
                   ],
-                  if (product.discountPercentage != null &&
-                      product.discountPercentage! > 0) ...[
+                  if ((product.discountPercentage ?? 0) > 0) ...[
                     SizedBox(width: AppSizes.w4),
                     Container(
-                      padding: EdgeInsets.symmetric(horizontal: 5, vertical: 2),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: AppSizes.w4,
+                        vertical: AppSizes.h2,
+                      ),
                       decoration: BoxDecoration(
-                        color: Colors.green.shade50,
-                        borderRadius: BorderRadius.circular(4),
+                        color: colors.error.withValues(alpha: 0.08),
+                        borderRadius: BorderRadius.circular(AppSizes.r4),
                       ),
                       child: Text(
                         '-${product.discountPercentage}%',
-                        style: TextStyle(
-                          fontSize: 10,
-                          color: Colors.green.shade700,
+                        style: textTheme.labelSmall?.copyWith(
+                          color: colors.error,
                           fontWeight: FontWeight.w500,
                         ),
                       ),
@@ -144,27 +246,31 @@ class _BrandProductTile extends StatelessWidget {
                   ],
                 ],
               ),
-              if (product.inStock)
-                Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.only(top: 3),
-                      width: 5,
-                      height: 5,
-                      decoration: BoxDecoration(
-                        color: Colors.green,
-                        shape: BoxShape.circle,
-                      ),
+
+              // Stock indicator
+              SizedBox(height: AppSizes.h4),
+              Row(
+                children: [
+                  Container(
+                    width: AppSizes.w6,
+                    height: AppSizes.w6,
+                    decoration: BoxDecoration(
+                      color: product.inStock ? colors.success : colors.error,
+                      shape: BoxShape.circle,
                     ),
-                    SizedBox(width: 4),
-                    Text(
-                      'In stock',
-                      style: TextStyle(fontSize: 10, color: Colors.green),
+                  ),
+                  SizedBox(width: AppSizes.w4),
+                  Text(
+                    product.inStock ? s.inStock : s.outOfStock,
+                    style: textTheme.labelSmall?.copyWith(
+                      color: product.inStock ? colors.success : colors.error,
                     ),
-                  ],
-                ),
+                  ),
+                ],
+              ),
             ],
           ),
+
           trailing: Icon(
             Icons.arrow_forward_ios_rounded,
             size: AppSizes.sp12,

@@ -1069,8 +1069,6 @@
   "@myOrdersReviewTooShort": {},
   "myOrdersRatingRequired": "يجب تقييم الطلب",
   "@myOrdersRatingRequired": {},
-  "reviews": "التقييمات",
-  "@reviews": {},
   "only_x_left_in_stock": "تبقى {count} قطع فقط في المخزون!",
   "@only_x_left_in_stock": {
     "placeholders": {
@@ -1149,12 +1147,44 @@
   "@similar_products": {},
   "sold_by": "يُباع بواسطة",
   "@sold_by": {},
-
   "see_all": "اظهار الكل",
-"@see_all": {},
-"no_reviews_yet": "لا يوجد تقييمات بعد",
-"@no_reviews_yet": {},
-"something_went_wrong": "حدث خطأ ما",
-"@something_went_wrong": {}
-
+  "@see_all": {},
+  "no_reviews_yet": "لا يوجد تقييمات بعد",
+  "@no_reviews_yet": {},
+  "something_went_wrong": "حدث خطأ ما",
+  "@something_went_wrong": {},
+  "outOfStock": "نفذت الكمية",
+  "@outOfStock": {},
+  "noReviews": "لا توجد تقييمات بعد",
+  "@noReviews": {},
+  "reviews": "{count} تقييم",
+  "@reviews": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "priceEgp": "{amount} ج.م",
+  "@priceEgp": {
+    "placeholders": {
+      "amount": {
+        "type": "String"
+      }
+    }
+  },
+  "rating": "التقييم",
+  "@rating": {},
+  "joined": "انضم في",
+  "@joined": {},
+  "noProductsYet": "لا توجد منتجات بعد",
+  "@noProductsYet": {},
+  "noProductsYetSubtitle": "هذه الماركة لم تضف أي منتجات بعد.\nتحقق مرة أخرى قريبًا!",
+  "@noProductsYetSubtitle": {},
+  "featured": "مميز",
+  "@featured": {},
+  "inStock": "متاح",
+  "@inStock": {},
+  "myOrdersReviewSubmitted": "تم إرسال تقييمك — شكراً!",
+  "@myOrdersReviewSubmitted": {}
 }

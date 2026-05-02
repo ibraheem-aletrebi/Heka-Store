@@ -28,9 +28,9 @@ class ProductCard extends StatelessWidget {
     return GestureDetector(
       onTap: () {
         context.push(AppRoutes.productDetails, extra: productModel!.id);
-        // context.read<PreviousViewedProductsBloc>().add(
-        //   PreviousViewedProductsEvent.addProduct(product: productModel!),
-        // );
+        context.read<PreviousViewedProductsBloc>().add(
+          PreviousViewedProductsEvent.addProduct(product: productModel!),
+        );
       },
       child: Container(
         clipBehavior: Clip.antiAlias,

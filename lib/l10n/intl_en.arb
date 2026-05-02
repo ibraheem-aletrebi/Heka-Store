@@ -1200,8 +1200,7 @@
 "@myOrdersReviewTooShort":{},
 "myOrdersRatingRequired":"Please provide a rating",
 "@myOrdersRatingRequired":{},
-"reviews":"Reviews",
-"@reviews": {},
+
  "only_x_left_in_stock": "Only {count} items left in stock!",
   "@only_x_left_in_stock": {
     "placeholders": { "count": { "type": "int" } }
@@ -1226,14 +1225,7 @@
   "@variant_price_adjustment": {
     "placeholders": { "amount": { "type": "String" } }
   },
-  "reviews_count": "({count} reviews)",
-  "@reviews_count": {
-    "placeholders": { "count": { "type": "int" } }
-  },
-  "views_count": "{count} views",
-  "@views_count": {
-    "placeholders": { "count": { "type": "int" } }
-  },
+
   "price_egp": "EGP {amount}",
   "@price_egp": {
     "placeholders": { "amount": { "type": "String" } }
@@ -1254,8 +1246,51 @@
 "@no_reviews_yet": {},
 "something_went_wrong": "Something went wrong",
 "@something_went_wrong": {}
+,
 
- 
+"outOfStock": "Out of Stock",
+"@outOfStock": {
+  "description": "Label shown on product image when item is unavailable"
+},
 
+"noReviews": "No reviews yet",
+"@noReviews": {
+  "description": "Shown under a product with zero reviews"
+},
+
+"reviews": "{count} reviews",
+"@reviews": {
+  "description": "Review count label",
+  "placeholders": {
+    "count": {
+      "type": "int"
+    }
+  }
+},
+
+"priceEgp": "{amount} EGP",
+"@priceEgp": {
+  "description": "Price formatted with EGP currency",
+  "placeholders": {
+    "amount": {
+      "type": "String"
+    }
+  }
+},
+
+"rating": "Rating",
+  "@rating": {},
+  "joined": "Joined",
+  "@joined": {}
+,"noProductsYet": "No Products Yet",
+"@noProductsYet": {},
+"noProductsYetSubtitle": "This brand hasn't added any products yet.\nCheck back soon!",
+"@noProductsYetSubtitle": {},
+"featured": "Featured",
+"@featured": {},
+"inStock": "In stock",
+"@inStock": {},
+"myOrdersReviewSubmitted": "Review submitted — thank you!",
+"@myOrdersReviewSubmitted": {}
 
 }

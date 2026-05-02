@@ -4450,11 +4450,6 @@ class S {
     );
   }
 
-  /// `Reviews`
-  String get reviews {
-    return Intl.message('Reviews', name: 'reviews', desc: '', args: []);
-  }
-
   /// `Only {count} items left in stock!`
   String only_x_left_in_stock(int count) {
     return Intl.message(
@@ -4525,26 +4520,6 @@ class S {
     );
   }
 
-  /// `({count} reviews)`
-  String reviews_count(int count) {
-    return Intl.message(
-      '($count reviews)',
-      name: 'reviews_count',
-      desc: '',
-      args: [count],
-    );
-  }
-
-  /// `{count} views`
-  String views_count(int count) {
-    return Intl.message(
-      '$count views',
-      name: 'views_count',
-      desc: '',
-      args: [count],
-    );
-  }
-
   /// `EGP {amount}`
   String price_egp(String amount) {
     return Intl.message(
@@ -4605,6 +4580,96 @@ class S {
     return Intl.message(
       'Something went wrong',
       name: 'something_went_wrong',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Out of Stock`
+  String get outOfStock {
+    return Intl.message(
+      'Out of Stock',
+      name: 'outOfStock',
+      desc: 'Label shown on product image when item is unavailable',
+      args: [],
+    );
+  }
+
+  /// `No reviews yet`
+  String get noReviews {
+    return Intl.message(
+      'No reviews yet',
+      name: 'noReviews',
+      desc: 'Shown under a product with zero reviews',
+      args: [],
+    );
+  }
+
+  /// `{count} reviews`
+  String reviews(int count) {
+    return Intl.message(
+      '$count reviews',
+      name: 'reviews',
+      desc: 'Review count label',
+      args: [count],
+    );
+  }
+
+  /// `{amount} EGP`
+  String priceEgp(String amount) {
+    return Intl.message(
+      '$amount EGP',
+      name: 'priceEgp',
+      desc: 'Price formatted with EGP currency',
+      args: [amount],
+    );
+  }
+
+  /// `Rating`
+  String get rating {
+    return Intl.message('Rating', name: 'rating', desc: '', args: []);
+  }
+
+  /// `Joined`
+  String get joined {
+    return Intl.message('Joined', name: 'joined', desc: '', args: []);
+  }
+
+  /// `No Products Yet`
+  String get noProductsYet {
+    return Intl.message(
+      'No Products Yet',
+      name: 'noProductsYet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `This brand hasn't added any products yet.\nCheck back soon!`
+  String get noProductsYetSubtitle {
+    return Intl.message(
+      'This brand hasn\'t added any products yet.\nCheck back soon!',
+      name: 'noProductsYetSubtitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Featured`
+  String get featured {
+    return Intl.message('Featured', name: 'featured', desc: '', args: []);
+  }
+
+  /// `In stock`
+  String get inStock {
+    return Intl.message('In stock', name: 'inStock', desc: '', args: []);
+  }
+
+  /// `Review submitted — thank you!`
+  String get myOrdersReviewSubmitted {
+    return Intl.message(
+      'Review submitted — thank you!',
+      name: 'myOrdersReviewSubmitted',
       desc: '',
       args: [],
     );
