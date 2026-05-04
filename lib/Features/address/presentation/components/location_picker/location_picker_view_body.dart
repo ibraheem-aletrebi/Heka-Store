@@ -1,5 +1,3 @@
-// location_picker_view_body.dart
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:heka_store/Features/address/presentation/blocs/location_picker/location_picker_bloc.dart';
@@ -11,8 +9,8 @@ import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:latlong2/latlong.dart';
 
 class LocationPickerViewBody extends StatelessWidget {
-  const LocationPickerViewBody({super.key});
-
+  const LocationPickerViewBody({super.key, required this.isOnboarding});
+  final bool isOnboarding;
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationPickerBloc, LocationPickerState>(
@@ -23,12 +21,13 @@ class LocationPickerViewBody extends StatelessWidget {
               child: LocationPickerMap(
                 selectedLat: state.latitude,
                 selectedLng: state.longitude,
-                onTap: (LatLng latLng) => context
-                    .read<LocationPickerBloc>()
-                    .add(LocationPickerEvent.mapTapped(
-                      latLng.latitude,
-                      latLng.longitude,
-                    )),
+                onTap: (LatLng latLng) =>
+                    context.read<LocationPickerBloc>().add(
+                      LocationPickerEvent.mapTapped(
+                        latLng.latitude,
+                        latLng.longitude,
+                      ),
+                    ),
               ),
             ),
             const Positioned(
@@ -46,9 +45,9 @@ class LocationPickerViewBody extends StatelessWidget {
                   : AppSizes.h32,
               child: LocationPickerGpsButton(
                 isLoading: state.isLoadingLocation,
-                onTap: () => context
-                    .read<LocationPickerBloc>()
-                    .add(const LocationPickerEvent.currentLocationRequested()),
+                onTap: () => context.read<LocationPickerBloc>().add(
+                  const LocationPickerEvent.currentLocationRequested(),
+                ),
               ),
             ),
             AnimatedPositioned(
@@ -56,8 +55,10 @@ class LocationPickerViewBody extends StatelessWidget {
               curve: Curves.easeOutCubic,
               left: 0,
               right: 0,
-              bottom: state.hasLocation ? 0 : -300,
-              child: const LocationPickerBottomPanel(),
+              bottom: state.hasLocation && !state.isSearchFocused
+                  ? MediaQuery.of(context).viewInsets.bottom
+                  : -300,
+              child: LocationPickerBottomPanel(isOnboarding: isOnboarding),
             ),
           ],
         );

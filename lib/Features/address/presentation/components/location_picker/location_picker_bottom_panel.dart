@@ -15,12 +15,12 @@ import 'package:heka_store/core/widgets/custom_text_form_field.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class LocationPickerBottomPanel extends StatelessWidget {
-  const LocationPickerBottomPanel({super.key});
-
+  const LocationPickerBottomPanel({super.key,required this.isOnboarding});
+  final bool isOnboarding ;
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-    final bottomPadding = MediaQuery.of(context).padding.bottom + AppSizes.h16;
+
     final s = S.of(context);
 
     return BlocBuilder<LocationPickerBloc, LocationPickerState>(
@@ -36,7 +36,7 @@ class LocationPickerBottomPanel extends StatelessWidget {
             AppSizes.w20,
             AppSizes.h16,
             AppSizes.w20,
-            bottomPadding,
+            AppSizes.h16,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -120,8 +120,8 @@ class LocationPickerBottomPanel extends StatelessWidget {
               Center(
                 child: TextButton(
                   onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    s.skipForNow,
+                  child: Text(isOnboarding?
+                    s.skipForNow:s.cancel,
                     style: Theme.of(context).textTheme.titleMedium,
                   ),
                 ),
@@ -134,7 +134,7 @@ class LocationPickerBottomPanel extends StatelessWidget {
   }
 
   void _onConfirm(BuildContext context, LocationPickerState locationState) {
-    if (locationState.phoneNumberError != null) return; // ✅
+    if (locationState.phoneNumberError != null) return;
 
     context.read<AddressBloc>().add(
       AddressEvent.added(

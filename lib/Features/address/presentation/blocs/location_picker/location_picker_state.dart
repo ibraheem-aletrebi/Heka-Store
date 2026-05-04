@@ -18,6 +18,7 @@ class LocationPickerState with _$LocationPickerState {
     @Default('') String phoneNumber,
     ValidationKey? phoneNumberError,
     String? errorMessage,
+    @Default(false) bool isSearchFocused, // ✅ جديد
   }) = _LocationPickerState;
 
   const LocationPickerState._();

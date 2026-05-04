@@ -43,6 +43,7 @@ mixin _$OrderModel {
   List<OrderItemModel> get items =>
       throw _privateConstructorUsedError; // Not in JSON — attached by the data source from data['payment']
 // when the order is an online payment order.
+// ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get paymentUrl => throw _privateConstructorUsedError;
 
@@ -455,6 +456,7 @@ class _$OrderModelImpl implements _OrderModel {
 
 // Not in JSON — attached by the data source from data['payment']
 // when the order is an online payment order.
+// ignore: invalid_annotation_target
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   final String? paymentUrl;
@@ -626,6 +628,7 @@ abstract class _OrderModel implements OrderModel {
   List<OrderItemModel> get items;
   @override // Not in JSON — attached by the data source from data['payment']
 // when the order is an online payment order.
+// ignore: invalid_annotation_target
   @JsonKey(includeFromJson: false, includeToJson: false)
   String? get paymentUrl;
   @override

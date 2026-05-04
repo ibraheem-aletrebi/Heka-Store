@@ -11,30 +11,33 @@ import 'package:latlong2/latlong.dart';
 
 class EditAddressViewBody extends StatelessWidget {
   final AddressModel address;
-
   const EditAddressViewBody({super.key, required this.address});
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationPickerBloc, LocationPickerState>(
       builder: (context, state) {
+        final isSearchFocused = state.isSearchFocused;
+        final screenHeight = MediaQuery.sizeOf(context).height;
+
         return Stack(
           children: [
-            // ─── Map (reuses the same widget from add flow) ───────
+            // ─── Map ──────────────────────────────────────────────
             Positioned.fill(
               child: LocationPickerMap(
                 selectedLat: state.latitude,
                 selectedLng: state.longitude,
-                onTap: (LatLng latLng) => context
-                    .read<LocationPickerBloc>()
-                    .add(LocationPickerEvent.mapTapped(
-                      latLng.latitude,
-                      latLng.longitude,
-                    )),
+                onTap: (LatLng latLng) =>
+                    context.read<LocationPickerBloc>().add(
+                      LocationPickerEvent.mapTapped(
+                        latLng.latitude,
+                        latLng.longitude,
+                      ),
+                    ),
               ),
             ),
 
-            // ─── Top search overlay (reused) ──────────────────────
+            // ─── Top search overlay ───────────────────────────────
             const Positioned(
               top: 0,
               left: 0,
@@ -47,23 +50,30 @@ class EditAddressViewBody extends StatelessWidget {
               duration: const Duration(milliseconds: 350),
               curve: Curves.easeOutCubic,
               right: AppSizes.w16,
-              // always show in the "has location" position since edit mode
-              // always starts with a location selected
-              bottom: MediaQuery.sizeOf(context).height * 0.46,
+              bottom: isSearchFocused ? 48 : screenHeight * 0.46,
               child: LocationPickerGpsButton(
                 isLoading: state.isLoadingLocation,
-                onTap: () => context
-                    .read<LocationPickerBloc>()
-                    .add(const LocationPickerEvent.currentLocationRequested()),
+                onTap: () => context.read<LocationPickerBloc>().add(
+                  const LocationPickerEvent.currentLocationRequested(),
+                ),
               ),
             ),
 
-            // ─── Edit bottom panel (always visible) ───────────────
-            Positioned(
+            // ─── Bottom panel ─────────────────────────────────────
+            AnimatedPositioned(
+              duration: const Duration(milliseconds: 350),
+              curve: Curves.easeOutCubic,
               left: 0,
               right: 0,
-              bottom: 0,
-              child: EditAddressBottomPanel(address: address),
+              bottom: isSearchFocused ? -(screenHeight * 0.6) + 36 : 0,
+              child: GestureDetector(
+                onTap: isSearchFocused
+                    ? () => context.read<LocationPickerBloc>().add(
+                        const LocationPickerEvent.searchUnfocused(),
+                      )
+                    : null,
+                child: EditAddressBottomPanel(address: address),
+              ),
             ),
           ],
         );

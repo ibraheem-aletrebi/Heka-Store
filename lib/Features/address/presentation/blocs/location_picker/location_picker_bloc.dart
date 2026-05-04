@@ -12,7 +12,8 @@ part 'location_picker_event.dart';
 part 'location_picker_state.dart';
 part 'location_picker_bloc.freezed.dart';
 
-class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> {
+class LocationPickerBloc
+    extends Bloc<LocationPickerEvent, LocationPickerState> {
   final NominatimService _nominatimService;
   String language;
   Timer? _debounceTimer;
@@ -32,10 +33,27 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
     on<_NicknameChanged>(_onNicknameChanged);
     on<_IsDefaultToggled>(_onIsDefaultToggled);
     on<_PhoneNumberChanged>(_onPhoneNumberChanged);
-    on<_EditAddressLoaded>(_onEditAddressLoaded); // ← جديد
+    on<_EditAddressLoaded>(_onEditAddressLoaded);
+    on<_SearchFocused>(_onSearchFocused);     // ✅ جديد
+    on<_SearchUnfocused>(_onSearchUnfocused); // ✅ جديد
   }
 
-  // ── جديد ────────────────────────────────────────────────────────
+  // ✅ جديد
+  void _onSearchFocused(
+    _SearchFocused event,
+    Emitter<LocationPickerState> emit,
+  ) {
+    emit(state.copyWith(isSearchFocused: true));
+  }
+
+  // ✅ جديد
+  void _onSearchUnfocused(
+    _SearchUnfocused event,
+    Emitter<LocationPickerState> emit,
+  ) {
+    emit(state.copyWith(isSearchFocused: false));
+  }
+
   void _onEditAddressLoaded(
     _EditAddressLoaded event,
     Emitter<LocationPickerState> emit,
@@ -129,7 +147,11 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
         address: null,
       ));
 
-      await _fetchAddress(emit, lat: position.latitude, lng: position.longitude);
+      await _fetchAddress(
+        emit,
+        lat: position.latitude,
+        lng: position.longitude,
+      );
     } catch (e) {
       emit(state.copyWith(
         isLoadingLocation: false,
@@ -148,6 +170,7 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
       address: null,
       searchResults: [],
       errorMessage: null,
+      isSearchFocused: false, // ✅ إغلاق الـ search لما يدوس على الماب
     ));
 
     await _fetchAddress(emit, lat: event.lat, lng: event.lng);
@@ -216,6 +239,7 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
       searchResults: [],
       isSearching: false,
       searchQuery: '',
+      isSearchFocused: false, // ✅ إغلاق الـ search بعد الاختيار
     ));
   }
 
@@ -228,6 +252,7 @@ class LocationPickerBloc extends Bloc<LocationPickerEvent, LocationPickerState> 
       searchQuery: '',
       searchResults: [],
       isSearching: false,
+      isSearchFocused: false, // ✅ إغلاق الـ search لما يمسح
     ));
   }
 

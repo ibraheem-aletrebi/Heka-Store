@@ -29,6 +29,8 @@ mixin _$LocationPickerEvent {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -44,6 +46,8 @@ mixin _$LocationPickerEvent {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -59,6 +63,8 @@ mixin _$LocationPickerEvent {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -76,6 +82,8 @@ mixin _$LocationPickerEvent {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,6 +100,8 @@ mixin _$LocationPickerEvent {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -107,6 +117,8 @@ mixin _$LocationPickerEvent {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -183,6 +195,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return currentLocationRequested();
   }
@@ -201,6 +215,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return currentLocationRequested?.call();
   }
@@ -219,6 +235,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -242,6 +260,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return currentLocationRequested(this);
   }
@@ -261,6 +281,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return currentLocationRequested?.call(this);
   }
@@ -279,6 +301,8 @@ class _$CurrentLocationRequestedImpl implements _CurrentLocationRequested {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (currentLocationRequested != null) {
@@ -375,6 +399,8 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return mapTapped(lat, lng);
   }
@@ -393,6 +419,8 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return mapTapped?.call(lat, lng);
   }
@@ -411,6 +439,8 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -434,6 +464,8 @@ class _$MapTappedImpl implements _MapTapped {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return mapTapped(this);
   }
@@ -453,6 +485,8 @@ class _$MapTappedImpl implements _MapTapped {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return mapTapped?.call(this);
   }
@@ -471,6 +505,8 @@ class _$MapTappedImpl implements _MapTapped {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (mapTapped != null) {
@@ -566,6 +602,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return searchChanged(query);
   }
@@ -584,6 +622,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return searchChanged?.call(query);
   }
@@ -602,6 +642,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -625,6 +667,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return searchChanged(this);
   }
@@ -644,6 +688,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return searchChanged?.call(this);
   }
@@ -662,6 +708,8 @@ class _$SearchChangedImpl implements _SearchChanged {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (searchChanged != null) {
@@ -755,6 +803,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return placeSelected(place);
   }
@@ -773,6 +823,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return placeSelected?.call(place);
   }
@@ -791,6 +843,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -814,6 +868,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return placeSelected(this);
   }
@@ -833,6 +889,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return placeSelected?.call(this);
   }
@@ -851,6 +909,8 @@ class _$PlaceSelectedImpl implements _PlaceSelected {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (placeSelected != null) {
@@ -919,6 +979,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return searchCleared();
   }
@@ -937,6 +999,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return searchCleared?.call();
   }
@@ -955,6 +1019,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -978,6 +1044,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return searchCleared(this);
   }
@@ -997,6 +1065,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return searchCleared?.call(this);
   }
@@ -1015,6 +1085,8 @@ class _$SearchClearedImpl implements _SearchCleared {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (searchCleared != null) {
@@ -1077,6 +1149,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return locationConfirmed();
   }
@@ -1095,6 +1169,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return locationConfirmed?.call();
   }
@@ -1113,6 +1189,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1136,6 +1214,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return locationConfirmed(this);
   }
@@ -1155,6 +1235,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return locationConfirmed?.call(this);
   }
@@ -1173,6 +1255,8 @@ class _$LocationConfirmedImpl implements _LocationConfirmed {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (locationConfirmed != null) {
@@ -1263,6 +1347,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return languageChanged(language);
   }
@@ -1281,6 +1367,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return languageChanged?.call(language);
   }
@@ -1299,6 +1387,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1322,6 +1412,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return languageChanged(this);
   }
@@ -1341,6 +1433,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return languageChanged?.call(this);
   }
@@ -1359,6 +1453,8 @@ class _$LanguageChangedImpl implements _LanguageChanged {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (languageChanged != null) {
@@ -1454,6 +1550,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return nicknameChanged(nickname);
   }
@@ -1472,6 +1570,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return nicknameChanged?.call(nickname);
   }
@@ -1490,6 +1590,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1513,6 +1615,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return nicknameChanged(this);
   }
@@ -1532,6 +1636,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return nicknameChanged?.call(this);
   }
@@ -1550,6 +1656,8 @@ class _$NicknameChangedImpl implements _NicknameChanged {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (nicknameChanged != null) {
@@ -1617,6 +1725,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return isDefaultToggled();
   }
@@ -1635,6 +1745,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return isDefaultToggled?.call();
   }
@@ -1653,6 +1765,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1676,6 +1790,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return isDefaultToggled(this);
   }
@@ -1695,6 +1811,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return isDefaultToggled?.call(this);
   }
@@ -1713,6 +1831,8 @@ class _$IsDefaultToggledImpl implements _IsDefaultToggled {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (isDefaultToggled != null) {
@@ -1803,6 +1923,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return phoneNumberChanged(phoneNumber);
   }
@@ -1821,6 +1943,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return phoneNumberChanged?.call(phoneNumber);
   }
@@ -1839,6 +1963,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -1862,6 +1988,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return phoneNumberChanged(this);
   }
@@ -1881,6 +2009,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return phoneNumberChanged?.call(this);
   }
@@ -1899,6 +2029,8 @@ class _$PhoneNumberChangedImpl implements _PhoneNumberChanged {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (phoneNumberChanged != null) {
@@ -2004,6 +2136,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     required TResult Function() isDefaultToggled,
     required TResult Function(String phoneNumber) phoneNumberChanged,
     required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
   }) {
     return editAddressLoaded(address);
   }
@@ -2022,6 +2156,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     TResult? Function()? isDefaultToggled,
     TResult? Function(String phoneNumber)? phoneNumberChanged,
     TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
   }) {
     return editAddressLoaded?.call(address);
   }
@@ -2040,6 +2176,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     TResult Function()? isDefaultToggled,
     TResult Function(String phoneNumber)? phoneNumberChanged,
     TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
     required TResult orElse(),
   }) {
     if (editAddressLoaded != null) {
@@ -2063,6 +2201,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     required TResult Function(_IsDefaultToggled value) isDefaultToggled,
     required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
     required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
   }) {
     return editAddressLoaded(this);
   }
@@ -2082,6 +2222,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
   }) {
     return editAddressLoaded?.call(this);
   }
@@ -2100,6 +2242,8 @@ class _$EditAddressLoadedImpl implements _EditAddressLoaded {
     TResult Function(_IsDefaultToggled value)? isDefaultToggled,
     TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
     TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
     required TResult orElse(),
   }) {
     if (editAddressLoaded != null) {
@@ -2120,6 +2264,346 @@ abstract class _EditAddressLoaded implements LocationPickerEvent {
 }
 
 /// @nodoc
+abstract class _$$SearchFocusedImplCopyWith<$Res> {
+  factory _$$SearchFocusedImplCopyWith(
+          _$SearchFocusedImpl value, $Res Function(_$SearchFocusedImpl) then) =
+      __$$SearchFocusedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SearchFocusedImplCopyWithImpl<$Res>
+    extends _$LocationPickerEventCopyWithImpl<$Res, _$SearchFocusedImpl>
+    implements _$$SearchFocusedImplCopyWith<$Res> {
+  __$$SearchFocusedImplCopyWithImpl(
+      _$SearchFocusedImpl _value, $Res Function(_$SearchFocusedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SearchFocusedImpl implements _SearchFocused {
+  const _$SearchFocusedImpl();
+
+  @override
+  String toString() {
+    return 'LocationPickerEvent.searchFocused()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SearchFocusedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() currentLocationRequested,
+    required TResult Function(double lat, double lng) mapTapped,
+    required TResult Function(String query) searchChanged,
+    required TResult Function(NominatimPlace place) placeSelected,
+    required TResult Function() searchCleared,
+    required TResult Function() locationConfirmed,
+    required TResult Function(String language) languageChanged,
+    required TResult Function(String nickname) nicknameChanged,
+    required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
+  }) {
+    return searchFocused();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? currentLocationRequested,
+    TResult? Function(double lat, double lng)? mapTapped,
+    TResult? Function(String query)? searchChanged,
+    TResult? Function(NominatimPlace place)? placeSelected,
+    TResult? Function()? searchCleared,
+    TResult? Function()? locationConfirmed,
+    TResult? Function(String language)? languageChanged,
+    TResult? Function(String nickname)? nicknameChanged,
+    TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
+  }) {
+    return searchFocused?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? currentLocationRequested,
+    TResult Function(double lat, double lng)? mapTapped,
+    TResult Function(String query)? searchChanged,
+    TResult Function(NominatimPlace place)? placeSelected,
+    TResult Function()? searchCleared,
+    TResult Function()? locationConfirmed,
+    TResult Function(String language)? languageChanged,
+    TResult Function(String nickname)? nicknameChanged,
+    TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
+    required TResult orElse(),
+  }) {
+    if (searchFocused != null) {
+      return searchFocused();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentLocationRequested value)
+        currentLocationRequested,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_SearchChanged value) searchChanged,
+    required TResult Function(_PlaceSelected value) placeSelected,
+    required TResult Function(_SearchCleared value) searchCleared,
+    required TResult Function(_LocationConfirmed value) locationConfirmed,
+    required TResult Function(_LanguageChanged value) languageChanged,
+    required TResult Function(_NicknameChanged value) nicknameChanged,
+    required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
+  }) {
+    return searchFocused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CurrentLocationRequested value)?
+        currentLocationRequested,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_SearchChanged value)? searchChanged,
+    TResult? Function(_PlaceSelected value)? placeSelected,
+    TResult? Function(_SearchCleared value)? searchCleared,
+    TResult? Function(_LocationConfirmed value)? locationConfirmed,
+    TResult? Function(_LanguageChanged value)? languageChanged,
+    TResult? Function(_NicknameChanged value)? nicknameChanged,
+    TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
+  }) {
+    return searchFocused?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentLocationRequested value)? currentLocationRequested,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_SearchChanged value)? searchChanged,
+    TResult Function(_PlaceSelected value)? placeSelected,
+    TResult Function(_SearchCleared value)? searchCleared,
+    TResult Function(_LocationConfirmed value)? locationConfirmed,
+    TResult Function(_LanguageChanged value)? languageChanged,
+    TResult Function(_NicknameChanged value)? nicknameChanged,
+    TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
+    required TResult orElse(),
+  }) {
+    if (searchFocused != null) {
+      return searchFocused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchFocused implements LocationPickerEvent {
+  const factory _SearchFocused() = _$SearchFocusedImpl;
+}
+
+/// @nodoc
+abstract class _$$SearchUnfocusedImplCopyWith<$Res> {
+  factory _$$SearchUnfocusedImplCopyWith(_$SearchUnfocusedImpl value,
+          $Res Function(_$SearchUnfocusedImpl) then) =
+      __$$SearchUnfocusedImplCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$SearchUnfocusedImplCopyWithImpl<$Res>
+    extends _$LocationPickerEventCopyWithImpl<$Res, _$SearchUnfocusedImpl>
+    implements _$$SearchUnfocusedImplCopyWith<$Res> {
+  __$$SearchUnfocusedImplCopyWithImpl(
+      _$SearchUnfocusedImpl _value, $Res Function(_$SearchUnfocusedImpl) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$SearchUnfocusedImpl implements _SearchUnfocused {
+  const _$SearchUnfocusedImpl();
+
+  @override
+  String toString() {
+    return 'LocationPickerEvent.searchUnfocused()';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$SearchUnfocusedImpl);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() currentLocationRequested,
+    required TResult Function(double lat, double lng) mapTapped,
+    required TResult Function(String query) searchChanged,
+    required TResult Function(NominatimPlace place) placeSelected,
+    required TResult Function() searchCleared,
+    required TResult Function() locationConfirmed,
+    required TResult Function(String language) languageChanged,
+    required TResult Function(String nickname) nicknameChanged,
+    required TResult Function() isDefaultToggled,
+    required TResult Function(String phoneNumber) phoneNumberChanged,
+    required TResult Function(AddressModel address) editAddressLoaded,
+    required TResult Function() searchFocused,
+    required TResult Function() searchUnfocused,
+  }) {
+    return searchUnfocused();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? currentLocationRequested,
+    TResult? Function(double lat, double lng)? mapTapped,
+    TResult? Function(String query)? searchChanged,
+    TResult? Function(NominatimPlace place)? placeSelected,
+    TResult? Function()? searchCleared,
+    TResult? Function()? locationConfirmed,
+    TResult? Function(String language)? languageChanged,
+    TResult? Function(String nickname)? nicknameChanged,
+    TResult? Function()? isDefaultToggled,
+    TResult? Function(String phoneNumber)? phoneNumberChanged,
+    TResult? Function(AddressModel address)? editAddressLoaded,
+    TResult? Function()? searchFocused,
+    TResult? Function()? searchUnfocused,
+  }) {
+    return searchUnfocused?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? currentLocationRequested,
+    TResult Function(double lat, double lng)? mapTapped,
+    TResult Function(String query)? searchChanged,
+    TResult Function(NominatimPlace place)? placeSelected,
+    TResult Function()? searchCleared,
+    TResult Function()? locationConfirmed,
+    TResult Function(String language)? languageChanged,
+    TResult Function(String nickname)? nicknameChanged,
+    TResult Function()? isDefaultToggled,
+    TResult Function(String phoneNumber)? phoneNumberChanged,
+    TResult Function(AddressModel address)? editAddressLoaded,
+    TResult Function()? searchFocused,
+    TResult Function()? searchUnfocused,
+    required TResult orElse(),
+  }) {
+    if (searchUnfocused != null) {
+      return searchUnfocused();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_CurrentLocationRequested value)
+        currentLocationRequested,
+    required TResult Function(_MapTapped value) mapTapped,
+    required TResult Function(_SearchChanged value) searchChanged,
+    required TResult Function(_PlaceSelected value) placeSelected,
+    required TResult Function(_SearchCleared value) searchCleared,
+    required TResult Function(_LocationConfirmed value) locationConfirmed,
+    required TResult Function(_LanguageChanged value) languageChanged,
+    required TResult Function(_NicknameChanged value) nicknameChanged,
+    required TResult Function(_IsDefaultToggled value) isDefaultToggled,
+    required TResult Function(_PhoneNumberChanged value) phoneNumberChanged,
+    required TResult Function(_EditAddressLoaded value) editAddressLoaded,
+    required TResult Function(_SearchFocused value) searchFocused,
+    required TResult Function(_SearchUnfocused value) searchUnfocused,
+  }) {
+    return searchUnfocused(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_CurrentLocationRequested value)?
+        currentLocationRequested,
+    TResult? Function(_MapTapped value)? mapTapped,
+    TResult? Function(_SearchChanged value)? searchChanged,
+    TResult? Function(_PlaceSelected value)? placeSelected,
+    TResult? Function(_SearchCleared value)? searchCleared,
+    TResult? Function(_LocationConfirmed value)? locationConfirmed,
+    TResult? Function(_LanguageChanged value)? languageChanged,
+    TResult? Function(_NicknameChanged value)? nicknameChanged,
+    TResult? Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult? Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult? Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult? Function(_SearchFocused value)? searchFocused,
+    TResult? Function(_SearchUnfocused value)? searchUnfocused,
+  }) {
+    return searchUnfocused?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_CurrentLocationRequested value)? currentLocationRequested,
+    TResult Function(_MapTapped value)? mapTapped,
+    TResult Function(_SearchChanged value)? searchChanged,
+    TResult Function(_PlaceSelected value)? placeSelected,
+    TResult Function(_SearchCleared value)? searchCleared,
+    TResult Function(_LocationConfirmed value)? locationConfirmed,
+    TResult Function(_LanguageChanged value)? languageChanged,
+    TResult Function(_NicknameChanged value)? nicknameChanged,
+    TResult Function(_IsDefaultToggled value)? isDefaultToggled,
+    TResult Function(_PhoneNumberChanged value)? phoneNumberChanged,
+    TResult Function(_EditAddressLoaded value)? editAddressLoaded,
+    TResult Function(_SearchFocused value)? searchFocused,
+    TResult Function(_SearchUnfocused value)? searchUnfocused,
+    required TResult orElse(),
+  }) {
+    if (searchUnfocused != null) {
+      return searchUnfocused(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SearchUnfocused implements LocationPickerEvent {
+  const factory _SearchUnfocused() = _$SearchUnfocusedImpl;
+}
+
+/// @nodoc
 mixin _$LocationPickerState {
   double? get latitude => throw _privateConstructorUsedError;
   double? get longitude => throw _privateConstructorUsedError;
@@ -2136,6 +2620,7 @@ mixin _$LocationPickerState {
   String get phoneNumber => throw _privateConstructorUsedError;
   ValidationKey? get phoneNumberError => throw _privateConstructorUsedError;
   String? get errorMessage => throw _privateConstructorUsedError;
+  bool get isSearchFocused => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LocationPickerStateCopyWith<LocationPickerState> get copyWith =>
@@ -2163,7 +2648,8 @@ abstract class $LocationPickerStateCopyWith<$Res> {
       bool isDefault,
       String phoneNumber,
       ValidationKey? phoneNumberError,
-      String? errorMessage});
+      String? errorMessage,
+      bool isSearchFocused});
 }
 
 /// @nodoc
@@ -2194,6 +2680,7 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
     Object? phoneNumber = null,
     Object? phoneNumberError = freezed,
     Object? errorMessage = freezed,
+    Object? isSearchFocused = null,
   }) {
     return _then(_value.copyWith(
       latitude: freezed == latitude
@@ -2256,6 +2743,10 @@ class _$LocationPickerStateCopyWithImpl<$Res, $Val extends LocationPickerState>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSearchFocused: null == isSearchFocused
+          ? _value.isSearchFocused
+          : isSearchFocused // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 }
@@ -2283,7 +2774,8 @@ abstract class _$$LocationPickerStateImplCopyWith<$Res>
       bool isDefault,
       String phoneNumber,
       ValidationKey? phoneNumberError,
-      String? errorMessage});
+      String? errorMessage,
+      bool isSearchFocused});
 }
 
 /// @nodoc
@@ -2312,6 +2804,7 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
     Object? phoneNumber = null,
     Object? phoneNumberError = freezed,
     Object? errorMessage = freezed,
+    Object? isSearchFocused = null,
   }) {
     return _then(_$LocationPickerStateImpl(
       latitude: freezed == latitude
@@ -2374,6 +2867,10 @@ class __$$LocationPickerStateImplCopyWithImpl<$Res>
           ? _value.errorMessage
           : errorMessage // ignore: cast_nullable_to_non_nullable
               as String?,
+      isSearchFocused: null == isSearchFocused
+          ? _value.isSearchFocused
+          : isSearchFocused // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2396,7 +2893,8 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       this.isDefault = false,
       this.phoneNumber = '',
       this.phoneNumberError,
-      this.errorMessage})
+      this.errorMessage,
+      this.isSearchFocused = false})
       : _searchResults = searchResults,
         super._();
 
@@ -2446,10 +2944,13 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
   final ValidationKey? phoneNumberError;
   @override
   final String? errorMessage;
+  @override
+  @JsonKey()
+  final bool isSearchFocused;
 
   @override
   String toString() {
-    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, phoneNumber: $phoneNumber, phoneNumberError: $phoneNumberError, errorMessage: $errorMessage)';
+    return 'LocationPickerState(latitude: $latitude, longitude: $longitude, address: $address, searchQuery: $searchQuery, searchResults: $searchResults, isSearching: $isSearching, isLoadingLocation: $isLoadingLocation, isConfirmed: $isConfirmed, isPermissionDenied: $isPermissionDenied, isPermissionDeniedForever: $isPermissionDeniedForever, nickname: $nickname, isDefault: $isDefault, phoneNumber: $phoneNumber, phoneNumberError: $phoneNumberError, errorMessage: $errorMessage, isSearchFocused: $isSearchFocused)';
   }
 
   @override
@@ -2486,7 +2987,9 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
             (identical(other.phoneNumberError, phoneNumberError) ||
                 other.phoneNumberError == phoneNumberError) &&
             (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
+                other.errorMessage == errorMessage) &&
+            (identical(other.isSearchFocused, isSearchFocused) ||
+                other.isSearchFocused == isSearchFocused));
   }
 
   @override
@@ -2506,7 +3009,8 @@ class _$LocationPickerStateImpl extends _LocationPickerState {
       isDefault,
       phoneNumber,
       phoneNumberError,
-      errorMessage);
+      errorMessage,
+      isSearchFocused);
 
   @JsonKey(ignore: true)
   @override
@@ -2532,7 +3036,8 @@ abstract class _LocationPickerState extends LocationPickerState {
       final bool isDefault,
       final String phoneNumber,
       final ValidationKey? phoneNumberError,
-      final String? errorMessage}) = _$LocationPickerStateImpl;
+      final String? errorMessage,
+      final bool isSearchFocused}) = _$LocationPickerStateImpl;
   const _LocationPickerState._() : super._();
 
   @override
@@ -2565,6 +3070,8 @@ abstract class _LocationPickerState extends LocationPickerState {
   ValidationKey? get phoneNumberError;
   @override
   String? get errorMessage;
+  @override
+  bool get isSearchFocused;
   @override
   @JsonKey(ignore: true)
   _$$LocationPickerStateImplCopyWith<_$LocationPickerStateImpl> get copyWith =>

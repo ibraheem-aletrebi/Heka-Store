@@ -14,13 +14,18 @@ class LocationPickerView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) =>
-              LocationPickerBloc(nominatimService: sl())
-                ..add(const LocationPickerEvent.currentLocationRequested()),
-        ),
+          create: (_) {
+            final bloc = LocationPickerBloc(nominatimService: sl());
+            if (!isOnboarding) {
+              bloc.add(LocationPickerEvent.currentLocationRequested());
+            }
+            return bloc;
+          },
+        ), 
         BlocProvider(create: (_) => sl<AddressBloc>()),
       ],
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: LocationPickerViewBodyBlocListener(isOnboarding: isOnboarding),
         ),

@@ -8,7 +8,6 @@ import 'package:heka_store/core/di/injector.dart';
 
 class EditAddressView extends StatelessWidget {
   final AddressModel address;
-
   const EditAddressView({super.key, required this.address});
 
   @override
@@ -16,9 +15,8 @@ class EditAddressView extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-          create: (_) =>
-              sl<LocationPickerBloc>()
-                ..add(LocationPickerEvent.editAddressLoaded(address)),
+          create: (_) => sl<LocationPickerBloc>()
+            ..add(LocationPickerEvent.editAddressLoaded(address)),
         ),
         BlocProvider(create: (_) => sl<AddressBloc>()),
       ],

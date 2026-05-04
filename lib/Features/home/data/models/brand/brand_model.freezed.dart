@@ -21,19 +21,24 @@ BrandModel _$BrandModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BrandModel {
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  int get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(1)
   @JsonKey(name: 'storeNameAr')
-  String get storeNameAr => throw _privateConstructorUsedError;
+  String get storeNameAr =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(2)
   @JsonKey(name: 'storeName')
-  String get storeNameEn => throw _privateConstructorUsedError;
+  String get storeNameEn =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(3)
   @JsonKey(name: 'logoUrl')
-  String? get logoUrl => throw _privateConstructorUsedError;
+  String? get logoUrl =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(4)
   @JsonKey(name: 'averageRating')
-  double? get averageRating => throw _privateConstructorUsedError;
+  double? get averageRating =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(5)
   @JsonKey(name: 'totalReviews')
   int? get totalReviews => throw _privateConstructorUsedError;
@@ -189,22 +194,27 @@ class _$BrandModelImpl implements _BrandModel {
   @override
   @HiveField(0)
   final int id;
+// ignore: invalid_annotation_target
   @override
   @HiveField(1)
   @JsonKey(name: 'storeNameAr')
   final String storeNameAr;
+// ignore: invalid_annotation_target
   @override
   @HiveField(2)
   @JsonKey(name: 'storeName')
   final String storeNameEn;
+// ignore: invalid_annotation_target
   @override
   @HiveField(3)
   @JsonKey(name: 'logoUrl')
   final String? logoUrl;
+// ignore: invalid_annotation_target
   @override
   @HiveField(4)
   @JsonKey(name: 'averageRating')
   final double? averageRating;
+// ignore: invalid_annotation_target
   @override
   @HiveField(5)
   @JsonKey(name: 'totalReviews')
@@ -272,23 +282,23 @@ abstract class _BrandModel implements BrandModel {
   @override
   @HiveField(0)
   int get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(1)
   @JsonKey(name: 'storeNameAr')
   String get storeNameAr;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(2)
   @JsonKey(name: 'storeName')
   String get storeNameEn;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(3)
   @JsonKey(name: 'logoUrl')
   String? get logoUrl;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(4)
   @JsonKey(name: 'averageRating')
   double? get averageRating;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(5)
   @JsonKey(name: 'totalReviews')
   int? get totalReviews;

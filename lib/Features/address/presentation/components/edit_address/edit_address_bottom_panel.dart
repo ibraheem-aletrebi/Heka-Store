@@ -17,7 +17,6 @@ import 'package:heka_store/generated/l10n.dart';
 
 class EditAddressBottomPanel extends StatelessWidget {
   final AddressModel address;
-
   const EditAddressBottomPanel({super.key, required this.address});
 
   @override
@@ -55,21 +54,20 @@ class EditAddressBottomPanel extends StatelessWidget {
               // ─── Nickname ─────────────────────────────
               Text(
                 s.addressNickName,
-                style: AppTextStyles.semiBold14
-                    .copyWith(color: colors.textPrimary),
+                style: AppTextStyles.semiBold14.copyWith(
+                  color: colors.textPrimary,
+                ),
               ),
               SizedBox(height: AppSizes.h8),
-              LocationPickerNicknameSelector(
-              
-                initialNickname: address.nickname,
-              ),
+              LocationPickerNicknameSelector(initialNickname: address.nickname),
               SizedBox(height: AppSizes.h16),
 
               // ─── Phone Number ─────────────────────────
               Text(
                 s.phoneNumber,
-                style: AppTextStyles.semiBold14
-                    .copyWith(color: colors.textPrimary),
+                style: AppTextStyles.semiBold14.copyWith(
+                  color: colors.textPrimary,
+                ),
               ),
               SizedBox(height: AppSizes.h8),
               BlocBuilder<LocationPickerBloc, LocationPickerState>(
@@ -98,7 +96,8 @@ class EditAddressBottomPanel extends StatelessWidget {
                 buildWhen: (prev, curr) =>
                     prev.isUpdateLoading != curr.isUpdateLoading,
                 builder: (context, addressState) {
-                  final isLoading = locationState.isLoadingLocation ||
+                  final isLoading =
+                      locationState.isLoadingLocation ||
                       addressState.isUpdateLoading;
 
                   return CustomButton(
@@ -133,23 +132,23 @@ class EditAddressBottomPanel extends StatelessWidget {
     if (locationState.phoneNumberError != null) return;
 
     context.read<AddressBloc>().add(
-          AddressEvent.updated(
-            address.id,
-            AddressRequestModel(
-              nickname: locationState.nickname.isNotEmpty
-                  ? locationState.nickname
-                  : address.nickname,
-              fullAddress:
-                  locationState.address ?? locationState.formattedCoordinates,
-              latitude: locationState.latitude!,
-              longitude: locationState.longitude!,
-              isDefault: locationState.isDefault,
-              phoneNumber: locationState.phoneNumber.trim().isEmpty
-                  ? null
-                  : locationState.phoneNumber.trim(),
-            ),
-          ),
-        );
+      AddressEvent.updated(
+        address.id,
+        AddressRequestModel(
+          nickname: locationState.nickname.isNotEmpty
+              ? locationState.nickname
+              : address.nickname,
+          fullAddress:
+              locationState.address ?? locationState.formattedCoordinates,
+          latitude: locationState.latitude!,
+          longitude: locationState.longitude!,
+          isDefault: locationState.isDefault,
+          phoneNumber: locationState.phoneNumber.trim().isEmpty
+              ? null
+              : locationState.phoneNumber.trim(),
+        ),
+      ),
+    );
   }
 }
 
@@ -158,15 +157,15 @@ class _DragHandle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Align(
-        alignment: Alignment.center,
-        child: Container(
-          width: AppSizes.w40,
-          height: 4,
-          margin: EdgeInsets.only(bottom: AppSizes.h16),
-          decoration: BoxDecoration(
-            color: context.myColors.divider,
-            borderRadius: BorderRadius.circular(2),
-          ),
-        ),
-      );
+    alignment: Alignment.center,
+    child: Container(
+      width: AppSizes.w40,
+      height: 4,
+      margin: EdgeInsets.only(bottom: AppSizes.h16),
+      decoration: BoxDecoration(
+        color: context.myColors.divider,
+        borderRadius: BorderRadius.circular(2),
+      ),
+    ),
+  );
 }

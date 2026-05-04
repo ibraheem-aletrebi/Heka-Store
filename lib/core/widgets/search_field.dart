@@ -5,6 +5,7 @@ import 'package:heka_store/core/resources/app_text_styles.dart';
 
 class SearchField extends StatefulWidget {
   final TextEditingController controller;
+  final FocusNode? focusNode; // ✅ جديد
   final String hintText;
   final void Function(String)? onChanged;
   final VoidCallback? onClear;
@@ -14,13 +15,14 @@ class SearchField extends StatefulWidget {
   final Widget? suffixIcon;
   final Color? fillColor;
   final bool showClearButton;
-  final TextInputAction? textInputAction;       
-  final void Function(String)? onSubmitted;     
+  final TextInputAction? textInputAction;
+  final void Function(String)? onSubmitted;
 
   const SearchField({
     super.key,
     required this.controller,
     required this.hintText,
+    this.focusNode, // ✅ جديد
     this.onChanged,
     this.onClear,
     this.onTap,
@@ -55,7 +57,6 @@ class _SearchFieldState extends State<SearchField> {
   @override
   Widget build(BuildContext context) {
     final colors = context.myColors;
-
     return AnimatedContainer(
       duration: const Duration(milliseconds: 180),
       curve: Curves.easeInOut,
@@ -66,6 +67,7 @@ class _SearchFieldState extends State<SearchField> {
       ),
       child: TextField(
         controller: widget.controller,
+        focusNode: widget.focusNode, // ✅ جديد
         autofocus: widget.autoFocus,
         style: AppTextStyles.regular14.copyWith(color: colors.textPrimary),
         onChanged: widget.onChanged,
@@ -107,7 +109,6 @@ class _SearchFieldState extends State<SearchField> {
   Widget? _buildSuffix(dynamic colors) {
     if (widget.suffixIcon != null) return widget.suffixIcon;
     if (!widget.showClearButton || widget.controller.text.isEmpty) return null;
-
     return Padding(
       padding: const EdgeInsets.only(right: 6),
       child: IconButton(

@@ -21,10 +21,12 @@ BrandProfileModel _$BrandProfileModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BrandProfileModel {
   @HiveField(0)
-  int get id => throw _privateConstructorUsedError;
+  int get id =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(1)
   @JsonKey(name: 'storeName')
-  String get storeNameEn => throw _privateConstructorUsedError;
+  String get storeNameEn =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
   @HiveField(2)
   @JsonKey(name: 'storeNameAr')
   String get storeNameAr => throw _privateConstructorUsedError;
@@ -231,10 +233,12 @@ class _$BrandProfileModelImpl implements _BrandProfileModel {
   @override
   @HiveField(0)
   final int id;
+// ignore: invalid_annotation_target
   @override
   @HiveField(1)
   @JsonKey(name: 'storeName')
   final String storeNameEn;
+// ignore: invalid_annotation_target
   @override
   @HiveField(2)
   @JsonKey(name: 'storeNameAr')
@@ -337,11 +341,11 @@ abstract class _BrandProfileModel implements BrandProfileModel {
   @override
   @HiveField(0)
   int get id;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(1)
   @JsonKey(name: 'storeName')
   String get storeNameEn;
-  @override
+  @override // ignore: invalid_annotation_target
   @HiveField(2)
   @JsonKey(name: 'storeNameAr')
   String get storeNameAr;

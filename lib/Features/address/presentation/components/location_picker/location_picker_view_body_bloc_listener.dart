@@ -64,7 +64,7 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
               if (isOnboarding) {
                 context.go(AppRoutes.mainLayout);
               } else {
-                context.pop(true); // true = list should refresh
+                context.pop(true);
               }
             }
             if (state.error != null) {
@@ -80,7 +80,7 @@ class LocationPickerViewBodyBlocListener extends StatelessWidget {
           },
         ),
       ],
-      child: LocationPickerViewBody(),
+      child: LocationPickerViewBody(isOnboarding: isOnboarding,),
     );
   }
 

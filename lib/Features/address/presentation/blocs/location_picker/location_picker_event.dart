@@ -15,4 +15,6 @@ sealed class LocationPickerEvent with _$LocationPickerEvent {
   const factory LocationPickerEvent.isDefaultToggled() = _IsDefaultToggled;
   const factory LocationPickerEvent.phoneNumberChanged(String phoneNumber) = _PhoneNumberChanged;
   const factory LocationPickerEvent.editAddressLoaded(AddressModel address) = _EditAddressLoaded; // ← جديد
+  const factory LocationPickerEvent.searchFocused() = _SearchFocused;
+const factory LocationPickerEvent.searchUnfocused() = _SearchUnfocused;
 }
