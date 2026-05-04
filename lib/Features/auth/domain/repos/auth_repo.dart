@@ -32,7 +32,6 @@ abstract class AuthRepo {
   });
 
   // ─── Session ──────────────────────────────────────
-  Future<String?> getPendingVerifyEmail();
   Future<bool> isLoggedIn();
   Future<ApiResult<void>> logout();
 

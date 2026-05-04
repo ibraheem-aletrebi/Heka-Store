@@ -59,7 +59,6 @@ class AuthRepoImp implements AuthRepo {
   Future<ApiResult<void>> register(RegisterRequestModel request) async {
     try {
       await _remoteDataSource.register(request);
-      await _localDataSource.savePendingVerifyEmail(request.email);
       final fcmToken = await LocalStorageService().getValue(
         HiveBoxes.data,
         "fcmToken",
@@ -85,7 +84,6 @@ class AuthRepoImp implements AuthRepo {
       final response = await _remoteDataSource.verifyEmailOtp(request);
       await _localDataSource.saveTokens(response);
       await _localDataSource.saveUser(response);
-      await _localDataSource.clearPendingVerifyEmail();
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.error(e);
@@ -148,10 +146,6 @@ class AuthRepoImp implements AuthRepo {
 
   // ─── Pending Verify Email ─────────────────────────────────────────────────
 
-  @override
-  Future<String?> getPendingVerifyEmail() async {
-    return _localDataSource.getPendingVerifyEmail();
-  }
 
   // ─── Session ──────────────────────────────────────────────────────────────
 

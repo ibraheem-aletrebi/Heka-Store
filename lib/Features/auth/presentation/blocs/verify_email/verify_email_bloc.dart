@@ -1,10 +1,8 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:heka_store/Features/auth/data/data_source/auth_local_data_source.dart';
 import 'package:heka_store/Features/auth/data/models/login_response_model.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/register/verify_email_otp_use_case.dart';
 import 'package:heka_store/Features/auth/domain/use_cases/resend_otp_use_case.dart';
-import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/enums/validation_key.dart';
 import 'package:heka_store/core/services/remote/error/api_error_model.dart';
 import 'package:heka_store/core/utils/field_validator.dart';
@@ -57,7 +55,6 @@ class VerifyEmailBloc extends Bloc<VerifyEmailEvent, VerifyEmailState> {
 
     response.when(
       onSuccess: (loginResponse) {
-        sl<AuthLocalDataSource>().clearPendingVerifyEmail();
         return emit(
           state.copyWith(
             isOtpLoading: false,

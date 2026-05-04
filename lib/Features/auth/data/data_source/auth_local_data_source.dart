@@ -18,10 +18,7 @@ abstract class AuthLocalDataSource {
   Future<UserModel?> getUser();
   Future<void> clearUser();
 
-  // ─── Pending Verify Email ─────────────────────────
-  Future<void> savePendingVerifyEmail(String email);
-  Future<String?> getPendingVerifyEmail();
-  Future<void> clearPendingVerifyEmail();
+
 
   // ─── Session ──────────────────────────────────────
   Future<bool> isLoggedIn();
@@ -85,23 +82,7 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
     await _localStorage.remove(HiveBoxes.data, LocalStorageKeys.user);
   }
 
-  @override
-  Future<void> savePendingVerifyEmail(String email) async {
-    await _secureStorage.write(
-      key: SecureStorageKeys.pendingVerifyEmail,
-      value: email,
-    );
-  }
 
-  @override
-  Future<String?> getPendingVerifyEmail() async {
-    return _secureStorage.read(SecureStorageKeys.pendingVerifyEmail);
-  }
-
-  @override
-  Future<void> clearPendingVerifyEmail() async {
-    await _secureStorage.delete(SecureStorageKeys.pendingVerifyEmail);
-  }
 
   @override
   Future<bool> isLoggedIn() async {
@@ -118,7 +99,6 @@ class AuthLocalDataSourceImpl implements AuthLocalDataSource {
   Future<void> clearAll() async {
     await clearTokens();
     await clearUser();
-    await clearPendingVerifyEmail();
   }
   
 
