@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:heka_store/Features/address/presentation/blocs/address/address_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/brands/brands_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/categories/categories_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/home/home_bloc.dart';
 import 'package:heka_store/Features/home/presentation/blocs/recommended_for_you/recommended_for_you_bloc.dart';
-import 'package:heka_store/Features/home/presentation/blocs/user_profile/user_profile_bloc.dart';
 import 'package:heka_store/Features/home/presentation/components/home/home_view_body.dart';
 import 'package:heka_store/Features/search/presentation/cubits/search_cubit/search_cubit.dart';
 import 'package:heka_store/core/di/injector.dart';
@@ -29,14 +27,7 @@ class HomeView extends StatelessWidget {
           create: (_) =>
               sl<CategoriesBloc>()..add(const CategoriesEvent.loaded()),
         ),
-        BlocProvider(
-          create: (context) =>
-              sl<UserProfileBloc>()..add(const UserProfileEvent.loaded()),
-        ),
-        BlocProvider(
-          create: (context) =>
-              sl<AddressBloc>()..add(const AddressEvent.loaded()),
-        ),
+      
          BlocProvider(
           create: (context) =>
               sl<BrandsBloc>()..add(const BrandsEvent.loaded()),

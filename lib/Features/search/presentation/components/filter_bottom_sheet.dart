@@ -51,8 +51,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
     final min = double.tryParse(_minController.text);
     final max = double.tryParse(_maxController.text);
     context.read<SearchCubit>().applyFilter(
-          _filter.copyWith(minPrice: min, maxPrice: max, pageNumber: 1),
-        );
+      _filter.copyWith(minPrice: min, maxPrice: max, pageNumber: 1),
+    );
     Navigator.pop(context);
   }
 
@@ -249,34 +249,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     SizedBox(height: AppSizes.h24),
                     // ── Origin ─────────────────────────────────────
                     _SectionLabel(label: s.filterOrigin),
-                    SizedBox(height: AppSizes.h10),
-                    Row(
-                      children: [
-                        _FilterChip(
-                          label: s.filterEgyptianMade,
-                          icon: Icons.flag_rounded,
-                          selected: _filter.isEgyptianMade == true,
-                          colors: colors,
-                          onTap: () => setState(
-                            () => _filter = _filter.isEgyptianMade == true
-                                ? _filter.copyWith(clearEgyptianMade: true)
-                                : _filter.copyWith(isEgyptianMade: true),
-                          ),
-                        ),
-                        SizedBox(width: AppSizes.w8),
-                        _FilterChip(
-                          label: s.filterImported,
-                          icon: Icons.flight_land_rounded,
-                          selected: _filter.isEgyptianMade == false,
-                          colors: colors,
-                          onTap: () => setState(
-                            () => _filter = _filter.isEgyptianMade == false
-                                ? _filter.copyWith(clearEgyptianMade: true)
-                                : _filter.copyWith(isEgyptianMade: false),
-                          ),
-                        ),
-                      ],
-                    ),
+
                     SizedBox(height: AppSizes.h32),
                   ],
                 ),
@@ -448,10 +421,12 @@ class _PriceRangeWidgetState extends State<_PriceRangeWidget> {
                   colors: colors,
                   onSubmitted: (v) {
                     final val = double.tryParse(v) ?? _range.start;
-                    _updateFromRange(RangeValues(
-                      val.clamp(_minBound, _range.end - 1),
-                      _range.end,
-                    ));
+                    _updateFromRange(
+                      RangeValues(
+                        val.clamp(_minBound, _range.end - 1),
+                        _range.end,
+                      ),
+                    );
                   },
                 ),
               ),
@@ -461,10 +436,7 @@ class _PriceRangeWidgetState extends State<_PriceRangeWidget> {
                   padding: EdgeInsets.only(top: AppSizes.h14),
                   child: Text(
                     '—',
-                    style: TextStyle(
-                      color: colors.textHint,
-                      fontSize: 18,
-                    ),
+                    style: TextStyle(color: colors.textHint, fontSize: 18),
                   ),
                 ),
               ),
@@ -476,10 +448,12 @@ class _PriceRangeWidgetState extends State<_PriceRangeWidget> {
                   colors: colors,
                   onSubmitted: (v) {
                     final val = double.tryParse(v) ?? _range.end;
-                    _updateFromRange(RangeValues(
-                      _range.start,
-                      val.clamp(_range.start + 1, _maxBound),
-                    ));
+                    _updateFromRange(
+                      RangeValues(
+                        _range.start,
+                        val.clamp(_range.start + 1, _maxBound),
+                      ),
+                    );
                   },
                 ),
               ),
@@ -516,8 +490,7 @@ class _PriceRangeWidgetState extends State<_PriceRangeWidget> {
                     preset.label,
                     style: theme.textTheme.labelMedium?.copyWith(
                       color: active ? colors.primary : colors.textSecondary,
-                      fontWeight:
-                          active ? FontWeight.w600 : FontWeight.normal,
+                      fontWeight: active ? FontWeight.w600 : FontWeight.normal,
                     ),
                   ),
                 ),
@@ -557,9 +530,7 @@ class _PricePillInput extends StatelessWidget {
       children: [
         Text(
           label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: colors.textHint,
-          ),
+          style: theme.textTheme.labelSmall?.copyWith(color: colors.textHint),
         ),
         SizedBox(height: AppSizes.h4),
         TextField(
@@ -570,10 +541,7 @@ class _PricePillInput extends StatelessWidget {
           style: theme.textTheme.bodyMedium,
           decoration: InputDecoration(
             prefixText: '$currency ',
-            prefixStyle: TextStyle(
-              color: colors.textHint,
-              fontSize: 13,
-            ),
+            prefixStyle: TextStyle(color: colors.textHint, fontSize: 13),
             isDense: true,
             contentPadding: EdgeInsets.symmetric(
               horizontal: AppSizes.w14,
@@ -670,20 +638,16 @@ class _FilterChip extends StatelessWidget {
               Icon(
                 icon,
                 size: 14,
-                color:
-                    selected ? colors.textOnPrimary : colors.textSecondary,
+                color: selected ? colors.textOnPrimary : colors.textSecondary,
               ),
               SizedBox(width: AppSizes.w4),
             ],
             Text(
               label,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: selected
-                        ? colors.textOnPrimary
-                        : colors.textPrimary,
-                    fontWeight:
-                        selected ? FontWeight.w600 : FontWeight.normal,
-                  ),
+                color: selected ? colors.textOnPrimary : colors.textPrimary,
+                fontWeight: selected ? FontWeight.w600 : FontWeight.normal,
+              ),
             ),
           ],
         ),

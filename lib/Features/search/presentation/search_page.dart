@@ -10,7 +10,7 @@ import 'package:heka_store/Features/search/presentation/cubits/search_cubit/sear
 import 'package:heka_store/core/di/injector.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
-import 'package:heka_store/core/widgets/product_card/product_card.dart';
+import 'package:heka_store/core/widgets/product_card/grid_product_card.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class SearchPage extends StatefulWidget {
@@ -252,12 +252,12 @@ class _ResultsGrid extends StatelessWidget {
             ),
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
-              childAspectRatio: 0.72,
+              childAspectRatio: 0.55,
               crossAxisSpacing: AppSizes.w12,
-              mainAxisSpacing: AppSizes.h12,
+              mainAxisSpacing: AppSizes.w12,
             ),
             itemCount: products.length,
-            itemBuilder: (_, i) => ProductCard(productModel: products[i]),
+            itemBuilder: (_, i) => GridProductCard(productModel: products[i]),
           ),
         ),
       ],

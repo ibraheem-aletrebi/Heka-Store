@@ -5,6 +5,7 @@ import 'package:heka_store/core/app/router/app_routes.dart';
 import 'package:heka_store/core/extensions/color_extension.dart';
 import 'package:heka_store/core/resources/app_sizes.dart';
 import 'package:heka_store/core/resources/app_text_styles.dart';
+import 'package:heka_store/core/widgets/custom_button/custom_button.dart';
 import 'package:heka_store/generated/l10n.dart';
 
 class OrderSuccessScreen extends StatefulWidget {
@@ -131,22 +132,18 @@ class _OrderSuccessScreenState extends State<OrderSuccessScreen>
                   child: Column(
                     children: [
                       // Track order
-                      SizedBox(
-                        width: double.infinity,
-                        height: 52,
-                        child: FilledButton.icon(
-                          onPressed: () {
-                            context.push(
-                              AppRoutes.trackOrder,
-                              extra: widget.order.orderNumber,
-                            );
-                          },
-                          icon: const Icon(
-                            Icons.local_shipping_outlined,
-                            size: 18,
-                          ),
-                          label: Text(s.orderSuccessTrackOrder),
+                      CustomButton(
+                        onPressed: () {
+                          context.push(
+                            AppRoutes.trackOrder,
+                            extra: widget.order.orderNumber,
+                          );
+                        },
+                        icon: const Icon(
+                          Icons.local_shipping_outlined,
+                          size: 18,
                         ),
+                        text: s.orderSuccessTrackOrder,
                       ),
                       SizedBox(height: AppSizes.h12),
                       // Back to home

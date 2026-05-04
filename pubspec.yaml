@@ -51,6 +51,7 @@ dependencies:
   # Time formatting (e.g., "3 minutes ago")
   timeago: ^3.6.1
   bloc_concurrency: ^0.3.0
+  device_preview: ^1.2.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
