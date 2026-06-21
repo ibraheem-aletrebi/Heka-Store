@@ -14,7 +14,7 @@ _$CartItemModelImpl _$$CartItemModelImplFromJson(Map<String, dynamic> json) =>
       productNameEn: json['productNameEn'] as String,
       productImage: json['productImage'] as String,
       price: (json['price'] as num).toDouble(),
-      discountPrice: (json['discountPrice'] as num).toDouble(),
+      discountPrice: (json['discountPrice'] as num?)?.toDouble(),
       unitPrice: (json['unitPrice'] as num).toDouble(),
       quantity: (json['quantity'] as num).toInt(),
       totalPrice: (json['totalPrice'] as num).toDouble(),

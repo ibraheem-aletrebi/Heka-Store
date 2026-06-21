@@ -8,7 +8,7 @@ part of 'categories_data.dart';
 
 _$CategoriesDataImpl _$$CategoriesDataImplFromJson(Map<String, dynamic> json) =>
     _$CategoriesDataImpl(
-      categories: (json['categories'] as List<dynamic>)
+      categories: (json['items'] as List<dynamic>)
           .map((e) => Category.fromJson(e as Map<String, dynamic>))
           .toList(),
       totalCount: (json['totalCount'] as num).toInt(),
@@ -22,7 +22,7 @@ _$CategoriesDataImpl _$$CategoriesDataImplFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$CategoriesDataImplToJson(
         _$CategoriesDataImpl instance) =>
     <String, dynamic>{
-      'categories': instance.categories,
+      'items': instance.categories,
       'totalCount': instance.totalCount,
       'pageNumber': instance.pageNumber,
       'pageSize': instance.pageSize,

@@ -35,7 +35,7 @@ mixin _$ProductDetailsModel {
   @HiveField(6)
   double get price => throw _privateConstructorUsedError;
   @HiveField(7)
-  double get discountPrice => throw _privateConstructorUsedError;
+  double? get discountPrice => throw _privateConstructorUsedError;
   @HiveField(8)
   double get finalPrice => throw _privateConstructorUsedError;
   @HiveField(9)
@@ -57,7 +57,9 @@ mixin _$ProductDetailsModel {
   @HiveField(17)
   bool get inStock => throw _privateConstructorUsedError;
   @HiveField(18)
-  int get viewCount => throw _privateConstructorUsedError;
+  int get viewCount =>
+      throw _privateConstructorUsedError; // ignore: invalid_annotation_target
+  @JsonKey(fromJson: _ratingFromJson)
   @HiveField(19)
   double get averageRating => throw _privateConstructorUsedError;
   @HiveField(20)
@@ -103,7 +105,7 @@ abstract class $ProductDetailsModelCopyWith<$Res> {
       @HiveField(4) String descriptionAr,
       @HiveField(5) String descriptionEn,
       @HiveField(6) double price,
-      @HiveField(7) double discountPrice,
+      @HiveField(7) double? discountPrice,
       @HiveField(8) double finalPrice,
       @HiveField(9) int discountPercentage,
       @HiveField(10) int stockQuantity,
@@ -115,7 +117,7 @@ abstract class $ProductDetailsModelCopyWith<$Res> {
       @HiveField(16) bool isActive,
       @HiveField(17) bool inStock,
       @HiveField(18) int viewCount,
-      @HiveField(19) double averageRating,
+      @JsonKey(fromJson: _ratingFromJson) @HiveField(19) double averageRating,
       @HiveField(20) int totalReviews,
       @HiveField(21) String createdAt,
       @HiveField(22) String? updatedAt,
@@ -149,7 +151,7 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
     Object? descriptionAr = null,
     Object? descriptionEn = null,
     Object? price = null,
-    Object? discountPrice = null,
+    Object? discountPrice = freezed,
     Object? finalPrice = null,
     Object? discountPercentage = null,
     Object? stockQuantity = null,
@@ -203,10 +205,10 @@ class _$ProductDetailsModelCopyWithImpl<$Res, $Val extends ProductDetailsModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      discountPrice: null == discountPrice
+      discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       finalPrice: null == finalPrice
           ? _value.finalPrice
           : finalPrice // ignore: cast_nullable_to_non_nullable
@@ -319,7 +321,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       @HiveField(4) String descriptionAr,
       @HiveField(5) String descriptionEn,
       @HiveField(6) double price,
-      @HiveField(7) double discountPrice,
+      @HiveField(7) double? discountPrice,
       @HiveField(8) double finalPrice,
       @HiveField(9) int discountPercentage,
       @HiveField(10) int stockQuantity,
@@ -331,7 +333,7 @@ abstract class _$$ProductModelImplCopyWith<$Res>
       @HiveField(16) bool isActive,
       @HiveField(17) bool inStock,
       @HiveField(18) int viewCount,
-      @HiveField(19) double averageRating,
+      @JsonKey(fromJson: _ratingFromJson) @HiveField(19) double averageRating,
       @HiveField(20) int totalReviews,
       @HiveField(21) String createdAt,
       @HiveField(22) String? updatedAt,
@@ -363,7 +365,7 @@ class __$$ProductModelImplCopyWithImpl<$Res>
     Object? descriptionAr = null,
     Object? descriptionEn = null,
     Object? price = null,
-    Object? discountPrice = null,
+    Object? discountPrice = freezed,
     Object? finalPrice = null,
     Object? discountPercentage = null,
     Object? stockQuantity = null,
@@ -417,10 +419,10 @@ class __$$ProductModelImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      discountPrice: null == discountPrice
+      discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       finalPrice: null == finalPrice
           ? _value.finalPrice
           : finalPrice // ignore: cast_nullable_to_non_nullable
@@ -528,7 +530,7 @@ class _$ProductModelImpl extends _ProductModel {
       @HiveField(4) required this.descriptionAr,
       @HiveField(5) required this.descriptionEn,
       @HiveField(6) required this.price,
-      @HiveField(7) required this.discountPrice,
+      @HiveField(7) this.discountPrice,
       @HiveField(8) required this.finalPrice,
       @HiveField(9) required this.discountPercentage,
       @HiveField(10) required this.stockQuantity,
@@ -540,7 +542,9 @@ class _$ProductModelImpl extends _ProductModel {
       @HiveField(16) required this.isActive,
       @HiveField(17) required this.inStock,
       @HiveField(18) required this.viewCount,
-      @HiveField(19) required this.averageRating,
+      @JsonKey(fromJson: _ratingFromJson)
+      @HiveField(19)
+      required this.averageRating,
       @HiveField(20) required this.totalReviews,
       @HiveField(21) required this.createdAt,
       @HiveField(22) this.updatedAt,
@@ -582,7 +586,7 @@ class _$ProductModelImpl extends _ProductModel {
   final double price;
   @override
   @HiveField(7)
-  final double discountPrice;
+  final double? discountPrice;
   @override
   @HiveField(8)
   final double finalPrice;
@@ -616,7 +620,9 @@ class _$ProductModelImpl extends _ProductModel {
   @override
   @HiveField(18)
   final int viewCount;
+// ignore: invalid_annotation_target
   @override
+  @JsonKey(fromJson: _ratingFromJson)
   @HiveField(19)
   final double averageRating;
   @override
@@ -789,7 +795,7 @@ abstract class _ProductModel extends ProductDetailsModel {
           @HiveField(4) required final String descriptionAr,
           @HiveField(5) required final String descriptionEn,
           @HiveField(6) required final double price,
-          @HiveField(7) required final double discountPrice,
+          @HiveField(7) final double? discountPrice,
           @HiveField(8) required final double finalPrice,
           @HiveField(9) required final int discountPercentage,
           @HiveField(10) required final int stockQuantity,
@@ -801,7 +807,9 @@ abstract class _ProductModel extends ProductDetailsModel {
           @HiveField(16) required final bool isActive,
           @HiveField(17) required final bool inStock,
           @HiveField(18) required final int viewCount,
-          @HiveField(19) required final double averageRating,
+          @JsonKey(fromJson: _ratingFromJson)
+          @HiveField(19)
+          required final double averageRating,
           @HiveField(20) required final int totalReviews,
           @HiveField(21) required final String createdAt,
           @HiveField(22) final String? updatedAt,
@@ -842,7 +850,7 @@ abstract class _ProductModel extends ProductDetailsModel {
   double get price;
   @override
   @HiveField(7)
-  double get discountPrice;
+  double? get discountPrice;
   @override
   @HiveField(8)
   double get finalPrice;
@@ -876,7 +884,8 @@ abstract class _ProductModel extends ProductDetailsModel {
   @override
   @HiveField(18)
   int get viewCount;
-  @override
+  @override // ignore: invalid_annotation_target
+  @JsonKey(fromJson: _ratingFromJson)
   @HiveField(19)
   double get averageRating;
   @override

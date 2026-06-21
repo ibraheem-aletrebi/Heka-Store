@@ -26,7 +26,7 @@ mixin _$CartItemModel {
   String get productNameEn => throw _privateConstructorUsedError;
   String get productImage => throw _privateConstructorUsedError;
   double get price => throw _privateConstructorUsedError;
-  double get discountPrice => throw _privateConstructorUsedError;
+  double? get discountPrice => throw _privateConstructorUsedError;
   double get unitPrice => throw _privateConstructorUsedError;
   int get quantity => throw _privateConstructorUsedError;
   double get totalPrice => throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ abstract class $CartItemModelCopyWith<$Res> {
       String productNameEn,
       String productImage,
       double price,
-      double discountPrice,
+      double? discountPrice,
       double unitPrice,
       int quantity,
       double totalPrice,
@@ -90,7 +90,7 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
     Object? productNameEn = null,
     Object? productImage = null,
     Object? price = null,
-    Object? discountPrice = null,
+    Object? discountPrice = freezed,
     Object? unitPrice = null,
     Object? quantity = null,
     Object? totalPrice = null,
@@ -127,10 +127,10 @@ class _$CartItemModelCopyWithImpl<$Res, $Val extends CartItemModel>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      discountPrice: null == discountPrice
+      discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       unitPrice: null == unitPrice
           ? _value.unitPrice
           : unitPrice // ignore: cast_nullable_to_non_nullable
@@ -190,7 +190,7 @@ abstract class _$$CartItemModelImplCopyWith<$Res>
       String productNameEn,
       String productImage,
       double price,
-      double discountPrice,
+      double? discountPrice,
       double unitPrice,
       int quantity,
       double totalPrice,
@@ -220,7 +220,7 @@ class __$$CartItemModelImplCopyWithImpl<$Res>
     Object? productNameEn = null,
     Object? productImage = null,
     Object? price = null,
-    Object? discountPrice = null,
+    Object? discountPrice = freezed,
     Object? unitPrice = null,
     Object? quantity = null,
     Object? totalPrice = null,
@@ -257,10 +257,10 @@ class __$$CartItemModelImplCopyWithImpl<$Res>
           ? _value.price
           : price // ignore: cast_nullable_to_non_nullable
               as double,
-      discountPrice: null == discountPrice
+      discountPrice: freezed == discountPrice
           ? _value.discountPrice
           : discountPrice // ignore: cast_nullable_to_non_nullable
-              as double,
+              as double?,
       unitPrice: null == unitPrice
           ? _value.unitPrice
           : unitPrice // ignore: cast_nullable_to_non_nullable
@@ -315,7 +315,7 @@ class _$CartItemModelImpl implements _CartItemModel {
       required this.productNameEn,
       required this.productImage,
       required this.price,
-      required this.discountPrice,
+      this.discountPrice,
       required this.unitPrice,
       required this.quantity,
       required this.totalPrice,
@@ -344,7 +344,7 @@ class _$CartItemModelImpl implements _CartItemModel {
   @override
   final double price;
   @override
-  final double discountPrice;
+  final double? discountPrice;
   @override
   final double unitPrice;
   @override
@@ -461,7 +461,7 @@ abstract class _CartItemModel implements CartItemModel {
       required final String productNameEn,
       required final String productImage,
       required final double price,
-      required final double discountPrice,
+      final double? discountPrice,
       required final double unitPrice,
       required final int quantity,
       required final double totalPrice,
@@ -489,7 +489,7 @@ abstract class _CartItemModel implements CartItemModel {
   @override
   double get price;
   @override
-  double get discountPrice;
+  double? get discountPrice;
   @override
   double get unitPrice;
   @override

@@ -31,9 +31,8 @@ class CategoryHive extends HiveObject {
 
   @HiveField(8)
   late int productCount;
-
   @HiveField(9)
-  late int status;              
+  late String status;           
 
   @HiveField(10)
   late DateTime createdAt;

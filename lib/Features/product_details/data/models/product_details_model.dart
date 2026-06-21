@@ -17,18 +17,20 @@ class ProductDetailsModel with _$ProductDetailsModel {
     @HiveField(4) required String descriptionAr,
     @HiveField(5) required String descriptionEn,
     @HiveField(6) required double price,
-    @HiveField(7) required double discountPrice,
+    @HiveField(7) double? discountPrice,
     @HiveField(8) required double finalPrice,
     @HiveField(9) required int discountPercentage,
     @HiveField(10) required int stockQuantity,
     @HiveField(11) required String sku,
     @HiveField(12) required bool isEgyptianMade,
-  @HiveField(13) String? madeInCity,
+    @HiveField(13) String? madeInCity,
     @HiveField(14) required String madeInGovernorate,
     @HiveField(15) required bool isFeatured,
     @HiveField(16) required bool isActive,
     @HiveField(17) required bool inStock,
     @HiveField(18) required int viewCount,
+    // ignore: invalid_annotation_target
+    @JsonKey(fromJson: _ratingFromJson)
     @HiveField(19) required double averageRating,
     @HiveField(20) required int totalReviews,
     @HiveField(21) required String createdAt,
@@ -59,3 +61,5 @@ class ProductDetailsModel with _$ProductDetailsModel {
   factory ProductDetailsModel.fromJson(Map<String, dynamic> json) =>
       _$ProductDetailsModelFromJson(json);
 }
+
+double _ratingFromJson(num value) => value.toDouble();

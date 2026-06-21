@@ -16,11 +16,8 @@ class RegisterViewBodyBlocListener extends StatelessWidget {
           previous.error != current.error,
       listener: (context, state) {
         if (state.isRegisterSuccess) {
-          context.push(AppRoutes.verifyEmail,extra: {'email': state.email,},
-);
-        }
-
-        if (state.error != null) {
+          context.push(AppRoutes.verifyEmail, extra: {'email': state.email});
+        } else if (state.error != null) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(

@@ -148,9 +148,10 @@ class _CartItemTileState extends State<CartItemTile>
     final bool isOutOfStock = !item.inStock || item.stockAvailable == 0;
     final bool isLowStock =
         !isOutOfStock && item.stockAvailable <= _kLowStockThreshold;
-    final bool hasDiscount = item.discountPrice < item.price;
+    final bool hasDiscount =
+        item.discountPrice != null && item.discountPrice! < item.price;
     final double savings = hasDiscount
-        ? (item.price - item.discountPrice) * item.quantity
+        ? (item.price - item.discountPrice!) * item.quantity
         : 0;
 
     return BlocListener<ProductDetailsBloc, ProductDetailsState>(
@@ -257,8 +258,9 @@ class _CartItemTileState extends State<CartItemTile>
                           child: CachedImage(
                             width: AppSizes.w80,
                             height: AppSizes.h100,
-                            url:
-                                'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&auto=format&fit=crop&q=60',
+                            url: item.productImage.isNotEmpty
+                                ? item.productImage
+                                : null,
                           ),
                         ),
                         // if (hasDiscount)

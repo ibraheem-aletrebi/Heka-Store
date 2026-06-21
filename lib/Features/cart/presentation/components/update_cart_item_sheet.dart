@@ -54,7 +54,7 @@ class _UpdateCartItemSheetState extends State<UpdateCartItemSheet> {
       _selectedOptions.values.fold(0.0, (sum, o) => sum + o.priceAdjustment);
 
   double get _displayPrice =>
-      widget.item.discountPrice + _totalVariantAdjustment;
+      widget.item.discountPrice??0+ _totalVariantAdjustment;
 
   void _toggleOption(String typeName, ProductVariantOptionModel option) {
     setState(() {

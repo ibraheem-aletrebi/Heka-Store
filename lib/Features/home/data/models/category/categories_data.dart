@@ -7,7 +7,7 @@ part 'categories_data.g.dart';
 @freezed
 class CategoriesData with _$CategoriesData {
   const factory CategoriesData({
-    required List<Category> categories,
+    @JsonKey(name: 'items') required List<Category> categories,
     required int totalCount,
     required int pageNumber,
     required int pageSize,

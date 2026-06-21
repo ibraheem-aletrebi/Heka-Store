@@ -29,7 +29,7 @@ mixin _$Category {
   String? get parentCategoryCode => throw _privateConstructorUsedError;
   int? get parentCategoryId => throw _privateConstructorUsedError;
   int get productCount => throw _privateConstructorUsedError;
-  int get status => throw _privateConstructorUsedError;
+  String get status => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
   DateTime? get updatedAt => throw _privateConstructorUsedError;
   List<Category> get subCategories => throw _privateConstructorUsedError;
@@ -55,7 +55,7 @@ abstract class $CategoryCopyWith<$Res> {
       String? parentCategoryCode,
       int? parentCategoryId,
       int productCount,
-      int status,
+      String status,
       DateTime createdAt,
       DateTime? updatedAt,
       List<Category> subCategories});
@@ -128,7 +128,7 @@ class _$CategoryCopyWithImpl<$Res, $Val extends Category>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -163,7 +163,7 @@ abstract class _$$CategoryImplCopyWith<$Res>
       String? parentCategoryCode,
       int? parentCategoryId,
       int productCount,
-      int status,
+      String status,
       DateTime createdAt,
       DateTime? updatedAt,
       List<Category> subCategories});
@@ -234,7 +234,7 @@ class __$$CategoryImplCopyWithImpl<$Res>
       status: null == status
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
-              as int,
+              as String,
       createdAt: null == createdAt
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -264,7 +264,7 @@ class _$CategoryImpl implements _Category {
       this.parentCategoryCode,
       this.parentCategoryId,
       this.productCount = 0,
-      this.status = 1,
+      this.status = 'Active',
       required this.createdAt,
       this.updatedAt,
       final List<Category> subCategories = const []})
@@ -296,7 +296,7 @@ class _$CategoryImpl implements _Category {
   final int productCount;
   @override
   @JsonKey()
-  final int status;
+  final String status;
   @override
   final DateTime createdAt;
   @override
@@ -386,7 +386,7 @@ abstract class _Category implements Category {
       final String? parentCategoryCode,
       final int? parentCategoryId,
       final int productCount,
-      final int status,
+      final String status,
       required final DateTime createdAt,
       final DateTime? updatedAt,
       final List<Category> subCategories}) = _$CategoryImpl;
@@ -413,7 +413,7 @@ abstract class _Category implements Category {
   @override
   int get productCount;
   @override
-  int get status;
+  String get status;
   @override
   DateTime get createdAt;
   @override

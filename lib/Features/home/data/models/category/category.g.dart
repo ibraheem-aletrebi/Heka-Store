@@ -17,7 +17,7 @@ _$CategoryImpl _$$CategoryImplFromJson(Map<String, dynamic> json) =>
       parentCategoryCode: json['parentCategoryCode'] as String?,
       parentCategoryId: (json['parentCategoryId'] as num?)?.toInt(),
       productCount: (json['productCount'] as num?)?.toInt() ?? 0,
-      status: (json['status'] as num?)?.toInt() ?? 1,
+      status: json['status'] as String? ?? 'Active',
       createdAt: DateTime.parse(json['createdAt'] as String),
       updatedAt: json['updatedAt'] == null
           ? null

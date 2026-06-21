@@ -58,16 +58,11 @@ class AuthRepoImp implements AuthRepo {
   @override
   Future<ApiResult<void>> register(RegisterRequestModel request) async {
     try {
+      // FIX: Removed updateFcmToken call from here.
+      // At this point the user has no auth tokens yet (email not verified),
+      // so calling updateFcmToken causes "No refresh token available" crash.
+      // FCM token is updated after login/verifyEmailOtp instead.
       await _remoteDataSource.register(request);
-      final fcmToken = await LocalStorageService().getValue(
-        HiveBoxes.data,
-        "fcmToken",
-      );
-      if (fcmToken != null) {
-        await _remoteDataSource.updateFcmToken(
-          UpdateFcmTokenRequestModel(fcmToken: fcmToken),
-        );
-      }
       return ApiResult.success(null);
     } catch (e) {
       return ApiResult.error(e);
@@ -84,6 +79,16 @@ class AuthRepoImp implements AuthRepo {
       final response = await _remoteDataSource.verifyEmailOtp(request);
       await _localDataSource.saveTokens(response);
       await _localDataSource.saveUser(response);
+      // ✅ Update FCM token here — tokens are now available after email verify
+      final fcmToken = await LocalStorageService().getValue(
+        HiveBoxes.data,
+        "fcmToken",
+      );
+      if (fcmToken != null) {
+        await _remoteDataSource.updateFcmToken(
+          UpdateFcmTokenRequestModel(fcmToken: fcmToken),
+        );
+      }
       return ApiResult.success(response);
     } catch (e) {
       return ApiResult.error(e);
@@ -144,9 +149,6 @@ class AuthRepoImp implements AuthRepo {
     }
   }
 
-  // ─── Pending Verify Email ─────────────────────────────────────────────────
-
-
   // ─── Session ──────────────────────────────────────────────────────────────
 
   @override
@@ -156,12 +158,6 @@ class AuthRepoImp implements AuthRepo {
 
   @override
   Future<ApiResult<void>> logout() async {
-    // FIX: Always call the API *before* clearing local storage.
-    // The remote logout (revoke-token) reads the refresh token from local
-    // storage — clearing first caused "No refresh token available".
-    //
-    // We also always clear local data regardless of whether the API call
-    // succeeds, so the user is never stuck in a logged-in state locally.
     try {
       await _remoteDataSource.logout();
     } catch (_) {
@@ -178,9 +174,6 @@ class AuthRepoImp implements AuthRepo {
 
   @override
   Future<ApiResult<void>> deleteAccount({required String password}) async {
-    // Same pattern: call API first, then clear local storage.
-    // If the API succeeds but clearAll() throws, the account is still deleted
-    // on the server — the user can log in again and it will re-clear.
     try {
       await _remoteDataSource.deleteAccount(password: password);
       await _localDataSource.clearAll();

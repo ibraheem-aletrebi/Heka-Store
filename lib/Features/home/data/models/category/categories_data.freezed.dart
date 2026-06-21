@@ -20,6 +20,7 @@ CategoriesData _$CategoriesDataFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CategoriesData {
+  @JsonKey(name: 'items')
   List<Category> get categories => throw _privateConstructorUsedError;
   int get totalCount => throw _privateConstructorUsedError;
   int get pageNumber => throw _privateConstructorUsedError;
@@ -41,7 +42,7 @@ abstract class $CategoriesDataCopyWith<$Res> {
       _$CategoriesDataCopyWithImpl<$Res, CategoriesData>;
   @useResult
   $Res call(
-      {List<Category> categories,
+      {@JsonKey(name: 'items') List<Category> categories,
       int totalCount,
       int pageNumber,
       int pageSize,
@@ -113,7 +114,7 @@ abstract class _$$CategoriesDataImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<Category> categories,
+      {@JsonKey(name: 'items') List<Category> categories,
       int totalCount,
       int pageNumber,
       int pageSize,
@@ -178,7 +179,7 @@ class __$$CategoriesDataImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$CategoriesDataImpl implements _CategoriesData {
   const _$CategoriesDataImpl(
-      {required final List<Category> categories,
+      {@JsonKey(name: 'items') required final List<Category> categories,
       required this.totalCount,
       required this.pageNumber,
       required this.pageSize,
@@ -192,6 +193,7 @@ class _$CategoriesDataImpl implements _CategoriesData {
 
   final List<Category> _categories;
   @override
+  @JsonKey(name: 'items')
   List<Category> get categories {
     if (_categories is EqualUnmodifiableListView) return _categories;
     // ignore: implicit_dynamic_type
@@ -266,7 +268,7 @@ class _$CategoriesDataImpl implements _CategoriesData {
 
 abstract class _CategoriesData implements CategoriesData {
   const factory _CategoriesData(
-      {required final List<Category> categories,
+      {@JsonKey(name: 'items') required final List<Category> categories,
       required final int totalCount,
       required final int pageNumber,
       required final int pageSize,
@@ -278,6 +280,7 @@ abstract class _CategoriesData implements CategoriesData {
       _$CategoriesDataImpl.fromJson;
 
   @override
+  @JsonKey(name: 'items')
   List<Category> get categories;
   @override
   int get totalCount;

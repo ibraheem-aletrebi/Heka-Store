@@ -27,19 +27,21 @@ class HekaStoreApp extends StatelessWidget {
               // ── Cart Listener ────────────────────────────────────────
               BlocListener<CartBloc, CartState>(
                 listenWhen: (prev, curr) =>
-                    prev.isAddingToCart && !curr.isAddingToCart,
+                    prev.isAddingToCart &&
+                    !curr.isAddingToCart &&
+                    curr.addedToCartSuccess != null,
                 listener: (_, state) {
-                  if (state.hasError) {
-                    _showSnackBar(
-                      message:
-                          state.error?.serverMessage ?? 'Failed to add to cart',
-                      isSuccess: false,
-                    );
-                  } else if (state.isLoaded) {
+                  if (state.addedToCartSuccess == true) {
                     _showSnackBar(
                       message: 'Added to cart successfully!',
                       icon: CupertinoIcons.cart_fill,
                       isSuccess: true,
+                    );
+                  } else {
+                    _showSnackBar(
+                      message:
+                          state.error?.serverMessage ?? 'Failed to add to cart',
+                      isSuccess: false,
                     );
                   }
                 },

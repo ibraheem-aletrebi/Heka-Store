@@ -26,7 +26,7 @@ class CategoryHiveAdapter extends TypeAdapter<CategoryHive> {
       ..parentCategoryCode = fields[6] as String?
       ..parentCategoryId = fields[7] as int?
       ..productCount = fields[8] as int
-      ..status = fields[9] as int
+      ..status = fields[9] as String
       ..createdAt = fields[10] as DateTime
       ..updatedAt = fields[11] as DateTime?
       ..subCategories = (fields[12] as List).cast<CategoryHive>();

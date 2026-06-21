@@ -15,7 +15,7 @@ class Category with _$Category {
     String? parentCategoryCode,
     int? parentCategoryId,
     @Default(0) int productCount,
-    @Default(1) int status,
+    @Default('Active') String status,
     required DateTime createdAt,
     DateTime? updatedAt,
     @Default([]) List<Category> subCategories,

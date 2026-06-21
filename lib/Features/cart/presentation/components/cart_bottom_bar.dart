@@ -59,19 +59,14 @@ class _CartBottomBarState extends State<CartBottomBar>
     _summaryOpen ? _sheetCtrl.forward() : _sheetCtrl.reverse();
   }
 
-  // ── Derived helpers ────────────────────────────────────────────────────────
   double get _savings {
     final cart = widget.cart;
-
     double savings = 0;
-
     for (final item in cart.items) {
       final original = item.price * item.quantity;
-      final discounted = item.discountPrice * item.quantity;
-
+      final discounted = (item.discountPrice ?? item.price) * item.quantity;
       savings += (original - discounted);
     }
-
     return savings.clamp(0, double.infinity);
   }
 
