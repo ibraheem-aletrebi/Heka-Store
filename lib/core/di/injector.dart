@@ -204,20 +204,24 @@ Future<void> _initCore() async {
 
   // ─── App BLoCs ────────────────────────────────────
   sl.registerFactory<ThemeBloc>(() => ThemeBloc(localStorage: localStorage));
+ 
+  // ─── Network ──────────────────────────────────────
+   final dioClient = DioClient()..init(); // single reference
+
+  sl.registerLazySingleton<LanguageInterceptor>(
+    () => dioClient.languageInterceptor, // ← same instance
+  );
+  sl.registerLazySingleton<ApiService>(
+    () => ApiService(dioClient.dio), // ← same instance
+  );
+
+  // ─── App BLoCs ────────────────────────────────────
   sl.registerFactory<LanguageBloc>(
     () => LanguageBloc(
       localStorage: localStorage,
-      languageInterceptor: sl<LanguageInterceptor>(), // ← add
+      languageInterceptor: sl<LanguageInterceptor>(), // ← now correct
     ),
   );
-
-  // ─── Network ──────────────────────────────────────
-  DioClient().init();
-  sl.registerLazySingleton<LanguageInterceptor>(
-    () => DioClient().languageInterceptor,
-  );
-  sl.registerLazySingleton<ApiService>(() => ApiService(DioClient().dio));
-
   // ─── Error Handler ────────────────────────────────
   ApiErrorHandler.instance.init(
     onUnauthorized: () {

@@ -4674,6 +4674,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Added to cart successfully!`
+  String get addedToCart {
+    return Intl.message(
+      'Added to cart successfully!',
+      name: 'addedToCart',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

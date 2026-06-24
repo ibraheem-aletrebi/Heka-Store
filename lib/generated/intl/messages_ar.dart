@@ -95,6 +95,9 @@ class MessageLookup extends MessageLookupByLibrary {
     "addNewCard": MessageLookupByLibrary.simpleMessage("إضافة بطاقة جديدة"),
     "addToCart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
     "add_to_cart": MessageLookupByLibrary.simpleMessage("أضف إلى السلة"),
+    "addedToCart": MessageLookupByLibrary.simpleMessage(
+      "تمت الإضافة إلى السلة بنجاح!",
+    ),
     "addedToWishlist": MessageLookupByLibrary.simpleMessage(
       "تمت الإضافة إلى المفضلة",
     ),

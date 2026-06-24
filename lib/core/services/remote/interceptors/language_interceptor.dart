@@ -9,6 +9,7 @@ class LanguageInterceptor extends Interceptor {
 
   @override
   void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+    print('🌐 Accept-Language: $_langCode');
     options.headers['Accept-Language'] = _langCode;
     super.onRequest(options, handler);
   }

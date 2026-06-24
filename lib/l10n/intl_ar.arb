@@ -1,6 +1,8 @@
 {
   "@@locale": "ar",
   "lang": "العربية",
+  "addedToCart": "تمت الإضافة إلى السلة بنجاح!",
+"@addedToCart": {},
   "@lang": {},
   "languageLoadError": "فشل تحميل اللغة.",
   "@languageLoadError": {},
